@@ -3,7 +3,6 @@ package com.codeblue.montreISTA.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
@@ -13,11 +12,11 @@ import javax.validation.constraints.Pattern;
 @Setter
 @Entity
 @Table(name = "users")
-public class Users extends AuditEntity{
+public class User extends AuditEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+    private Long userId;
 
     @NotBlank(message = "name may not be blank")
     @Column(unique = true)

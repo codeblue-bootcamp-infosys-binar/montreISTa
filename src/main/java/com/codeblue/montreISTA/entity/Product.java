@@ -1,6 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
 import lombok.*;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Table(name = "products")
-public class Products {
+public class Product extends AuditEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,16 +21,23 @@ public class Products {
 
     @ManyToOne
     @JoinColumn(name="seller_id")
-    private Sellers seller;
+    private Seller seller;
 
     @Column(name="product_name")
+    @NotBlank
     private String productName;
 
     @Column(name = "description")
+    @NotBlank
     private String description;
 
     @Column(name = "price")
-    private Long price;
+    @NotBlank
+    private Integer price;
 
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "product",
+            fetch = FetchType.LAZY)
+    private List<Photo> ListPhoto;
 }
 
