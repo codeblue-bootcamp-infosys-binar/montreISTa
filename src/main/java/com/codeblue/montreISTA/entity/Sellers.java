@@ -19,8 +19,13 @@ public class Sellers {
     @JoinColumn(name = "user_id")
     private Users userId;
 
+
     private String storeName;
+
+
     private String storePhoto;
+
+
     private String storeAddress;
 
 }
