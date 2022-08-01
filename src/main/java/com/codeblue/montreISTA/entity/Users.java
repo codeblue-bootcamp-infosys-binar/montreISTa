@@ -12,7 +12,7 @@ import javax.validation.constraints.Email;
 @Setter
 @Entity
 @Table(name = "users")
-public class Users {
+public class Users extends AuditEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
