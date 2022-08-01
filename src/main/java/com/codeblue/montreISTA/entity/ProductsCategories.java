@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,3 +28,4 @@ public class ProductsCategories {
     @JoinColumn(name = "category_id")
     private Categories category;
 }
+
