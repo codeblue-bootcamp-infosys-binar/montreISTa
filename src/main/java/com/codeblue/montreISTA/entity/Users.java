@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
 
 
 @Getter
@@ -15,7 +16,7 @@ import javax.validation.constraints.Email;
 public class Users extends AuditEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
 
     @NotBlank(message = "name may not be blank")
@@ -28,7 +29,8 @@ public class Users extends AuditEntity{
 
     @Column(unique = true)
     @NotBlank(message = "email may not be blank")
-    @Email
+    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
+            flags = Pattern.Flag.CASE_INSENSITIVE)
     private String email;
 
     @NotBlank(message = "password may not be blank")
