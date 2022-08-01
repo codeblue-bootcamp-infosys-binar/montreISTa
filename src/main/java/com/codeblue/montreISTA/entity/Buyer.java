@@ -8,24 +8,14 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "sellers")
-public class Sellers {
-
+@Table(name = "buyers")
+public class Buyer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long sellerId;
+    private long buyerId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private Users userId;
-
-
-    private String storeName;
-
-
-    private String storePhoto;
-
-
-    private String storeAddress;
 
 }
