@@ -10,23 +10,23 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "sellers")
-public class Sellers {
+public class Seller extends AuditEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long sellerId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long sellerId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private Users userId;
+    private User userId;
 
-    @NotBlank(message = "name must not be blank")
+    @NotBlank
     private String storeName;
 
-    @NotBlank(message = "store photo must not be blank")
+    @NotBlank
     private String storePhoto;
 
-    @NotBlank(message = "store addre must not be blank")
+    @NotBlank
     private String storeAddress;
 
 }
