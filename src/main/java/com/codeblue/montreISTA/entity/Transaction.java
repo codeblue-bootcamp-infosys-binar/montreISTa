@@ -3,7 +3,6 @@ package com.codeblue.montreISTA.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 
@@ -11,7 +10,7 @@ import java.time.ZonedDateTime;
 @Getter
 @Setter
 @Table(name="transactions")
-public class Transactions extends AuditEntity{
+public class Transaction extends AuditEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionId;
@@ -19,7 +18,7 @@ public class Transactions extends AuditEntity{
     @ManyToOne
     @JoinColumn(name = "order_id")
     @NotBlank(message= "orders must not be blank")
-    private Orders orders;
+    private Order order;
 
     @NotBlank(message= "totalPrice must not be blank")
     private Integer totalPrice;

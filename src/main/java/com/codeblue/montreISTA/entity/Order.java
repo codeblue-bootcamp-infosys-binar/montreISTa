@@ -3,17 +3,14 @@ package com.codeblue.montreISTA.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "orders")
-public class Orders extends AuditEntity{
+public class Order extends AuditEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
@@ -21,22 +18,23 @@ public class Orders extends AuditEntity{
     @ManyToOne
     @JoinColumn(name = "buyer_id")
     @NotBlank
-    private Buyers buyers;
+    private Buyer buyer;
 
     @ManyToOne
     @JoinColumn(name = "payment_id")
     @NotBlank
-    private Payments payments;
+    private Payment payment;
 
     @ManyToOne
     @JoinColumn(name = "shipping_id")
     @NotBlank
-    private Shippings shippings;
+    private Shipping shipping;
+
     @NotBlank(message = "quantity must not be blank")
     private Integer quantity;
 
     @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "orders",
+            mappedBy = "order",
             fetch = FetchType.LAZY)
-    private List<OrdersProducts> OrdersProducts;
+    private List<OrderProduct> OrderProduct;
 }

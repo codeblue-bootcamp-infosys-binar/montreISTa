@@ -9,15 +9,24 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "buyers")
-public class Buyers extends AuditEntity {
+@Table(name = "sellers")
+public class Seller extends AuditEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long buyerId;
+    private Long sellerId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
+    private User userId;
+
     @NotBlank
-    private Users users;
+    private String storeName;
+
+    @NotBlank
+    private String storePhoto;
+
+    @NotBlank
+    private String storeAddress;
+
 }

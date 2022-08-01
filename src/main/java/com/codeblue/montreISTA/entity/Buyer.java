@@ -1,6 +1,5 @@
 package com.codeblue.montreISTA.entity;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
@@ -9,21 +8,15 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "wishlist")
-public class Wishlist extends AuditEntity {
+@Table(name = "buyers")
+public class Buyer extends AuditEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long wishlistId;
+    private Long buyerId;
 
-    @ManyToOne
-    @JoinColumn(name = "buyer_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     @NotBlank
-    private Buyer buyer;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    @NotBlank
-    private Product product;
-
+    private User user;
 }
