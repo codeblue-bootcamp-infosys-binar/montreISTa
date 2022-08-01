@@ -19,10 +19,14 @@ public class Users {
     private long userId;
 
     @NotBlank(message = "name may not be blank")
+    @Column(unique = true)
     private String name;
+
+    @Column(unique = true)
     @NotBlank(message = "username may not be blank")
     private String username;
 
+    @Column(unique = true)
     @NotBlank(message = "email may not be blank")
     @Email
     private String email;
@@ -30,6 +34,7 @@ public class Users {
     @NotBlank(message = "password may not be blank")
     private String password;
 
+    @Column(unique = true)
     @NotBlank(message = "phone number may not be blank")
     private String phone;
 
