@@ -23,9 +23,9 @@ public class Wishlist extends AuditEntity {
     @NotBlank
     private Buyers buyers;
 
-//    @ManyToOne
-//    @JoinColumn(name = "product_id")
-//    @NotBlank
-//    private Product product;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    @NotBlank
+    private Products products;
 
 }

@@ -3,6 +3,7 @@ package com.codeblue.montreISTA.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Setter
 @Getter

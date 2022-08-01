@@ -35,7 +35,8 @@ public class Orders extends AuditEntity{
     @NotBlank(message = "quantity must not be blank")
     private Integer quantity;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy ="orders",fetch = FetchType.LAZY)
-    private List<OrdersProducts> ordersProducts;
-
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "orders",
+            fetch = FetchType.LAZY)
+    private List<OrdersProducts> OrdersProducts;
 }

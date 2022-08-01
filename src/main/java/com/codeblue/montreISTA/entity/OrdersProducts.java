@@ -18,5 +18,8 @@ public class OrdersProducts extends AuditEntity{
     @ManyToOne(fetch = FetchType.LAZY,targetEntity = Orders.class)
     private Orders orders;
 
+    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Products.class)
+    private Products products;
+
 
 }
