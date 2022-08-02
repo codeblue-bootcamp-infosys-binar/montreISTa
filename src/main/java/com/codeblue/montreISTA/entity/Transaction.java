@@ -16,9 +16,9 @@ public class Transaction extends AuditEntity{
     private Long transactionId;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "orderProduct_id")
     @NotBlank(message= "orders must not be blank")
-    private Order order;
+    private OrderProduct orderProduct;
 
     @NotBlank(message= "totalPrice must not be blank")
     private Integer totalPrice;
