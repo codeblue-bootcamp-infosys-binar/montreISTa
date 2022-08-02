@@ -20,6 +20,8 @@ public class Photo extends AuditEntity{
     private String photoName;
 
     @NotBlank
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String photoURL;
 
     @ManyToOne
