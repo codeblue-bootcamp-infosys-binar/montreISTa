@@ -26,6 +26,5 @@ public class Photo extends AuditEntity{
     @JoinColumn(name = "product_id")
     @NotBlank
     private Product product;
-
-
 }
+
