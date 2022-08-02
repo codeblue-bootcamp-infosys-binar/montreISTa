@@ -27,7 +27,8 @@ public class Product extends AuditEntity{
     @NotBlank
     private String productName;
 
-    @Column(name = "description")
+    @Lob
+    @Column(name = "description", columnDefinition = "TEXT")
     @NotBlank
     private String description;
 
