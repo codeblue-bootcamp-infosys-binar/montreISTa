@@ -24,10 +24,11 @@ public class AuditEntity {
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
-    @NotBlank
+
+//    @NotBlank
     private ZonedDateTime createdAt;
 
-    @NotBlank
+//    @NotBlank
     @UpdateTimestamp
     private ZonedDateTime modifiedAt;
 
