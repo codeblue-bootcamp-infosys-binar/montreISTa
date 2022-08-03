@@ -1,7 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
 import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Objects;

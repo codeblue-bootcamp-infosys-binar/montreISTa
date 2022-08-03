@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotEmpty;
 import java.time.ZonedDateTime;
 
 @MappedSuperclass
