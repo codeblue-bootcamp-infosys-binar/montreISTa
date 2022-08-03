@@ -1,8 +1,8 @@
-package com.codeblue.montreISTA.Controller;
+package com.codeblue.montreISTA.controller;
 
 
-import com.codeblue.montreISTA.Response.ResponseHandler;
-import com.codeblue.montreISTA.Service.PaymentService;
+import com.codeblue.montreISTA.response.ResponseHandler;
+import com.codeblue.montreISTA.service.PaymentService;
 import com.codeblue.montreISTA.entity.Payment;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.codeblue.montreISTA.Service;
+package com.codeblue.montreISTA.service;
 
 
 import com.codeblue.montreISTA.entity.Payment;
