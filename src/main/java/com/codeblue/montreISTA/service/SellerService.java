@@ -3,10 +3,12 @@ package com.codeblue.montreISTA.service;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class SellerService {
     @Autowired
     SellerRepository sellerRepository;

@@ -3,6 +3,7 @@ package com.codeblue.montreISTA.entity;
 import DTO.PhotoPostDTO;
 import DTO.PhotoResponseDTO;
 import lombok.*;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
