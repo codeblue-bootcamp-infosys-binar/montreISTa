@@ -1,6 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "wishlist")
+@Builder
 public class Wishlist extends AuditEntity {
 
     @Id

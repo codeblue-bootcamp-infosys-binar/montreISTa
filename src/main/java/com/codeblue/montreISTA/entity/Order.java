@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
@@ -10,6 +11,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "orders")
+@Builder
 public class Order extends AuditEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

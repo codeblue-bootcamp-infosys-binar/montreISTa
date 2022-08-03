@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
@@ -12,6 +13,7 @@ import javax.validation.constraints.Pattern;
 @Setter
 @Entity
 @Table(name = "users")
+@Builder
 public class User extends AuditEntity{
 
     @Id
