@@ -1,8 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +9,8 @@ import javax.persistence.*;
 @Setter
 @Table(name = "orders_products")
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderProduct extends AuditEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

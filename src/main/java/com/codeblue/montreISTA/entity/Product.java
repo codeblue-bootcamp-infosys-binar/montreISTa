@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Setter
@@ -24,16 +25,12 @@ public class Product extends AuditEntity{
     private Seller seller;
 
     @Column(name="product_name")
-    @NotBlank
     private String productName;
 
-    @Lob
     @Column(name = "description", columnDefinition = "TEXT")
-    @NotBlank
     private String description;
 
     @Column(name = "price")
-    @NotBlank
     private Integer price;
 
     @OneToMany(cascade = CascadeType.ALL,

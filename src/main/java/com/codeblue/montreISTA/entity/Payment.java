@@ -1,8 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 
@@ -11,6 +9,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "payments")
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Payment extends AuditEntity {
 
     @Id

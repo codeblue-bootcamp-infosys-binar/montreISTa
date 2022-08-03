@@ -1,34 +1,34 @@
 package com.codeblue.montreISTA.entity;
 
+import DTO.PhotoPostDTO;
 import DTO.PhotoResponseDTO;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "photos")
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Photo extends AuditEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long photoId;
 
-    @NotBlank
+    @NotEmpty
     private String photoName;
 
-    @NotBlank
-    @Lob
+    @NotEmpty
     @Column(columnDefinition = "TEXT")
     private String photoURL;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @NotBlank
     private Product product;
 
     public PhotoResponseDTO convertToResponse(){
@@ -45,6 +45,24 @@ public class Photo extends AuditEntity{
                 .store_photo(this.getProduct().getSeller().getStorePhoto())
                 .store_address(this.getProduct().getSeller().getStoreAddress())
                 .build();
+    }
+    public PhotoPostDTO convertToPost(){
+        return PhotoPostDTO.builder()
+                .photo_id(this.photoId)
+                .photo_name(this.photoName)
+                .photo_url(this.photoURL)
+                .product_id(this.getProduct().getProductId())
+                .build();
+    }
+
+    @Override
+    public String toString() {
+        return "Photo{" +
+                "photoId=" + photoId +
+                ", photoName='" + photoName + '\'' +
+                ", photoURL='" + photoURL + '\'' +
+                ", product=" + product +
+                '}';
     }
 }
 
