@@ -20,13 +20,13 @@ public class Seller extends AuditEntity{
     @JoinColumn(name = "user_id")
     private User userId;
 
-    @NotBlank
+    @NotBlank(message = "store name may not be blank")
     private String storeName;
 
-    @NotBlank
+    @NotBlank(message = "store photo may not be blank")
     private String storePhoto;
 
-    @NotBlank
+    @NotBlank(message = "store addres may not be blank")
     private String storeAddress;
 
 }
