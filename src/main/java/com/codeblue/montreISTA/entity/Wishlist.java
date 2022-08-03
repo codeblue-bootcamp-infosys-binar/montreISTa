@@ -1,8 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 
@@ -10,6 +9,9 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "wishlist")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Wishlist extends AuditEntity {
 
     @Id
@@ -23,7 +25,7 @@ public class Wishlist extends AuditEntity {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @NotBlank
+    @NotBlank(message= "orders must not be blank")
     private Product product;
 
 }

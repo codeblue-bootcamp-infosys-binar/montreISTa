@@ -1,9 +1,11 @@
 package com.codeblue.montreISTA.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Setter
@@ -24,20 +26,20 @@ public class Product extends AuditEntity{
     private Seller seller;
 
     @Column(name="product_name")
-    @NotBlank
     private String productName;
 
-    @Column(name = "description")
-    @NotBlank
+
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "price")
-    @NotBlank
     private Integer price;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "product",
-            fetch = FetchType.LAZY)
-    private List<Photo> ListPhoto;
+//    @OneToMany(cascade = CascadeType.ALL,
+//            mappedBy = "product",
+//            fetch = FetchType.LAZY)
+//    private List<Photo> ListPhoto;
 }
 
