@@ -23,7 +23,10 @@ public class Photo extends AuditEntity{
     @NotEmpty
     private String photoName;
 
-    @NotEmpty
+
+    @NotBlank
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column(columnDefinition = "TEXT")
     private String photoURL;
 

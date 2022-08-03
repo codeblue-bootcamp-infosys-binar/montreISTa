@@ -1,6 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -27,15 +28,18 @@ public class Product extends AuditEntity{
     @Column(name="product_name")
     private String productName;
 
+
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "price")
     private Integer price;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "product",
-            fetch = FetchType.LAZY)
-    private List<Photo> ListPhoto;
+//    @OneToMany(cascade = CascadeType.ALL,
+//            mappedBy = "product",
+//            fetch = FetchType.LAZY)
+//    private List<Photo> ListPhoto;
 }
 
