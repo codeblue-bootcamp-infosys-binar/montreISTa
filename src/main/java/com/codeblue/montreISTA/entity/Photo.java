@@ -2,6 +2,8 @@ package com.codeblue.montreISTA.entity;
 
 import DTO.PhotoPostDTO;
 import DTO.PhotoResponseDTO;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
@@ -12,9 +14,12 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 @Entity
 @Table(name = "photos")
-@Builder
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "photoId")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Photo extends AuditEntity{
 
     @Id
@@ -24,14 +29,13 @@ public class Photo extends AuditEntity{
     @NotEmpty
     private String photoName;
 
-
-    @NotBlank
+    @NotEmpty
     @Lob
     @Type(type = "org.hibernate.type.TextType")
     @Column(columnDefinition = "TEXT")
     private String photoURL;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Product.class)
     @JoinColumn(name = "product_id")
     private Product product;
 

@@ -40,26 +40,61 @@ public class PhotoServiceSImp implements PhotoServices {
     }
 
     @Override
+    public List<PhotoResponseDTO> findByProductName(String productName) {
+        return null;
+    }
+
+    @Override
+    public List<PhotoResponseDTO> findByUsername(String name) {
+        return null;
+    }
+    /**
+     * belumada validasi optionalphoto by id isPresent, throw
+     * @param photoRequestDTO
+     * @return
+     */
+    @Override
     public PhotoPostDTO createPhoto(PhotoRequestDTO photoRequestDTO) {
         Photo savePhoto = photoRequestDTO.convertToEntity();
         photoRepository.save(savePhoto);
         return savePhoto.convertToPost();
     }
 
+    /**
+     * note : logic validasi username = username
+     * @param photoRequestDTO
+     * @param id
+     * @return
+     */
     @Override
-    public PhotoPostDTO updatePhoto(Photo photo,Long id) {
-//        Optional<Photo> photoId = photoRepository.findById(id);
-//        Photo photos = photoId.get();
-//        photos.setPhotoName(photo.getPhotoName());
-//        photos.setStudioName(seatsRequest.getStudioName());
-//        photos.setIsAvailable(seatsRequest.getIsAvailable());
-//        seatsService.updateSeat(seats);
-        photo.setPhotoId(id);
-        return null;
+    public PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO,Long id){
+        Photo photo = photoRequestDTO.convertToEntity();
+        Optional<Photo> photoId = photoRepository.findById(photo.getPhotoId());
+//        if(photoId.isEmpty()){
+//            throw new Exception("Photo not found");
+//        }
+//        photo.setPhotoId(id);
+        Photo savePhoto = photoRepository.save(photo);
+        return savePhoto.convertToResponse();
     }
 
     @Override
     public void deleteById(Long id) {
+        photoRepository.deleteById(id);
+    }
+
+    @Override
+    public long deleteByPhotoName(String photoName) {
+       return photoRepository.deleteByPhotoName(photoName);
+    }
+
+    @Override
+    public void deletedByProductName(String name) {
+
+    }
+
+    @Override
+    public void deleteByUsername(String name) {
 
     }
 }
