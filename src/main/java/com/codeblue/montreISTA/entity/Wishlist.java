@@ -23,7 +23,6 @@ public class Wishlist extends AuditEntity {
     @NotBlank
     private Buyer buyer;
 
-    //harusny ini list
     @ManyToOne
     @JoinColumn(name = "product_id")
     @NotBlank(message= "orders must not be blank")
