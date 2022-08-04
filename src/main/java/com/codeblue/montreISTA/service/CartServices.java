@@ -1,7 +1,6 @@
 package com.codeblue.montreISTA.service;
 
 import com.codeblue.montreISTA.entity.Cart;
-
 import java.util.List;
 
 public interface CartServices {
