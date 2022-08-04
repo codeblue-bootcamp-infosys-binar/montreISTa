@@ -13,7 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
 
 @MappedSuperclass
@@ -25,11 +25,10 @@ public class AuditEntity {
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
-
-//    @NotBlank
+    @NotNull
     private ZonedDateTime createdAt;
 
-//    @NotBlank
+    @NotNull
     @UpdateTimestamp
     private ZonedDateTime modifiedAt;
 

@@ -1,6 +1,10 @@
 package com.codeblue.montreISTA.controller;
 
+import com.codeblue.montreISTA.DTO.ProductRequestDTO;
+import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.entity.Product;
+import com.codeblue.montreISTA.entity.Seller;
+import com.codeblue.montreISTA.repository.SellerRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.ProductServiceImpl;
 import lombok.AllArgsConstructor;
@@ -19,6 +23,8 @@ public class ProductController {
     @Autowired
     ProductServiceImpl productServiceImpl;
 
+    @Autowired
+    SellerRepository sellerRepository;
     //GET ALL
     @GetMapping("/products")
     public ResponseEntity<Object> getAllProduct(){
@@ -47,7 +53,8 @@ public class ProductController {
     public ResponseEntity<Object> getProductById(@PathVariable("id") Long id){
         try{
             Optional<Product> product = productServiceImpl.findProductById(id);
-            return ResponseHandler.generateResponse("successfully retrieved product", HttpStatus.OK, product);
+            ProductResponseDTO productResponseDTO = product.get().convertToResponse();
+            return ResponseHandler.generateResponse("successfully retrieved product", HttpStatus.OK, productResponseDTO);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
@@ -55,10 +62,15 @@ public class ProductController {
 
     //CREATE
     @PostMapping("/products/create")
-    public ResponseEntity<Object> createProduct(@RequestBody Product newProduct){
+    public ResponseEntity<Object> createProduct(@RequestBody ProductRequestDTO productRequestDTO){
         try {
-            Product product = productServiceImpl.createProduct(newProduct);
-            return ResponseHandler.generateResponse("successfully retrieved product", HttpStatus.CREATED, product);
+            Optional<Seller> productSeller = sellerRepository.findById(productRequestDTO.getSellerId());
+            Seller seller = productSeller.get();
+            Product newProduct = productRequestDTO.convertToEntity(seller);
+            productServiceImpl.createProduct(newProduct);
+            ProductResponseDTO productResponseDTO = newProduct.convertToResponse();
+
+            return ResponseHandler.generateResponse("successfully retrieved product", HttpStatus.CREATED, productResponseDTO);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
         }
@@ -94,4 +106,3 @@ public class ProductController {
 
     }
 }
-
