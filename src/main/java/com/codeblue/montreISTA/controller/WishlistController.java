@@ -1,11 +1,9 @@
 package com.codeblue.montreISTA.controller;
 
 
-import com.codeblue.montreISTA.entity.Seller;
+
 import com.codeblue.montreISTA.entity.Wishlist;
 import com.codeblue.montreISTA.response.ResponseHandler;
-import com.codeblue.montreISTA.service.SellerService;
-import com.codeblue.montreISTA.service.ShippingService;
 import com.codeblue.montreISTA.service.WishlistService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

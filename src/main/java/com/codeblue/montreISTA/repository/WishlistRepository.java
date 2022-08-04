@@ -1,6 +1,5 @@
 package com.codeblue.montreISTA.repository;
 
-import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.entity.Wishlist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

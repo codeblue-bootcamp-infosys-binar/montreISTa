@@ -1,9 +1,8 @@
 package com.codeblue.montreISTA.service;
 
 
-import com.codeblue.montreISTA.entity.Seller;
+
 import com.codeblue.montreISTA.entity.Wishlist;
-import com.codeblue.montreISTA.repository.SellerRepository;
 import com.codeblue.montreISTA.repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
