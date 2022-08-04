@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class PhotoServiceSImp implements PhotoServices {
+public class PhotoServiceImp implements PhotoService {
     private PhotoRepository photoRepository;
 
     @Override
@@ -30,8 +30,11 @@ public class PhotoServiceSImp implements PhotoServices {
     }
 
     @Override
-    public List<PhotoResponseDTO> findByPhotoName(String photoName) {
+    public List<PhotoResponseDTO> findByPhotoName(String photoName) throws Exception {
         List<Photo> photos = photoRepository.findByPhotoName(photoName);
+        if(photos == null) {
+        throw new Exception("photo not found");
+        }
         List<PhotoResponseDTO> results = new ArrayList<>();
         for(Photo data:photos){
             PhotoResponseDTO photosDTO = data.convertToResponse();
@@ -41,8 +44,11 @@ public class PhotoServiceSImp implements PhotoServices {
     }
 
     @Override
-    public List<PhotoResponseDTO> findByProductName(String productName) {
+    public List<PhotoResponseDTO> findByProductName(String productName) throws Exception{
         List<Photo> photos = photoRepository.findByProductName(productName);
+        if(photos == null) {
+            throw new Exception("photo not found");
+        }
         List<PhotoResponseDTO> results = new ArrayList<>();
         for(Photo data:photos){
             PhotoResponseDTO photosDTO = data.convertToResponse();
@@ -52,8 +58,11 @@ public class PhotoServiceSImp implements PhotoServices {
     }
 
     @Override
-    public List<PhotoResponseDTO> findByUsername(String keyword) {
+    public List<PhotoResponseDTO> findByUsername(String keyword) throws Exception{
         List<Photo> photos = photoRepository.findByUsername(keyword);
+        if(photos == null) {
+            throw new Exception("photo not found");
+        }
         List<PhotoResponseDTO> results = new ArrayList<>();
         for(Photo data:photos){
             PhotoResponseDTO photosDTO = data.convertToResponse();
@@ -80,13 +89,13 @@ public class PhotoServiceSImp implements PhotoServices {
      * @return
      */
     @Override
-    public PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO,Long id){
+    public PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO,Long id) throws Exception{
         Photo photo = photoRequestDTO.convertToEntity();
-        Optional<Photo> photoId = photoRepository.findById(photo.getPhotoId());
-//        if(photoId.isEmpty()){
-//            throw new Exception("Photo not found");
-//        }
-//        photo.setPhotoId(id);
+        Optional<Photo> photoId = photoRepository.findById(id);
+        if(photoId.isEmpty()){
+            throw new Exception("Photo not found");
+        }
+        photo.setPhotoId(id);
         Photo savePhoto = photoRepository.save(photo);
         return savePhoto.convertToResponse();
     }
