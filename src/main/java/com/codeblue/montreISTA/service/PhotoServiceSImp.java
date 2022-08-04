@@ -1,8 +1,8 @@
 package com.codeblue.montreISTA.service;
 
-import DTO.PhotoPostDTO;
-import DTO.PhotoRequestDTO;
-import DTO.PhotoResponseDTO;
+import com.codeblue.montreISTA.DTO.PhotoPostDTO;
+import com.codeblue.montreISTA.DTO.PhotoRequestDTO;
+import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
 import com.codeblue.montreISTA.entity.Photo;
 import com.codeblue.montreISTA.repository.PhotoRepository;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

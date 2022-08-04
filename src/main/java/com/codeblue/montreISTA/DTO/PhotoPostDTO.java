@@ -1,4 +1,4 @@
-package DTO;
+package com.codeblue.montreISTA.DTO;
 
 import com.codeblue.montreISTA.entity.Photo;
 import lombok.*;

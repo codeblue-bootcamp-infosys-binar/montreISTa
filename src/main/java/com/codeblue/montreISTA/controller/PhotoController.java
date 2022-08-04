@@ -1,12 +1,10 @@
 package com.codeblue.montreISTA.controller;
 
-import DTO.PhotoPostDTO;
-import DTO.PhotoRequestDTO;
-import DTO.PhotoResponseDTO;
-import com.codeblue.montreISTA.entity.Photo;
+import com.codeblue.montreISTA.DTO.PhotoPostDTO;
+import com.codeblue.montreISTA.DTO.PhotoRequestDTO;
+import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
 import com.codeblue.montreISTA.service.PhotoServices;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
