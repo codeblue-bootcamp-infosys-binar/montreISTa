@@ -12,7 +12,6 @@ import java.util.*;
 
 @AllArgsConstructor
 @RestController
-
 public class UserController {
 
 
