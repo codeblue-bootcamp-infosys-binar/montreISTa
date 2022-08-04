@@ -1,5 +1,10 @@
 package com.codeblue.montreISTA.entity;
 
+r
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.Getter;
+import lombok.Setter;
 import DTO.PhotoPostDTO;
 import DTO.PhotoResponseDTO;
 import lombok.*;
@@ -12,6 +17,9 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 @Entity
 @Table(name = "photos")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "photoId")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,7 +39,7 @@ public class Photo extends AuditEntity{
     @Column(columnDefinition = "TEXT")
     private String photoURL;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Product.class)
     @JoinColumn(name = "product_id")
     private Product product;
 
