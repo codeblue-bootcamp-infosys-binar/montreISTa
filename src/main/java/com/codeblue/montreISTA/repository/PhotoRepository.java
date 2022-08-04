@@ -13,20 +13,13 @@ import java.util.List;
 public interface PhotoRepository extends JpaRepository<Photo,Long> {
     List<Photo> findByPhotoName(String photoName);
 
-    long deleteByPhotoName(String photoName);
+//    long deleteByPhotoName(long photoName);
 
     @Query("Select p from Photo p where p.product.productName like %:name% ORDER BY p.product.productName ASC")
     public List<Photo> findByProductName(@Param("name")String name);
 
-    @Query("Select p from Photo p where p.product.seller.userId.name like %:name% ORDER BY p.product.seller.userId.name ASC")
+    @Query("Select p from Photo p where concat(p.product.seller.userId.name, ' ', p.product.seller.userId.username, ' ') like %:name% ORDER BY p.product.seller.userId.name ASC")
     public List<Photo> findByUsername(@Param("name")String name);
 
-//    @Modifying
-//    @Query("delete p from Photo p where p.product.productName like %:name%")
-//    void deleteByProductName(@Param("name")String name);
-//
-//    @Modifying
-//    @Query("delete p from Photo p where p.product.seller.userId.name like %:name%")
-//    void deleteByUsername(@Param("name")String name);
 
 }

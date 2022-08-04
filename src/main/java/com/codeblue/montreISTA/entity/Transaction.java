@@ -1,5 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
@@ -12,6 +14,9 @@ import java.time.ZonedDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "transactionId")
 public class Transaction extends AuditEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

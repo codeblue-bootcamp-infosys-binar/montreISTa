@@ -1,6 +1,8 @@
 package com.codeblue.montreISTA.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,6 +14,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "product_category")
 @Builder
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "productCategoryId")
 public class ProductCategory extends AuditEntity {
 
     @Id

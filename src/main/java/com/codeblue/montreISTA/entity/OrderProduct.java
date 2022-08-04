@@ -1,5 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,6 +13,9 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "orderProductId")
 public class OrderProduct extends AuditEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,8 +1,9 @@
 package com.codeblue.montreISTA.service;
 
-import DTO.PhotoPostDTO;
-import DTO.PhotoRequestDTO;
-import DTO.PhotoResponseDTO;
+
+import com.codeblue.montreISTA.DTO.PhotoPostDTO;
+import com.codeblue.montreISTA.DTO.PhotoRequestDTO;
+import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
 import com.codeblue.montreISTA.entity.Photo;
 import com.codeblue.montreISTA.repository.PhotoRepository;
 import lombok.AllArgsConstructor;
@@ -41,12 +42,24 @@ public class PhotoServiceSImp implements PhotoServices {
 
     @Override
     public List<PhotoResponseDTO> findByProductName(String productName) {
-        return null;
+        List<Photo> photos = photoRepository.findByProductName(productName);
+        List<PhotoResponseDTO> results = new ArrayList<>();
+        for(Photo data:photos){
+            PhotoResponseDTO photosDTO = data.convertToResponse();
+            results.add(photosDTO);
+        }
+        return results;
     }
 
     @Override
-    public List<PhotoResponseDTO> findByUsername(String name) {
-        return null;
+    public List<PhotoResponseDTO> findByUsername(String keyword) {
+        List<Photo> photos = photoRepository.findByUsername(keyword);
+        List<PhotoResponseDTO> results = new ArrayList<>();
+        for(Photo data:photos){
+            PhotoResponseDTO photosDTO = data.convertToResponse();
+            results.add(photosDTO);
+        }
+        return results;
     }
     /**
      * belumada validasi optionalphoto by id isPresent, throw
@@ -80,21 +93,8 @@ public class PhotoServiceSImp implements PhotoServices {
 
     @Override
     public void deleteById(Long id) {
-        photoRepository.deleteById(id);
+        photoRepository.deleteAll();
     }
 
-    @Override
-    public long deleteByPhotoName(String photoName) {
-       return photoRepository.deleteByPhotoName(photoName);
-    }
 
-    @Override
-    public void deletedByProductName(String name) {
-
-    }
-
-    @Override
-    public void deleteByUsername(String name) {
-
-    }
 }

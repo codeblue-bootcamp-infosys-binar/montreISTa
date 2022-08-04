@@ -71,4 +71,16 @@ public class Product extends AuditEntity{
                 .modifiedAt(this.getModifiedAt())
                 .build();
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", seller=" + seller +
+                ", productName='" + productName + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", photos=" + photos +
+                '}';
+    }
 }
