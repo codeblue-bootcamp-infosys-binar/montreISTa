@@ -55,6 +55,7 @@ public class Product extends AuditEntity{
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "product",
             fetch = FetchType.LAZY)
+
     private List<Photo> photos;
 
     public ProductResponseDTO convertToResponse(){
