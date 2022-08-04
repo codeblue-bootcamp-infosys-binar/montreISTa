@@ -1,7 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -12,6 +11,9 @@ import javax.validation.constraints.Pattern;
 @Setter
 @Entity
 @Table(name = "users")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User extends AuditEntity{
 
     @Id
@@ -45,4 +47,17 @@ public class User extends AuditEntity{
     @NotBlank(message = "address may not be blank")
     private String address;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", photo='" + photo + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

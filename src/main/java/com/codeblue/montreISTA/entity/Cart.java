@@ -45,7 +45,7 @@ public class Cart extends AuditEntity{
     @NotNull
     @JoinColumn(name = "order_id")
     private Order order;
-
+    
     public OrderCartDTO convertToOrder(){
         return OrderCartDTO.builder()
                 .cart_id(this.cartId)

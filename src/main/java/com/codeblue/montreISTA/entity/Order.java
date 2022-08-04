@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
+
 import com.codeblue.montreISTA.DTO.OrderCartDTO;
 import com.codeblue.montreISTA.DTO.OrderResponseDTO;
 import com.codeblue.montreISTA.DTO.OrderResponsePost;
@@ -37,7 +38,8 @@ public class Order extends AuditEntity{
     private Shipping shipping;
 
     @NotEmpty
-    private Integer totalPrice;
+    private Integer totalprice;
+
 
     //list cart
     @OneToMany(cascade = CascadeType.ALL,
@@ -88,4 +90,5 @@ public class Order extends AuditEntity{
 //                ", listCart=" + listCart +
 //                '}';
 //    }
+
 }
