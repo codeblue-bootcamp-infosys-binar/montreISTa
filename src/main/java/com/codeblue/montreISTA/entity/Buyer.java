@@ -7,10 +7,10 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "buyers")
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "buyers")
+@Builder
 public class Buyer extends AuditEntity {
 
     @Id
@@ -21,4 +21,12 @@ public class Buyer extends AuditEntity {
     @JoinColumn(name = "user_id")
     @NotBlank
     private User user;
+
+    @Override
+    public String toString() {
+        return "Buyer{" +
+                "buyerId=" + buyerId +
+                ", user=" + user +
+                '}';
+    }
 }

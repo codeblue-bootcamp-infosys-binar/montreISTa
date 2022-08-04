@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
+import com.codeblue.montreISTA.DTO.OrderCartDTO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
@@ -17,8 +18,8 @@ import javax.validation.constraints.NotNull;
 @Table(name = "carts")
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "CartId")
-public class Cart extends AuditEntity {
+        property = "cartId")
+public class Cart extends AuditEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +41,15 @@ public class Cart extends AuditEntity {
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
+    
+    public OrderCartDTO convertToOrder(){
+        return OrderCartDTO.builder()
+                .cart_id(this.cartId)
+                .buyer_name(this.getBuyer().getUser().getName())
+                .product_name(this.getProduct().getProductName())
+                .quantity(this.quantity)
+                .build();
+    }
 
     @Override
     public String toString() {

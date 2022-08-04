@@ -1,10 +1,12 @@
 package com.codeblue.montreISTA.entity;
 
+import lombok.AllArgsConstructor;
 import com.codeblue.montreISTA.DTO.PhotoPostDTO;
 import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.*;
 import org.hibernate.annotations.Type;
@@ -15,13 +17,13 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "photos")
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "photoId")
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class Photo extends AuditEntity{
 
     @Id
