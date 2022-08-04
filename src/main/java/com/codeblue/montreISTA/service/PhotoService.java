@@ -9,15 +9,15 @@ import com.codeblue.montreISTA.entity.Photo;
 
 import java.util.List;
 
-public interface PhotoServices {
+public interface PhotoService {
     List<PhotoResponseDTO> findAll();
-    List<PhotoResponseDTO> findByPhotoName(String photoName);
+    List<PhotoResponseDTO> findByPhotoName(String photoName)throws Exception;
 
-    List<PhotoResponseDTO> findByProductName(String productName);
-    List<PhotoResponseDTO> findByUsername(String name);
+    List<PhotoResponseDTO> findByProductName(String productName)throws Exception;
+    List<PhotoResponseDTO> findByUsername(String name)throws Exception;
 
     PhotoPostDTO createPhoto(PhotoRequestDTO photoRequestDTO);
-    public PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO,Long id);
+    PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO,Long id) throws Exception;
 
     void deleteById(Long id);
 

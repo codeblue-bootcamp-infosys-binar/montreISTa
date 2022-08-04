@@ -3,13 +3,10 @@ package com.codeblue.montreISTA.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
-import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+
 
 @Setter
 @Getter
@@ -41,9 +38,17 @@ public class Cart extends AuditEntity {
     private Integer quantity;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "order_id")
     private Order order;
 
-
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "cartId=" + cartId +
+                ", buyer=" + buyer +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                ", order=" + order +
+                '}';
+    }
 }
