@@ -32,10 +32,9 @@ public class Cart extends AuditEntity{
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @NotEmpty
     private Product product;
 
-    @NotEmpty
+    @NotNull
     private Integer quantity;
 
     @ManyToOne
