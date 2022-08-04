@@ -20,6 +20,13 @@ public class OrderServiceImpl implements OrderService{
         return orders;
     }
 
+    @Override
+    public List<Order> findByProductName(String keyword) {
+        List<Order> orderProduct = orderRepository.findByListCartProductProductNameContaining(keyword);
+        return orderProduct;
+    }
+
+
 //    public Optional<Order> findOrderById(Long id) {
 //        return orderRepository.findById(id);
 //    }

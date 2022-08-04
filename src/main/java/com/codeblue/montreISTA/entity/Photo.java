@@ -24,8 +24,6 @@ import javax.validation.constraints.NotEmpty;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "photoId")
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class Photo extends AuditEntity{
 
     @Id

@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface OrderService {
 
     List<Order> findAllOrder();
+    List<Order> findByProductName(String keyword);
 //    Optional<Order> getOrderById(Long Id);
 //    Order createOrder(Order order);
 //    void deleteOrderById(Long Id);

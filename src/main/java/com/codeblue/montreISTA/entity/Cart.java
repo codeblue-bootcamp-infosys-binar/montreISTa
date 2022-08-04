@@ -49,8 +49,8 @@ public class Cart extends AuditEntity{
     public OrderCartDTO convertToOrder(){
         return OrderCartDTO.builder()
                 .cart_id(this.cartId)
-                .buyer_id(this.buyer.getBuyerId())
-                .product_id(this.product.getProductId())
+                .buyer_name(this.getBuyer().getUser().getName())
+                .product_name(this.getProduct().getProductName())
                 .quantity(this.quantity)
                 .build();
     }

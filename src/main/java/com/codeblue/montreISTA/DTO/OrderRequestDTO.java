@@ -18,7 +18,7 @@ public class OrderRequestDTO {
 
     private Shipping shipping;
 
-    private Integer totalPrice;
+    private Integer totalprice;
 
 
     public Order covertToEntitiy(){
@@ -26,7 +26,7 @@ public class OrderRequestDTO {
                 .orderId(this.orderId)
                 .payment(this.payment)
                 .shipping(this.shipping)
-                .totalPrice(this.totalPrice)
+                .totalprice(this.totalprice)
                 .build();
     }
 }

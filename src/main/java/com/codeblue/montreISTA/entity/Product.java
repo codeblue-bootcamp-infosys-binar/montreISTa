@@ -22,7 +22,6 @@ import java.util.List;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "productId")
 public class Product extends AuditEntity{
-
     //product id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
