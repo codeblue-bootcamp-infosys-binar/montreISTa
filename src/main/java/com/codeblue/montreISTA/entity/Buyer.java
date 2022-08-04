@@ -11,8 +11,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "buyers")
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class Buyer extends AuditEntity {
 
     @Id

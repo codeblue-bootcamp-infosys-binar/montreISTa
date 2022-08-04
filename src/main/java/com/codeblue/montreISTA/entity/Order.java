@@ -53,7 +53,7 @@ public class Order extends AuditEntity{
                 .listCart(cartDTO)
                 .name(this.payment.getName())
                 .shipping_name(this.shipping.getName())
-                .total_price(this.totalPrice)
+                .total_price(this.totalprice)
                 .createdAt(this.getCreatedAt())
                 .modifiedAt(this.getModifiedAt())
                 .build();
@@ -65,7 +65,7 @@ public class Order extends AuditEntity{
                 "orderId=" + orderId +
                 ", payment=" + payment +
                 ", shipping=" + shipping +
-                ", totalPrice=" + totalPrice +
+                ", totalPrice=" + totalprice +
                 ", listCart=" + listCart +
                 '}';
     }
