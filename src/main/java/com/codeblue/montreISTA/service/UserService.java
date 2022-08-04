@@ -2,34 +2,37 @@ package com.codeblue.montreISTA.service;
 
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
+@Service
 public class UserService {
-    @Autowired
-    static
-    UserRepository userRepository;
 
-    public static List<User> findAllUser() {
+    private UserRepository userRepository;
+
+    public List<User> findAllUser() {
         List<User> users = userRepository.findAll();
         return users;
     }
 
-    public static Optional<User> findUserById(Long id) {
+    public Optional<User> findUserById(Long id) {
         return userRepository.findById(id);
     }
 
-    public static User createUser(User user) {
+    public User createUser(User user) {
         return userRepository.save(user);
     }
 
-    public static User updateUser(User updateUser) {
+    public User updateUser(User updateUser) {
         return userRepository.save(updateUser);
     }
 
-    public static void deleteUser(Long id) {
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
