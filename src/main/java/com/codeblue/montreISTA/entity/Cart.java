@@ -23,12 +23,10 @@ import java.util.List;
         property = "CartId")
 public class Cart extends AuditEntity {
 
-    //product id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartId;
 
-    //seller id
     @ManyToOne
     @NotNull
     @JoinColumn(name = "buyer_id")
