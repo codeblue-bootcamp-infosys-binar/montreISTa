@@ -3,42 +3,47 @@ package com.codeblue.montreISTA.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Getter
 @Setter
+@Getter
 @Entity
-@Table(name = "orders")
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Table(name = "carts")
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "orderId")
-public class Order extends AuditEntity{
+        property = "CartId")
+public class Cart extends AuditEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
+    private Long cartId;
 
     @ManyToOne
-    @JoinColumn(name = "payment_id")
-    @NotEmpty
-    private Payment payment;
+    @NotNull
+    @JoinColumn(name = "buyer_id")
+    private Buyer buyer;
 
     @ManyToOne
-    @JoinColumn(name = "shipping_id")
+    @JoinColumn(name = "product_id")
     @NotEmpty
-    private Shipping shipping;
+    private Product product;
 
     @NotEmpty
-    private Integer totalprice;
+    private Integer quantity;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "order",
-            fetch = FetchType.LAZY)
-    private List<Cart> listCart;
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name = "order_id")
+    private Order order;
+
 
 }

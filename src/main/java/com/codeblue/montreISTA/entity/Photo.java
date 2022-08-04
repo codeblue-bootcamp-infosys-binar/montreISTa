@@ -1,11 +1,11 @@
 package com.codeblue.montreISTA.entity;
 
+import com.codeblue.montreISTA.DTO.PhotoPostDTO;
+import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
-import DTO.PhotoPostDTO;
-import DTO.PhotoResponseDTO;
 import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
@@ -31,11 +31,10 @@ public class Photo extends AuditEntity{
     @NotEmpty
     private String photoName;
 
-
-    @NotBlank
     @Lob
     @Type(type = "org.hibernate.type.TextType")
     @Column(columnDefinition = "TEXT")
+    @NotEmpty
     private String photoURL;
 
     @ManyToOne(targetEntity = Product.class)
