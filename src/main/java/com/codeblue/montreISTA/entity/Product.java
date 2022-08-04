@@ -40,5 +40,17 @@ public class Product extends AuditEntity{
             mappedBy = "product",
             fetch = FetchType.LAZY)
     private List<Photo> ListPhoto;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", seller=" + seller +
+                ", productName='" + productName + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", ListPhoto=" + ListPhoto +
+                '}';
+    }
 }
 
