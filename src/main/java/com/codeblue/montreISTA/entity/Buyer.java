@@ -1,7 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 
@@ -9,6 +8,9 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "buyers")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Buyer extends AuditEntity {
 
     @Id

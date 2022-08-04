@@ -1,7 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -10,6 +9,9 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "sellers")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Seller extends AuditEntity{
 
     @Id
@@ -20,13 +22,13 @@ public class Seller extends AuditEntity{
     @JoinColumn(name = "user_id")
     private User userId;
 
-    @NotBlank
+    @NotBlank(message = "store name may not be blank")
     private String storeName;
 
-    @NotBlank
+    @NotBlank(message = "store photo may not be blank")
     private String storePhoto;
 
-    @NotBlank
+    @NotBlank(message = "store addres may not be blank")
     private String storeAddress;
 
 }

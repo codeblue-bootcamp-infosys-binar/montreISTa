@@ -7,6 +7,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Setter
@@ -33,19 +34,16 @@ public class Product extends AuditEntity{
 
     //product name
     @Column(name="product_name")
-    @NotBlank
     private String productName;
 
     //description
     @Lob
     @Type(type = "org.hibernate.type.TextType")
     @Column(name = "description", columnDefinition = "TEXT")
-    @NotBlank
     private String description;
 
     //price
     @Column(name = "price")
-    @NotBlank
     private Integer price;
 
     //list of photos
