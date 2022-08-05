@@ -94,7 +94,7 @@ public class PhotoController {
     @PostMapping("/photo")
     public ResponseEntity<Object> postPhoto(@RequestBody PhotoRequestDTO photo) {
         try {
-            PhotoPostDTO results = photoService.createPhoto(photo);
+            PhotoResponseDTO results = photoService.createPhoto(photo);
             return ResponseHandler.generateResponse("successfully create product", HttpStatus.OK, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);

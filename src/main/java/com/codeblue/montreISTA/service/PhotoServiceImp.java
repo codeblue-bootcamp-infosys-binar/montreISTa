@@ -2,11 +2,9 @@ package com.codeblue.montreISTA.service;
 
 
 import com.codeblue.montreISTA.DTO.*;
-import com.codeblue.montreISTA.entity.AuditEntity;
-import com.codeblue.montreISTA.entity.Photo;
-import com.codeblue.montreISTA.entity.ProductCategory;
-import com.codeblue.montreISTA.entity.Seller;
+import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.repository.PhotoRepository;
+import com.codeblue.montreISTA.repository.ProductRepository;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
@@ -23,6 +21,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class PhotoServiceImp implements PhotoService {
     private PhotoRepository photoRepository;
+    private ProductRepository productRepository;
 
     @Override
     public List<PhotoResponseDTO> findAll() {
@@ -84,10 +83,12 @@ public class PhotoServiceImp implements PhotoService {
      * @return
      */
     @Override
-    public PhotoPostDTO createPhoto(PhotoRequestDTO photoRequestDTO) {
-        Photo savePhoto = photoRequestDTO.convertToEntity();
+    public PhotoResponseDTO createPhoto(PhotoRequestDTO photoRequestDTO) {
+        Optional<Product> photoproduct = productRepository.findById(photoRequestDTO.getProduct_id());
+        Product product = photoproduct.get();
+        Photo savePhoto = photoRequestDTO.convertToEntity(product);
         photoRepository.save(savePhoto);
-        return savePhoto.convertToPost();
+        return savePhoto.convertToResponse();
     }
 
     /**
@@ -99,7 +100,9 @@ public class PhotoServiceImp implements PhotoService {
      */
     @Override
     public PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO, Long id) throws Exception {
-        Photo photo = photoRequestDTO.convertToEntity();
+        Optional<Product> photoproduct = productRepository.findById(photoRequestDTO.getProduct_id());
+        Product product = photoproduct.get();
+        Photo photo = photoRequestDTO.convertToEntity(product);
         Optional<Photo> photoId = photoRepository.findById(id);
         if (photoId.isEmpty()) {
             throw new Exception("Photo not found");
