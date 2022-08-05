@@ -3,7 +3,6 @@ package com.codeblue.montreISTA.DTO;
 import com.codeblue.montreISTA.entity.*;
 import lombok.*;
 
-import java.util.List;
 
 @Getter
 @Setter
@@ -21,7 +20,7 @@ public class OrderRequestDTO {
     private Integer totalprice;
 
 
-    public Order covertToEntity(){
+    public Order convertToEntity(){
         return Order.builder()
                 .orderId(this.orderId)
                 .payment(this.payment)

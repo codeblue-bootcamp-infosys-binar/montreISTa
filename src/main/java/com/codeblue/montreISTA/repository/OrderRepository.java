@@ -10,7 +10,6 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order,Long> {
 
     List<Order> findByListCartProductProductNameContaining(String keyword);
-
     List<Order> findByListCartBuyerUserUsernameContaining(String keyword);
     List<Order> findByListCartProductSellerStoreNameContaining(String keyword);
 }

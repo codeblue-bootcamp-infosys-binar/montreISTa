@@ -1,9 +1,8 @@
 package com.codeblue.montreISTA.DTO;
 
-import com.codeblue.montreISTA.entity.*;
 import lombok.*;
 
-import java.util.List;
+import java.time.ZonedDateTime;
 
 @Getter
 @Setter
@@ -12,24 +11,22 @@ import java.util.List;
 @Builder
 public class OrderResponsePost {
 
-    private Long orderId;
-
-    private Long paymentId;
-
-    private Long shippingId;
-
+    private Long order_id;
+    private Long payment_id;
+    private Long shipping_id;
     private Integer totalPrice;
-
-    private List<Cart> listCart;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime modifiedAt;
 
     @Override
     public String toString() {
         return "OrderResponsePost{" +
-                "orderId=" + orderId +
-                ", paymentId=" + paymentId +
-                ", shippingId=" + shippingId +
+                "order_id=" + order_id +
+                ", payment_id=" + payment_id +
+                ", shipping_id=" + shipping_id +
                 ", totalPrice=" + totalPrice +
-                ", listCart=" + listCart +
+                ", createdAt=" + createdAt +
+                ", modifiedAt=" + modifiedAt +
                 '}';
     }
 }

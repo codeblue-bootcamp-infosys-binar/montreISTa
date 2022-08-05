@@ -1,7 +1,5 @@
 package com.codeblue.montreISTA.DTO;
 
-
-import com.codeblue.montreISTA.entity.AuditEntity;
 import lombok.*;
 
 import java.time.ZonedDateTime;
@@ -16,6 +14,7 @@ public class OrderResponseDTO{
 
     private Long orderId;
     private List<OrderCartDTO> listCart;
+    private String payment_name;
     private String shipping_name;
     private Integer total_price;
     private ZonedDateTime createdAt;
@@ -26,6 +25,7 @@ public class OrderResponseDTO{
         return "OrderResponseDTO{" +
                 "orderId=" + orderId +
                 ", listCart=" + listCart +
+                ", payment_name=" + payment_name + '\'' +
                 ", shipping_name='" + shipping_name + '\'' +
                 ", total_price=" + total_price +
                 ", createdAt=" + createdAt +
