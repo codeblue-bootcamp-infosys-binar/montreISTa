@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.time.ZonedDateTime;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Getter
@@ -26,19 +24,17 @@ public class Transaction extends AuditEntity{
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    @NotBlank(message= "orders must not be blank")
     private Order order;
 
 //    @ManyToOne
-//    @NotNull
 //    @JoinColumn(name="seller_id")
 //    private Seller seller;
 //
 //    @ManyToOne
-//    @NotNull
 //    @JoinColumn(name="buyer_id")
 //    private Buyer buyer;
 
+    @NotEmpty
     private String nameShipping;
 
     @Lob
@@ -46,10 +42,10 @@ public class Transaction extends AuditEntity{
     @Column(columnDefinition = "TEXT")
     private String addressShipping;
 
-    @NotNull
+    @NotEmpty
     private String zipCode;
 
-    @NotNull
+    @NotEmpty
     private String phoneShipping;
 
 }

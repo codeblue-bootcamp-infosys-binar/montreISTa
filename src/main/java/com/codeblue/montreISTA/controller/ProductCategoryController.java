@@ -20,7 +20,7 @@ public class ProductCategoryController {
      * findAll
      * @return
      */
-    @GetMapping("/productCategory")
+    @GetMapping("/productCategories")
     public ResponseEntity<Object> findAllProductCategory(){
         try{
             List<ProductCategory> results = productCategoryService.findAll();
@@ -61,7 +61,7 @@ public class ProductCategoryController {
     }
 
     /**
-     * postProductCategory
+     * post
      * @param productCategory
      * @return
      */
