@@ -33,10 +33,6 @@ public class PaymentService {
         return paymentRepository.findById(id);
     }
 
-    public Payment getReferenceById (Long id) {
-        return this.paymentRepository.getById(id);
-    }
-
     //UPDATE
     public Payment updatePayment(Payment payment){
         return paymentRepository.save(payment);
@@ -47,21 +43,11 @@ public class PaymentService {
         paymentRepository.deleteById(paymentId);
     }
 
+    //GET BY PAYMENTNAME
     public List<Payment> findByPaymentName(String keyword) {
         List<Payment> paymentName = paymentRepository.findByNameContaining(keyword);
         return paymentName;
     }
-
-
-//    //GET BY NAME
-//    public List<Payment> findPaymentByName(String name){
-//        List<Payment> paymentByName = paymentRepository.findByName(name);
-//        if(paymentByName.isEmpty()){
-//            return paymentRepository.findAll();
-//        } else {
-//            return paymentRepository.findByName(name);
-//        }
-//    }
 
 }
 

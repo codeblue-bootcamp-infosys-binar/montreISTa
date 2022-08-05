@@ -7,9 +7,8 @@ import com.codeblue.montreISTA.DTO.OrderResponsePost;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
-import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -29,15 +28,15 @@ public class Order extends AuditEntity{
 
     @ManyToOne
     @JoinColumn(name = "payment_id")
-    @NotEmpty
+    @NotNull
     private Payment payment;
 
     @ManyToOne
     @JoinColumn(name = "shipping_id")
-    @NotEmpty
+    @NotNull
     private Shipping shipping;
 
-    @NotEmpty
+    @NotNull
     private Integer totalprice;
 
 
@@ -51,6 +50,7 @@ public class Order extends AuditEntity{
         return OrderResponseDTO.builder()
                 .orderId(this.orderId)
                 .listCart(cartDTO)
+                .payment_name(this.payment.getName())
                 .shipping_name(this.shipping.getName())
                 .total_price(this.totalprice)
                 .createdAt(this.getCreatedAt())
@@ -58,14 +58,16 @@ public class Order extends AuditEntity{
                 .build();
         }
 
-//        public OrderResponsePost convertToResponsePost(){
-//        return OrderResponsePost.builder()
-//                .orderId(this.getOrderId())
-//                .paymentId(this.getPayment().getPaymentId())
-//                .shippingId(this.getShipping().getShippingId())
-//                .totalPrice(this.getTotalprice())
-//                .build();
-//    }
+        public OrderResponsePost convertToResponsePost(){
+        return OrderResponsePost.builder()
+                .order_id(this.getOrderId())
+                .payment_id(this.getPayment().getPaymentId())
+                .shipping_id(this.getShipping().getShippingId())
+                .totalPrice(this.getTotalprice())
+                .createdAt(this.getCreatedAt())
+                .modifiedAt(this.getModifiedAt())
+                .build();
+    }
     @Override
     public String toString() {
         return "Order{" +

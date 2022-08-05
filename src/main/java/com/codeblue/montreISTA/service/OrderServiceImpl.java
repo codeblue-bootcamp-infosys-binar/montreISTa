@@ -1,7 +1,6 @@
 package com.codeblue.montreISTA.service;
 
 import com.codeblue.montreISTA.entity.Order;
-import com.codeblue.montreISTA.helper.ResourceNotFoundException;
 import com.codeblue.montreISTA.repository.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -48,25 +47,5 @@ public class OrderServiceImpl implements OrderService{
         orderRepository.deleteById(id);
     }
 
-
-//    public Optional<Order> findOrderById(Long id) {
-//        return orderRepository.findById(id);
-//    }
-
-
-//    @Override
-//    public Optional<Order> getOrderById(Long Id) throws ResourceNotFoundException {
-//        Optional<Order> optionalOrder = orderRepository.findById(Id);
-//        if(optionalOrder.isEmpty()){
-//            throw new ResourceNotFoundException("Order not exist with id " + Id);
-//        }
-//        return this.orderRepository.findById(Id);
-//    }
-
-
-//    @Override
-//    public Order createOrder(Order order) {
-//        return this.orderRepository.save(order);
-//    }
 
 }

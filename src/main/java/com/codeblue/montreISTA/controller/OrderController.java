@@ -1,16 +1,12 @@
 package com.codeblue.montreISTA.controller;
 
 import com.codeblue.montreISTA.DTO.*;
-import com.codeblue.montreISTA.entity.Cart;
-import com.codeblue.montreISTA.entity.Order;
-import com.codeblue.montreISTA.entity.Product;
-import com.codeblue.montreISTA.entity.Seller;
+import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.helper.ResourceNotFoundException;
-import com.codeblue.montreISTA.repository.BuyerRepository;
 import com.codeblue.montreISTA.repository.OrderRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.OrderService;
-import com.codeblue.montreISTA.service.OrderServiceImpl;
+import com.codeblue.montreISTA.service.PaymentService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping
@@ -27,8 +22,10 @@ import java.util.Optional;
 public class OrderController {
 
     private OrderService orderService;
+    private PaymentService paymentService;
 
     private OrderRepository orderRepository;
+
 
     /**
      * FindAll
@@ -153,6 +150,27 @@ public class OrderController {
         }
     }
 
+    /**
+     * Create Order
+     * @return
+     */
+    @PostMapping("/order/create")
+    public ResponseEntity<Object> createOrder(@RequestBody OrderRequestDTO orderRequestDTO){
+        try {
+            if(orderRequestDTO.getPayment() == null || orderRequestDTO.getShipping() == null){
+                throw new ResourceNotFoundException("Order must have payment id and shippping id");
+            }
+            Order order = orderRequestDTO.convertToEntity();
+
+            orderService.createOrder(order);
+            OrderResponsePost result = order.convertToResponsePost();
+
+            return ResponseHandler.generateResponse("successfully retrieved order", HttpStatus.CREATED, result);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
+        }
+    }
+
 
     /**
      * Delete Order
@@ -162,26 +180,12 @@ public class OrderController {
     public ResponseEntity<Object> deleteOrder(@PathVariable("id") Long id){
         try{
             orderService.deleteOrder(id);
-            return ResponseHandler.generateResponse("successfully deleted product", HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse("successfully deleted Order", HttpStatus.MULTI_STATUS, null);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
 
     }
-
-
-
-//    @PostMapping("/order/create")
-//    public ResponseEntity<Object> ReservationCreate(@RequestBody OrderRequestDTO orderRequestDTO){
-//        try{
-//            Order newOrder = orderRequestDTO.convertToEntity();
-//            orderService.createOrder(newOrder);
-//            OrderResponseDTO orderResponseDTO = newOrder.convertToResponse();
-//            return ResponseHandler.generateResponse("successfully create product", HttpStatus.OK, orderResponseDTO);
-//        } catch (Exception e) {
-//            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
-//        }
-//    }
 
 
 }
