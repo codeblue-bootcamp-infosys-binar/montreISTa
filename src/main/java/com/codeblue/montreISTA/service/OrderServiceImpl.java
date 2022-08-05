@@ -1,7 +1,6 @@
 package com.codeblue.montreISTA.service;
 
 import com.codeblue.montreISTA.entity.Order;
-import com.codeblue.montreISTA.helper.ResourceNotFoundException;
 import com.codeblue.montreISTA.repository.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,46 +25,27 @@ public class OrderServiceImpl implements OrderService{
         return orderProduct;
     }
 
+    @Override
+    public List<Order> findByBuyerName(String keyword) {
+        List<Order> orderProduct = orderRepository.findByListCartBuyerUserUsernameContaining(keyword);
+        return orderProduct;
+    }
 
-//    public Optional<Order> findOrderById(Long id) {
-//        return orderRepository.findById(id);
-//    }
+    @Override
+    public List<Order> findByStoreName(String keyword) {
+        List<Order> orderProduct = orderRepository.findByListCartProductSellerStoreNameContaining(keyword);
+        return orderProduct;
+    }
 
-//    @Override
-//    public List<Order> getAll() {
-//        List<Order> optionalReservation = OrderRepository.findAll();
-//        if(optionalReservation.isEmpty()){
-//            throw new ResourceNotFoundException("Data Order not exist");
-//        }
-//        return this.orderRepository.findAll();
-//    }
+    @Override
+    public Order createOrder(Order order) {
+        return orderRepository.save(order);
+    }
 
-//    @Override
-//    public Optional<Order> getOrderById(Long Id) throws ResourceNotFoundException {
-//        Optional<Order> optionalOrder = orderRepository.findById(Id);
-//        if(optionalOrder.isEmpty()){
-//            throw new ResourceNotFoundException("Order not exist with id " + Id);
-//        }
-//        return this.orderRepository.findById(Id);
-//    }
-//
-//    @Override
-//    public Order updateOrder(Order order) throws ResourceNotFoundException {
-//        return this.orderRepository.save(order);
-//    }
-//
-//    @Override
-//    public Order createOrder(Order order) {
-//        return this.orderRepository.save(order);
-//    }
-//
-//    @Override
-//    public void deleteOrderById(Long Id) throws ResourceNotFoundException{
-//        Optional<Order> optionalOrder = orderRepository.findById(Id);
-//        if(optionalOrder.isEmpty()){
-//            throw new ResourceNotFoundException("Order not exist with id " + Id);
-//        }
-//        Order order = orderRepository.getReferenceById(Id);
-//        this.orderRepository.delete(order);
-//    }
+    @Override
+    public void deleteOrder(Long id) {
+        orderRepository.deleteById(id);
+    }
+
+
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public interface PhotoServices {
     List<PhotoResponseDTO> findAll();
     List<PhotoResponseDTO> findByPhotoName(String photoName);
-    PhotoPostDTO createPhoto(PhotoRequestDTO photoRequestDTO);
-    PhotoPostDTO updatePhoto(Photo photo,Long id);
+    PhotoResponseDTO createPhoto(PhotoRequestDTO photoRequestDTO);
+    PhotoResponseDTO updatePhoto(Photo photo,Long id);
     void deleteById(Long id);
 }

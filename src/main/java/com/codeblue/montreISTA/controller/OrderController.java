@@ -1,38 +1,40 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.DTO.OrderCartDTO;
-import com.codeblue.montreISTA.DTO.OrderResponseDTO;
-import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
-import com.codeblue.montreISTA.entity.Cart;
-import com.codeblue.montreISTA.entity.Order;
+import com.codeblue.montreISTA.DTO.*;
+import com.codeblue.montreISTA.entity.*;
+import com.codeblue.montreISTA.helper.ResourceNotFoundException;
+import com.codeblue.montreISTA.repository.OrderRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.OrderService;
-import com.codeblue.montreISTA.service.OrderServiceImpl;
+import com.codeblue.montreISTA.service.PaymentService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping
 @AllArgsConstructor
 public class OrderController {
 
-    private OrderServiceImpl orderServiceImpl;
+    private OrderService orderService;
+    private PaymentService paymentService;
 
-    //GET ALL ORDER
+    private OrderRepository orderRepository;
+
+
+    /**
+     * FindAll
+     * @return
+     */
     @GetMapping("/orders")
     public ResponseEntity<Object> getAllOrder(){
         try{
-            List<Order> orders = orderServiceImpl.findAllOrder();
+            List<Order> orders = orderService.findAllOrder();
             List<OrderResponseDTO> orderResponseDTOS = new ArrayList<>();
 
             for(Order order : orders){
@@ -55,10 +57,15 @@ public class OrderController {
         }
     }
 
+    /**
+     * find By Product.ProductName
+     * @param keyword
+     * @return
+     */
     @GetMapping("/order/productname")
     public ResponseEntity<Object> findByProductName(@Param("keyword") String keyword){
         try{
-            List<Order> orders = orderServiceImpl.findByProductName(keyword);
+            List<Order> orders = orderService.findByProductName(keyword);
             List<OrderResponseDTO> orderResponseDTOS = new ArrayList<>();
 
             for(Order order : orders){
@@ -81,14 +88,104 @@ public class OrderController {
         }
     }
 
+    /**
+     * find By Buyer.UserName
+     * @param keyword
+     * @return
+     */
+    @GetMapping("/order/buyername")
+    public ResponseEntity<Object> findByBuyerUserName(@Param("keyword") String keyword){
+        try{
+            List<Order> orders = orderService.findByBuyerName(keyword);
+            List<OrderResponseDTO> orderResponseDTOS = new ArrayList<>();
+
+            for(Order order : orders){
+
+                List<OrderCartDTO> cartDTO = new ArrayList<>();
+
+                for(Cart cart : order.getListCart()){
+                    OrderCartDTO cartConvert = cart.convertToOrder();
+                    cartDTO.add(cartConvert);
+                }
+
+                OrderResponseDTO orderDTO = order.convertToResponse(cartDTO);
+                orderResponseDTOS.add(orderDTO);
+
+            }
+
+            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, orderResponseDTOS);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    /**
+     * find By StoreName
+     * @param keyword
+     * @return
+     */
+    @GetMapping("/order/storename")
+    public ResponseEntity<Object> findBySellerStoreName(@Param("keyword") String keyword){
+        try{
+            List<Order> orders = orderService.findByStoreName(keyword);
+            List<OrderResponseDTO> orderResponseDTOS = new ArrayList<>();
+
+            for(Order order : orders){
+
+                List<OrderCartDTO> cartDTO = new ArrayList<>();
+
+                for(Cart cart : order.getListCart()){
+                    OrderCartDTO cartConvert = cart.convertToOrder();
+                    cartDTO.add(cartConvert);
+                }
+
+                OrderResponseDTO orderDTO = order.convertToResponse(cartDTO);
+                orderResponseDTOS.add(orderDTO);
+
+            }
+
+            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, orderResponseDTOS);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    /**
+     * Create Order
+     * @return
+     */
+    @PostMapping("/order/create")
+    public ResponseEntity<Object> createOrder(@RequestBody OrderRequestDTO orderRequestDTO){
+        try {
+            if(orderRequestDTO.getPayment() == null || orderRequestDTO.getShipping() == null){
+                throw new ResourceNotFoundException("Order must have payment id and shippping id");
+            }
+            Order order = orderRequestDTO.convertToEntity();
+
+            orderService.createOrder(order);
+            OrderResponsePost result = order.convertToResponsePost();
+
+            return ResponseHandler.generateResponse("successfully retrieved order", HttpStatus.CREATED, result);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
+        }
+    }
 
 
-//    //READ BY ID
-//    @GetMapping("/order/{id}")
-//    public ResponseEntity<Object> getOrderById(@PathVariable Long orderId) {
-//        Optional<Order> orders = orderService.getOrderById(orderId);
-//        Order orderget =orders.get();
-//        OrderResponseDTO orderResponseDTO = orderget.convertToResponse();
-//        return ResponseHandler.generateResponse("Succes Get", HttpStatus.OK, orderResponseDTO);
-//    }
+    /**
+     * Delete Order
+     * @return
+     */
+    @DeleteMapping("/order/delete/{id}")
+    public ResponseEntity<Object> deleteOrder(@PathVariable("id") Long id){
+        try{
+            orderService.deleteOrder(id);
+            return ResponseHandler.generateResponse("successfully deleted Order", HttpStatus.MULTI_STATUS, null);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+
+    }
+
+
 }

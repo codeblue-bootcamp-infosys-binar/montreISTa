@@ -31,8 +31,8 @@ public class PhotoController {
      * FindAll
      * @return
      */
-    @GetMapping("/photo")
-    public ResponseEntity<Object> findAllPhoto(){
+    @GetMapping("/photos")
+    public ResponseEntity<Object> findAll(){
         try {
             List<PhotoResponseDTO> results = photoService.findAll();
             return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, results);
@@ -94,7 +94,7 @@ public class PhotoController {
     @PostMapping("/photo")
     public ResponseEntity<Object> postPhoto(@RequestBody PhotoRequestDTO photo) {
         try {
-            PhotoPostDTO results = photoService.createPhoto(photo);
+            PhotoResponseDTO results = photoService.createPhoto(photo);
             return ResponseHandler.generateResponse("successfully create product", HttpStatus.OK, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);

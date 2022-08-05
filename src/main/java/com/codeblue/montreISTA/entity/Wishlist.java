@@ -1,6 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
 
+import com.codeblue.montreISTA.service.PhotoServiceImp;
 import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;

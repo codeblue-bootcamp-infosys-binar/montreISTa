@@ -1,5 +1,7 @@
 package com.codeblue.montreISTA.controller;
 
+import com.codeblue.montreISTA.DTO.ProductCategoryRequestDTO;
+import com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO;
 import com.codeblue.montreISTA.entity.ProductCategory;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.ProductCategoryService;
@@ -20,10 +22,10 @@ public class ProductCategoryController {
      * findAll
      * @return
      */
-    @GetMapping("/productCategory")
+    @GetMapping("/productCategories")
     public ResponseEntity<Object> findAllProductCategory(){
         try{
-            List<ProductCategory> results = productCategoryService.findAll();
+            List<ProductCategoryResponseDTO> results = productCategoryService.findAll();
             return ResponseHandler.generateResponse("successfully retrieved product category", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -38,7 +40,7 @@ public class ProductCategoryController {
     @GetMapping("/productCategory/productname")
     public ResponseEntity<Object> findByProductname(@Param("keyword") String keyword){
         try{
-            List<ProductCategory> results = productCategoryService.findByProductName(keyword);
+            List<ProductCategoryResponseDTO> results = productCategoryService.findByProductName(keyword);
             return ResponseHandler.generateResponse("successfully find product category", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -53,7 +55,7 @@ public class ProductCategoryController {
     @GetMapping("/productCategory/categoryname")
     public ResponseEntity<Object> findByCategoryName(@Param("keyword") String keyword){
         try{
-            List<ProductCategory> results = productCategoryService.findByCategoryName(keyword);
+            List<ProductCategoryResponseDTO> results = productCategoryService.findByCategoryName(keyword);
             return ResponseHandler.generateResponse("successfully find product category", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -61,14 +63,14 @@ public class ProductCategoryController {
     }
 
     /**
-     * postProductCategory
+     * post
      * @param productCategory
      * @return
      */
     @PostMapping("/productCategory")
-    public ResponseEntity<Object> postProductCategory(@RequestBody ProductCategory productCategory) {
+    public ResponseEntity<Object> postProductCategory(@RequestBody ProductCategoryRequestDTO productCategory) {
         try {
-            ProductCategory results = productCategoryService.createProductCategory(productCategory);
+            ProductCategoryResponseDTO results = productCategoryService.createProductCategory(productCategory);
             return ResponseHandler.generateResponse("successfully create product category", HttpStatus.OK, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
@@ -82,9 +84,9 @@ public class ProductCategoryController {
      * @return
      */
     @PutMapping("/productCategory/{id}")
-    public ResponseEntity<Object> updateProductCategory(@PathVariable Long id,@RequestBody ProductCategory productCategory) {
+    public ResponseEntity<Object> updateProductCategory(@PathVariable Long id,@RequestBody ProductCategoryRequestDTO productCategory) {
         try {
-            ProductCategory results = productCategoryService.updateProductCategory(productCategory,id);
+            ProductCategoryResponseDTO results = productCategoryService.updateProductCategory(productCategory,id);
             return ResponseHandler.generateResponse("successfully update product category", HttpStatus.OK, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);

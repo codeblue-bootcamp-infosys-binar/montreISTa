@@ -11,6 +11,12 @@ public interface ProductService {
 
     Optional<Product> findProductById(Long id);
 
+    List<Product> findByProductName(String name);
+
+    List<Product> findBySellerName(String name);
+
+    List<Product> findByStoreName(String name);
+
     Product createProduct(Product product);
 
     Product updateProduct(Product product);

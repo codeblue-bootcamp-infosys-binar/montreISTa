@@ -1,25 +1,20 @@
 package com.codeblue.montreISTA.entity;
 
-<<<<<<< HEAD
+
 import com.codeblue.montreISTA.DTO.PhotoProductDTO;
-=======
+import com.codeblue.montreISTA.service.PhotoServiceImp;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import com.codeblue.montreISTA.DTO.PhotoPostDTO;
 import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
->>>>>>> 9296f8e3460a6f033b517fb67a30996f9b115b40
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-<<<<<<< HEAD
-import com.codeblue.montreISTA.DTO.PhotoPostDTO;
-import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
-=======
->>>>>>> 9296f8e3460a6f033b517fb67a30996f9b115b40
 import lombok.*;
 import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 

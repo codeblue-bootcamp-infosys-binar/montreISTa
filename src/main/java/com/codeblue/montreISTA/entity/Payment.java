@@ -3,7 +3,6 @@ package com.codeblue.montreISTA.entity;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -18,12 +17,12 @@ public class Payment extends AuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long paymentId;
 
-//    @NotBlank(message = "name must not be blank")
-    @NotEmpty
+
+    @NotEmpty(message = "name must not be blank")
     @Column(unique = true)
     private String name;
 
-//    @NotBlank(message = "name must not be blank")
-    @NotEmpty
+
+    @NotEmpty(message = "name must not be blank")
     private String paymentCode;
 }

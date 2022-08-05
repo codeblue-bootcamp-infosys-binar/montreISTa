@@ -28,6 +28,8 @@ public class ProductResponseDTO {
 
     private List<PhotoProductDTO> photos;
 
+    private List<String> categories;
+
     private ZonedDateTime createdAt;
 
     private ZonedDateTime modifiedAt;
