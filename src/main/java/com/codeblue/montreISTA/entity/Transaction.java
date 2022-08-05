@@ -29,15 +29,15 @@ public class Transaction extends AuditEntity{
     @NotBlank(message= "orders must not be blank")
     private Order order;
 
-    @ManyToOne
-    @NotNull
-    @JoinColumn(name="seller_id")
-    private Seller seller;
-
-    @ManyToOne
-    @NotNull
-    @JoinColumn(name="buyer_id")
-    private Buyer buyer;
+//    @ManyToOne
+//    @NotNull
+//    @JoinColumn(name="seller_id")
+//    private Seller seller;
+//
+//    @ManyToOne
+//    @NotNull
+//    @JoinColumn(name="buyer_id")
+//    private Buyer buyer;
 
     private String nameShipping;
 
