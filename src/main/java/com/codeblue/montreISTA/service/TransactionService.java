@@ -10,8 +10,8 @@ public interface TransactionService {
     List<Transaction> findBySeller(String keyword) throws Exception;
 //    List<Transaction> findByUser(String keyword) throws Exception;
 
-    Transaction createTransaction(Transaction transaction) throws Exception;
-    Transaction updateTransaction(Transaction transaction) throws Exception;
+    Transaction createTransaction(Transaction transaction);
+    Transaction updateTransaction(Transaction transaction,Long id) throws Exception;
 
     void deleteById(Long id) throws Exception;
 }
