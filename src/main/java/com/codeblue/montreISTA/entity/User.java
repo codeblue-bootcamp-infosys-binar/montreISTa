@@ -47,4 +47,17 @@ public class User extends AuditEntity{
     @NotBlank(message = "address may not be blank")
     private String address;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", photo='" + photo + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

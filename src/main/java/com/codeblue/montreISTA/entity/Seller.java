@@ -31,4 +31,14 @@ public class Seller extends AuditEntity{
     @NotBlank(message = "store addres may not be blank")
     private String storeAddress;
 
+    @Override
+    public String toString() {
+        return "Seller{" +
+                "sellerId=" + sellerId +
+                ", userId=" + userId +
+                ", storeName='" + storeName + '\'' +
+                ", storePhoto='" + storePhoto + '\'' +
+                ", storeAddress='" + storeAddress + '\'' +
+                '}';
+    }
 }

@@ -12,15 +12,15 @@ import java.util.*;
 
 @AllArgsConstructor
 @RestController
-
 public class UserController {
 
+    private UserService userService;
 
     //GET ALL
     @GetMapping("/users")
     public ResponseEntity<Object> getAllUser() {
         try {
-            List<User> users = UserService.findAllUser();
+            List<User> users = userService.findAllUser();
 
             return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, users);
         } catch (Exception e) {
@@ -32,7 +32,7 @@ public class UserController {
     @GetMapping("/users/{user_id}")
     public ResponseEntity<Object> getAllUserByUserId(@PathVariable("user_id") Long userId) {
         try {
-            Optional<User> user = UserService.findUserById(userId);
+            Optional<User> user = userService.findUserById(userId);
             return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, user);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -43,7 +43,7 @@ public class UserController {
     @GetMapping("/users/{id}")
     public ResponseEntity<Object> getUserById(@PathVariable("id") Long id) {
         try {
-            Optional<User> user = UserService.findUserById(id);
+            Optional<User> user = userService.findUserById(id);
             return ResponseHandler.generateResponse("successfully retrieved user", HttpStatus.OK, user);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -54,7 +54,7 @@ public class UserController {
     @PostMapping("/users/create")
     public ResponseEntity<Object> createUser(@RequestBody User newUser) {
         try {
-            User user = UserService.createUser(newUser);
+            User user = userService.createUser(newUser);
             return ResponseHandler.generateResponse("successfully retrieved user", HttpStatus.CREATED, user);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -65,7 +65,7 @@ public class UserController {
     @PutMapping("/users/update/{id}")
     public ResponseEntity<Object> updateUser(@RequestBody User user, @PathVariable("id") Long id) {
         try {
-            Optional<User> targetUser = UserService.findUserById(id);
+            Optional<User> targetUser = userService.findUserById(id);
             User updateUser = targetUser.get();
             updateUser.setUserId(id);
             updateUser.setAddress(user.getName());
@@ -76,7 +76,7 @@ public class UserController {
             updateUser.setPhoto(user.getPhoto());
             updateUser.setUsername(user.getUsername());
 
-            UserService.updateUser(updateUser);
+            userService.updateUser(updateUser);
             return ResponseHandler.generateResponse("successfully updated User", HttpStatus.CREATED, updateUser);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -87,7 +87,7 @@ public class UserController {
     @DeleteMapping("/users/delete/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable("id") Long id) {
         try {
-            UserService.deleteUser(id);
+            userService.deleteUser(id);
             return ResponseHandler.generateResponse("successfully deleted User", HttpStatus.MULTI_STATUS, null);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);

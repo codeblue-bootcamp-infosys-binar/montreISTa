@@ -24,7 +24,6 @@ import java.util.List;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "productId")
 public class Product extends AuditEntity{
-
     //product id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,6 +56,7 @@ public class Product extends AuditEntity{
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "product",
             fetch = FetchType.LAZY)
+
     private List<Photo> photos;
 
     public ProductResponseDTO convertToResponse(List<PhotoProductDTO> photoDTO){
@@ -72,5 +72,17 @@ public class Product extends AuditEntity{
                 .createdAt(this.getCreatedAt())
                 .modifiedAt(this.getModifiedAt())
                 .build();
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", seller=" + seller +
+                ", productName='" + productName + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", photos=" + photos +
+                '}';
     }
 }
