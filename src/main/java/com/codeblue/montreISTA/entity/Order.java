@@ -51,7 +51,6 @@ public class Order extends AuditEntity{
         return OrderResponseDTO.builder()
                 .orderId(this.orderId)
                 .listCart(cartDTO)
-                .name(this.payment.getName())
                 .shipping_name(this.shipping.getName())
                 .total_price(this.totalprice)
                 .createdAt(this.getCreatedAt())
@@ -59,6 +58,14 @@ public class Order extends AuditEntity{
                 .build();
         }
 
+//        public OrderResponsePost convertToResponsePost(){
+//        return OrderResponsePost.builder()
+//                .orderId(this.getOrderId())
+//                .paymentId(this.getPayment().getPaymentId())
+//                .shippingId(this.getShipping().getShippingId())
+//                .totalPrice(this.getTotalprice())
+//                .build();
+//    }
     @Override
     public String toString() {
         return "Order{" +
@@ -70,25 +77,5 @@ public class Order extends AuditEntity{
                 '}';
     }
 
-    //    public OrderResponsePost convertToResponsePost(){
-//        return OrderResponsePost.builder()
-//                .order_id(this.orderId)
-//                .buyer_id(this.getBuyer().getBuyerId())
-//                .payment_id(this.getPayment().getPaymentId())
-//                .shipping_id(this.getShipping().getShippingId())
-//                .quantity(this.quantity)
-//                .build();
-//    }
-
-//    @Override
-//    public String toString() {
-//        return "Order{" +
-//                "orderId=" + orderId +
-//                ", payment=" + payment +
-//                ", shipping=" + shipping +
-//                ", totalPrice=" + totalPrice +
-//                ", listCart=" + listCart +
-//                '}';
-//    }
 
 }

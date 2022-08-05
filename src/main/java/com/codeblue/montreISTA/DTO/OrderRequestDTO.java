@@ -21,7 +21,7 @@ public class OrderRequestDTO {
     private Integer totalprice;
 
 
-    public Order covertToEntitiy(){
+    public Order covertToEntity(){
         return Order.builder()
                 .orderId(this.orderId)
                 .payment(this.payment)

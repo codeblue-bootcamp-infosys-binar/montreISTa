@@ -5,6 +5,7 @@ import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.PaymentService;
 import com.codeblue.montreISTA.entity.Payment;
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,17 @@ public class PaymentController {
     public ResponseEntity<Object> getAllPayment(){
         try{
             List<Payment> payments = paymentService.findAllPayment();
+
+            return ResponseHandler.generateResponse("successfully retrieved payment", HttpStatus.OK, payments);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    @GetMapping("/payment/paymentName")
+    public ResponseEntity<Object> findByPaymentName(@Param("keyword") String keyword){
+        try{
+            List<Payment> payments = paymentService.findByPaymentName(keyword);
 
             return ResponseHandler.generateResponse("successfully retrieved payment", HttpStatus.OK, payments);
         } catch (Exception e){
