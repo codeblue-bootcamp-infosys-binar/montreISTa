@@ -1,6 +1,7 @@
 package com.codeblue.montreISTA.service;
 
 import com.codeblue.montreISTA.entity.Category;
+import com.codeblue.montreISTA.helper.ResourceNotFoundException;
 import com.codeblue.montreISTA.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<Category> findByProductId(Long id) {
+        return categoryRepository.findByProductsProductProductId(id);
+    }
+
+    @Override
     public Optional<Category> findById(Long id) {
-        return categoryRepository.findById(id);
+        Optional<Category> optionalCategory = categoryRepository.findById(id);
+        if(optionalCategory.isEmpty()){
+            throw new ResourceNotFoundException("Category does not exist");
+        }
+        return optionalCategory;
     }
 
     @Override
@@ -35,7 +45,7 @@ public class CategoryServiceImpl implements CategoryService {
     public Category updateCategory(Category category) {
         Optional<Category> optionalCategory = categoryRepository.findById(category.getCategoriesId());
         if(optionalCategory.isEmpty()){
-            return null;
+            throw new ResourceNotFoundException("Category does not exist");
         }
 
         return categoryRepository.save(category);
