@@ -1,13 +1,22 @@
 package com.codeblue.montreISTA.entity;
 
+<<<<<<< HEAD
+import com.codeblue.montreISTA.DTO.PhotoProductDTO;
+=======
 import lombok.AllArgsConstructor;
 import com.codeblue.montreISTA.DTO.PhotoPostDTO;
 import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
+>>>>>>> 9296f8e3460a6f033b517fb67a30996f9b115b40
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+<<<<<<< HEAD
+import com.codeblue.montreISTA.DTO.PhotoPostDTO;
+import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
+=======
+>>>>>>> 9296f8e3460a6f033b517fb67a30996f9b115b40
 import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
@@ -64,6 +73,14 @@ public class Photo extends AuditEntity{
                 .photo_name(this.photoName)
                 .photo_url(this.photoURL)
                 .product_id(this.getProduct().getProductId())
+                .build();
+    }
+
+    public PhotoProductDTO convertToProduct(){
+        return PhotoProductDTO.builder()
+                .photo_id(this.photoId)
+                .photo_name(this.photoName)
+                .photo_url(this.photoURL)
                 .build();
     }
 
