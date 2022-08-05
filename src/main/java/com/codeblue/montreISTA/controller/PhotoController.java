@@ -31,8 +31,8 @@ public class PhotoController {
      * FindAll
      * @return
      */
-    @GetMapping("/photo")
-    public ResponseEntity<Object> findAllPhoto(){
+    @GetMapping("/photos")
+    public ResponseEntity<Object> findAll(){
         try {
             List<PhotoResponseDTO> results = photoService.findAll();
             return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, results);
