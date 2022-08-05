@@ -1,6 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
 
+import com.codeblue.montreISTA.service.PhotoServiceImp;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
@@ -25,7 +26,7 @@ public class ProductCategory extends AuditEntity {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product product;
+    private PhotoServiceImp.Product product;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

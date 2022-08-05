@@ -4,9 +4,9 @@ import com.codeblue.montreISTA.DTO.PhotoProductDTO;
 import com.codeblue.montreISTA.DTO.ProductRequestDTO;
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.entity.Photo;
-import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.response.ResponseHandler;
+import com.codeblue.montreISTA.service.PhotoServiceImp;
 import com.codeblue.montreISTA.service.ProductServiceImpl;
 import com.codeblue.montreISTA.service.SellerService;
 import lombok.AllArgsConstructor;
@@ -33,10 +33,10 @@ public class ProductController {
     @GetMapping("/products")
     public ResponseEntity<Object> getAllProduct(){
         try{
-            List<Product> products = productServiceImpl.findAllProduct();
+            List<PhotoServiceImp.Product> products = productServiceImpl.findAllProduct();
             List<ProductResponseDTO> productResponseDTOS = new ArrayList<>();
 
-            for(Product product : products){
+            for(PhotoServiceImp.Product product : products){
 
                 List<PhotoProductDTO> photosDTO = new ArrayList<>();
 
@@ -60,7 +60,7 @@ public class ProductController {
     @GetMapping("/products/store/{seller_id}")
     public ResponseEntity<Object> getAllProductBySellerId(@PathVariable("seller_id") Long sellerId){
         try{
-            List<Product> product = productServiceImpl.findProductBySellerId(sellerId);
+            List<PhotoServiceImp.Product> product = productServiceImpl.findProductBySellerId(sellerId);
             return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, product);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.MULTI_STATUS, null);
@@ -73,7 +73,7 @@ public class ProductController {
         try{
 
             //RETRIEVING PRODUCT FROM DATABASE
-            Optional<Product> product = productServiceImpl.findProductById(id);
+            Optional<PhotoServiceImp.Product> product = productServiceImpl.findProductById(id);
 
             //CONVERTING PHOTO RAW DATA TO PHOTO WITH DTO
             List<Photo> photos = product.get().getPhotos();
@@ -98,7 +98,7 @@ public class ProductController {
         try {
             Optional<Seller> productSeller = sellerService.findSellerById(productRequestDTO.getSellerId());
             Seller seller = productSeller.get();
-            Product newProduct = productRequestDTO.convertToEntity(seller);
+            PhotoServiceImp.Product newProduct = productRequestDTO.convertToEntity(seller);
             productServiceImpl.createProduct(newProduct);
 
             ProductResponseDTO productResponseDTO = newProduct.convertToResponse(null);
@@ -111,10 +111,10 @@ public class ProductController {
 
     //UPDATE PRODUCT
     @PutMapping("/products/update/{id}")
-    public ResponseEntity<Object> updateProduct(@RequestBody Product product, @PathVariable("id") Long id){
+    public ResponseEntity<Object> updateProduct(@RequestBody PhotoServiceImp.Product product, @PathVariable("id") Long id){
         try{
-            Optional<Product> targetProduct = productServiceImpl.findProductById(id);
-            Product updateProduct = targetProduct.get();
+            Optional<PhotoServiceImp.Product> targetProduct = productServiceImpl.findProductById(id);
+            PhotoServiceImp.Product updateProduct = targetProduct.get();
             updateProduct.setProductId(id);
             updateProduct.setProductName(product.getProductName());
             updateProduct.setDescription(product.getDescription());
