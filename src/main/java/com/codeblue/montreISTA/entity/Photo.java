@@ -1,5 +1,8 @@
 package com.codeblue.montreISTA.entity;
 
+
+import com.codeblue.montreISTA.DTO.PhotoProductDTO;
+import com.codeblue.montreISTA.service.PhotoServiceImp;
 import lombok.AllArgsConstructor;
 import com.codeblue.montreISTA.DTO.PhotoPostDTO;
 import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
@@ -10,7 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.*;
 import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
@@ -64,6 +67,14 @@ public class Photo extends AuditEntity{
                 .photo_name(this.photoName)
                 .photo_url(this.photoURL)
                 .product_id(this.getProduct().getProductId())
+                .build();
+    }
+
+    public PhotoProductDTO convertToProduct(){
+        return PhotoProductDTO.builder()
+                .photo_id(this.photoId)
+                .photo_name(this.photoName)
+                .photo_url(this.photoURL)
                 .build();
     }
 

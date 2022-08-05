@@ -16,5 +16,7 @@ public interface BuyerRepository extends JpaRepository<Buyer, Long> {
 //    Buyer save(Buyer buyer);
 //    void deleteById(Long id);
 //    List<Buyer> findAll();
+//}
 
 }
+

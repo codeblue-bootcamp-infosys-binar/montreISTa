@@ -2,6 +2,7 @@ package com.codeblue.montreISTA.DTO;
 
 import com.codeblue.montreISTA.entity.Photo;
 import com.codeblue.montreISTA.entity.Product;
+import com.codeblue.montreISTA.service.PhotoServiceImp;
 import lombok.*;
 
 @Getter
