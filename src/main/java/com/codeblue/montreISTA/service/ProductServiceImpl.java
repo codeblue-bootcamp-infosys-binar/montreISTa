@@ -1,6 +1,5 @@
 package com.codeblue.montreISTA.service;
 
-import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,17 +13,17 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     ProductRepository productRepository;
 
-    public List<Product> findAllProduct() {
-        List<Product> products = productRepository.findAll();
+    public List<PhotoServiceImp.Product> findAllProduct() {
+        List<PhotoServiceImp.Product> products = productRepository.findAll();
         return products;
     }
 
-    public Optional<Product> findProductById(Long id) {
+    public Optional<PhotoServiceImp.Product> findProductById(Long id) {
         return productRepository.findById(id);
     }
 
-    public List<Product> findProductBySellerId(Long id) {
-        List<Product> product = productRepository.findBySellerId(id);
+    public List<PhotoServiceImp.Product> findProductBySellerId(Long id) {
+        List<PhotoServiceImp.Product> product = productRepository.findBySellerId(id);
         if(product.isEmpty()){
             return null;
         } else {
@@ -32,11 +31,11 @@ public class ProductServiceImpl implements ProductService{
         }
     }
 
-    public Product createProduct(Product product) {
+    public PhotoServiceImp.Product createProduct(PhotoServiceImp.Product product) {
         return productRepository.save(product);
     }
 
-    public Product updateProduct(Product updateProduct) {
+    public PhotoServiceImp.Product updateProduct(PhotoServiceImp.Product updateProduct) {
         return productRepository.save(updateProduct);
     }
 

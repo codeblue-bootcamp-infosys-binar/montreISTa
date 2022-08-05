@@ -1,11 +1,11 @@
 package com.codeblue.montreISTA.entity;
 
 import com.codeblue.montreISTA.DTO.OrderCartDTO;
+import com.codeblue.montreISTA.service.PhotoServiceImp;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 
@@ -32,7 +32,7 @@ public class Cart extends AuditEntity{
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product product;
+    private PhotoServiceImp.Product product;
 
     @NotNull
     private Integer quantity;
