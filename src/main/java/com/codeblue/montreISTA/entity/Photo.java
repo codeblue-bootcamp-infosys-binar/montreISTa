@@ -3,6 +3,7 @@ package com.codeblue.montreISTA.entity;
 
 import com.codeblue.montreISTA.DTO.PhotoProductDTO;
 import com.codeblue.montreISTA.service.PhotoServiceImp;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import com.codeblue.montreISTA.DTO.PhotoPostDTO;
 import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
