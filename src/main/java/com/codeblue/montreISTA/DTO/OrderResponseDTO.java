@@ -16,7 +16,6 @@ public class OrderResponseDTO{
 
     private Long orderId;
     private List<OrderCartDTO> listCart;
-    private String name;
     private String shipping_name;
     private Integer total_price;
     private ZonedDateTime createdAt;
@@ -27,7 +26,6 @@ public class OrderResponseDTO{
         return "OrderResponseDTO{" +
                 "orderId=" + orderId +
                 ", listCart=" + listCart +
-                ", name='" + name + '\'' +
                 ", shipping_name='" + shipping_name + '\'' +
                 ", total_price=" + total_price +
                 ", createdAt=" + createdAt +

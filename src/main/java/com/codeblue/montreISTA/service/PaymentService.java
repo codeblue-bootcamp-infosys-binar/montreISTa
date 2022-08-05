@@ -1,6 +1,7 @@
 package com.codeblue.montreISTA.service;
 
 
+import com.codeblue.montreISTA.entity.Order;
 import com.codeblue.montreISTA.entity.Payment;
 import com.codeblue.montreISTA.repository.PaymentRepository;
 import lombok.AllArgsConstructor;
@@ -44,6 +45,11 @@ public class PaymentService {
     //DELETE
     public void deletePayment(Long paymentId){
         paymentRepository.deleteById(paymentId);
+    }
+
+    public List<Payment> findByPaymentName(String keyword) {
+        List<Payment> paymentName = paymentRepository.findByNameContaining(keyword);
+        return paymentName;
     }
 
 

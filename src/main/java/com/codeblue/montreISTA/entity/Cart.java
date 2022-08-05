@@ -46,6 +46,9 @@ public class Cart extends AuditEntity{
                 .cart_id(this.cartId)
                 .buyer_name(this.getBuyer().getUser().getName())
                 .product_name(this.getProduct().getProductName())
+                .description(this.getProduct().getDescription())
+                .store_name(this.getProduct().getSeller().getStoreName())
+                .store_address(this.getProduct().getSeller().getStoreAddress())
                 .quantity(this.quantity)
                 .build();
     }
