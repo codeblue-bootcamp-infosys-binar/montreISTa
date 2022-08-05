@@ -1,7 +1,5 @@
 package com.codeblue.montreISTA.DTO;
 
-import com.codeblue.montreISTA.entity.Photo;
-import com.codeblue.montreISTA.entity.Seller;
 import lombok.*;
 
 import java.time.ZonedDateTime;
@@ -28,7 +26,7 @@ public class ProductResponseDTO {
 
     private Integer price;
 
-    private List<Photo> photos;
+    private List<PhotoProductDTO> photos;
 
     private ZonedDateTime createdAt;
 
