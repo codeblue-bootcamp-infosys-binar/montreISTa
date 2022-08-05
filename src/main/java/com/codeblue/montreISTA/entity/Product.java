@@ -61,7 +61,7 @@ public class Product extends AuditEntity {
             fetch = FetchType.LAZY)
     private List<ProductCategory> categories;
 
-    public ProductResponseDTO convertToResponse(List<PhotoProductDTO> photoDTO){
+    public ProductResponseDTO convertToResponse(List<PhotoProductDTO> photoDTO, List<String> categories){
 
         return ProductResponseDTO.builder()
                 .productId(this.productId)
@@ -72,6 +72,7 @@ public class Product extends AuditEntity {
                 .description(this.description)
                 .price(this.price)
                 .photos(photoDTO)
+                .categories(categories)
                 .createdAt(this.getCreatedAt())
                 .modifiedAt(this.getModifiedAt())
                 .build();
