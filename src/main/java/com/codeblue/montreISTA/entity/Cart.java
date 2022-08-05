@@ -32,7 +32,7 @@ public class Cart extends AuditEntity{
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private PhotoServiceImp.Product product;
+    private Product product;
 
     @NotNull
     private Integer quantity;

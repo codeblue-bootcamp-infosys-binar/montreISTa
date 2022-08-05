@@ -1,6 +1,7 @@
 package com.codeblue.montreISTA.DTO;
 
 import com.codeblue.montreISTA.entity.Photo;
+import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.service.PhotoServiceImp;
 import lombok.*;
 
@@ -13,7 +14,7 @@ public class PhotoRequestDTO {
     private Long photo_id;
     private String photo_name;
     private String photo_url;
-    private PhotoServiceImp.Product product;
+    private Product product;
 
     public Photo convertToEntity(){
         return Photo.builder()

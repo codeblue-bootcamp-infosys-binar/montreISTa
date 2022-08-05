@@ -28,7 +28,7 @@ public class PhotoServiceImp implements PhotoService {
     public List<PhotoResponseDTO> findAll() {
         List<Photo> photos = photoRepository.findAll();
         List<PhotoResponseDTO> results = new ArrayList<>();
-        for(Photo data:photos){
+        for (Photo data : photos) {
             PhotoResponseDTO photosDTO = data.convertToResponse();
             results.add(photosDTO);
         }
@@ -38,11 +38,11 @@ public class PhotoServiceImp implements PhotoService {
     @Override
     public List<PhotoResponseDTO> findByPhotoName(String photoName) throws Exception {
         List<Photo> photos = photoRepository.findByPhotoName(photoName);
-        if(photos == null) {
-        throw new Exception("photo not found");
+        if (photos == null) {
+            throw new Exception("photo not found");
         }
         List<PhotoResponseDTO> results = new ArrayList<>();
-        for(Photo data:photos){
+        for (Photo data : photos) {
             PhotoResponseDTO photosDTO = data.convertToResponse();
             results.add(photosDTO);
         }
@@ -50,13 +50,13 @@ public class PhotoServiceImp implements PhotoService {
     }
 
     @Override
-    public List<PhotoResponseDTO> findByProductName(String productName) throws Exception{
+    public List<PhotoResponseDTO> findByProductName(String productName) throws Exception {
         List<Photo> photos = photoRepository.findByProductName(productName);
-        if(photos == null) {
+        if (photos == null) {
             throw new Exception("photo not found");
         }
         List<PhotoResponseDTO> results = new ArrayList<>();
-        for(Photo data:photos){
+        for (Photo data : photos) {
             PhotoResponseDTO photosDTO = data.convertToResponse();
             results.add(photosDTO);
         }
@@ -64,20 +64,22 @@ public class PhotoServiceImp implements PhotoService {
     }
 
     @Override
-    public List<PhotoResponseDTO> findByUsername(String keyword) throws Exception{
+    public List<PhotoResponseDTO> findByUsername(String keyword) throws Exception {
         List<Photo> photos = photoRepository.findByUsername(keyword);
-        if(photos == null) {
+        if (photos == null) {
             throw new Exception("photo not found");
         }
         List<PhotoResponseDTO> results = new ArrayList<>();
-        for(Photo data:photos){
+        for (Photo data : photos) {
             PhotoResponseDTO photosDTO = data.convertToResponse();
             results.add(photosDTO);
         }
         return results;
     }
+
     /**
      * belumada validasi optionalphoto by id isPresent, throw
+     *
      * @param photoRequestDTO
      * @return
      */
@@ -90,15 +92,16 @@ public class PhotoServiceImp implements PhotoService {
 
     /**
      * note : logic validasi username = username
+     *
      * @param photoRequestDTO
      * @param id
      * @return
      */
     @Override
-    public PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO,Long id) throws Exception{
+    public PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO, Long id) throws Exception {
         Photo photo = photoRequestDTO.convertToEntity();
         Optional<Photo> photoId = photoRepository.findById(id);
-        if(photoId.isEmpty()){
+        if (photoId.isEmpty()) {
             throw new Exception("Photo not found");
         }
         photo.setPhotoId(id);
@@ -112,83 +115,4 @@ public class PhotoServiceImp implements PhotoService {
     }
 
 
-    @Setter
-    @Getter
-    @Entity
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @Builder
-    @Table(name = "products")
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "productId")
-    public static class Product extends AuditEntity {
-        //product id
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long productId;
-
-        //seller id
-        @ManyToOne
-        @NotNull
-        @JoinColumn(name="seller_id")
-        private Seller seller;
-
-        //product name
-        @Column(name="product_name")
-        @NotNull
-        private String productName;
-
-        //description
-        @Lob
-        @Type(type = "org.hibernate.type.TextType")
-        @Column(name = "description", columnDefinition = "TEXT")
-        @NotNull
-        private String description;
-
-        //price
-        @Column(name = "price")
-        @NotNull
-        private Integer price;
-
-        //list of photos
-        @OneToMany(cascade = CascadeType.ALL,
-                mappedBy = "product",
-                fetch = FetchType.LAZY)
-        private List<Photo> photos;
-
-
-        @OneToMany(cascade = CascadeType.ALL,
-                mappedBy = "product",
-                fetch = FetchType.LAZY)
-        private List<ProductCategory> categories;
-
-        public ProductResponseDTO convertToResponse(List<PhotoProductDTO> photoDTO){
-
-            return ProductResponseDTO.builder()
-                    .productId(this.productId)
-                    .sellerId(this.seller.getSellerId())
-                    .storeName(this.seller.getStoreName())
-                    .storePhoto(this.seller.getStorePhoto())
-                    .productName(this.productName)
-                    .description(this.description)
-                    .price(this.price)
-                    .photos(photoDTO)
-                    .createdAt(this.getCreatedAt())
-                    .modifiedAt(this.getModifiedAt())
-                    .build();
-        }
-
-        @Override
-        public String toString() {
-            return "Product{" +
-                    "productId=" + productId +
-                    ", seller=" + seller +
-                    ", productName='" + productName + '\'' +
-                    ", description='" + description + '\'' +
-                    ", price=" + price +
-                    ", photos=" + photos +
-                    '}';
-        }
-    }
 }

@@ -1,17 +1,19 @@
 package com.codeblue.montreISTA.service;
 
+import com.codeblue.montreISTA.entity.Product;
+
 import java.util.List;
 import java.util.Optional;
 
 public interface ProductService {
 
-    List<PhotoServiceImp.Product> findAllProduct();
+    List<Product> findAllProduct();
 
-    Optional<PhotoServiceImp.Product> findProductById(Long id);
+    Optional<Product> findProductById(Long id);
 
-    PhotoServiceImp.Product createProduct(PhotoServiceImp.Product product);
+    Product createProduct(Product product);
 
-    PhotoServiceImp.Product updateProduct(PhotoServiceImp.Product product);
+    Product updateProduct(Product product);
 
     void deleteProduct(Long id);
 }
