@@ -16,6 +16,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
 
     @Override
     public List<ProductCategory> findAll() {
+
         return productCategoryRepository.findAll();
     }
 
@@ -54,7 +55,11 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws Exception {
+        Optional<ProductCategory> productCategoryId = productCategoryRepository.findById(id);
+        if(productCategoryId.isEmpty()){
+            throw new Exception("Product Category not found");
+        }
         productCategoryRepository.deleteById(id);
     }
 }

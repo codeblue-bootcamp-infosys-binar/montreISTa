@@ -12,5 +12,5 @@ public interface ProductCategoryService {
     ProductCategory createProductCategory(ProductCategory productCategory);
     ProductCategory updateProductCategory(ProductCategory productCategory,Long id)throws Exception;
 
-    void deleteById(Long id);
+    void deleteById(Long id)throws Exception;
 }
