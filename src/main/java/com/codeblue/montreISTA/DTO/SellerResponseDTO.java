@@ -33,7 +33,7 @@ public class SellerResponseDTO {
         return "OrderResponseDTO{" +
                 "sellerId=" + sellerId +
                 ", user_id=" + user_id +
-                ", store_adress='" + store_address + '\'' +
+                ", store_address='" + store_address + '\'' +
                 ", store_name=" + store_name +
                 ", store_photo=" + store_photo +
                 ", createdAt=" + createdAt +

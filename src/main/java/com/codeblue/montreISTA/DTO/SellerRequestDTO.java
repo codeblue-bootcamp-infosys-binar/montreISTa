@@ -23,7 +23,7 @@ public class SellerRequestDTO {
 
 
 
-public Seller convertToEntity(Seller seller){
+public Seller convertToEntity(){
     return Seller.builder()
             .sellerId(this.sellerId)
             .userId(this.userId)
