@@ -2,11 +2,13 @@ package com.codeblue.montreISTA.controller;
 
 
 
+import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.entity.Wishlist;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.WishlistService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +43,28 @@ public class WishlistController {
             return ResponseHandler.generateResponse("successfully retrieved wishlists", HttpStatus.OK, wishlist);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    @GetMapping("/wishlist/buyer/username")
+    public ResponseEntity<Object> findByBuyerUsername(@Param("keyword") String keyword){
+        try{
+            List<Wishlist> wishlists = wishlistService.findByBuyerUserName(keyword);
+
+            return ResponseHandler.generateResponse("successfully retrieved buyer username", HttpStatus.OK, wishlists);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    @GetMapping("/wishlist/Buyer/User/username")
+    public ResponseEntity<Object> findByBuyerUserUsername(@Param("keyword") String keyword){
+        try{
+            List<Wishlist> wishlists = wishlistService.findByBuyerUserUsername(keyword);
+
+            return ResponseHandler.generateResponse("successfully retrieved buyer username", HttpStatus.OK, wishlists);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
 

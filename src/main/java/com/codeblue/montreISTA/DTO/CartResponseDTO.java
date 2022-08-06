@@ -2,15 +2,16 @@ package com.codeblue.montreISTA.DTO;
 
 import lombok.*;
 
-@Getter
-@Setter
+import java.time.ZonedDateTime;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Builder
-public class OrderCartDTO {
-
+public class CartResponseDTO {
     private Long cart_id;
-    private Long buyer_id;
     private String buyer_name;
     private String buyer_username;
     private String seller_name;
@@ -21,6 +22,8 @@ public class OrderCartDTO {
     private Integer product_price;
     private String product_description;
     private Integer quantity;
-
-
+    private List<PhotoProductDTO> photos;
+    private List<String> categories;
+//    private ZonedDateTime created_at;
+//    private ZonedDateTime modified_at;
 }

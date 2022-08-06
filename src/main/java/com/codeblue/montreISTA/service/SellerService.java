@@ -42,4 +42,9 @@ public class SellerService {
             return seller;
         }
     }
+
+    public List<Seller> findByUsername(String keyword) {
+        List<Seller> sellerUsername = sellerRepository.findByUserIdUsername(keyword);
+        return sellerUsername;
+    }
 }
