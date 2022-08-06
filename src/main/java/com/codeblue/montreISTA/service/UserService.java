@@ -1,12 +1,16 @@
 package com.codeblue.montreISTA.service;
 
+import DTO.UserResponseDTO;
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+
+@Service
 public class UserService {
     @Autowired
     static
@@ -19,6 +23,10 @@ public class UserService {
 
     public static Optional<User> findUserById(Long id) {
         return userRepository.findById(id);
+    }
+
+    public static List<UserResponseDTO> findByUsername(String username) throws Exception {
+        return null;
     }
 
     public static User createUser(User user) {

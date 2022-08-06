@@ -1,9 +1,12 @@
 package com.codeblue.montreISTA.controller;
 
+import DTO.UserResponseDTO;
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +15,10 @@ import java.util.*;
 
 @AllArgsConstructor
 @RestController
-
 public class UserController {
+
+@Autowired
+UserService userService;
 
 
     //GET ALL
@@ -39,12 +44,24 @@ public class UserController {
         }
     }
 
+
+    //GET BY USER.USERNAME
+    @GetMapping("/users/username")
+    public ResponseEntity<Object> findByUsername(@Param("keyword") String keyword){
+        try {
+            List<UserResponseDTO> results = UserService.findByUsername(keyword);
+            return ResponseHandler.generateResponse("Succesfully Retrieved User", HttpStatus.OK, results);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,null);
+        }
+    }
+
     //GET ONE BY ID
     @GetMapping("/users/{id}")
     public ResponseEntity<Object> getUserById(@PathVariable("id") Long id) {
         try {
             Optional<User> user = UserService.findUserById(id);
-            return ResponseHandler.generateResponse("successfully retrieved user", HttpStatus.OK, user);
+            return ResponseHandler.generateResponse("Successfully Retrieved User", HttpStatus.OK, user);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
