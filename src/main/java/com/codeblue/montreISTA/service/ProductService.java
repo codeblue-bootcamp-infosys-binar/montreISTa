@@ -17,6 +17,8 @@ public interface ProductService {
 
     List<Product> findByStoreName(String name);
 
+    List<Product> findByCategoryId(Long id);
+
     Product createProduct(Product product);
 
     Product updateProduct(Product product);

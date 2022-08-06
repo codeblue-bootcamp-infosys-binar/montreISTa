@@ -41,6 +41,12 @@ public class ProductServiceImpl implements ProductService{
         return products;
     }
 
+    @Override
+    public List<Product> findByCategoryId(Long id) {
+        List<Product> products = productRepository.findByCategoriesCategoryCategoriesId(id);
+        return products;
+    }
+
     public List<Product> findProductBySellerId(Long id) {
         List<Product> product = productRepository.findBySellerSellerId(id);
         if(product.isEmpty()){

@@ -205,6 +205,32 @@ public class ProductController {
         }
     }
 
+    //GET BY CATEGORY ID
+    @GetMapping("/products/category/{id}")
+    public ResponseEntity<Object> getAllProductsByCategoryId(@PathVariable("id") Long id){
+        try{
+            List<Product> products = productServiceImpl.findByCategoryId(id);
+            List<ProductResponseDTO> productResponseDTOS = new ArrayList<>();
+
+            for(Product product : products){
+
+                List<PhotoProductDTO> photoProductDTOS = new ArrayList<>();
+                for(Photo photo : product.getPhotos()){
+                    PhotoProductDTO photoDTO = photo.convertToProduct();
+                    photoProductDTOS.add(photoDTO);
+                }
+
+                ProductResponseDTO productDTO = product.convertToResponse(photoProductDTOS, null);
+                productResponseDTOS.add(productDTO);
+            }
+
+            return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, productResponseDTOS);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
+        }
+    }
+
+
     //CREATE PRODUCT
     @PostMapping("/products/create")
     public ResponseEntity<Object> createProduct(@RequestBody ProductRequestDTO productRequestDTO){
