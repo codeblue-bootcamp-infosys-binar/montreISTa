@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface PhotoRepository extends JpaRepository<Photo,Long> {
-    List<Photo> findByPhotoName(String photoName);
+    List<Photo> findByPhotoNameIgnoreCaseContaining(String photoName);
 
 //    long deleteByPhotoName(long photoName);
 

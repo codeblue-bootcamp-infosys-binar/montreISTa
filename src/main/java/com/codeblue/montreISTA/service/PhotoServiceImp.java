@@ -36,7 +36,7 @@ public class PhotoServiceImp implements PhotoService {
 
     @Override
     public List<PhotoResponseDTO> findByPhotoName(String photoName) throws Exception {
-        List<Photo> photos = photoRepository.findByPhotoName(photoName);
+        List<Photo> photos = photoRepository.findByPhotoNameIgnoreCaseContaining(photoName);
         if (photos == null) {
             throw new Exception("photo not found");
         }

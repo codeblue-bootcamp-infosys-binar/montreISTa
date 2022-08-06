@@ -39,7 +39,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
         if(results==null){
             throw new Exception("Product Category not found");
         }
-        return convertDTO(results);
+        return this.convertDTO(results);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
         if(results==null){
             throw new Exception("Product Category not found");
         }
-        return convertDTO(results);
+        return this.convertDTO(results);
     }
 
 
