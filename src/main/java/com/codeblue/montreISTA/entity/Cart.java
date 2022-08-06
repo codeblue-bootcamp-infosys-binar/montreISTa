@@ -42,10 +42,13 @@ public class Cart extends AuditEntity{
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
+
+    //    private String jwttoken;
     
     public OrderCartDTO convertToOrder(){
         return OrderCartDTO.builder()
                 .cart_id(this.cartId)
+                .buyer_id(this.getBuyer().getBuyerId())
                 .buyer_name(this.getBuyer().getUser().getName())
                 .product_name(this.getProduct().getProductName())
                 .description(this.getProduct().getDescription())
@@ -56,7 +59,7 @@ public class Cart extends AuditEntity{
     }
     public CartResponseDTO convertToResponse(List<PhotoProductDTO> photoDTO, List<String> categories){
         return CartResponseDTO.builder()
-                .card_id(this.getCartId())
+                .cart_id(this.getCartId())
                 .buyer_name(this.getBuyer().getUser().getName())
                 .buyer_username(this.getBuyer().getUser().getUsername())
                 .seller_name(this.getProduct().getSeller().getUserId().getName())

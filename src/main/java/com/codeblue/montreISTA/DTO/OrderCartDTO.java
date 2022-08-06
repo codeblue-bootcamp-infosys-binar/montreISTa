@@ -10,6 +10,7 @@ import lombok.*;
 public class OrderCartDTO {
 
     private Long cart_id;
+    private Long buyer_id;
     private String buyer_name;
     private String product_name;
     private String description;

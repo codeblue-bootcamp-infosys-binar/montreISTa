@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface CartRepository extends JpaRepository<Cart,Long> {
+    List<Cart> findAllByOrderByCartIdAsc();
     List<Cart> findByBuyerUserNameIgnoreCaseContaining(String keyword);
     List<Cart> findByProductSellerUserIdNameIgnoreCaseContaining(String keyword);
     List<Cart> findByProductProductNameIgnoreCaseContaining(String keyword);
