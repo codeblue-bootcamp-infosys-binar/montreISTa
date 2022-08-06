@@ -17,5 +17,4 @@ public interface CartServices {
     CartResponseDTO updateCart(CartRequestDTO cartRequestDTO,Long id)throws Exception;
 
     void deleteById(Long id)throws Exception;
-
 }
