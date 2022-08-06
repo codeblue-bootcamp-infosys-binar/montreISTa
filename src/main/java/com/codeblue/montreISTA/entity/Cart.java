@@ -43,7 +43,7 @@ public class Cart extends AuditEntity{
     @JoinColumn(name = "order_id")
     private Order order;
 
-    //    private String jwttoken;
+    //    private String jwttoken; pas uda ada security, coba
     
     public OrderCartDTO convertToOrder(){
         return OrderCartDTO.builder()
