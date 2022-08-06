@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
 public interface CartRepository extends JpaRepository<Cart,Long> {
-    List<Cart> findByBuyerUserNameContaining(String keyword);
-    List<Cart> findByProductSellerUserIdNameContaining(String keyword);
-    List<Cart> findByProductProductNameContaining(String keyword);
-    List<Cart> findByProductCategoriesCategoryNameContaining(String keyword);
+    List<Cart> findByBuyerUserNameIgnoreCaseContaining(String keyword);
+    List<Cart> findByProductSellerUserIdNameIgnoreCaseContaining(String keyword);
+    List<Cart> findByProductProductNameIgnoreCaseContaining(String keyword);
+    List<Cart> findByProductCategoriesCategoryNameIgnoreCaseContaining(String keyword);
 }

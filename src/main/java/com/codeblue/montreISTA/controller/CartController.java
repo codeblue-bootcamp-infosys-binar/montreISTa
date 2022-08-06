@@ -1,5 +1,7 @@
 package com.codeblue.montreISTA.controller;
 
+import com.codeblue.montreISTA.DTO.CartRequestDTO;
+import com.codeblue.montreISTA.DTO.CartResponseDTO;
 import com.codeblue.montreISTA.entity.Cart;
 import com.codeblue.montreISTA.entity.ProductCategory;
 import com.codeblue.montreISTA.response.ResponseHandler;
@@ -24,7 +26,7 @@ public class CartController {
     @GetMapping("/carts")
     public ResponseEntity<Object> findAll(){
         try{
-            List<Cart> results = cartServices.findAll();
+            List<CartResponseDTO> results = cartServices.findAll();
             return ResponseHandler.generateResponse("successfully retrieved cart", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -39,7 +41,7 @@ public class CartController {
     @GetMapping("/cart/buyer")
     public ResponseEntity<Object> findByBuyer(@Param("keyword") String keyword){
         try{
-            List<Cart> results = cartServices.findByBuyer(keyword);
+            List<CartResponseDTO> results = cartServices.findByBuyer(keyword);
             return ResponseHandler.generateResponse("successfully find cart", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -54,7 +56,7 @@ public class CartController {
     @GetMapping("/cart/seller")
     public ResponseEntity<Object> findBySeller(@Param("keyword") String keyword){
         try{
-            List<Cart> results = cartServices.findBySeller(keyword);
+            List<CartResponseDTO> results = cartServices.findBySeller(keyword);
             return ResponseHandler.generateResponse("successfully find cart", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -68,7 +70,7 @@ public class CartController {
     @GetMapping("/cart/productname")
     public ResponseEntity<Object> findByProductName(@Param("keyword") String keyword){
         try{
-            List<Cart> results = cartServices.findByProductName(keyword);
+            List<CartResponseDTO> results = cartServices.findByProductName(keyword);
             return ResponseHandler.generateResponse("successfully find cart", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -83,7 +85,7 @@ public class CartController {
     @GetMapping("/cart/Category")
     public ResponseEntity<Object> findByCategory(@Param("keyword") String keyword){
         try{
-            List<Cart> results = cartServices.findByCategory(keyword);
+            List<CartResponseDTO> results = cartServices.findByCategory(keyword);
             return ResponseHandler.generateResponse("successfully find cart", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -96,9 +98,9 @@ public class CartController {
      * @return
      */
     @PostMapping("/cart")
-    public ResponseEntity<Object> postCart(@RequestBody Cart cart) {
+    public ResponseEntity<Object> postCart(@RequestBody CartRequestDTO cart) {
         try {
-            Cart results = cartServices.createCart(cart);
+            CartResponseDTO results = cartServices.createCart(cart);
             return ResponseHandler.generateResponse("successfully create product category", HttpStatus.OK, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
@@ -112,9 +114,9 @@ public class CartController {
      * @return
      */
     @PutMapping("/cart/{id}")
-    public ResponseEntity<Object> updateCart(@PathVariable Long id, @RequestBody Cart cart) {
+    public ResponseEntity<Object> updateCart(@PathVariable Long id, @RequestBody CartRequestDTO cart) {
         try {
-            Cart results = cartServices.updateCart(cart,id);
+            CartResponseDTO results = cartServices.updateCart(cart,id);
             return ResponseHandler.generateResponse("successfully update product category", HttpStatus.OK, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
