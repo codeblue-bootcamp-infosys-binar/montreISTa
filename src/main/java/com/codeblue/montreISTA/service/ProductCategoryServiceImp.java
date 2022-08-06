@@ -35,7 +35,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
 
     @Override
     public List<ProductCategoryResponseDTO> findByProductName(String keyword) throws Exception{
-        List<ProductCategory> results = productCategoryRepository.findByProductProductNameContaining(keyword);
+        List<ProductCategory> results = productCategoryRepository.findByProductProductNameIgnoreCaseContaining(keyword);
         if(results==null){
             throw new Exception("Product Category not found");
         }
@@ -44,7 +44,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
 
     @Override
     public List<ProductCategoryResponseDTO> findByCategoryName(String keyword) throws Exception {
-        List<ProductCategory> results = productCategoryRepository.findByCategoryNameContaining(keyword);
+        List<ProductCategory> results = productCategoryRepository.findByCategoryNameIgnoreCaseContaining(keyword);
         if(results==null){
             throw new Exception("Product Category not found");
         }

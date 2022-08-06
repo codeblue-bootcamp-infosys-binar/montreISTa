@@ -32,7 +32,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionResponseDTO> findByBuyer(String keyword) throws Exception {
-        List<Transaction> results = transactionRepository.findByOrderListCartBuyerUserName(keyword);
+        List<Transaction> results = transactionRepository.findByOrderListCartBuyerUserNameIgnoreCaseContaining(keyword);
         if(results==null){
             throw new Exception("Transaction not found");
         }
@@ -41,7 +41,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionResponseDTO> findBySeller(String keyword) throws Exception {
-        List<Transaction> results = transactionRepository.findByOrderListCartProductSellerUserIdName(keyword);
+        List<Transaction> results = transactionRepository.findByOrderListCartProductSellerUserIdNameIgnoreCaseContaining(keyword);
         if(results==null){
             throw new Exception("Transaction not found");
         }
@@ -50,7 +50,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionResponseDTO> findByProductName(String keyword) throws Exception {
-        List<Transaction> results = transactionRepository.findByOrderListCartProductProductName(keyword);
+        List<Transaction> results = transactionRepository.findByOrderListCartProductProductNameIgnoreCaseContaining(keyword);
         if(results==null){
             throw new Exception("Transaction not found");
         }
