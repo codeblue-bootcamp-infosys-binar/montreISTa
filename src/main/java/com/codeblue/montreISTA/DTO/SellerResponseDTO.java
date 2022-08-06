@@ -30,7 +30,7 @@ public class SellerResponseDTO {
 
     @Override
     public String toString() {
-        return "OrderResponseDTO{" +
+        return "SellerResponseDTO{" +
                 "sellerId=" + sellerId +
                 ", user_id=" + user_id +
                 ", store_address='" + store_address + '\'' +
