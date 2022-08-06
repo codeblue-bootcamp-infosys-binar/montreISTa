@@ -13,4 +13,7 @@ public interface SellerRepository extends JpaRepository<Seller,Long> {
     @Query(value = "SELECT * FROM sellers s WHERE seller_id=?1", nativeQuery = true)
     List<Seller> findBySellerId(Long id);
 
+
+
+    List<Seller> findByUsername(String keyword);
 }

@@ -41,4 +41,9 @@ public class ShippingService {
             return shipping;
         }
     }
+
+    public List<Shipping> findByName(String keyword) {
+        List<Shipping> shippingName = shippingRepository.findByName(keyword);
+        return shippingName;
+    }
 }
