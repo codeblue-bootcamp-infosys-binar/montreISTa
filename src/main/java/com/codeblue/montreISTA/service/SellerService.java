@@ -44,7 +44,7 @@ public class SellerService {
     }
 
     public List<Seller> findByUsername(String keyword) {
-        List<Seller> sellerUsername = sellerRepository.findByUsername(keyword);
+        List<Seller> sellerUsername = sellerRepository.findByUserIdUsername(keyword);
         return sellerUsername;
     }
 }

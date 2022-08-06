@@ -13,7 +13,7 @@ public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
 
 
 
-    List<Wishlist> findByBuyerUsername(String keyword);
+    List<Wishlist> findByBuyerUserName(String keyword);
 
     List<Wishlist> findByBuyerUserUsername(String keyword);
 }

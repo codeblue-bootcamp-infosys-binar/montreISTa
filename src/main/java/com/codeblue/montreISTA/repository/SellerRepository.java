@@ -15,5 +15,5 @@ public interface SellerRepository extends JpaRepository<Seller,Long> {
 
 
 
-    List<Seller> findByUsername(String keyword);
+    List<Seller> findByUserIdUsername(String keyword);
 }

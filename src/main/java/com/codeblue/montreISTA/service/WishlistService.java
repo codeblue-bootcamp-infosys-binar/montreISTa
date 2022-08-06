@@ -46,8 +46,8 @@ public class WishlistService {
     }
 
 
-    public List<Wishlist> findByBuyerUsername(String keyword) {
-        List<Wishlist> wishlistBuyerUsername = wishlistRepository.findByBuyerUsername(keyword);
+    public List<Wishlist> findByBuyerUserName(String keyword) {
+        List<Wishlist> wishlistBuyerUsername = wishlistRepository.findByBuyerUserName(keyword);
         return wishlistBuyerUsername;
     }
 
