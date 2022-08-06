@@ -1,5 +1,7 @@
 package com.codeblue.montreISTA.controller;
 
+import com.codeblue.montreISTA.DTO.TransactionRequestDTO;
+import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
 import com.codeblue.montreISTA.entity.Cart;
 import com.codeblue.montreISTA.entity.Transaction;
 import com.codeblue.montreISTA.response.ResponseHandler;
@@ -20,7 +22,7 @@ public class TransactionController {
     @GetMapping("/transactions")
     public ResponseEntity<Object> findAll(){
         try{
-            List<Transaction> results = transactionService.findAll();
+            List<TransactionResponseDTO> results = transactionService.findAll();
             return ResponseHandler.generateResponse("successfully retrieved transactions", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -35,7 +37,7 @@ public class TransactionController {
     @GetMapping("/transaction/buyer")
     public ResponseEntity<Object> findByBuyer(@Param("keyword") String keyword){
         try{
-            List<Transaction> results = transactionService.findByBuyer(keyword);
+            List<TransactionResponseDTO> results = transactionService.findByBuyer(keyword);
             return ResponseHandler.generateResponse("successfully find transaction", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -50,7 +52,22 @@ public class TransactionController {
     @GetMapping("/transaction/seller")
     public ResponseEntity<Object> findBySeller(@Param("keyword") String keyword){
         try{
-            List<Transaction> results = transactionService.findBySeller(keyword);
+            List<TransactionResponseDTO> results = transactionService.findBySeller(keyword);
+            return ResponseHandler.generateResponse("successfully find transaction", HttpStatus.OK, results);
+        }catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
+        }
+    }
+
+    /**
+     * find by productname
+     * @param keyword
+     * @return
+     */
+    @GetMapping("/transaction/productname")
+    public ResponseEntity<Object> findByProductName(@Param("keyword") String keyword){
+        try{
+            List<TransactionResponseDTO> results = transactionService.findByProductName(keyword);
             return ResponseHandler.generateResponse("successfully find transaction", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -58,9 +75,9 @@ public class TransactionController {
     }
 
     @PostMapping("/transaction")
-    public ResponseEntity<Object> postTransaction(@RequestBody Transaction transaction) {
+    public ResponseEntity<Object> postTransaction(@RequestBody TransactionRequestDTO transaction) {
         try {
-            Transaction results = transactionService.createTransaction(transaction);
+            TransactionResponseDTO results = transactionService.createTransaction(transaction);
             return ResponseHandler.generateResponse("successfully create transaction", HttpStatus.OK, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
@@ -68,9 +85,9 @@ public class TransactionController {
     }
 
     @PutMapping("/transaction/{id}")
-    public ResponseEntity<Object> updateCart(@PathVariable Long id, @RequestBody Transaction transaction) {
+    public ResponseEntity<Object> updateCart(@PathVariable Long id, @RequestBody TransactionRequestDTO transaction) {
         try {
-            Transaction results = transactionService.updateTransaction(transaction,id);
+            TransactionResponseDTO results = transactionService.updateTransaction(transaction,id);
             return ResponseHandler.generateResponse("successfully update transaction", HttpStatus.OK, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
