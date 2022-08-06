@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @Builder
 public class CartResponseDTO {
-    private Long card_id;
+    private Long cart_id;
     private String buyer_name;
     private String buyer_username;
     private String seller_name;

@@ -1,13 +1,8 @@
 package com.codeblue.montreISTA.service;
 
-import com.codeblue.montreISTA.DTO.CartRequestDTO;
-import com.codeblue.montreISTA.DTO.CartResponseDTO;
-import com.codeblue.montreISTA.DTO.PhotoProductDTO;
+import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.entity.*;
-import com.codeblue.montreISTA.repository.BuyerRepository;
-import com.codeblue.montreISTA.repository.CartRepository;
-import com.codeblue.montreISTA.repository.OrderRepository;
-import com.codeblue.montreISTA.repository.ProductRepository;
+import com.codeblue.montreISTA.repository.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +19,12 @@ public class CartServiceImpl implements CartServices {
     private ProductRepository productRepository;
     private OrderRepository orderRepository;
     private BuyerRepository buyerRepository;
+    private PaymentRepository paymentRepository;
+    private ShippingRepository shippingRepository;
 
     @Override
     public List<CartResponseDTO> findAll() {
-        List<Cart> results= cartRepository.findAll();
+        List<Cart> results= cartRepository.findAllByOrderByCartIdAsc();
     return this.convertListDTO(results);
     }
 
@@ -68,10 +65,38 @@ public class CartServiceImpl implements CartServices {
     }
 
     @Override
-    public CartResponseDTO createCart(CartRequestDTO cartRequestDTO) {
-       Cart saveCart = this.requestToEntity(cartRequestDTO);
-       cartRepository.save(saveCart);
-       return convertDTO(saveCart);
+    public CartResponseDTO createCart(CartRequestDTO cartRequestDTO) throws Exception {
+
+        Order order = orderRepository.findFirstByOrderByCreatedAtDesc();
+
+        List<OrderCartDTO> cartDTO = order.getListCart().stream()
+                .map(Cart::convertToOrder)
+                .collect(Collectors.toList());
+
+        OrderResponseDTO orderDTO = order.convertToResponse(cartDTO);
+
+        Long filter = cartRequestDTO.getBuyer_id();
+        Boolean filterlist = orderDTO.getListCart().stream()
+                .allMatch(Cart -> Cart.getBuyer_id() == filter);
+        Long orderIdCart;
+
+        if (filterlist == true) {
+           orderIdCart = orderDTO.getOrderId();
+        }else {
+            Order newOrder = new Order();
+            Long id = 1L;
+            Payment payment = paymentRepository.findById(id).orElseThrow(Exception::new);
+            Shipping shipping = shippingRepository.findById(id).orElseThrow(Exception::new);
+            newOrder.setShipping(shipping);
+            newOrder.setTotalprice(10000);
+            newOrder.setPayment(payment);
+            Order saveOrder = orderRepository.save(newOrder);
+            orderIdCart = saveOrder.getOrderId();
+        }
+
+        Cart saveCart = this.requestToEntity(cartRequestDTO, orderIdCart);
+        cartRepository.save(saveCart);
+        return convertDTO(saveCart);
     }
 
     @Override
@@ -80,7 +105,9 @@ public class CartServiceImpl implements CartServices {
         if(cartId.isEmpty()){
             throw new Exception("Cart not found");
         }
-        Cart saveCart = this.requestToEntity(cartRequestDTO);
+        Cart cart = cartId.get();
+        Long productIdCart = cart.getOrder().getOrderId();
+        Cart saveCart = this.requestToEntity(cartRequestDTO,productIdCart);
         saveCart.setCartId(id);
         cartRepository.save(saveCart);
         return convertDTO(saveCart);
@@ -118,10 +145,10 @@ public class CartServiceImpl implements CartServices {
 
     }
 
-    public Cart requestToEntity (CartRequestDTO cartRequestDTO){
+    public Cart requestToEntity (CartRequestDTO cartRequestDTO, Long id){
         Optional<Product> productId = productRepository.findById(cartRequestDTO.getProduct_id());
         Product product = productId.get();
-        Optional<Order> orderId = orderRepository.findById(cartRequestDTO.getOrder_id());
+        Optional<Order> orderId = orderRepository.findById(id);
         Order order = orderId.get();
         Optional<Buyer> buyerId = buyerRepository.findById(cartRequestDTO.getBuyer_id());
         Buyer buyer = buyerId.get();

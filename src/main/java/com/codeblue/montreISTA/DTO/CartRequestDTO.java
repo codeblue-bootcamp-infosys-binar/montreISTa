@@ -14,7 +14,6 @@ import lombok.*;
 public class CartRequestDTO {
     private Long buyer_id;
     private Long product_id;
-    private Long order_id;
     private Integer quantity;
 
     public Cart convertToEntity(Buyer buyerDTO, Product productDTO, Order orderDTO){

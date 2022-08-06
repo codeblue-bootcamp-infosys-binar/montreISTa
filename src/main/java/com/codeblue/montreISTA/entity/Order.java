@@ -28,17 +28,15 @@ public class Order extends AuditEntity{
 
     @ManyToOne
     @JoinColumn(name = "payment_id")
-    @NotNull
     private Payment payment;
 
     @ManyToOne
     @JoinColumn(name = "shipping_id")
-    @NotNull
     private Shipping shipping;
 
-    @NotNull
     private Integer totalprice;
 
+//    private String jwttoken;
 
     //list cart
     @OneToMany(cascade = CascadeType.ALL,

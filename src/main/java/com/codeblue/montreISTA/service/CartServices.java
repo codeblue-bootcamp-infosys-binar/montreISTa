@@ -13,7 +13,7 @@ public interface CartServices {
     List<CartResponseDTO> findByProductName(String keyword) throws Exception;
     List<CartResponseDTO> findByCategory(String keyword)throws Exception;
 
-    CartResponseDTO createCart(CartRequestDTO cartRequestDTO);
+    CartResponseDTO createCart(CartRequestDTO cartRequestDTO) throws Exception;
     CartResponseDTO updateCart(CartRequestDTO cartRequestDTO,Long id)throws Exception;
 
     void deleteById(Long id)throws Exception;
