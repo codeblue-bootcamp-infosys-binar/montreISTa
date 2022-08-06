@@ -10,5 +10,7 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<Transaction,Long> {
     List<Transaction> findByOrderListCartBuyerUserName(String keyword);
     List<Transaction> findByOrderListCartProductSellerUserIdName(String keyword);
+    List<Transaction> findByOrderListCartProductProductName(String keyword);
 //    List<Transaction> findByOrderListCartProductSellerUserIdNameOrOrderListCartBuyerUserName(String keyword);
+    List<Transaction> findAllByOrderByTransactionIdAsc();
 }
