@@ -49,7 +49,7 @@ public class WishlistController {
     @GetMapping("/wishlist/buyer/username")
     public ResponseEntity<Object> findByBuyerUsername(@Param("keyword") String keyword){
         try{
-            List<Wishlist> wishlists = wishlistService.findByBuyerUsername(keyword);
+            List<Wishlist> wishlists = wishlistService.findByBuyerUserName(keyword);
 
             return ResponseHandler.generateResponse("successfully retrieved buyer username", HttpStatus.OK, wishlists);
         } catch (Exception e){
