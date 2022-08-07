@@ -15,8 +15,13 @@ public class OrderServiceImpl implements OrderService{
     OrderRepository orderRepository;
 
     public List<Order> findAllOrder() {
-        List<Order> orders = orderRepository.findAll();
+        List<Order> orders = orderRepository.findAllByOrderByOrderIdAsc();
         return orders;
+    }
+
+    @Override
+    public Optional<Order> findById(Long id) {
+        return orderRepository.findById(id);
     }
 
     @Override
@@ -35,6 +40,11 @@ public class OrderServiceImpl implements OrderService{
     public List<Order> findByStoreName(String keyword) {
         List<Order> orderProduct = orderRepository.findByListCartProductSellerStoreNameContaining(keyword);
         return orderProduct;
+    }
+
+    @Override
+    public Order updateOrder(Order order) {
+        return orderRepository.save(order);
     }
 
     @Override

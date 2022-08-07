@@ -7,6 +7,7 @@ import com.codeblue.montreISTA.repository.OrderRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.OrderService;
 import com.codeblue.montreISTA.service.PaymentService;
+import com.codeblue.montreISTA.service.ShippingService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping
@@ -23,6 +25,7 @@ public class OrderController {
 
     private OrderService orderService;
     private PaymentService paymentService;
+    private ShippingService shippingService;
 
     private OrderRepository orderRepository;
 
@@ -157,15 +160,59 @@ public class OrderController {
     @PostMapping("/order/create")
     public ResponseEntity<Object> createOrder(@RequestBody OrderRequestDTO orderRequestDTO){
         try {
-            if(orderRequestDTO.getPayment() == null || orderRequestDTO.getShipping() == null){
-                throw new ResourceNotFoundException("Order must have payment id and shippping id");
+            Optional<Payment> orderPayment = paymentService.findPaymentById(orderRequestDTO.getPaymentId());
+            Payment payment = orderPayment.get();
+            Optional<Shipping> orderShipping = shippingService.findShippingById(orderRequestDTO.getShippingId());
+            Shipping shipping = orderShipping.get();
+
+            Order newOrder = orderRequestDTO.convertToEntity(payment,shipping);
+
+            orderService.createOrder(newOrder);
+
+            OrderResponseDTO orderResponseDTO = newOrder.convertToResponse(null);
+
+            return ResponseHandler.generateResponse("successfully retrieved order", HttpStatus.CREATED, orderResponseDTO);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
+        }
+    }
+
+    @PutMapping("/order/update{id}")
+    public ResponseEntity<Object> updateOrder(@RequestBody OrderRequestDTO orderRequestDTO, @PathVariable("id") Long id){
+        try {
+            Optional<Order> orderOrder = orderService.findById(id);
+            Order updateOrder = orderOrder.get();
+            Optional<Payment> orderPayment = paymentService.findPaymentById(orderRequestDTO.getPaymentId());
+            Payment payment = orderPayment.get();
+            Optional<Shipping> orderShipping = shippingService.findShippingById(orderRequestDTO.getShippingId());
+            Shipping shipping = orderShipping.get();
+
+            Order order = orderRequestDTO.convertToEntity(payment, shipping);
+            Integer tempPrice = 0;
+            for(Cart cart : updateOrder.getListCart()){
+                Integer total = cart.getQuantity() * cart.getProduct().getPrice();
+                tempPrice += total;
             }
-            Order order = orderRequestDTO.convertToEntity();
+            tempPrice += order.getShipping().getPrice();
 
-            orderService.createOrder(order);
-            OrderResponsePost result = order.convertToResponsePost();
+            //UPDATE
+            updateOrder.setOrderId(id);
+            updateOrder.setPayment(order.getPayment());
+            updateOrder.setShipping(order.getShipping());
+            updateOrder.setTotalprice(tempPrice);
 
-            return ResponseHandler.generateResponse("successfully retrieved order", HttpStatus.CREATED, result);
+            //UPDATE TO RESPONSE
+            Order orderSave = orderService.updateOrder(updateOrder);
+            List<OrderCartDTO> cartDTO = new ArrayList<>();
+
+            for(Cart cart : orderSave.getListCart()){
+                OrderCartDTO cartConvert = cart.convertToOrder();
+                cartDTO.add(cartConvert);
+            }
+
+            OrderResponseDTO orderDTO = orderSave.convertToResponse(cartDTO);
+
+            return ResponseHandler.generateResponse("successfully retrieved order", HttpStatus.CREATED, orderDTO);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
         }
