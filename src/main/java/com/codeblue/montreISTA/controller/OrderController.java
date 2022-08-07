@@ -2,7 +2,6 @@ package com.codeblue.montreISTA.controller;
 
 import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.entity.*;
-import com.codeblue.montreISTA.helper.ResourceNotFoundException;
 import com.codeblue.montreISTA.repository.OrderRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.OrderService;
@@ -37,24 +36,23 @@ public class OrderController {
     @GetMapping("/orders")
     public ResponseEntity<Object> getAllOrder(){
         try{
-            List<Order> orders = orderService.findAllOrder();
-            List<OrderResponseDTO> orderResponseDTOS = new ArrayList<>();
+            List<OrderResponseDTO> results = orderService.findAllOrder();
+            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
 
-            for(Order order : orders){
-
-                List<OrderCartDTO> cartDTO = new ArrayList<>();
-
-                for(Cart cart : order.getListCart()){
-                    OrderCartDTO cartConvert = cart.convertToOrder();
-                    cartDTO.add(cartConvert);
-                }
-
-                OrderResponseDTO orderDTO = order.convertToResponse(cartDTO);
-                orderResponseDTOS.add(orderDTO);
-
-            }
-
-            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, orderResponseDTOS);
+    /**
+     * Find By Id
+     * @param id
+     * @return
+     */
+    @GetMapping("/order/{id}")
+    public ResponseEntity<Object> getOrderById(@PathVariable("id") Long id){
+        try{
+            OrderResponseDTO results = orderService.findOrderById(id);
+            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
@@ -68,24 +66,8 @@ public class OrderController {
     @GetMapping("/order/productname")
     public ResponseEntity<Object> findByProductName(@Param("keyword") String keyword){
         try{
-            List<Order> orders = orderService.findByProductName(keyword);
-            List<OrderResponseDTO> orderResponseDTOS = new ArrayList<>();
-
-            for(Order order : orders){
-
-                List<OrderCartDTO> cartDTO = new ArrayList<>();
-
-                for(Cart cart : order.getListCart()){
-                    OrderCartDTO cartConvert = cart.convertToOrder();
-                    cartDTO.add(cartConvert);
-                }
-
-                OrderResponseDTO orderDTO = order.convertToResponse(cartDTO);
-                orderResponseDTOS.add(orderDTO);
-
-            }
-
-            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, orderResponseDTOS);
+            List<OrderResponseDTO> results = orderService.findByProductName(keyword);
+            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
@@ -99,24 +81,8 @@ public class OrderController {
     @GetMapping("/order/buyername")
     public ResponseEntity<Object> findByBuyerUserName(@Param("keyword") String keyword){
         try{
-            List<Order> orders = orderService.findByBuyerName(keyword);
-            List<OrderResponseDTO> orderResponseDTOS = new ArrayList<>();
-
-            for(Order order : orders){
-
-                List<OrderCartDTO> cartDTO = new ArrayList<>();
-
-                for(Cart cart : order.getListCart()){
-                    OrderCartDTO cartConvert = cart.convertToOrder();
-                    cartDTO.add(cartConvert);
-                }
-
-                OrderResponseDTO orderDTO = order.convertToResponse(cartDTO);
-                orderResponseDTOS.add(orderDTO);
-
-            }
-
-            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, orderResponseDTOS);
+            List<OrderResponseDTO> results = orderService.findByBuyerName(keyword);
+            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
@@ -130,24 +96,8 @@ public class OrderController {
     @GetMapping("/order/storename")
     public ResponseEntity<Object> findBySellerStoreName(@Param("keyword") String keyword){
         try{
-            List<Order> orders = orderService.findByStoreName(keyword);
-            List<OrderResponseDTO> orderResponseDTOS = new ArrayList<>();
-
-            for(Order order : orders){
-
-                List<OrderCartDTO> cartDTO = new ArrayList<>();
-
-                for(Cart cart : order.getListCart()){
-                    OrderCartDTO cartConvert = cart.convertToOrder();
-                    cartDTO.add(cartConvert);
-                }
-
-                OrderResponseDTO orderDTO = order.convertToResponse(cartDTO);
-                orderResponseDTOS.add(orderDTO);
-
-            }
-
-            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, orderResponseDTOS);
+            List<OrderResponseDTO> results = orderService.findByStoreName(keyword);
+            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
@@ -169,14 +119,18 @@ public class OrderController {
 
             orderService.createOrder(newOrder);
 
-            OrderResponseDTO orderResponseDTO = newOrder.convertToResponse(null);
+            OrderResponsePost orderResponsePost = newOrder.convertToResponsePost();
 
-            return ResponseHandler.generateResponse("successfully retrieved order", HttpStatus.CREATED, orderResponseDTO);
+            return ResponseHandler.generateResponse("successfully retrieved order", HttpStatus.CREATED, orderResponsePost);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
         }
     }
 
+    /**
+     * Update Order
+     * @return
+     */
     @PutMapping("/order/update{id}")
     public ResponseEntity<Object> updateOrder(@RequestBody OrderRequestDTO orderRequestDTO, @PathVariable("id") Long id){
         try {

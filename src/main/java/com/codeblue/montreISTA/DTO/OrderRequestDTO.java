@@ -14,14 +14,12 @@ public class OrderRequestDTO {
     private Long paymentId;
 
     private Long shippingId;
-    private Integer totalprice;
 
 
     public Order convertToEntity(Payment payment, Shipping shipping){
         return Order.builder()
                 .payment(payment)
                 .shipping(shipping)
-                .totalprice(this.totalprice)
                 .build();
     }
 }

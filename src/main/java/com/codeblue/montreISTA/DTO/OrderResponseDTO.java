@@ -14,7 +14,9 @@ public class OrderResponseDTO{
 
     private Long orderId;
     private List<OrderCartDTO> listCart;
+    private Long payment_id;
     private String payment_name;
+    private Long shipping_id;
     private String shipping_name;
     private Integer total_price;
     private ZonedDateTime createdAt;
@@ -25,7 +27,9 @@ public class OrderResponseDTO{
         return "OrderResponseDTO{" +
                 "orderId=" + orderId +
                 ", listCart=" + listCart +
+                ", payment_id=" + payment_id +
                 ", payment_name=" + payment_name + '\'' +
+                ", shipping_id=" + shipping_id +
                 ", shipping_name='" + shipping_name + '\'' +
                 ", total_price=" + total_price +
                 ", createdAt=" + createdAt +
