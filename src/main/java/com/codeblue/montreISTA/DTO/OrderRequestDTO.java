@@ -11,20 +11,16 @@ import lombok.*;
 @Builder
 public class OrderRequestDTO {
 
-    private Long orderId;
+    private Long paymentId;
 
-    private Payment payment;
-
-    private Shipping shipping;
-
+    private Long shippingId;
     private Integer totalprice;
 
 
-    public Order convertToEntity(){
+    public Order convertToEntity(Payment payment, Shipping shipping){
         return Order.builder()
-                .orderId(this.orderId)
-                .payment(this.payment)
-                .shipping(this.shipping)
+                .payment(payment)
+                .shipping(shipping)
                 .totalprice(this.totalprice)
                 .build();
     }
