@@ -1,6 +1,5 @@
 package com.codeblue.montreISTA.service;
 
-import DTO.UserResponseDTO;
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,35 +8,30 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class UserService {
-    @Autowired
-    static
-    UserRepository userRepository;
+@Autowired
 
-    public static List<User> findAllUser() {
+     UserRepository userRepository;
+
+    public List<User> findAllUser() {
         List<User> users = userRepository.findAll();
         return users;
     }
 
-    public static Optional<User> findUserById(Long id) {
+    public Optional<User> findUserById(Long id) {
         return userRepository.findById(id);
     }
 
-    public static List<UserResponseDTO> findByUsername(String username) throws Exception {
-        return null;
-    }
-
-    public static User createUser(User user) {
+    public User createUser(User user) {
         return userRepository.save(user);
     }
 
-    public static User updateUser(User updateUser) {
+    public User updateUser(User updateUser) {
         return userRepository.save(updateUser);
     }
 
-    public static void deleteUser(Long id) {
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
@@ -48,5 +42,13 @@ public class UserService {
         } else {
             return user;
         }
+    }
+    public List<User> findByUsername(String keyword) {
+        List<User> users = userRepository.findByUsername(keyword);
+        return users;
+    }
+    public List<User> findByName(String keyword) {
+        List<User> users = userRepository.findByName(keyword);
+        return users;
     }
 }
