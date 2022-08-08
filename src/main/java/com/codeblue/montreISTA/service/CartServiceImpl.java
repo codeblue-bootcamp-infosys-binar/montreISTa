@@ -67,9 +67,12 @@ public class CartServiceImpl implements CartServices {
 
     @Override
     public CartResponseDTO createCart(CartRequestDTO cartRequestDTO) throws Exception {
-        Optional<Order> orderBuyerId = this.orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(cartRequestDTO.getBuyer_id());
+        Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(cartRequestDTO.getBuyer_id());
         Optional<Product> productId = productRepository.findById(cartRequestDTO.getProduct_id());
         Long orderId;
+        if(productId.isEmpty()){
+            throw new Exception("Product not found");
+        }
         if(orderBuyerId.isPresent()){
             orderId = orderBuyerId.get().getOrderId();
         }else {
@@ -88,18 +91,7 @@ public class CartServiceImpl implements CartServices {
         this.cartRepository.save(saveCart);
 
         //update Price
-        Optional<Order> getOrder = orderRepository.findById(orderId);
-        Order updatePrice = getOrder.get();
-        if(updatePrice.getListCart()!=null){
-            Integer tempPrice = 0;
-            for(Cart cart : updatePrice.getListCart()){
-                int total = cart.getQuantity() * cart.getProduct().getPrice();
-                tempPrice += total;
-            }
-            tempPrice += updatePrice.getShipping().getPrice();
-            updatePrice.setTotalprice(tempPrice);
-            orderRepository.save(updatePrice);
-        }
+        this.updatePrice(orderId);
         //show Cart
         return convertDTO(saveCart);
     }
@@ -115,6 +107,9 @@ public class CartServiceImpl implements CartServices {
         Cart saveCart = this.requestToEntity(cartRequestDTO,orderId);
         saveCart.setCartId(id);
         this.cartRepository.save(saveCart);
+
+        //update Price
+        this.updatePrice(orderId);
         return convertDTO(saveCart);
     }
 
@@ -159,5 +154,20 @@ public class CartServiceImpl implements CartServices {
         Order order = orderId.get();
         Buyer buyer = buyerId.get();
         return cartRequestDTO.convertToEntity(buyer,product,order);
+    }
+
+    public void updatePrice(Long orderId){
+        Optional<Order> getOrder = orderRepository.findById(orderId);
+        Order updatePrice = getOrder.get();
+        if(updatePrice.getListCart()!=null){
+            Integer tempPrice = 0;
+            for(Cart cartLoop : updatePrice.getListCart()){
+                int total = cartLoop.getQuantity() * cartLoop.getProduct().getPrice();
+                tempPrice += total;
+            }
+            tempPrice += updatePrice.getShipping().getPrice();
+            updatePrice.setTotalprice(tempPrice);
+            orderRepository.save(updatePrice);
+        }
     }
 }
