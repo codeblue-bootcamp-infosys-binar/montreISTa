@@ -14,7 +14,7 @@ import java.util.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/codeBlue")
+@RequestMapping
 public class PaymentController {
 
     private PaymentService paymentService;
@@ -43,7 +43,6 @@ public class PaymentController {
     public ResponseEntity<Object> getAllPayment(){
         try{
             List<Payment> payments = paymentService.findAllPayment();
-
             return ResponseHandler.generateResponse("successfully retrieved payment", HttpStatus.OK, payments);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -59,7 +58,6 @@ public class PaymentController {
     public ResponseEntity<Object> findByPaymentName(@Param("keyword") String keyword){
         try{
             List<Payment> payments = paymentService.findByPaymentName(keyword);
-
             return ResponseHandler.generateResponse("successfully retrieved payment", HttpStatus.OK, payments);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -89,14 +87,8 @@ public class PaymentController {
     @PutMapping("/payment/update/{id}")
     public ResponseEntity<Object> updatePayment(@RequestBody Payment payment, @PathVariable("id") Long id) {
         try {
-            Optional<Payment> targetProduct = paymentService.findPaymentById(id);
-            Payment updatePayment = targetProduct.get();
-            updatePayment.setPaymentId(id);
-            updatePayment.setName(payment.getName());
-            updatePayment.setPaymentCode(payment.getPaymentCode());
-
-            paymentService.updatePayment(updatePayment);
-            return ResponseHandler.generateResponse("successfully updated payment", HttpStatus.CREATED, updatePayment);
+            Payment results = paymentService.updatePayment(payment,id);
+            return ResponseHandler.generateResponse("successfully updated payment", HttpStatus.CREATED, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
