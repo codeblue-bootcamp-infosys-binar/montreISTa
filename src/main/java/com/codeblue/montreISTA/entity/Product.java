@@ -2,6 +2,7 @@ package com.codeblue.montreISTA.entity;
 
 import com.codeblue.montreISTA.DTO.PhotoProductDTO;
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
+import com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
@@ -75,6 +76,17 @@ public class Product extends AuditEntity {
                 .categories(categories)
                 .createdAt(this.getCreatedAt())
                 .modifiedAt(this.getModifiedAt())
+                .build();
+    }
+    public ProductToProductCategoryDTO convertToProductCategory(){
+        return ProductToProductCategoryDTO.builder()
+                .productId(this.getProductId())
+                .sellerId(this.getSeller().getSellerId())
+                .productName(this.getProductName())
+                .storeName(this.getSeller().getStoreName())
+                .storePhoto(this.getSeller().getStorePhoto())
+                .description(this.getDescription())
+                .price(this.getPrice())
                 .build();
     }
 

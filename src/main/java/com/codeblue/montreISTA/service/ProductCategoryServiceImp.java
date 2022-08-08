@@ -1,9 +1,6 @@
 package com.codeblue.montreISTA.service;
 
-import com.codeblue.montreISTA.DTO.PhotoProductDTO;
-import com.codeblue.montreISTA.DTO.ProductCategoryRequestDTO;
-import com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO;
-import com.codeblue.montreISTA.DTO.ProductResponseDTO;
+import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.entity.Category;
 import com.codeblue.montreISTA.entity.Photo;
 import com.codeblue.montreISTA.entity.Product;
@@ -54,21 +51,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
 
     @Override
     public ProductCategoryResponseDTO createProductCategory(ProductCategoryRequestDTO productCategory) {
-        //call product and category
-        Optional<Product> productId = productRepository.findById(productCategory.getProduct_id());
-        Product product = productId.get();
-        Optional<Category> categoryId = categoryRepository.findById(productCategory.getCategory_id());
-        Category category= categoryId.get();
-
-        //save to entity
-        ProductCategory saveProductCategory = productCategory.convertToEntity(product,category);
-        productCategoryRepository.save(saveProductCategory);
-
-        //entity to response
-        List<PhotoProductDTO> photosDTO = saveProductCategory.getProduct().getPhotos().stream()
-                .map(Photo::convertToProduct)
-                .collect(Collectors.toList());
-        return saveProductCategory.convertToResponse(photosDTO);
+        return this.requestToEntity(productCategory,null);
     }
 
     @Override
@@ -77,21 +60,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
         if(productCategoryId.isEmpty()){
             throw new Exception("Product Category not found");
         }
-        Optional<Product> productId = productRepository.findById(productCategory.getProduct_id());
-        Product product = productId.get();
-        Optional<Category> categoryId = categoryRepository.findById(productCategory.getCategory_id());
-        Category category= categoryId.get();
-
-        //save to entity
-        ProductCategory saveProductCategory = productCategory.convertToEntity(product,category);
-        saveProductCategory.setProductCategoryId(id);
-        productCategoryRepository.save(saveProductCategory);
-
-        //entity to response
-        List<PhotoProductDTO> photosDTO = saveProductCategory.getProduct().getPhotos().stream()
-                .map(Photo::convertToProduct)
-                .collect(Collectors.toList());
-        return saveProductCategory.convertToResponse(photosDTO);
+        return this.requestToEntity(productCategory,id);
     }
 
     @Override
@@ -107,13 +76,33 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
         List<ProductCategoryResponseDTO> productCategoryResponseDTO = new ArrayList<>();
 
         for(ProductCategory productCategory : productCategories) {
-            List<PhotoProductDTO> photosDTO = productCategory.getProduct().getPhotos().stream()
-                    .map(Photo::convertToProduct)
-                    .collect(Collectors.toList());
-            ProductCategoryResponseDTO responseDTO = productCategory.convertToResponse(photosDTO);
+            Optional<Product> productId = productRepository.findById(productCategory.getProduct().getProductId());
+            Product product = productId.get();
+            Optional<Category> categoryId = categoryRepository.findById(productCategory.getCategory().getCategoriesId());
+            Category category= categoryId.get();
+            ProductToProductCategoryDTO productDTO = product.convertToProductCategory();
+            CategoryResponseDTO categoryDTO = category.convertToResponse();
+            ProductCategoryResponseDTO responseDTO = productCategory.convertToResponse(productDTO,categoryDTO);
             productCategoryResponseDTO.add(responseDTO);
         }
 
         return productCategoryResponseDTO;
+    }
+    public ProductCategoryResponseDTO requestToEntity (ProductCategoryRequestDTO productCategory, Long id){
+        Optional<Product> productId = productRepository.findById(productCategory.getProduct_id());
+        Product product = productId.get();
+        Optional<Category> categoryId = categoryRepository.findById(productCategory.getCategory_id());
+        Category category= categoryId.get();
+
+        //save to entity
+        ProductCategory saveProductCategory = productCategory.convertToEntity(product,category);
+        if(id != null){
+            saveProductCategory.setProductCategoryId(id);
+        }
+        productCategoryRepository.save(saveProductCategory);
+        ProductToProductCategoryDTO productDTO = product.convertToProductCategory();
+        CategoryResponseDTO categoryDTO = category.convertToResponse();
+
+        return saveProductCategory.convertToResponse(productDTO,categoryDTO);
     }
 }
