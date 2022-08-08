@@ -23,10 +23,7 @@ import java.util.Optional;
 public class OrderController {
 
     private OrderService orderService;
-    private PaymentService paymentService;
-    private ShippingService shippingService;
 
-    private OrderRepository orderRepository;
 
 
     /**
@@ -104,24 +101,10 @@ public class OrderController {
     }
 
     /**
-     * Create Order
-     * @return
-     */
-    @PostMapping("/order/create")
-    public ResponseEntity<Object> createOrder(@RequestBody OrderRequestDTO orderRequestDTO){
-        try {
-            OrderResponsePost results = orderService.createOrder(orderRequestDTO);
-            return ResponseHandler.generateResponse("successfully retrieved order", HttpStatus.CREATED, results);
-        } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
-        }
-    }
-
-    /**
      * Update Order
      * @return
      */
-    @PutMapping("/order/update{id}")
+    @PutMapping("/order/update/buyer/{id}")
     public ResponseEntity<Object> updateOrder(@RequestBody OrderRequestDTO orderRequestDTO, @PathVariable("id") Long id){
         try {
             OrderResponseDTO results = orderService.updateOrder(orderRequestDTO,id);
