@@ -110,18 +110,8 @@ public class OrderController {
     @PostMapping("/order/create")
     public ResponseEntity<Object> createOrder(@RequestBody OrderRequestDTO orderRequestDTO){
         try {
-            Optional<Payment> orderPayment = paymentService.findPaymentById(orderRequestDTO.getPaymentId());
-            Payment payment = orderPayment.get();
-            Optional<Shipping> orderShipping = shippingService.findShippingById(orderRequestDTO.getShippingId());
-            Shipping shipping = orderShipping.get();
-
-            Order newOrder = orderRequestDTO.convertToEntity(payment,shipping);
-
-            orderService.createOrder(newOrder);
-
-            OrderResponsePost orderResponsePost = newOrder.convertToResponsePost();
-
-            return ResponseHandler.generateResponse("successfully retrieved order", HttpStatus.CREATED, orderResponsePost);
+            OrderResponsePost results = orderService.createOrder(orderRequestDTO);
+            return ResponseHandler.generateResponse("successfully retrieved order", HttpStatus.CREATED, results);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
         }
@@ -134,39 +124,8 @@ public class OrderController {
     @PutMapping("/order/update{id}")
     public ResponseEntity<Object> updateOrder(@RequestBody OrderRequestDTO orderRequestDTO, @PathVariable("id") Long id){
         try {
-            Optional<Order> orderOrder = orderService.findById(id);
-            Order updateOrder = orderOrder.get();
-            Optional<Payment> orderPayment = paymentService.findPaymentById(orderRequestDTO.getPaymentId());
-            Payment payment = orderPayment.get();
-            Optional<Shipping> orderShipping = shippingService.findShippingById(orderRequestDTO.getShippingId());
-            Shipping shipping = orderShipping.get();
-
-            Order order = orderRequestDTO.convertToEntity(payment, shipping);
-            Integer tempPrice = 0;
-            for(Cart cart : updateOrder.getListCart()){
-                Integer total = cart.getQuantity() * cart.getProduct().getPrice();
-                tempPrice += total;
-            }
-            tempPrice += order.getShipping().getPrice();
-
-            //UPDATE
-            updateOrder.setOrderId(id);
-            updateOrder.setPayment(order.getPayment());
-            updateOrder.setShipping(order.getShipping());
-            updateOrder.setTotalprice(tempPrice);
-
-            //UPDATE TO RESPONSE
-            Order orderSave = orderService.updateOrder(updateOrder);
-            List<OrderCartDTO> cartDTO = new ArrayList<>();
-
-            for(Cart cart : orderSave.getListCart()){
-                OrderCartDTO cartConvert = cart.convertToOrder();
-                cartDTO.add(cartConvert);
-            }
-
-            OrderResponseDTO orderDTO = orderSave.convertToResponse(cartDTO);
-
-            return ResponseHandler.generateResponse("successfully retrieved order", HttpStatus.CREATED, orderDTO);
+            OrderResponseDTO results = orderService.updateOrder(orderRequestDTO,id);
+            return ResponseHandler.generateResponse("successfully retrieved order", HttpStatus.CREATED, results);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
         }

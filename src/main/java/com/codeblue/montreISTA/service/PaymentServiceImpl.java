@@ -37,8 +37,14 @@ public class PaymentServiceImpl implements PaymentService{
     }
 
     @Override
-    public Payment updatePayment(Payment payment) {
-        return paymentRepository.save(payment);
+    public Payment updatePayment(Payment payment, Long id) {
+        Optional<Payment> targetProduct = paymentRepository.findById(id);
+        Payment updatePayment = targetProduct.get();
+        updatePayment.setPaymentId(id);
+        updatePayment.setName(payment.getName());
+        updatePayment.setPaymentCode(payment.getPaymentCode());
+
+        return paymentRepository.save(updatePayment);
     }
 
     @Override

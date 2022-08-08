@@ -87,14 +87,8 @@ public class PaymentController {
     @PutMapping("/payment/update/{id}")
     public ResponseEntity<Object> updatePayment(@RequestBody Payment payment, @PathVariable("id") Long id) {
         try {
-            Optional<Payment> targetProduct = paymentService.findPaymentById(id);
-            Payment updatePayment = targetProduct.get();
-            updatePayment.setPaymentId(id);
-            updatePayment.setName(payment.getName());
-            updatePayment.setPaymentCode(payment.getPaymentCode());
-
-            paymentService.updatePayment(updatePayment);
-            return ResponseHandler.generateResponse("successfully updated payment", HttpStatus.CREATED, updatePayment);
+            Payment results = paymentService.updatePayment(payment,id);
+            return ResponseHandler.generateResponse("successfully updated payment", HttpStatus.CREATED, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
