@@ -88,14 +88,14 @@ public class SellerController {
 
     //UPDATE
     @PutMapping("/sellers/update/{id}")
-    public ResponseEntity<Object> updateSeller(@RequestBody Seller seller, @PathVariable("id") Long id){
+    public ResponseEntity<Object> updateSeller(@RequestBody SellerRequestDTO sellerRequestDTO, @PathVariable("id") Long id){
         try{
             Optional<Seller> targetSeller = sellerService.findSellerById(id);
             Seller updateSeller = targetSeller.get();
             updateSeller.setSellerId(id);
-            updateSeller.setStoreName(seller.getStoreName());
-            updateSeller.setStoreAddress(seller.getStoreAddress());
-            updateSeller.setStorePhoto(seller.getStorePhoto());
+            updateSeller.setStoreName(sellerRequestDTO.getStoreName());
+            updateSeller.setStoreAddress(sellerRequestDTO.getStoreAddress());
+            updateSeller.setStorePhoto(sellerRequestDTO.getStorePhoto());
 
             sellerService.updateSeller(updateSeller);
             return ResponseHandler.generateResponse("successfully updated Seller", HttpStatus.CREATED, updateSeller);
