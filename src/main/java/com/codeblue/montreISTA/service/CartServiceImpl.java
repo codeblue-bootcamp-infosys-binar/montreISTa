@@ -123,12 +123,9 @@ public class CartServiceImpl implements CartServices {
     }
 
     public List<CartResponseDTO> convertListDTO(List<Cart> carts) {
-        List<CartResponseDTO> cartResponseDTOS = new ArrayList<>();
-        for (Cart cart : carts) {
-            CartResponseDTO cartDTO = convertDTO(cart);
-            cartResponseDTOS.add(cartDTO);
-        }
-        return cartResponseDTOS;
+        return carts.stream()
+                .map(this::convertDTO)
+                .collect(Collectors.toList());
     }
 
     public CartResponseDTO convertDTO (Cart cart){
