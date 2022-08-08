@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -22,13 +23,13 @@ public class Seller extends AuditEntity{
     @JoinColumn(name = "user_id")
     private User userId;
 
-    @NotBlank(message = "store name may not be blank")
+    @NotNull
     private String storeName;
 
-    @NotBlank(message = "store photo may not be blank")
+    @NotNull
     private String storePhoto;
 
-    @NotBlank(message = "store addres may not be blank")
+    @NotNull
     private String storeAddress;
 
     @Override
