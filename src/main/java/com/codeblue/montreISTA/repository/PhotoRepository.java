@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.repository;
 
+import com.codeblue.montreISTA.entity.Cart;
 import com.codeblue.montreISTA.entity.Photo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,6 +15,13 @@ public interface PhotoRepository extends JpaRepository<Photo,Long> {
     List<Photo> findByPhotoNameIgnoreCaseContaining(String photoName);
 
 //    long deleteByPhotoName(long photoName);
+    List<Photo> findAllByOrderByPhotoIdAsc();
+
+    List<Photo> findByProductProductNameIgnoreCaseContainingOrderByPhotoIdAsc(String productName);
+
+    List<Photo> findByProductSellerUserIdNameIgnoreCaseContainingOrderByPhotoIdAsc(String productName);
+    List<Photo> findByProductSellerStoreNameIgnoreCaseContainingOrderByPhotoIdAsc(String productName);
+
 
     @Query("Select p from Photo p where p.product.productName like %:name% ORDER BY p.product.productName ASC")
     public List<Photo> findByProductName(@Param("name")String name);
