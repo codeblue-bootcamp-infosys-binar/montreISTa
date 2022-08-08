@@ -1,8 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
 
-import com.codeblue.montreISTA.DTO.PhotoProductDTO;
-import com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO;
+import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.service.PhotoServiceImp;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -35,22 +34,12 @@ public class ProductCategory extends AuditEntity {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public ProductCategoryResponseDTO convertToResponse(List<PhotoProductDTO> photo){
+    public ProductCategoryResponseDTO convertToResponse(ProductToProductCategoryDTO product, CategoryResponseDTO category){
 
         return ProductCategoryResponseDTO.builder()
                 .product_category_id(this.getProductCategoryId())
-                .product_name(this.getProduct().getProductName())
-                .price(this.getProduct().getPrice())
-                .produk_photos(photo)
-                .store_name(this.getProduct().getSeller().getStoreName())
-                .store_photo(this.getProduct().getSeller().getStorePhoto())
-                .seller_name(this.getProduct().getSeller().getUserId().getName())
-                .seller_username(this.getProduct().getSeller().getUserId().getUsername())
-                .store_address(this.getProduct().getSeller().getStoreAddress())
-                .category_name(this.getCategory().getName())
-                .product_description(this.getProduct().getDescription())
-                .createdAt(this.getCreatedAt())
-                .modifiedAt(this.getModifiedAt())
+                .product(product)
+                .category(category)
                 .build();
     }
 

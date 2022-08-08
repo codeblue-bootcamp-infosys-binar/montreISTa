@@ -2,7 +2,6 @@ package com.codeblue.montreISTA.controller;
 
 
 
-import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.entity.Shipping;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.ShippingService;
@@ -73,9 +72,9 @@ public class ShippingController {
 
     //CREATE
     @PostMapping("/shipping/create")
-    public ResponseEntity<Object> createShipping(@RequestBody Shipping newShipping){
+    public ResponseEntity<Object> createShipping(@RequestBody Shipping shippingRequestDTO){
         try {
-            Shipping shipping = shippingService.createShipping(newShipping);
+            Shipping shipping = shippingService.createShipping(shippingRequestDTO);
             return ResponseHandler.generateResponse("successfully retrieved shipping", HttpStatus.CREATED, shipping);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);

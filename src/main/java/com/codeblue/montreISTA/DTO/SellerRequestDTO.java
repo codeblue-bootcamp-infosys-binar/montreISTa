@@ -11,9 +11,9 @@ import lombok.*;
 @Builder
 public class SellerRequestDTO {
 
-    private Long sellerId;
 
-    private User userId;
+
+    private Long userId;
 
     private String storeName;
 
@@ -23,10 +23,10 @@ public class SellerRequestDTO {
 
 
 
-public Seller convertToEntity(){
+public Seller convertToEntity(User user){
     return Seller.builder()
-            .sellerId(this.sellerId)
-            .userId(this.userId)
+
+            .userId(user)
             .storeName(this.storeName)
             .storePhoto(this.storePhoto)
             .storeAddress(this.storeAddress)

@@ -2,7 +2,7 @@ package com.codeblue.montreISTA.controller;
 
 
 
-import com.codeblue.montreISTA.entity.Seller;
+import com.codeblue.montreISTA.DTO.WishlistRequestDTO;
 import com.codeblue.montreISTA.entity.Wishlist;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.WishlistService;
@@ -81,9 +81,9 @@ public class WishlistController {
 
     //CREATE
     @PostMapping("/wishlist/create")
-    public ResponseEntity<Object> createWishlist(@RequestBody Wishlist newWishlist){
+    public ResponseEntity<Object> createWishlist(@RequestBody Wishlist wishlistRequestDTO){
         try {
-            Wishlist wishlist = wishlistService.createWishlist(newWishlist);
+            Wishlist wishlist = wishlistService.createWishlist(wishlistRequestDTO);
             return ResponseHandler.generateResponse("successfully retrieved wishlist", HttpStatus.CREATED, wishlist);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
@@ -92,13 +92,13 @@ public class WishlistController {
 
     //UPDATE
     @PutMapping("/wishlist/update/{id}")
-    public ResponseEntity<Object> updateWishlist(@RequestBody Wishlist wishlist, @PathVariable("id") Long id){
+    public ResponseEntity<Object> updateWishlist(@RequestBody WishlistRequestDTO wishlistRequestDTO, @PathVariable("id") Long id){
         try{
             Optional<Wishlist> targetWishlist = wishlistService.findWishlistById(id);
             Wishlist updateWishlist = targetWishlist.get();
             updateWishlist.setWishlistId(id);
-            updateWishlist.setBuyer(wishlist.getBuyer());
-            updateWishlist.setProduct(wishlist.getProduct());
+            updateWishlist.setBuyer(wishlistRequestDTO.getBuyer());
+            updateWishlist.setProduct(wishlistRequestDTO.getProduct());
 
             wishlistService.updateWishlist(updateWishlist);
             return ResponseHandler.generateResponse("successfully updated Wishlist", HttpStatus.CREATED, updateWishlist);

@@ -19,7 +19,7 @@ public class WishlistRequestDTO {
 
     private Product product;
 
-    public Wishlist convertToEntity(){
+    public Wishlist convertToEntity(Wishlist wishlist){
         return Wishlist.builder()
                 .wishlistId(this.wishlistId)
                 .buyer(this.buyer)

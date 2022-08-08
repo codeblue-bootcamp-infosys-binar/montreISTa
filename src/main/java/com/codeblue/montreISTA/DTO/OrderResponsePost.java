@@ -13,8 +13,9 @@ public class OrderResponsePost {
 
     private Long order_id;
     private Long payment_id;
+    private String payment_name;
     private Long shipping_id;
-    private Integer totalPrice;
+    private String shipping_name;
     private ZonedDateTime createdAt;
     private ZonedDateTime modifiedAt;
 
@@ -23,8 +24,9 @@ public class OrderResponsePost {
         return "OrderResponsePost{" +
                 "order_id=" + order_id +
                 ", payment_id=" + payment_id +
+                ", payment_name=" + payment_name + '\'' +
                 ", shipping_id=" + shipping_id +
-                ", totalPrice=" + totalPrice +
+                ", shipping_name='" + shipping_name + '\'' +
                 ", createdAt=" + createdAt +
                 ", modifiedAt=" + modifiedAt +
                 '}';
