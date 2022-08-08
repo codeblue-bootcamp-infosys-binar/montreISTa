@@ -12,4 +12,5 @@ public interface ShippingRepository extends JpaRepository<Shipping,Long> {
     @Query(value = "SELECT * FROM shipping sh WHERE shipping_id=?1", nativeQuery = true)
     List<Shipping> findByShippingId(Long id);
 
+    List<Shipping> findByName(String keyword);
 }

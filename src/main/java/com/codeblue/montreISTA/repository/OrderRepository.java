@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.repository;
 
+import com.codeblue.montreISTA.entity.Cart;
 import com.codeblue.montreISTA.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,4 +16,5 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
     List<Order> findByListCartProductSellerStoreNameContaining(String keyword);
     Order findFirstByOrderByCreatedAtDesc();
     Optional<Order> findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(Long id);
+    List<Order> findAllByOrderByOrderIdAsc();
 }

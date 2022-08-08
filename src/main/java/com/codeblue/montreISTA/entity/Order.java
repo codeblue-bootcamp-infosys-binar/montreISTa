@@ -36,7 +36,10 @@ public class Order extends AuditEntity{
 
     private Integer totalprice;
 
-//    private String jwttoken;
+/*
+    @Column(columnDefinition = "TEXT")
+    private String jwttoken; //pas uda ada security, coba
+*/
 
     //list cart
     @OneToMany(cascade = CascadeType.ALL,
@@ -48,7 +51,9 @@ public class Order extends AuditEntity{
         return OrderResponseDTO.builder()
                 .orderId(this.orderId)
                 .listCart(cartDTO)
+                .payment_id(this.getPayment().getPaymentId())
                 .payment_name(this.payment.getName())
+                .shipping_id(this.getShipping().getShippingId())
                 .shipping_name(this.shipping.getName())
                 .total_price(this.totalprice)
                 .createdAt(this.getCreatedAt())
@@ -56,12 +61,13 @@ public class Order extends AuditEntity{
                 .build();
         }
 
-        public OrderResponsePost convertToResponsePost(){
+   public OrderResponsePost convertToResponsePost(){
         return OrderResponsePost.builder()
                 .order_id(this.getOrderId())
                 .payment_id(this.getPayment().getPaymentId())
+                .payment_name(this.payment.getName())
                 .shipping_id(this.getShipping().getShippingId())
-                .totalPrice(this.getTotalprice())
+                .shipping_name(this.getShipping().getName())
                 .createdAt(this.getCreatedAt())
                 .modifiedAt(this.getModifiedAt())
                 .build();

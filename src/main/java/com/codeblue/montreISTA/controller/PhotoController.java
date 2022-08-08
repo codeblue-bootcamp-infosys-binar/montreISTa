@@ -46,10 +46,10 @@ public class PhotoController {
      * @param keyword
      * @return
      */
-    @GetMapping("/photo/name")
-    public ResponseEntity<Object> findByname(@Param("keyword") String keyword){
+    @GetMapping("/photo/sellername")
+    public ResponseEntity<Object> findBySellerName(@Param("keyword") String keyword){
         try{
-        List<PhotoResponseDTO> results = photoService.findByUsername(keyword);
+        List<PhotoResponseDTO> results = photoService.findBySellerName(keyword);
             return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -80,6 +80,15 @@ public class PhotoController {
     public ResponseEntity<Object> findByProductname(@Param("keyword") String keyword){
         try{
         List<PhotoResponseDTO> results = photoService.findByProductName(keyword);
+            return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, results);
+        }catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
+        }
+    }
+    @GetMapping("/photo/storename")
+    public ResponseEntity<Object> findByStoreName(@Param("keyword") String keyword){
+        try{
+            List<PhotoResponseDTO> results = photoService.findByStoreName(keyword);
             return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);

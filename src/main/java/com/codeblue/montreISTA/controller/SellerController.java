@@ -1,11 +1,16 @@
 package com.codeblue.montreISTA.controller;
 
 
+import com.codeblue.montreISTA.DTO.SellerRequestDTO;
+import com.codeblue.montreISTA.entity.Payment;
 import com.codeblue.montreISTA.entity.Seller;
+import com.codeblue.montreISTA.entity.User;
+import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.SellerService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +25,11 @@ public class SellerController {
     @Autowired
     SellerService sellerService;
 
+    @Autowired
+    UserRepository userRepository;
+
     //GET ALL
-    @GetMapping("/seller")
+    @GetMapping("/sellers")
     public ResponseEntity<Object> getAllSeller(){
         try{
             List<Seller> sellers = sellerService.findAllSeller();
@@ -31,6 +39,18 @@ public class SellerController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
+
+    @GetMapping("/sellers/Username")
+    public ResponseEntity<Object> findByUsername(@Param("keyword") String keyword){
+        try{
+            List<Seller> sellers = sellerService.findByUsername(keyword);
+
+            return ResponseHandler.generateResponse("successfully retrieved username", HttpStatus.OK, sellers);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
 
     //GET ALL BY SELLER ID
     @GetMapping("/sellers/store/{seller_id}")
@@ -56,9 +76,10 @@ public class SellerController {
 
     //CREATE
     @PostMapping("/sellers/create")
-    public ResponseEntity<Object> createSeller(@RequestBody Seller newSeller){
+    public ResponseEntity<Object> createSeller(@RequestBody SellerRequestDTO sellerRequestDTO){
         try {
-            Seller seller = sellerService.createSeller(newSeller);
+
+            Seller seller = sellerService.createSeller(sellerRequestDTO);
             return ResponseHandler.generateResponse("successfully retrieved seller", HttpStatus.CREATED, seller);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
@@ -67,14 +88,14 @@ public class SellerController {
 
     //UPDATE
     @PutMapping("/sellers/update/{id}")
-    public ResponseEntity<Object> updateSeller(@RequestBody Seller seller, @PathVariable("id") Long id){
+    public ResponseEntity<Object> updateSeller(@RequestBody SellerRequestDTO sellerRequestDTO, @PathVariable("id") Long id){
         try{
             Optional<Seller> targetSeller = sellerService.findSellerById(id);
             Seller updateSeller = targetSeller.get();
             updateSeller.setSellerId(id);
-            updateSeller.setStoreName(seller.getStoreName());
-            updateSeller.setStoreAddress(seller.getStoreAddress());
-            updateSeller.setStorePhoto(seller.getStorePhoto());
+            updateSeller.setStoreName(sellerRequestDTO.getStoreName());
+            updateSeller.setStoreAddress(sellerRequestDTO.getStoreAddress());
+            updateSeller.setStorePhoto(sellerRequestDTO.getStorePhoto());
 
             sellerService.updateSeller(updateSeller);
             return ResponseHandler.generateResponse("successfully updated Seller", HttpStatus.CREATED, updateSeller);

@@ -7,6 +7,7 @@ import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.ShippingService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,20 @@ public class ShippingController {
         }
     }
 
+
+    @GetMapping("/shipping/name")
+    public ResponseEntity<Object> findByName(@Param("keyword") String keyword){
+        try{
+            List<Shipping> shippings = shippingService.findByName(keyword);
+
+            return ResponseHandler.generateResponse("successfully retrieved username", HttpStatus.OK, shippings);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+
+
     //GET ALL BY SELLER ID
     @GetMapping("/shipping/store/{shipping_id}")
     public ResponseEntity<Object> getAllShippingByShippingId(@PathVariable("shipping_id") Long shippingId){
@@ -57,9 +72,9 @@ public class ShippingController {
 
     //CREATE
     @PostMapping("/shipping/create")
-    public ResponseEntity<Object> createShipping(@RequestBody Shipping newShipping){
+    public ResponseEntity<Object> createShipping(@RequestBody Shipping shippingRequestDTO){
         try {
-            Shipping shipping = shippingService.createShipping(newShipping);
+            Shipping shipping = shippingService.createShipping(shippingRequestDTO);
             return ResponseHandler.generateResponse("successfully retrieved shipping", HttpStatus.CREATED, shipping);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);

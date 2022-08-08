@@ -16,12 +16,14 @@ public class CartResponseDTO {
     private String buyer_username;
     private String seller_name;
     private String seller_username;
+    private String store_name;
+    private String store_address;
     private String product_name;
     private Integer product_price;
     private String product_description;
     private Integer quantity;
     private List<PhotoProductDTO> photos;
     private List<String> categories;
-    private ZonedDateTime created_at;
-    private ZonedDateTime modified_at;
+//    private ZonedDateTime created_at;
+//    private ZonedDateTime modified_at;
 }

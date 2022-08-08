@@ -2,6 +2,7 @@ package com.codeblue.montreISTA.entity;
 
 
 import com.codeblue.montreISTA.service.PhotoServiceImp;
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
@@ -21,12 +22,12 @@ public class Wishlist extends AuditEntity {
 
     @ManyToOne
     @JoinColumn(name = "buyer_id")
-    @NotBlank
+    @NotNull
     private Buyer buyer;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @NotBlank(message= "orders must not be blank")
+    @NotNull
     private Product product;
 
 }
