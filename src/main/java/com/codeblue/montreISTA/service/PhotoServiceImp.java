@@ -25,7 +25,7 @@ public class PhotoServiceImp implements PhotoService {
 
     @Override
     public List<PhotoResponseDTO> findAll() {
-        List<Photo> photos = photoRepository.findAll();
+        List<Photo> photos = photoRepository.findAllByOrderByPhotoIdAsc();
         List<PhotoResponseDTO> results = new ArrayList<>();
         for (Photo data : photos) {
             PhotoResponseDTO photosDTO = data.convertToResponse();
@@ -50,7 +50,7 @@ public class PhotoServiceImp implements PhotoService {
 
     @Override
     public List<PhotoResponseDTO> findByProductName(String productName) throws Exception {
-        List<Photo> photos = photoRepository.findByProductName(productName);
+        List<Photo> photos = photoRepository.findByProductProductNameIgnoreCaseContainingOrderByPhotoIdAsc(productName);
         if (photos == null) {
             throw new Exception("photo not found");
         }
@@ -63,8 +63,22 @@ public class PhotoServiceImp implements PhotoService {
     }
 
     @Override
-    public List<PhotoResponseDTO> findByUsername(String keyword) throws Exception {
-        List<Photo> photos = photoRepository.findByUsername(keyword);
+    public List<PhotoResponseDTO> findBySellerName(String keyword) throws Exception {
+        List<Photo> photos = photoRepository.findByProductSellerUserIdNameIgnoreCaseContainingOrderByPhotoIdAsc(keyword);
+        if (photos == null) {
+            throw new Exception("photo not found");
+        }
+        List<PhotoResponseDTO> results = new ArrayList<>();
+        for (Photo data : photos) {
+            PhotoResponseDTO photosDTO = data.convertToResponse();
+            results.add(photosDTO);
+        }
+        return results;
+    }
+
+    @Override
+    public List<PhotoResponseDTO> findByStoreName(String keyword) throws Exception {
+        List<Photo> photos = photoRepository.findByProductSellerStoreNameIgnoreCaseContainingOrderByPhotoIdAsc(keyword);
         if (photos == null) {
             throw new Exception("photo not found");
         }

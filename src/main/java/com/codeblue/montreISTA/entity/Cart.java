@@ -43,17 +43,24 @@ public class Cart extends AuditEntity{
     @JoinColumn(name = "order_id")
     private Order order;
 
-    //    private String jwttoken; pas uda ada security, coba
-    
+/*
+    @Column(columnDefinition = "TEXT")
+    private String jwttoken; //pas uda ada security, coba
+*/
+
     public OrderCartDTO convertToOrder(){
         return OrderCartDTO.builder()
                 .cart_id(this.cartId)
                 .buyer_id(this.getBuyer().getBuyerId())
                 .buyer_name(this.getBuyer().getUser().getName())
-                .product_name(this.getProduct().getProductName())
-                .description(this.getProduct().getDescription())
+                .buyer_username(this.getBuyer().getUser().getUsername())
+                .seller_name(this.getProduct().getSeller().getUserId().getName())
+                .seller_username(this.getProduct().getSeller().getUserId().getUsername())
                 .store_name(this.getProduct().getSeller().getStoreName())
                 .store_address(this.getProduct().getSeller().getStoreAddress())
+                .product_name(this.getProduct().getProductName())
+                .product_price(this.getProduct().getPrice())
+                .product_description(this.getProduct().getDescription())
                 .quantity(this.quantity)
                 .build();
     }
@@ -66,12 +73,12 @@ public class Cart extends AuditEntity{
                 .seller_username(this.getProduct().getSeller().getUserId().getUsername())
                 .product_name(this.getProduct().getProductName())
                 .product_price(this.getProduct().getPrice())
+                .store_name(this.getProduct().getSeller().getStoreName())
+                .store_address(this.getProduct().getSeller().getStoreName())
                 .product_description(this.getProduct().getDescription())
                 .quantity(this.getQuantity())
                 .photos(photoDTO)
                 .categories(categories)
-                .created_at(this.getCreatedAt())
-                .modified_at(this.getModifiedAt())
                 .build();
     }
 

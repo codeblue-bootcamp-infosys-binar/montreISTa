@@ -14,7 +14,8 @@ public interface PhotoService {
     List<PhotoResponseDTO> findByPhotoName(String photoName)throws Exception;
 
     List<PhotoResponseDTO> findByProductName(String productName)throws Exception;
-    List<PhotoResponseDTO> findByUsername(String name)throws Exception;
+    List<PhotoResponseDTO> findBySellerName(String name)throws Exception;
+    List<PhotoResponseDTO> findByStoreName(String keyword) throws Exception;
 
     PhotoResponseDTO createPhoto(PhotoRequestDTO photoRequestDTO);
     PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO,Long id) throws Exception;
