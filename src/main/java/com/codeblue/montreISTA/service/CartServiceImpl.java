@@ -68,23 +68,39 @@ public class CartServiceImpl implements CartServices {
     @Override
     public CartResponseDTO createCart(CartRequestDTO cartRequestDTO) throws Exception {
         Optional<Order> orderBuyerId = this.orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(cartRequestDTO.getBuyer_id());
+        Optional<Product> productId = productRepository.findById(cartRequestDTO.getProduct_id());
         Long orderId;
         if(orderBuyerId.isPresent()){
-            Order order = orderBuyerId.get();
-            orderId = order.getOrderId();
+            orderId = orderBuyerId.get().getOrderId();
         }else {
             Order newOrder = new Order();
             Long id = 1L;
             Payment payment = this.paymentRepository.findById(id).orElseThrow(Exception::new);
             Shipping shipping = this.shippingRepository.findById(id).orElseThrow(Exception::new);
             newOrder.setShipping(shipping);
-            newOrder.setTotalprice(0);
+            Integer price = cartRequestDTO.getQuantity()*productId.get().getPrice();
+            newOrder.setTotalprice(price);
             newOrder.setPayment(payment);
             Order saveOrder = orderRepository.save(newOrder);
             orderId = saveOrder.getOrderId();
         }
         Cart saveCart = this.requestToEntity(cartRequestDTO, orderId);
         this.cartRepository.save(saveCart);
+
+        //update Price
+        Optional<Order> getOrder = orderRepository.findById(orderId);
+        Order updatePrice = getOrder.get();
+        if(updatePrice.getListCart()!=null){
+            Integer tempPrice = 0;
+            for(Cart cart : updatePrice.getListCart()){
+                int total = cart.getQuantity() * cart.getProduct().getPrice();
+                tempPrice += total;
+            }
+            tempPrice += updatePrice.getShipping().getPrice();
+            updatePrice.setTotalprice(tempPrice);
+            orderRepository.save(updatePrice);
+        }
+        //show Cart
         return convertDTO(saveCart);
     }
 
@@ -128,7 +144,6 @@ public class CartServiceImpl implements CartServices {
         List<String> categoriesDTO = categories.stream()
                 .map(Category::getName)
                 .collect(Collectors.toList());
-
         return cart.convertToResponse(photosDTO, categoriesDTO);
 
     }

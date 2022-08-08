@@ -36,10 +36,11 @@ public class Order extends AuditEntity{
 
     private Integer totalprice;
 
-/*
+    private String destinationName;
     @Column(columnDefinition = "TEXT")
-    private String jwttoken; //pas uda ada security, coba
-*/
+    private String destinationAddress;
+    private String destinationPhone;
+    private String zipCode;
 
     //list cart
     @OneToMany(cascade = CascadeType.ALL,
@@ -49,13 +50,17 @@ public class Order extends AuditEntity{
 
     public OrderResponseDTO convertToResponse(List<OrderCartDTO> cartDTO){
         return OrderResponseDTO.builder()
-                .orderId(this.orderId)
+                .orderId(this.getOrderId())
                 .listCart(cartDTO)
                 .payment_id(this.getPayment().getPaymentId())
-                .payment_name(this.payment.getName())
+                .payment_name(this.getPayment().getName())
                 .shipping_id(this.getShipping().getShippingId())
-                .shipping_name(this.shipping.getName())
-                .total_price(this.totalprice)
+                .shipping_name(this.getShipping().getName())
+                .total_price(this.getTotalprice())
+                .destination_name(this.getDestinationName())
+                .destination_address(this.getDestinationAddress())
+                .destination_phone(this.getDestinationPhone())
+                .zip_code(this.getZipCode())
                 .createdAt(this.getCreatedAt())
                 .modifiedAt(this.getModifiedAt())
                 .build();
