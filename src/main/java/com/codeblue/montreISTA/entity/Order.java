@@ -36,7 +36,10 @@ public class Order extends AuditEntity{
 
     private Integer totalprice;
 
-//    private String jwttoken;
+/*
+    @Column(columnDefinition = "TEXT")
+    private String jwttoken; //pas uda ada security, coba
+*/
 
     //list cart
     @OneToMany(cascade = CascadeType.ALL,
@@ -56,7 +59,7 @@ public class Order extends AuditEntity{
                 .build();
         }
 
-        public OrderResponsePost convertToResponsePost(){
+   public OrderResponsePost convertToResponsePost(){
         return OrderResponsePost.builder()
                 .order_id(this.getOrderId())
                 .payment_id(this.getPayment().getPaymentId())

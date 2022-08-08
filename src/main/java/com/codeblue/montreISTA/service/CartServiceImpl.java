@@ -30,7 +30,7 @@ public class CartServiceImpl implements CartServices {
 
     @Override
     public List<CartResponseDTO> findByBuyer(String keyword) throws Exception {
-        List<Cart> results = cartRepository.findByBuyerUserNameIgnoreCaseContaining(keyword);
+        List<Cart> results = cartRepository.findByBuyerUserNameIgnoreCaseContainingOrderByCartIdAsc(keyword);
         if(results==null){
             throw new Exception("Carts not found");
         }
@@ -39,7 +39,7 @@ public class CartServiceImpl implements CartServices {
 
     @Override
     public List<CartResponseDTO> findBySeller(String keyword) throws Exception {
-        List<Cart> results = cartRepository.findByProductSellerUserIdNameIgnoreCaseContaining(keyword);
+        List<Cart> results = cartRepository.findByProductSellerUserIdNameIgnoreCaseContainingOrderByCartIdAsc(keyword);
         if(results==null){
             throw new Exception("Carts not found");
         }
@@ -48,7 +48,7 @@ public class CartServiceImpl implements CartServices {
 
     @Override
     public List<CartResponseDTO> findByProductName(String keyword) throws Exception {
-        List<Cart> results = cartRepository.findByProductProductNameIgnoreCaseContaining(keyword);
+        List<Cart> results = cartRepository.findByProductProductNameIgnoreCaseContainingOrderByCartIdAsc(keyword);
         if(results==null){
             throw new Exception("Carts not found");
         }
@@ -57,7 +57,7 @@ public class CartServiceImpl implements CartServices {
 
     @Override
     public List<CartResponseDTO> findByCategory(String keyword) throws Exception {
-        List<Cart> results = cartRepository.findByProductCategoriesCategoryNameIgnoreCaseContaining(keyword);
+        List<Cart> results = cartRepository.findByProductCategoriesCategoryNameIgnoreCaseContainingOrderByCartIdAsc(keyword);
         if(results==null){
             throw new Exception("Cart not found");
         }

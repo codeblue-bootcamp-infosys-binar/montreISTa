@@ -53,6 +53,11 @@ public class Transaction extends AuditEntity{
     @NotEmpty
     private String phoneShipping;
 
+/*
+    @Column(columnDefinition = "TEXT")
+    private String jwttoken; //pas uda ada security, coba
+*/
+
     public TransactionResponseDTO convertToResponse(List<CartResponseDTO> carts){
         return TransactionResponseDTO.builder()
                 .transaction_id(this.getTransactionId())
