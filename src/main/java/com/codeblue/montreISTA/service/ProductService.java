@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.service;
 
+import com.codeblue.montreISTA.DTO.ProductRequestDTO;
 import com.codeblue.montreISTA.entity.Product;
 
 import java.util.List;
@@ -19,9 +20,10 @@ public interface ProductService {
 
     List<Product> findByCategoryId(Long id);
 
-    Product createProduct(Product product);
+    List<Product> findProductBySellerId(Long id);
+    Product createProduct(ProductRequestDTO productRequestDTO);
 
-    Product updateProduct(Product product);
+    Product updateProduct(Product product, Long id);
 
     void deleteProduct(Long id);
 }

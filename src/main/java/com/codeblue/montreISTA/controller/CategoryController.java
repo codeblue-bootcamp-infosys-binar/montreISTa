@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -53,6 +54,21 @@ public class CategoryController {
         }
     }
 
+    //GET BY PRODUCT ID
+    @GetMapping("/categories/product/{id}")
+    public ResponseEntity<Object> getByProductId(@PathVariable("id") Long id){
+        try{
+            List<Category> categories = categoryService.findByProductId(id);
+            List<CategoryResponseDTO> categoryResponseDTO = new ArrayList<>();
+            for (Category category : categories){
+                CategoryResponseDTO categoryDTO = category.convertToResponse();
+                categoryResponseDTO.add(categoryDTO);
+            }
+            return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, categoryResponseDTO);
+        } catch (Exception e ){
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND, null);
+        }
+    }
 
     //CREATE
     @PostMapping("/categories/create")
