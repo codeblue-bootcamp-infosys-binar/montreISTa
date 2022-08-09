@@ -1,22 +1,24 @@
 package com.codeblue.montreISTA.service;
 
+import com.codeblue.montreISTA.DTO.TransactionDetailDTO;
+import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
 import com.codeblue.montreISTA.entity.HistoryTransaction;
 import com.codeblue.montreISTA.entity.HistoryTransactionDetail;
 
 import java.util.List;
 
 public interface TransactionService {
-    List<HistoryTransaction> findAllHistory();
-    List<HistoryTransactionDetail> findAllHistoryDetail();
+    List<TransactionResponseDTO> findAllTransaction();
+    List<TransactionDetailDTO> findAllTransactionDetail();
 
-    List<HistoryTransaction> findByHistoryBuyerId(Long id) throws Exception;
-    List<HistoryTransaction> findByHistorySellerId(Long id) throws Exception;
-    List<HistoryTransactionDetail> findByHistoryDetailBuyerId(Long id) throws Exception;
-    List<HistoryTransactionDetail> findByHistoryDetailSellerId(Long id) throws Exception;
+    List<TransactionResponseDTO> findByTransactionBuyerId(Long id) throws Exception;
+    List<TransactionResponseDTO> findByTransactionSellerId(Long id) throws Exception;
+    List<TransactionDetailDTO> findByTransactionDetailBuyerId(Long id) throws Exception;
+    List<TransactionDetailDTO> findByTransactionDetailSellerId(Long id) throws Exception;
 
-    HistoryTransaction createTransaction(HistoryTransaction historyTransaction, Long id) throws Exception;
+    TransactionResponseDTO findByTransactionId(Long id) throws Exception;
+    TransactionDetailDTO findByTransactionDetailId(Long id) throws Exception;
 
-    void deleteHistoryTransactionById(Long id) throws Exception;
-    void deleteTransactionDetailById(Long id) throws Exception;
+    String createTransaction(Long id) throws Exception;
 
 }

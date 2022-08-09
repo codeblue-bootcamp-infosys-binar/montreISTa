@@ -6,6 +6,7 @@ import com.codeblue.montreISTA.DTO.WishlistRequestDTO;
 import com.codeblue.montreISTA.entity.Wishlist;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.WishlistService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -18,10 +19,10 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
+@Tag(name="6. Wishlist")
 public class WishlistController {
 
-    @Autowired
-    WishlistService wishlistService;
+    private WishlistService wishlistService;
 
     //GET ALL
     @GetMapping("/wishlist")

@@ -5,6 +5,7 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.entity.Shipping;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.ShippingService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
+@Tag(name = "10. Shipping")
 public class ShippingController {
 
     @Autowired

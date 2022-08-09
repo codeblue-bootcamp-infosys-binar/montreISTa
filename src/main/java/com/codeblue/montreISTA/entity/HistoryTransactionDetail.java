@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
+import com.codeblue.montreISTA.DTO.TransactionDetailDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -39,4 +40,58 @@ public class HistoryTransactionDetail extends AuditEntity {
     @Column(columnDefinition = "TEXT")
     private String productDescription;
     private Integer quantity;
+
+    public TransactionDetailDTO convertToResponse(){
+        return TransactionDetailDTO.builder()
+                .transaction_detail_id(this.getTransactionDetailId())
+                .seller_id(this.getHistoryTransaction().getSeller().getSellerId())
+                .seller_name(this.getHistoryTransaction().getSeller().getStoreName())
+                .store_name(this.getHistoryTransaction().getSeller().getStoreName())
+                .store_address(this.getHistoryTransaction().getSeller().getStoreAddress())
+                .buyer_id(this.getHistoryTransaction().getBuyer().getBuyerId())
+                .buyer_name(this.getHistoryTransaction().getBuyer().getUser().getName())
+                .photo_name(this.getHistoryTransaction().getPhotoName())
+                .photo_url(this.getHistoryTransaction().getPhotoUrl())
+                .total_price(this.getHistoryTransaction().getTotalPrice())
+                .destination_name(this.getDestinationName())
+                .destination_address(this.getDestinationAddress())
+                .destination_phone(this.getDestinationPhone())
+                .zip_code(this.getZipCode())
+                .payment_name(this.getPaymentCode())
+                .payment_code(this.getPaymentCode())
+                .shipping_name(this.getShippingName())
+                .shipping_price(this.getShippingPrice())
+                .categories(this.getCategories())
+                .product_id(this.getProductId())
+                .product_name(this.getProductName())
+                .product_price(this.getProductPrice())
+                .product_description(this.getProductDescription())
+                .quantity(this.getQuantity())
+                .created_at(this.getCreatedAt())
+                .modified_at(this.getModifiedAt())
+                .build();
+    }
+
+
+    @Override
+    public String toString() {
+        return "HistoryTransactionDetail{" +
+                "transactionDetailId=" + transactionDetailId +
+                ", historyTransaction=" + historyTransaction +
+                ", destinationName='" + destinationName + '\'' +
+                ", destinationAddress='" + destinationAddress + '\'' +
+                ", destinationPhone='" + destinationPhone + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", paymentName='" + paymentName + '\'' +
+                ", paymentCode='" + paymentCode + '\'' +
+                ", shippingName='" + shippingName + '\'' +
+                ", shippingPrice=" + shippingPrice +
+                ", categories='" + categories + '\'' +
+                ", productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productPrice=" + productPrice +
+                ", productDescription='" + productDescription + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

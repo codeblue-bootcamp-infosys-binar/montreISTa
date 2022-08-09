@@ -2,12 +2,11 @@ package com.codeblue.montreISTA.controller;
 
 
 import com.codeblue.montreISTA.DTO.SellerRequestDTO;
-import com.codeblue.montreISTA.entity.Payment;
 import com.codeblue.montreISTA.entity.Seller;
-import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
-import com.codeblue.montreISTA.service.SellerService;
+import com.codeblue.montreISTA.service.SellerServiceImpl;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -20,10 +19,11 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
+@Tag(name="2. Seller")
 public class SellerController {
 
     @Autowired
-    SellerService sellerService;
+    SellerServiceImpl sellerService;
 
     @Autowired
     UserRepository userRepository;

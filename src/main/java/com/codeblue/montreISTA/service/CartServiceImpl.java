@@ -109,7 +109,7 @@ public class CartServiceImpl implements CartService {
         if(cartDTO==null){
             throw new Exception("failed to parsing data from wishlist to cart");
         }else {
-            wishlistRepository.deleteById(id);
+            wishlistRepository.deleteById(wishlist.get().getWishlistId());
         }
         return this.createCart(cartDTO);
     }
@@ -155,7 +155,6 @@ public class CartServiceImpl implements CartService {
                 .map(Category::getName)
                 .collect(Collectors.toList());
         return cart.convertToResponse(photosDTO, categoriesDTO);
-
     }
 
     public Cart requestToEntity (CartRequestDTO cartRequestDTO, Long id)throws Exception{
