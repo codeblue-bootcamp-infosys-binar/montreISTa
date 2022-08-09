@@ -2,6 +2,7 @@ package com.codeblue.montreISTA.entity;
 
 
 import com.codeblue.montreISTA.DTO.PhotoProductDTO;
+import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
@@ -37,6 +38,16 @@ public class HistoryTransaction{
 
     @NotNull
     private Integer totalPrice;
+
+    public TransactionResponseDTO convertToResponse(){
+        return TransactionResponseDTO.builder()
+                .transaction_id(this.getHistoryTransactionId())
+                .buyer_id(this.getBuyer().getBuyerId())
+                .seller_id(this.getSeller().getSellerId())
+                .photo_url(this.getPhotoUrl())
+                .total_price(this.getTotalPrice())
+                .build();
+    }
 
     @Override
     public String toString() {
