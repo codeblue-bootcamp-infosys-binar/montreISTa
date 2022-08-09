@@ -66,9 +66,17 @@ public class TransactionServiceImpl implements TransactionService {
             HistoryTransactionDetail transactionDetail = new HistoryTransactionDetail();
 
             List<Photo> photo = cart.getProduct().getPhotos();
-            Photo photoget = photo.get(0);
-            String photoName = photoget.getPhotoName();
-            String photoUrl = photoget.getPhotoURL();
+            String photoURL;
+            String photoName;
+            boolean checkURL = photo.stream().map(Photo::getPhotoURL).findAny().isEmpty();
+            boolean checkName = photo.stream().map(Photo::getPhotoName).findAny().isEmpty();
+            if(checkURL || checkName){
+                photoURL = "-";
+                photoName = "-";
+            }else {
+                photoURL = photo.get(0).getPhotoURL();
+                photoName = photo.get(0).getPhotoName();
+            }
             List<Category> categories = categoryService.findByProductId(cart.getProduct().getProductId());
             String category = categories.stream()
                     .map(Category::getName)
@@ -76,7 +84,7 @@ public class TransactionServiceImpl implements TransactionService {
             transaction.setBuyer(cart.getBuyer());
             transaction.setSeller(cart.getProduct().getSeller());
             transaction.setPhotoName(photoName);
-            transaction.setPhotoUrl(photoUrl);
+            transaction.setPhotoUrl(photoURL);
             transaction.setTotalPrice(order.getTotalprice());
             HistoryTransaction transactionSave = transactionRepository.save(transaction);
             transactionDetail.setHistoryTransaction(transactionSave);

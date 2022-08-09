@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.repository;
 
+import com.codeblue.montreISTA.entity.Buyer;
 import com.codeblue.montreISTA.entity.Seller;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,4 +16,6 @@ public interface SellerRepository extends JpaRepository<Seller,Long> {
     List<Seller> findBySellerId(Long id);
     List<Seller> findByUserIdUsername(String keyword);
     Optional<Seller> findByUserIdUserId(Long id);
+    List<Seller> findByOrderBySellerIdAsc();
+
 }

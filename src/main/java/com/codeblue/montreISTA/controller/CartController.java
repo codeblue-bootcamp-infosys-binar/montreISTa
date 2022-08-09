@@ -4,6 +4,7 @@ import com.codeblue.montreISTA.DTO.CartRequestDTO;
 import com.codeblue.montreISTA.DTO.CartResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.CartService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@Tag(name="7. Cart")
 public class CartController {
     private CartService cartService;
 
@@ -105,7 +107,7 @@ public class CartController {
         }
     }
 
-    @PostMapping("/cart/wishlist/{id}")
+    @PostMapping("/cart/wishlist/buyer/{id}")
     public ResponseEntity<Object> postCart(@PathVariable Long id) {
         try {
             CartResponseDTO results = cartService.wishlistToCart(id);

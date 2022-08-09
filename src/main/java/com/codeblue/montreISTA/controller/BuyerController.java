@@ -1,9 +1,12 @@
 package com.codeblue.montreISTA.controller;
 
 
+import com.codeblue.montreISTA.DTO.BuyerRequestDTO;
 import com.codeblue.montreISTA.entity.Buyer;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.BuyerService;
+import com.codeblue.montreISTA.service.BuyerServiceImpl;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -16,10 +19,10 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
+@Tag(name="6. Buyer")
 public class BuyerController {
 
-    @Autowired
-    BuyerService buyerService;
+    private BuyerService buyerService;
 
     //GET ALL
     @GetMapping("/buyer")
@@ -69,7 +72,7 @@ public class BuyerController {
 
     //CREATE
     @PostMapping("/buyers/create")
-    public ResponseEntity<Object> createBuyer(@RequestBody Buyer newBuyer){
+    public ResponseEntity<Object> createBuyer(@RequestBody BuyerRequestDTO newBuyer){
         try {
             Buyer buyer = buyerService.createBuyer(newBuyer);
             return ResponseHandler.generateResponse("successfully retrieved buyer", HttpStatus.CREATED, buyer);

@@ -5,6 +5,7 @@ import com.codeblue.montreISTA.DTO.CategoryResponseDTO;
 import com.codeblue.montreISTA.entity.Category;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.CategoryService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
+@Tag(name = "12. Category")
 public class CategoryController {
 
     @Autowired

@@ -69,9 +69,15 @@ public class OrderServiceImpl implements OrderService {
         }
         List<OrderCartDTO> carts = new ArrayList<>();
         for(Cart cart:results.get().getListCart()){
-            List<Photo> photo = cart.getProduct().getPhotos();
-            Photo photoget = photo.get(0);
-            OrderCartDTO cartDTO = cart.convertToOrder(photoget.getPhotoURL());
+            List<Photo> photos = cart.getProduct().getPhotos();
+            String photoURL;
+            boolean check = photos.stream().map(Photo::getPhotoURL).findAny().isEmpty();
+            if(check){
+                photoURL = "-";
+            }else {
+                photoURL = photos.get(0).getPhotoURL();
+            }
+            OrderCartDTO cartDTO = cart.convertToOrder(photoURL);
             carts.add(cartDTO);
         }
         return results.get().convertCart(carts);

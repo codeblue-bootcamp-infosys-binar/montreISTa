@@ -1,20 +1,19 @@
-//package com.codeblue.montreISTA.service;
-//
-//import com.codeblue.montreISTA.entity.User;
-//import com.codeblue.montreISTA.repository.UserRepository;
-//import lombok.AllArgsConstructor;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.List;
-//import java.util.Optional;
-//
-//@AllArgsConstructor
-//@Service
-//public class UserService {
-//
-//    private UserRepository userRepository;
-//
+package com.codeblue.montreISTA.service;
+
+import com.codeblue.montreISTA.entity.User;
+import com.codeblue.montreISTA.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface UserService {
+
+   List<User> findAllUser();
+   User createUser(User user);
+
 //    public List<User> findAllUser() {
 //        List<User> users = userRepository.findAll();
 //        return users;
@@ -44,4 +43,4 @@
 //            return user;
 //        }
 //    }
-//}
+}
