@@ -2,9 +2,11 @@ package com.codeblue.montreISTA.helper;
 
 import com.codeblue.montreISTA.DTO.PhotoProductDTO;
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
+import com.codeblue.montreISTA.DTO.WishlistResponseDTO;
 import com.codeblue.montreISTA.entity.Category;
 import com.codeblue.montreISTA.entity.Photo;
 import com.codeblue.montreISTA.entity.Product;
+import com.codeblue.montreISTA.entity.Wishlist;
 import com.codeblue.montreISTA.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -80,4 +82,12 @@ public class DTOConverter {
         return product.convertToResponse(photosDTO, categoriesDTO);
     }
 
+    public static WishlistResponseDTO convertWishlist(Wishlist wishlist){
+        Product product = wishlist.getProduct();
+//                 products.add(product);
+        ProductResponseDTO productDTO = DTOConverter.convertOneProducts(product);
+
+        return wishlist.convertToResponse(productDTO);
+
+    }
 }
