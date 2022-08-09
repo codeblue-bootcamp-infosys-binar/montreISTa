@@ -1,11 +1,10 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.DTO.CartRequestDTO;
-import com.codeblue.montreISTA.DTO.CartResponseDTO;
 import com.codeblue.montreISTA.entity.HistoryTransaction;
 import com.codeblue.montreISTA.entity.HistoryTransactionDetail;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.TransactionService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +14,9 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@Tag(name="9. Transaction")
 public class TransactionController {
-    private TransactionService transactionService;
+    private final TransactionService transactionService;
 
     @GetMapping("/Transactions")
     public ResponseEntity<Object> findAllHistoryTransaction(){

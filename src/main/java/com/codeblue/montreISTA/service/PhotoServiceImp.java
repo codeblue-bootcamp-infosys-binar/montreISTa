@@ -99,7 +99,7 @@ public class PhotoServiceImp implements PhotoService {
     @Override
     public PhotoResponseDTO createPhoto(PhotoRequestDTO photoRequestDTO) throws Exception {
         Optional<Product> photoproduct = productRepository.findById(photoRequestDTO.getProduct_id());
-        if(photoproduct.isPresent()){
+        if(photoproduct.isEmpty()){
             throw new Exception("Product not found");
         }
         /* validation

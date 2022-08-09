@@ -11,15 +11,13 @@ import lombok.*;
 @Builder
 public class BuyerRequestDTO {
 
-    private Long buyerId;
 
-    private User userId;
+   private Long user_id;
 
 
-    public Buyer convertToEntity(){
+    public Buyer convertToEntity(User user){
         return Buyer.builder()
-                .buyerId(this.buyerId)
-                .user(this.userId)
+                .user(user)
                 .build();
     }
 

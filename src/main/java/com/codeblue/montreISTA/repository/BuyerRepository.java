@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BuyerRepository extends JpaRepository<Buyer, Long> {
@@ -14,5 +15,8 @@ public interface BuyerRepository extends JpaRepository<Buyer, Long> {
     List<Buyer> findByBuyerId(Long id);
 
     List<Buyer> findByUserUsername(String keywoard);
+
+    List<Buyer> findAllByOrderByBuyerIdAsc();
+    Optional<Buyer> findByUserUserId(Long id);
 }
 

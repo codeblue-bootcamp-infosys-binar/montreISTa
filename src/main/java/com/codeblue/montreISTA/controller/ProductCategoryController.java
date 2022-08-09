@@ -5,6 +5,7 @@ import com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO;
 import com.codeblue.montreISTA.entity.ProductCategory;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.ProductCategoryService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@Tag(name="5. Product Category")
 public class ProductCategoryController {
     private ProductCategoryService productCategoryService;
 

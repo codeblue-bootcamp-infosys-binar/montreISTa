@@ -1,33 +1,45 @@
-//package com.codeblue.montreISTA.controller;
-//
-//import com.codeblue.montreISTA.entity.User;
-//import com.codeblue.montreISTA.response.ResponseHandler;
-//import com.codeblue.montreISTA.service.UserService;
-//import lombok.AllArgsConstructor;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.util.*;
-//
-//@AllArgsConstructor
-//@RestController
-//public class UserController {
-//
-//    private UserService userService;
-//
-//    //GET ALL
-//    @GetMapping("/users")
-//    public ResponseEntity<Object> getAllUser() {
-//        try {
-//            List<User> users = userService.findAllUser();
-//
-//            return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, users);
-//        } catch (Exception e) {
-//            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-//        }
-//    }
-//
+package com.codeblue.montreISTA.controller;
+
+import com.codeblue.montreISTA.entity.User;
+import com.codeblue.montreISTA.response.ResponseHandler;
+import com.codeblue.montreISTA.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.*;
+
+@AllArgsConstructor
+@RestController
+@Tag(name="1. User")
+public class UserController {
+
+    private UserService userService;
+
+    //GET ALL
+    @GetMapping("/users")
+    public ResponseEntity<Object> getAllUser() {
+        try {
+            List<User> users = userService.findAllUser();
+
+            return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, users);
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+    //CREATE
+    @PostMapping("/users/create")
+    public ResponseEntity<Object> createUser(@RequestBody User newUser) {
+        try {
+            User user = userService.createUser(newUser);
+            return ResponseHandler.generateResponse("successfully retrieved user", HttpStatus.CREATED, user);
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
 //    //GET ALL BY User ID
 //    @GetMapping("/users/{user_id}")
 //    public ResponseEntity<Object> getAllUserByUserId(@PathVariable("user_id") Long userId) {
@@ -49,19 +61,8 @@
 //            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
 //        }
 //    }
-//
-//    //CREATE
-//    @PostMapping("/users/create")
-//    public ResponseEntity<Object> createUser(@RequestBody User newUser) {
-//        try {
-//            User user = userService.createUser(newUser);
-//            return ResponseHandler.generateResponse("successfully retrieved user", HttpStatus.CREATED, user);
-//        } catch (Exception e) {
-//            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-//        }
-//    }
-//
-//    //UPDATE
+
+    //UPDATE
 //    @PutMapping("/users/update/{id}")
 //    public ResponseEntity<Object> updateUser(@RequestBody User user, @PathVariable("id") Long id) {
 //        try {
@@ -93,4 +94,4 @@
 //            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
 //        }
 //    }
-//}
+}

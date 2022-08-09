@@ -1,10 +1,9 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.DTO.PhotoPostDTO;
 import com.codeblue.montreISTA.DTO.PhotoRequestDTO;
 import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
 
-import com.codeblue.montreISTA.service.PhotoServices;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.PhotoService;
-import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +22,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@Tag(name="4. Photo")
 public class PhotoController {
     private PhotoService photoService;
 

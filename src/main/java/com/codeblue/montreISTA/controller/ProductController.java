@@ -4,24 +4,24 @@ import com.codeblue.montreISTA.DTO.PhotoProductDTO;
 import com.codeblue.montreISTA.DTO.ProductRequestDTO;
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.entity.Category;
-import com.codeblue.montreISTA.entity.Photo;
 import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.helper.DTOConverter;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
+@Tag(name="3. Product")
 public class ProductController {
 
     @Autowired
@@ -31,7 +31,7 @@ public class ProductController {
     CategoryService categoryService;
 
     @Autowired
-    SellerService sellerService;
+    SellerServiceImpl sellerService;
 //==============================
 
 
