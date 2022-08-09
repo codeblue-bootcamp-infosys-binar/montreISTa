@@ -41,7 +41,7 @@ public class WishlistController {
 
                  products.add(product);
 
-                WishlistResponseDTO wishlistDTO = wishlist.convertToResponse(products);
+//                WishlistResponseDTO wishlistDTO = wishlist.convertToResponse(products);
             }
             productsDTO = DTOConverter.convertProducts(products);
 

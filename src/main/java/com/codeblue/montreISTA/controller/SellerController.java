@@ -40,15 +40,15 @@ public class SellerController {
             logger.info("==================== Logger Start Get All Sellers     ====================");
             for(Seller sellerData : sellers){
                 Map<String, Object> seller = new HashMap<>();
-                logger.info("-------------------------");
-                logger.info("Seller ID       : " + userData.getUserId());
-                logger.info("Store Address : " + userData.getUserName());
-                logger.info("Store Name    : " + userData.getEmailId());
-                logger.info("Password : " + userData.getPassword());
-                seller.put("ID            ", userData.getUserId());
-                seller.put("Username      ", userData.getUserName());
-                seller.put("Email         ", userData.getEmailId());
-                maps.add(seller);
+//                logger.info("-------------------------");
+//                logger.info("Seller ID       : " + userData.getUserId());
+//                logger.info("Store Address : " + userData.getUserName());
+//                logger.info("Store Name    : " + userData.getEmailId());
+//                logger.info("Password : " + userData.getPassword());
+//                seller.put("ID            ", userData.getUserId());
+//                seller.put("Username      ", userData.getUserName());
+//                seller.put("Email         ", userData.getEmailId());
+//                maps.add(seller);
             }
             logger.info("==================== Logger End Get All Users     ====================");
             logger.info(" ");
