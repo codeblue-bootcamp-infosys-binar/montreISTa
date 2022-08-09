@@ -24,17 +24,27 @@ public class DTOConverter {
     }
 
     public static List<PhotoProductDTO> convertPhoto(List<Photo> photos){
-            List<PhotoProductDTO> photosDTO = new ArrayList<>();
 
-            for(Photo photo : photos){
-                PhotoProductDTO photoConvert = photo.convertToProduct();
-                photosDTO.add(photoConvert);
-            }
+        if(photos.isEmpty()){
+            return null;
+        }
 
-            return photosDTO;
+        List<PhotoProductDTO> photosDTO = new ArrayList<>();
+
+        for(Photo photo : photos){
+            PhotoProductDTO photoConvert = photo.convertToProduct();
+            photosDTO.add(photoConvert);
+        }
+
+        return photosDTO;
     }
 
     public static List<String> convertCategories(List<Category> categories){
+
+        if(categories.isEmpty()){
+            return null;
+        }
+
         List<String> categoriesDTO = new ArrayList<>();
 
         for(Category category : categories){
@@ -59,6 +69,15 @@ public class DTOConverter {
 
         }
         return productResponseDTOS;
+    }
+
+    public static ProductResponseDTO convertOneProducts(Product product){
+
+        List<PhotoProductDTO> photosDTO = convertPhoto(product.getPhotos());
+        List<Category> categoryList = categoryService.findByProductId(product.getProductId());
+        List<String> categoriesDTO = convertCategories(categoryList);
+
+        return product.convertToResponse(photosDTO, categoriesDTO);
     }
 
 }
