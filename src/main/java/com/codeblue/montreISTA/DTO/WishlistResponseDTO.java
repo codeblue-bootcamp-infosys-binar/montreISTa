@@ -14,7 +14,8 @@ public class WishlistResponseDTO {
 
     private Long wishlist_id;
     private Long buyer_id;
-    private Long product_id;
+
+    private ProductResponseDTO product;
     private Integer quantity;
     private ZonedDateTime created_at;
     private ZonedDateTime modified_at;
@@ -25,7 +26,7 @@ public class WishlistResponseDTO {
         return "WishlistResponseDTO{" +
                 "wishlist_id=" + wishlist_id +
                 ", buyer_id=" + buyer_id +
-                ", product_id=" + product_id +
+                ", product_id=" + product +
                 ", quantity=" + quantity +
                 ", created_at=" + created_at +
                 ", modified_at=" + modified_at +

@@ -2,8 +2,12 @@ package com.codeblue.montreISTA.controller;
 
 
 
+import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.DTO.WishlistRequestDTO;
+import com.codeblue.montreISTA.DTO.WishlistResponseDTO;
+import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.entity.Wishlist;
+import com.codeblue.montreISTA.helper.DTOConverter;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.WishlistService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -14,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +34,16 @@ public class WishlistController {
     public ResponseEntity<Object> getAllWishlist(){
         try{
             List<Wishlist> wishlists = wishlistService.findAllWishlist();
+            List<ProductResponseDTO> productsDTO = new ArrayList<>();
+            List<Product> products = new ArrayList<>();
+            for (Wishlist wishlist : wishlists) {
+                 Product product = wishlist.getProduct();
+
+                 products.add(product);
+
+//                WishlistResponseDTO wishlistDTO = wishlist.convertToResponse(products);
+            }
+            productsDTO = DTOConverter.convertProducts(products);
 
             return ResponseHandler.generateResponse("successfully retrieved wishlist", HttpStatus.OK, wishlists);
         } catch (Exception e){
