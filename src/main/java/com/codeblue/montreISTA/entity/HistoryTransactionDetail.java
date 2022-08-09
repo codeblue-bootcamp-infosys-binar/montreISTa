@@ -39,4 +39,26 @@ public class HistoryTransactionDetail extends AuditEntity {
     @Column(columnDefinition = "TEXT")
     private String productDescription;
     private Integer quantity;
+
+    @Override
+    public String toString() {
+        return "HistoryTransactionDetail{" +
+                "transactionDetailId=" + transactionDetailId +
+                ", historyTransaction=" + historyTransaction +
+                ", destinationName='" + destinationName + '\'' +
+                ", destinationAddress='" + destinationAddress + '\'' +
+                ", destinationPhone='" + destinationPhone + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", paymentName='" + paymentName + '\'' +
+                ", paymentCode='" + paymentCode + '\'' +
+                ", shippingName='" + shippingName + '\'' +
+                ", shippingPrice=" + shippingPrice +
+                ", categories='" + categories + '\'' +
+                ", productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productPrice=" + productPrice +
+                ", productDescription='" + productDescription + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

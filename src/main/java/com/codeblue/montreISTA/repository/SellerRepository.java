@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface SellerRepository extends JpaRepository<Seller,Long> {
@@ -13,4 +14,5 @@ public interface SellerRepository extends JpaRepository<Seller,Long> {
     @Query(value = "SELECT * FROM sellers s WHERE seller_id=?1", nativeQuery = true)
     List<Seller> findBySellerId(Long id);
     List<Seller> findByUserIdUsername(String keyword);
+    Optional<Seller> findByUserIdUserId(Long id);
 }

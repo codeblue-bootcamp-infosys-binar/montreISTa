@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.DTO;
 
+import com.codeblue.montreISTA.entity.Cart;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -14,7 +15,7 @@ import java.util.List;
 public class OrderResponseDTO{
 
     private Long orderId;
-    private List<OrderCartDTO> listCart;
+    private List<CartResponseDTO> listCart;
     private Long payment_id;
     private String payment_name;
     private Long shipping_id;

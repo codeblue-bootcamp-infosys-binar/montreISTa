@@ -155,7 +155,6 @@ public class CartServiceImpl implements CartService {
                 .map(Category::getName)
                 .collect(Collectors.toList());
         return cart.convertToResponse(photosDTO, categoriesDTO);
-
     }
 
     public Cart requestToEntity (CartRequestDTO cartRequestDTO, Long id)throws Exception{

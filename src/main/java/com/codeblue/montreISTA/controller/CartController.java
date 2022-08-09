@@ -95,7 +95,7 @@ public class CartController {
      * @param cart
      * @return
      */
-    @PostMapping("/cart")
+    @PostMapping("/addToCart")
     public ResponseEntity<Object> postCart(@RequestBody CartRequestDTO cart) {
         try {
             CartResponseDTO results = cartService.createCart(cart);

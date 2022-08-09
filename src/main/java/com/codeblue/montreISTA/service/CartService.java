@@ -16,6 +16,7 @@ public interface CartService {
     CartResponseDTO createCart(CartRequestDTO cartRequestDTO) throws Exception;
     CartResponseDTO wishlistToCart(Long id) throws Exception;
     CartResponseDTO updateCart(CartRequestDTO cartRequestDTO,Long id)throws Exception;
-
+    List<CartResponseDTO> convertListDTO(List<Cart> carts);
+    CartResponseDTO convertDTO (Cart cart);
     void deleteById(Long id)throws Exception;
 }
