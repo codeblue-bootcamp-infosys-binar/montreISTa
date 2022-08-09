@@ -4,7 +4,6 @@ import com.codeblue.montreISTA.DTO.PhotoProductDTO;
 import com.codeblue.montreISTA.DTO.ProductRequestDTO;
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.entity.Category;
-import com.codeblue.montreISTA.entity.Photo;
 import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.helper.DTOConverter;
@@ -16,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +29,7 @@ public class ProductController {
     CategoryService categoryService;
 
     @Autowired
-    SellerService sellerService;
+    SellerServiceImpl sellerServiceImpl;
 //==============================
 
 
@@ -151,7 +149,7 @@ public class ProductController {
     public ResponseEntity<Object> updateProduct(@RequestBody ProductRequestDTO productRequestDTO, @PathVariable("id") Long id){
         try{
             //GET SELLER FROM DATABASE BY ID
-            Optional<Seller> productSeller = sellerService.findSellerById(productRequestDTO.getSellerId());
+            Optional<Seller> productSeller = sellerServiceImpl.findSellerById(productRequestDTO.getSellerId());
             Product product = productRequestDTO.convertToEntity(productSeller.get());
 
             //SAVING THE UPDATES TO DATABASE
