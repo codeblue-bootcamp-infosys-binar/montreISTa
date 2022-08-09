@@ -2,18 +2,17 @@
 //
 //import com.codeblue.montreISTA.entity.User;
 //import com.codeblue.montreISTA.repository.UserRepository;
-//import lombok.AllArgsConstructor;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Service;
 //
 //import java.util.List;
 //import java.util.Optional;
-//
-//@AllArgsConstructor
 //@Service
-//public class UserService {
+//public class UserServiceImpl {
+//    @Autowired
 //
-//    private UserRepository userRepository;
+//
+//    UserRepository userRepository;
 //
 //    public List<User> findAllUser() {
 //        List<User> users = userRepository.findAll();
@@ -43,5 +42,13 @@
 //        } else {
 //            return user;
 //        }
+//    }
+//    public List<User> findByUsername(String keyword) {
+//        List<User> users = userRepository.findByUsername(keyword);
+//        return users;
+//    }
+//    public List<User> findByName(String keyword) {
+//        List<User> users = userRepository.findByName(keyword);
+//        return users;
 //    }
 //}
