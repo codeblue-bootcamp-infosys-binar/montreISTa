@@ -23,7 +23,7 @@ public interface ProductService {
     List<Product> findProductBySellerId(Long id);
     Product createProduct(ProductRequestDTO productRequestDTO);
 
-    Product updateProduct(Product product, Long id);
+    Product updateProduct(ProductRequestDTO productRequestDTO, Long id);
 
     void deleteProduct(Long id);
 }

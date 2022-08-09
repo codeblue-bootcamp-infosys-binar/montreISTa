@@ -24,6 +24,8 @@ public class DTOConverter {
     }
 
     public static List<PhotoProductDTO> convertPhoto(List<Photo> photos){
+
+        if(photos != null){
             List<PhotoProductDTO> photosDTO = new ArrayList<>();
 
             for(Photo photo : photos){
@@ -32,17 +34,25 @@ public class DTOConverter {
             }
 
             return photosDTO;
+        } else {
+            return null;
+        }
     }
 
     public static List<String> convertCategories(List<Category> categories){
-        List<String> categoriesDTO = new ArrayList<>();
 
-        for(Category category : categories){
-            String categoryDTO = category.getName();
-            categoriesDTO.add(categoryDTO);
+        if(categories != null){
+            List<String> categoriesDTO = new ArrayList<>();
+
+            for(Category category : categories){
+                String categoryDTO = category.getName();
+                categoriesDTO.add(categoryDTO);
+            }
+
+            return categoriesDTO;
+        } else {
+            return null;
         }
-
-        return categoriesDTO;
     }
 
     public static List<ProductResponseDTO> convertProducts(List<Product> products){
@@ -59,6 +69,15 @@ public class DTOConverter {
 
         }
         return productResponseDTOS;
+    }
+
+    public static ProductResponseDTO convertOneProducts(Product product){
+
+        List<PhotoProductDTO> photosDTO = convertPhoto(product.getPhotos());
+        List<Category> categoryList = categoryService.findByProductId(product.getProductId());
+        List<String> categoriesDTO = convertCategories(categoryList);
+
+        return product.convertToResponse(photosDTO, categoriesDTO);
     }
 
 }

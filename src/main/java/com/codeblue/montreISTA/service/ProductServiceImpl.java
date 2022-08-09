@@ -68,7 +68,11 @@ public class ProductServiceImpl implements ProductService{
         return productRepository.save(newProduct);
     }
 
-    public Product updateProduct(Product product, Long id) {
+    public Product updateProduct(ProductRequestDTO productRequestDTO, Long id) {
+
+        //GET SELLER FROM DATABASE BY ID
+        Optional<Seller> productSeller = sellerService.findSellerById(productRequestDTO.getSellerId());
+        Product product = productRequestDTO.convertToEntity(productSeller.get());
 
         Optional<Product> targetProduct = findProductById(id);
         Product updateProduct = targetProduct.get();
