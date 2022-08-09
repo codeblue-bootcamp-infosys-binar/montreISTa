@@ -1,58 +1,25 @@
 package com.codeblue.montreISTA.service;
 
-
-
 import com.codeblue.montreISTA.entity.Wishlist;
-import com.codeblue.montreISTA.repository.WishlistRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class WishlistService {
+public interface WishlistService {
 
-    @Autowired
-    WishlistRepository wishlistRepository;
+    List<Wishlist> findAllWishlist();
 
-    public List<Wishlist> findAllWishlist() {
-        List<Wishlist> wishlists = wishlistRepository.findAll();
-        return wishlists;
-    }
+    Optional<Wishlist> findWishlistById(Long id);
 
-    public Optional<Wishlist> findWishlistById(Long id) {
-        return wishlistRepository.findById(id);
-    }
+    Wishlist createWishlist(Wishlist wishlist);
 
-    public Wishlist createWishlist(Wishlist wishlist) {
-        return wishlistRepository.save(wishlist);
-    }
+    Wishlist updateWishlist(Wishlist updateWishlist);
 
-    public Wishlist updateWishlist(Wishlist updateWishlist) {
-        return wishlistRepository.save(updateWishlist);
-    }
+    void deleteWishlist(Long id);
 
-    public void deleteWishlist(Long id) {wishlistRepository.deleteById(id);
-    }
+    List<Wishlist> findWishlisttByWishlistId(Long id);
 
-    public List<Wishlist> findWishlisttByWishlistId(Long id) {
-        List<Wishlist> wishlist = wishlistRepository.findByWishlistId(id);
-        if(wishlist.isEmpty()){
-            return null;
-        } else {
-            return wishlist;
-        }
-    }
+    List<Wishlist> findByBuyerUserName(String keyword);
 
-
-    public List<Wishlist> findByBuyerUserName(String keyword) {
-        List<Wishlist> wishlistBuyerUsername = wishlistRepository.findByBuyerUserName(keyword);
-        return wishlistBuyerUsername;
-    }
-
-    public List<Wishlist> findByBuyerUserUsername(String keyword) {
-        List<Wishlist> wishlistBuyerUserUsername = wishlistRepository.findByBuyerUserUsername(keyword);
-        return wishlistBuyerUserUsername;
-    }
+     List<Wishlist> findByBuyerUserUsername(String keyword);
 }
