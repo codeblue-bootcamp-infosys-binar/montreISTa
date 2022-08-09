@@ -25,34 +25,34 @@ public class DTOConverter {
 
     public static List<PhotoProductDTO> convertPhoto(List<Photo> photos){
 
-        if(photos.isEmpty()){
+        if(photos != null){
+            List<PhotoProductDTO> photosDTO = new ArrayList<>();
+
+            for(Photo photo : photos){
+                PhotoProductDTO photoConvert = photo.convertToProduct();
+                photosDTO.add(photoConvert);
+            }
+
+            return photosDTO;
+        } else {
             return null;
         }
-
-        List<PhotoProductDTO> photosDTO = new ArrayList<>();
-
-        for(Photo photo : photos){
-            PhotoProductDTO photoConvert = photo.convertToProduct();
-            photosDTO.add(photoConvert);
-        }
-
-        return photosDTO;
     }
 
     public static List<String> convertCategories(List<Category> categories){
 
-        if(categories.isEmpty()){
+        if(categories != null){
+            List<String> categoriesDTO = new ArrayList<>();
+
+            for(Category category : categories){
+                String categoryDTO = category.getName();
+                categoriesDTO.add(categoryDTO);
+            }
+
+            return categoriesDTO;
+        } else {
             return null;
         }
-
-        List<String> categoriesDTO = new ArrayList<>();
-
-        for(Category category : categories){
-            String categoryDTO = category.getName();
-            categoriesDTO.add(categoryDTO);
-        }
-
-        return categoriesDTO;
     }
 
     public static List<ProductResponseDTO> convertProducts(List<Product> products){
