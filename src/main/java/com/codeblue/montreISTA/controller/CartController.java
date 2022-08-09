@@ -2,10 +2,8 @@ package com.codeblue.montreISTA.controller;
 
 import com.codeblue.montreISTA.DTO.CartRequestDTO;
 import com.codeblue.montreISTA.DTO.CartResponseDTO;
-import com.codeblue.montreISTA.entity.Cart;
-import com.codeblue.montreISTA.entity.ProductCategory;
 import com.codeblue.montreISTA.response.ResponseHandler;
-import com.codeblue.montreISTA.service.CartServices;
+import com.codeblue.montreISTA.service.CartService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -17,7 +15,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 public class CartController {
-    private CartServices cartServices;
+    private CartService cartService;
 
     /**
      * findAll
@@ -26,7 +24,7 @@ public class CartController {
     @GetMapping("/carts")
     public ResponseEntity<Object> findAll(){
         try{
-            List<CartResponseDTO> results = cartServices.findAll();
+            List<CartResponseDTO> results = cartService.findAll();
             return ResponseHandler.generateResponse("successfully retrieved cart", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -41,7 +39,7 @@ public class CartController {
     @GetMapping("/cart/buyer")
     public ResponseEntity<Object> findByBuyer(@Param("keyword") String keyword){
         try{
-            List<CartResponseDTO> results = cartServices.findByBuyer(keyword);
+            List<CartResponseDTO> results = cartService.findByBuyer(keyword);
             return ResponseHandler.generateResponse("successfully find cart", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -56,7 +54,7 @@ public class CartController {
     @GetMapping("/cart/seller")
     public ResponseEntity<Object> findBySeller(@Param("keyword") String keyword){
         try{
-            List<CartResponseDTO> results = cartServices.findBySeller(keyword);
+            List<CartResponseDTO> results = cartService.findBySeller(keyword);
             return ResponseHandler.generateResponse("successfully find cart", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -70,7 +68,7 @@ public class CartController {
     @GetMapping("/cart/productname")
     public ResponseEntity<Object> findByProductName(@Param("keyword") String keyword){
         try{
-            List<CartResponseDTO> results = cartServices.findByProductName(keyword);
+            List<CartResponseDTO> results = cartService.findByProductName(keyword);
             return ResponseHandler.generateResponse("successfully find cart", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -85,7 +83,7 @@ public class CartController {
     @GetMapping("/cart/Category")
     public ResponseEntity<Object> findByCategory(@Param("keyword") String keyword){
         try{
-            List<CartResponseDTO> results = cartServices.findByCategory(keyword);
+            List<CartResponseDTO> results = cartService.findByCategory(keyword);
             return ResponseHandler.generateResponse("successfully find cart", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -100,7 +98,17 @@ public class CartController {
     @PostMapping("/cart")
     public ResponseEntity<Object> postCart(@RequestBody CartRequestDTO cart) {
         try {
-            CartResponseDTO results = cartServices.createCart(cart);
+            CartResponseDTO results = cartService.createCart(cart);
+            return ResponseHandler.generateResponse("successfully create product category", HttpStatus.OK, results);
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
+        }
+    }
+
+    @PostMapping("/cart/wishlist/{id}")
+    public ResponseEntity<Object> postCart(@PathVariable Long id) {
+        try {
+            CartResponseDTO results = cartService.wishlistToCart(id);
             return ResponseHandler.generateResponse("successfully create product category", HttpStatus.OK, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
@@ -116,7 +124,7 @@ public class CartController {
     @PutMapping("/cart/{id}")
     public ResponseEntity<Object> updateCart(@PathVariable Long id, @RequestBody CartRequestDTO cart) {
         try {
-            CartResponseDTO results = cartServices.updateCart(cart,id);
+            CartResponseDTO results = cartService.updateCart(cart,id);
             return ResponseHandler.generateResponse("successfully update product category", HttpStatus.OK, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
@@ -131,7 +139,7 @@ public class CartController {
     @DeleteMapping("/cart/{id}")
     public ResponseEntity<Object> deleteCart(@PathVariable Long id) {
         try {
-            cartServices.deleteById(id);
+            cartService.deleteById(id);
             return ResponseHandler.generateResponse("successfully delete cart", HttpStatus.OK, "deleted");
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
