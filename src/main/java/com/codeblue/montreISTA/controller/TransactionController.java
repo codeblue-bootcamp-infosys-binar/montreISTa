@@ -1,5 +1,7 @@
 package com.codeblue.montreISTA.controller;
 
+import com.codeblue.montreISTA.DTO.TransactionDetailDTO;
+import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
 import com.codeblue.montreISTA.entity.HistoryTransaction;
 import com.codeblue.montreISTA.entity.HistoryTransactionDetail;
 import com.codeblue.montreISTA.response.ResponseHandler;
@@ -21,7 +23,17 @@ public class TransactionController {
     @GetMapping("/Transactions")
     public ResponseEntity<Object> findAllHistoryTransaction(){
         try{
-            List<HistoryTransaction> results = transactionService.findAllTransaction();
+            List<TransactionResponseDTO> results = transactionService.findAllTransaction();
+            return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
+        }catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
+        }
+    }
+
+    @GetMapping("/Transactions/{id}")
+    public ResponseEntity<Object> findAllHistoryTransactionId(@PathVariable Long id){
+        try{
+            TransactionResponseDTO results = transactionService.findByTransactionId(id);
             return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -31,7 +43,7 @@ public class TransactionController {
     @GetMapping("/Transactions/buyer/{id}")
     public ResponseEntity<Object> findTransactionByBuyer(@PathVariable Long id){
         try{
-            List<HistoryTransaction> results = transactionService.findByTransactionBuyerId(id);
+            List<TransactionResponseDTO> results = transactionService.findByTransactionBuyerId(id);
             return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -41,7 +53,7 @@ public class TransactionController {
     @GetMapping("/Transactions/seller/{id}")
     public ResponseEntity<Object> findTransactionBySeller(@PathVariable Long id){
         try{
-            List<HistoryTransaction> results = transactionService.findByTransactionSellerId(id);
+            List<TransactionResponseDTO> results = transactionService.findByTransactionSellerId(id);
             return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -51,7 +63,17 @@ public class TransactionController {
     @GetMapping("/TransactionDetails")
     public ResponseEntity<Object> findAllTransactionDetails(){
         try{
-            List<HistoryTransactionDetail> results = transactionService.findAllTransactionDetail();
+            List<TransactionDetailDTO> results = transactionService.findAllTransactionDetail();
+            return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
+        }catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
+        }
+    }
+
+    @GetMapping("/TransactionDetails/{id}")
+    public ResponseEntity<Object> findTransactionDetailsId(@PathVariable Long id){
+        try{
+            TransactionDetailDTO results = transactionService.findByTransactionDetailId(id);
             return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -61,7 +83,7 @@ public class TransactionController {
     @GetMapping("/TransactionsDetail/buyer/{id}")
     public ResponseEntity<Object> findTransactionDetailsByBuyer(@PathVariable Long id){
         try{
-            List<HistoryTransactionDetail> results = transactionService.findByTransactionDetailBuyerId(id);
+            List<TransactionDetailDTO> results = transactionService.findByTransactionDetailBuyerId(id);
             return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -71,7 +93,7 @@ public class TransactionController {
     @GetMapping("/TransactionsDetail/seller/{id}")
     public ResponseEntity<Object> findTransactionDetailBySeller(@PathVariable Long id){
         try{
-            List<HistoryTransactionDetail> results = transactionService.findByTransactionDetailSellerId(id);
+            List<TransactionDetailDTO> results = transactionService.findByTransactionDetailSellerId(id);
             return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);

@@ -1,6 +1,8 @@
 package com.codeblue.montreISTA.service;
 
 import com.codeblue.montreISTA.DTO.PhotoProductDTO;
+import com.codeblue.montreISTA.DTO.TransactionDetailDTO;
+import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
 import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.repository.CartRepository;
 import com.codeblue.montreISTA.repository.HistoryTransactionRepository;
@@ -25,33 +27,63 @@ public class TransactionServiceImpl implements TransactionService {
     private CategoryService categoryService;
 
     @Override
-    public List<HistoryTransaction> findAllTransaction() {
-        return transactionRepository.findAllByOrderByHistoryTransactionIdAsc();
+    public List<TransactionResponseDTO> findAllTransaction() {
+        return transactionRepository.findAllByOrderByHistoryTransactionIdAsc().stream()
+                .map(HistoryTransaction::convertToResponse)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<HistoryTransactionDetail> findAllTransactionDetail() {
-        return transactionDetailsRepository.findAllByOrderByTransactionDetailIdAsc();
+    public List<TransactionDetailDTO> findAllTransactionDetail() {
+        return transactionDetailsRepository.findAllByOrderByTransactionDetailIdAsc().stream()
+                .map(HistoryTransactionDetail::convertToResponse)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<HistoryTransaction> findByTransactionBuyerId(Long id) throws Exception {
-        return transactionRepository.findByBuyerBuyerIdOrderByHistoryTransactionIdAsc(id);
+    public List<TransactionResponseDTO> findByTransactionBuyerId(Long id) throws Exception {
+        return transactionRepository.findByBuyerBuyerIdOrderByHistoryTransactionIdAsc(id).stream()
+                .map(HistoryTransaction::convertToResponse)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<HistoryTransaction> findByTransactionSellerId(Long id) throws Exception {
-        return transactionRepository.findBySellerSellerIdOrderByHistoryTransactionIdAsc(id);
+    public List<TransactionResponseDTO> findByTransactionSellerId(Long id) throws Exception {
+        return transactionRepository.findBySellerSellerIdOrderByHistoryTransactionIdAsc(id).stream()
+                .map(HistoryTransaction::convertToResponse)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<HistoryTransactionDetail> findByTransactionDetailBuyerId(Long id) throws Exception {
-        return transactionDetailsRepository.findByHistoryTransactionBuyerBuyerIdOrderByTransactionDetailIdAsc(id);
+    public List<TransactionDetailDTO> findByTransactionDetailBuyerId(Long id) throws Exception {
+        return transactionDetailsRepository.findByHistoryTransactionBuyerBuyerIdOrderByTransactionDetailIdAsc(id).stream()
+                .map(HistoryTransactionDetail::convertToResponse)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<HistoryTransactionDetail> findByTransactionDetailSellerId(Long id) throws Exception {
-        return transactionDetailsRepository.findByHistoryTransactionSellerSellerIdOrderByTransactionDetailIdAsc(id);
+    public List<TransactionDetailDTO> findByTransactionDetailSellerId(Long id) throws Exception {
+        return transactionDetailsRepository.findByHistoryTransactionSellerSellerIdOrderByTransactionDetailIdAsc(id).stream()
+                .map(HistoryTransactionDetail::convertToResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public TransactionResponseDTO findByTransactionId(Long id) throws Exception {
+        Optional<HistoryTransaction> transactionOptional = transactionRepository.findById(id);
+        if(transactionOptional.isEmpty()){
+            throw new Exception("Transaction not found");
+        }
+        return transactionOptional.get().convertToResponse();
+    }
+
+    @Override
+    public TransactionDetailDTO findByTransactionDetailId(Long id) throws Exception {
+        Optional<HistoryTransactionDetail> transactionDetailOptional = transactionDetailsRepository.findById(id);
+        if(transactionDetailOptional.isEmpty()){
+            throw new Exception("Transaction not found");
+        }
+        return transactionDetailOptional.get().convertToResponse();
     }
 
     @Override
