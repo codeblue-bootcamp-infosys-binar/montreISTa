@@ -6,14 +6,13 @@ import com.codeblue.montreISTA.repository.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class CartServiceImpl implements CartServices {
+public class CartServiceImpl implements CartService {
 
     private CartRepository cartRepository;
     private CategoryRepository categoryRepository;
@@ -22,6 +21,7 @@ public class CartServiceImpl implements CartServices {
     private BuyerRepository buyerRepository;
     private PaymentRepository paymentRepository;
     private ShippingRepository shippingRepository;
+    private WishlistRepository wishlistRepository;
 
     @Override
     public List<CartResponseDTO> findAll() {
@@ -94,6 +94,24 @@ public class CartServiceImpl implements CartServices {
         this.updatePrice(orderId);
         //show Cart
         return convertDTO(saveCart);
+    }
+
+    @Override
+    public CartResponseDTO wishlistToCart(Long id) throws Exception {
+        Optional<Wishlist> wishlist = wishlistRepository.findFirstByBuyerBuyerIdOrderByCreatedAtDesc(id);
+        if(wishlist.isEmpty()){
+            throw new Exception("Your wishlist is empty");
+        }
+        CartRequestDTO cartDTO = new CartRequestDTO();
+        cartDTO.setBuyer_id(wishlist.get().getBuyer().getBuyerId());
+        cartDTO.setProduct_id(wishlist.get().getProduct().getProductId());
+        cartDTO.setQuantity(wishlist.get().getQuantity());
+        if(cartDTO==null){
+            throw new Exception("failed to parsing data from wishlist to cart");
+        }else {
+            wishlistRepository.deleteById(id);
+        }
+        return this.createCart(cartDTO);
     }
 
     @Override

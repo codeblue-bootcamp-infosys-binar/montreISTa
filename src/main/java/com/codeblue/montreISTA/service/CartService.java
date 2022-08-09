@@ -5,7 +5,7 @@ import com.codeblue.montreISTA.DTO.CartResponseDTO;
 import com.codeblue.montreISTA.entity.Cart;
 import java.util.List;
 
-public interface CartServices {
+public interface CartService {
     List<CartResponseDTO> findAll();
 
     List<CartResponseDTO> findByBuyer(String keyword) throws Exception;
@@ -14,6 +14,7 @@ public interface CartServices {
     List<CartResponseDTO> findByCategory(String keyword)throws Exception;
 
     CartResponseDTO createCart(CartRequestDTO cartRequestDTO) throws Exception;
+    CartResponseDTO wishlistToCart(Long id) throws Exception;
     CartResponseDTO updateCart(CartRequestDTO cartRequestDTO,Long id)throws Exception;
 
     void deleteById(Long id)throws Exception;
