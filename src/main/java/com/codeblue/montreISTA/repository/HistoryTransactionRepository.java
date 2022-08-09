@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface HistoryTransactionRepository extends JpaRepository<HistoryTransaction,Long> {
+    List<HistoryTransaction> findAllByOrderByHistoryTransactionIdAsc();
     List<HistoryTransaction> findByBuyerBuyerIdOrderByHistoryTransactionIdAsc(Long id);
     List<HistoryTransaction> findBySellerSellerIdOrderByHistoryTransactionIdAsc(Long id);
 }
