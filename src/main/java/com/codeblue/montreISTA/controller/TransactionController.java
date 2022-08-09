@@ -81,11 +81,10 @@ public class TransactionController {
     @GetMapping("/FinishOrder/{id}")
     public ResponseEntity<Object> postCart(@PathVariable Long id) {
         try {
-
             String results = transactionService.createTransaction(id);
-            return ResponseHandler.generateResponse("successfully create product category", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("Successfully Transaction", HttpStatus.OK, results);
         } catch (Exception e) {
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Doing Transactions");
         }
     }
 }

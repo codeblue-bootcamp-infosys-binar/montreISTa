@@ -10,8 +10,8 @@ import java.util.List;
 
 public interface PhotoServices {
     List<PhotoResponseDTO> findAll();
-    List<PhotoResponseDTO> findByPhotoName(String photoName);
-    PhotoResponseDTO createPhoto(PhotoRequestDTO photoRequestDTO);
-    PhotoResponseDTO updatePhoto(Photo photo,Long id);
+    List<PhotoResponseDTO> findByPhotoName(String photoName)throws Exception;
+    PhotoResponseDTO createPhoto(PhotoRequestDTO photoRequestDTO)throws Exception;
+    PhotoResponseDTO updatePhoto(Photo photo,Long id)throws Exception;
     void deleteById(Long id);
 }

@@ -25,17 +25,23 @@ public class SellerService {
     }
 
     public Optional<Seller> findSellerById(Long id) {
+
         return sellerRepository.findById(id);
     }
 
-    public Seller createSeller(SellerRequestDTO seller)  {
+    public Seller createSeller(SellerRequestDTO seller) throws Exception  {
         Optional<User> userOptional = userRepository.findById(seller.getUserId());
+        Optional<Seller> sellerOptional = sellerRepository.findByUserIdUserId(seller.getUserId());
+        if(userOptional.isEmpty() || sellerOptional.isPresent()){
+            throw new Exception("User not found or User has been seller");
+        }
         User user = userOptional.get();
         Seller sellerSave = seller.convertToEntity(user);
-         return sellerRepository.save(sellerSave);
+        return sellerRepository.save(sellerSave);
     }
 
     public Seller updateSeller(Seller updateSeller) {
+
         return sellerRepository.save(updateSeller);
     }
 

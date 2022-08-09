@@ -24,8 +24,6 @@ public class OrderController {
 
     private OrderService orderService;
 
-
-
     /**
      * FindAll
      * @return
@@ -49,6 +47,16 @@ public class OrderController {
     public ResponseEntity<Object> getOrderById(@PathVariable("id") Long id){
         try{
             OrderResponseDTO results = orderService.findOrderById(id);
+            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    @GetMapping("/order/buyer/{id}")
+    public ResponseEntity<Object> getOrderByBuyerId(@PathVariable("id") Long id){
+        try{
+            OrderResponseCartDTO results = orderService.findByBuyerId(id);
             return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);

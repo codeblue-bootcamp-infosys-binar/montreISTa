@@ -80,14 +80,17 @@ public class TransactionServiceImpl implements TransactionService {
             transaction.setTotalPrice(order.getTotalprice());
             HistoryTransaction transactionSave = transactionRepository.save(transaction);
             transactionDetail.setHistoryTransaction(transactionSave);
-            transactionDetail.setDestinationName(order.getDestinationAddress());
+            transactionDetail.setDestinationName(order.getDestinationName());
             transactionDetail.setDestinationAddress(order.getDestinationAddress());
             transactionDetail.setDestinationPhone(order.getDestinationPhone());
             transactionDetail.setZipCode(order.getZipCode());
             transactionDetail.setPaymentName(order.getPayment().getName());
+            transactionDetail.setPaymentCode(order.getPayment().getPaymentCode());
             transactionDetail.setShippingName(order.getShipping().getName());
+            transactionDetail.setShippingPrice(order.getShipping().getPrice());
             transactionDetail.setCategories(category);
             transactionDetail.setProductId(cart.getProduct().getProductId());
+            transactionDetail.setProductName(cart.getProduct().getProductName());
             transactionDetail.setProductPrice(cart.getProduct().getPrice());
             transactionDetail.setProductDescription(cart.getProduct().getDescription());
             transactionDetail.setQuantity(cart.getQuantity());
