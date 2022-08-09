@@ -7,19 +7,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SellerService {
-
-    public List<Seller> findAllSeller();
-
+    List<Seller> findAllSeller();
     Optional<Seller> findSellerById(Long id);
-
-    Seller createSeller(SellerRequestDTO seller);
-
+    Seller createSeller(SellerRequestDTO seller) throws Exception;
     Seller updateSeller(Seller updateSeller);
-
-    List<Seller> findSellertBySellerId(Long id);
-
-    List<Seller> findByUsername(String keyword);
-
     void deleteSeller(Long id);
-
-}
+    List<Seller> findSellertBySellerId(Long id);
+    List<Seller> findByUsername(String keyword);
+    }

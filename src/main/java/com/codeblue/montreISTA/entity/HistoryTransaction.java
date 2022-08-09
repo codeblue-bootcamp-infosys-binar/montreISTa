@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -28,12 +29,24 @@ public class HistoryTransaction{
     @JoinColumn(name="seller_id")
     private Seller seller;
 
-    @NotEmpty
+    @NotNull
     private String photoName;
 
-    @NotEmpty
+    @NotNull
     private String photoUrl;
 
-    @NotEmpty
+    @NotNull
     private Integer totalPrice;
+
+    @Override
+    public String toString() {
+        return "HistoryTransaction{" +
+                "historyTransactionId=" + historyTransactionId +
+                ", buyer=" + buyer +
+                ", seller=" + seller +
+                ", photoName='" + photoName + '\'' +
+                ", photoUrl='" + photoUrl + '\'' +
+                ", totalPrice=" + totalPrice +
+                '}';
+    }
 }

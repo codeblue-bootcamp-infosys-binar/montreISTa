@@ -12,7 +12,6 @@ import lombok.*;
 @Builder
 public class PhotoRequestDTO {
     private Long photo_id;
-
     private String photo_name;
     private String photo_url;
     private Long product_id;

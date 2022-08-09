@@ -9,6 +9,7 @@ import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.helper.DTOConverter;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
+@Tag(name="3. Product")
 public class ProductController {
 
     @Autowired
@@ -29,7 +31,7 @@ public class ProductController {
     CategoryService categoryService;
 
     @Autowired
-    SellerServiceImpl sellerServiceImpl;
+    SellerServiceImpl sellerService;
 //==============================
 
 
@@ -149,7 +151,7 @@ public class ProductController {
     public ResponseEntity<Object> updateProduct(@RequestBody ProductRequestDTO productRequestDTO, @PathVariable("id") Long id){
         try{
             //GET SELLER FROM DATABASE BY ID
-            Optional<Seller> productSeller = sellerServiceImpl.findSellerById(productRequestDTO.getSellerId());
+            Optional<Seller> productSeller = sellerService.findSellerById(productRequestDTO.getSellerId());
             Product product = productRequestDTO.convertToEntity(productSeller.get());
 
             //SAVING THE UPDATES TO DATABASE

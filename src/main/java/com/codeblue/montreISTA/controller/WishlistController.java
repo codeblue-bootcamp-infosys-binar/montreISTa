@@ -5,7 +5,8 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.DTO.WishlistRequestDTO;
 import com.codeblue.montreISTA.entity.Wishlist;
 import com.codeblue.montreISTA.response.ResponseHandler;
-import com.codeblue.montreISTA.service.WishlistServiceImpl;
+import com.codeblue.montreISTA.service.WishlistService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -18,16 +19,16 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
+@Tag(name="6. Wishlist")
 public class WishlistController {
 
-    @Autowired
-    WishlistServiceImpl wishlistServiceImpl;
+    private WishlistService wishlistService;
 
     //GET ALL
     @GetMapping("/wishlist")
     public ResponseEntity<Object> getAllWishlist(){
         try{
-            List<Wishlist> wishlists = wishlistServiceImpl.findAllWishlist();
+            List<Wishlist> wishlists = wishlistService.findAllWishlist();
 
             return ResponseHandler.generateResponse("successfully retrieved wishlist", HttpStatus.OK, wishlists);
         } catch (Exception e){
@@ -39,7 +40,7 @@ public class WishlistController {
     @GetMapping("/wishlist/store/{wishlist_id}")
     public ResponseEntity<Object> getAllWishlistByWishlistId(@PathVariable("wishlist_id") Long wishlistId){
         try{
-            List<Wishlist> wishlist = wishlistServiceImpl.findWishlisttByWishlistId(wishlistId);
+            List<Wishlist> wishlist = wishlistService.findWishlisttByWishlistId(wishlistId);
             return ResponseHandler.generateResponse("successfully retrieved wishlists", HttpStatus.OK, wishlist);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.MULTI_STATUS, null);
@@ -49,7 +50,7 @@ public class WishlistController {
     @GetMapping("/wishlist/buyer/username")
     public ResponseEntity<Object> findByBuyerUsername(@Param("keyword") String keyword){
         try{
-            List<Wishlist> wishlists = wishlistServiceImpl.findByBuyerUserName(keyword);
+            List<Wishlist> wishlists = wishlistService.findByBuyerUserName(keyword);
 
             return ResponseHandler.generateResponse("successfully retrieved buyer username", HttpStatus.OK, wishlists);
         } catch (Exception e){
@@ -60,7 +61,7 @@ public class WishlistController {
     @GetMapping("/wishlist/Buyer/User/username")
     public ResponseEntity<Object> findByBuyerUserUsername(@Param("keyword") String keyword){
         try{
-            List<Wishlist> wishlists = wishlistServiceImpl.findByBuyerUserUsername(keyword);
+            List<Wishlist> wishlists = wishlistService.findByBuyerUserUsername(keyword);
 
             return ResponseHandler.generateResponse("successfully retrieved buyer username", HttpStatus.OK, wishlists);
         } catch (Exception e){
@@ -72,7 +73,7 @@ public class WishlistController {
     @GetMapping("/wishlist/{id}")
     public ResponseEntity<Object> getWishlistById(@PathVariable("id") Long id){
         try{
-            Optional<Wishlist> wishlist = wishlistServiceImpl.findWishlistById(id);
+            Optional<Wishlist> wishlist = wishlistService.findWishlistById(id);
             return ResponseHandler.generateResponse("successfully retrieved wishlist", HttpStatus.OK, wishlist);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -83,7 +84,7 @@ public class WishlistController {
     @PostMapping("/wishlist/create")
     public ResponseEntity<Object> createWishlist(@RequestBody Wishlist wishlistRequestDTO){
         try {
-            Wishlist wishlist = wishlistServiceImpl.createWishlist(wishlistRequestDTO);
+            Wishlist wishlist = wishlistService.createWishlist(wishlistRequestDTO);
             return ResponseHandler.generateResponse("successfully retrieved wishlist", HttpStatus.CREATED, wishlist);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
@@ -94,13 +95,13 @@ public class WishlistController {
     @PutMapping("/wishlist/update/{id}")
     public ResponseEntity<Object> updateWishlist(@RequestBody WishlistRequestDTO wishlistRequestDTO, @PathVariable("id") Long id){
         try{
-            Optional<Wishlist> targetWishlist = wishlistServiceImpl.findWishlistById(id);
+            Optional<Wishlist> targetWishlist = wishlistService.findWishlistById(id);
             Wishlist updateWishlist = targetWishlist.get();
             updateWishlist.setWishlistId(id);
             updateWishlist.setBuyer(wishlistRequestDTO.getBuyer());
             updateWishlist.setProduct(wishlistRequestDTO.getProduct());
 
-            wishlistServiceImpl.updateWishlist(updateWishlist);
+            wishlistService.updateWishlist(updateWishlist);
             return ResponseHandler.generateResponse("successfully updated Wishlist", HttpStatus.CREATED, updateWishlist);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -111,7 +112,7 @@ public class WishlistController {
     @DeleteMapping("/wishlist/delete/{id}")
     public ResponseEntity<Object> deleteWishlist(@PathVariable("id") Long id){
         try{
-            wishlistServiceImpl.deleteWishlist(id);
+            wishlistService.deleteWishlist(id);
             return ResponseHandler.generateResponse("successfully deleted wishlist", HttpStatus.MULTI_STATUS, null);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);

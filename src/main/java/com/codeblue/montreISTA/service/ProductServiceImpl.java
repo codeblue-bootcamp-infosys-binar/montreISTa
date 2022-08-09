@@ -16,7 +16,7 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     ProductRepository productRepository;
     @Autowired
-    SellerServiceImpl sellerServiceImpl;
+    SellerServiceImpl sellerService;
 
     public List<Product> findAllProduct() {
         List<Product> products = productRepository.findAll();
@@ -61,7 +61,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     public Product createProduct(ProductRequestDTO productRequestDTO) {
-        Optional<Seller> productSeller = sellerServiceImpl.findSellerById(productRequestDTO.getSellerId());
+        Optional<Seller> productSeller = sellerService.findSellerById(productRequestDTO.getSellerId());
         Seller seller = productSeller.get();
         Product newProduct = productRequestDTO.convertToEntity(seller);
 
