@@ -104,7 +104,7 @@ public class OrderController {
      * Update Order
      * @return
      */
-    @PutMapping("/order/update/buyer/{id}")
+    @PutMapping("/orderNow/buyer/{id}")
     public ResponseEntity<Object> updateOrder(@RequestBody OrderRequestDTO orderRequestDTO, @PathVariable("id") Long id){
         try {
             OrderResponseDTO results = orderService.updateOrder(orderRequestDTO,id);
