@@ -1,49 +1,23 @@
 package com.codeblue.montreISTA.service;
 
-
-
 import com.codeblue.montreISTA.entity.Shipping;
-import com.codeblue.montreISTA.repository.ShippingRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class ShippingService {
-    @Autowired
-    ShippingRepository shippingRepository;
+public interface ShippingService {
 
-    public List<Shipping> findAllShipping() {
-        List<Shipping> shippings = shippingRepository.findAll();
-        return shippings;
-    }
+    List<Shipping> findAllShipping();
 
-    public Optional<Shipping> findShippingById(Long id) {return shippingRepository.findById(id);
-    }
+    Optional<Shipping> findShippingById(Long id);
 
-    public Shipping createShipping(Shipping shipping) {return shippingRepository.save(shipping);
-    }
+    Shipping createShipping(Shipping shipping);
 
-    public Shipping updateShipping(Shipping updateShipping) {
-        return shippingRepository.save(updateShipping);
-    }
+    Shipping updateShipping(Shipping updateShipping);
 
-    public void deleteShipping(Long id) {shippingRepository.deleteById(id);
-    }
+    void deleteShipping(Long id);
 
-    public List<Shipping> findShippingByShippingId(Long id) {
-        List<Shipping> shipping = shippingRepository.findByShippingId(id);
-        if(shipping.isEmpty()){
-            return null;
-        } else {
-            return shipping;
-        }
-    }
+    List<Shipping> findShippingByShippingId(Long id);
 
-    public List<Shipping> findByName(String keyword) {
-        List<Shipping> shippingName = shippingRepository.findByName(keyword);
-        return shippingName;
-    }
+    List<Shipping> findByName(String keyword);
 }
