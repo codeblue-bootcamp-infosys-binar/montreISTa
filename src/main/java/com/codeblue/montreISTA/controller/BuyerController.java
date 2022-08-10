@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
-@Tag(name="6. Buyer")
+@Tag(name="06. Buyer")
 public class BuyerController {
 
     private BuyerService buyerService;

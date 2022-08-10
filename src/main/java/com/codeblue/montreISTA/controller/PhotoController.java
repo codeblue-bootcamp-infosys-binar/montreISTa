@@ -22,7 +22,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="4. Photo")
+@Tag(name="04. Photo")
 public class PhotoController {
     private PhotoService photoService;
 

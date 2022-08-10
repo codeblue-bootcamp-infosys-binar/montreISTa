@@ -14,7 +14,7 @@ public interface CartService {
     List<CartResponseDTO> findByCategory(String keyword)throws Exception;
 
     CartResponseDTO createCart(CartRequestDTO cartRequestDTO) throws Exception;
-    CartResponseDTO wishlistToCart(Long id) throws Exception;
+    List<CartResponseDTO> wishlistToCart(Long id) throws Exception;
     CartResponseDTO updateCart(CartRequestDTO cartRequestDTO,Long id)throws Exception;
     List<CartResponseDTO> convertListDTO(List<Cart> carts);
     CartResponseDTO convertDTO (Cart cart);

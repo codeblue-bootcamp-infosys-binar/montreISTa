@@ -13,7 +13,7 @@ import java.util.*;
 
 @AllArgsConstructor
 @RestController
-@Tag(name="1. User")
+@Tag(name="01. User")
 public class UserController {
 
     private UserService userService;

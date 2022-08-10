@@ -62,7 +62,12 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    public Product createProduct(ProductRequestDTO productRequestDTO) {
+    public Product createProduct(ProductRequestDTO productRequestDTO) throws Exception{
+        List<Product> products = productRepository.findBySellerSellerId(productRequestDTO.getSellerId());
+        Integer count = products.size();
+        if(count >=5 ){
+            throw new Exception("User can only have 4 Products");
+        }
         Optional<Seller> productSeller = sellerService.findSellerById(productRequestDTO.getSellerId());
         Seller seller = productSeller.get();
         Product newProduct = productRequestDTO.convertToEntity(seller);
