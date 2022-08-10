@@ -151,7 +151,7 @@ public class PhotoServiceImp implements PhotoService {
 
     @Override
     public void deleteById(Long id) {
-        photoRepository.deleteAll();
+        photoRepository.deleteById(id);
     }
 
 

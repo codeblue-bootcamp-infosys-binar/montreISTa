@@ -126,7 +126,7 @@ public class PhotoController {
     }
 
     @DeleteMapping("/photo/{id}")
-    public ResponseEntity<Object> deletePhoto(@PathVariable Long id){
+    public ResponseEntity<Object> deletePhoto(@RequestParam Long id){
        try{
            photoService.deleteById(id);
         return ResponseHandler.generateResponse("successfully delete product", HttpStatus.OK, "deleted");
