@@ -23,7 +23,7 @@ public class BuyerController {
     private BuyerService buyerService;
 
     //GET ALL
-    @GetMapping("/buyer")
+    @GetMapping("/user/buyer")
     public ResponseEntity<Object> getAllBuyer(){
         try{
             List<Buyer> buyers = buyerService.findAllBuyer();
@@ -34,7 +34,7 @@ public class BuyerController {
         }
     }
 
-    @GetMapping("/buyers/store/{buyer_id}")
+    @GetMapping("/buyers/store")
     public ResponseEntity<Object> findByUsername(@Param ("keyword")String keyword){
         try{
             List<Buyer> buyers = buyerService.findByUsername(keyword);
@@ -46,7 +46,7 @@ public class BuyerController {
     }
 
     //GET ALL BY BUYER ID
-    @GetMapping("/buyers/store{buyer_id}")
+    @GetMapping("/dashboard/buyers/store{buyer_id}")
     public ResponseEntity<Object> getAllBuyerByBuyerId(@PathVariable("buyer_id") Long buyerId){
         try{
             List<Buyer> buyer = buyerService.findBuyerByBuyerId(buyerId);
@@ -69,7 +69,7 @@ public class BuyerController {
     }
 
     //CREATE
-    @PostMapping("/buyers/create")
+    @PostMapping("/user/buyers/create")
     public ResponseEntity<Object> createBuyer(@RequestBody BuyerRequestDTO newBuyer){
         try {
             Buyer buyer = buyerService.createBuyer(newBuyer);
@@ -80,7 +80,7 @@ public class BuyerController {
     }
 
     //UPDATE
-    @PutMapping("/buyers/update/{id}")
+    @PutMapping("/user/buyers/update/{id}")
     public ResponseEntity<Object> updateBuyer(@RequestBody Buyer buyer, @PathVariable("id") Long id){
         try{
             Optional<Buyer> targetBuyer = buyerService.findBuyerById(id);
@@ -95,7 +95,7 @@ public class BuyerController {
     }
 
     //DELETE
-    @DeleteMapping("/buyers/delete/{id}")
+    @DeleteMapping("/user/buyers/delete/{id}")
     public ResponseEntity<Object> deleteBuyer(@PathVariable("id") Long id){
         try{
             buyerService.deleteBuyer(id);

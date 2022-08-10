@@ -20,7 +20,7 @@ import java.util.List;
 public class TransactionController {
     private final TransactionService transactionService;
 
-    @GetMapping("/Transactions")
+    @GetMapping("/user/transactions")
     public ResponseEntity<Object> findAllHistoryTransaction(){
         try{
             List<TransactionResponseDTO> results = transactionService.findAllTransaction();
@@ -30,7 +30,7 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/Transactions/{id}")
+    @GetMapping("/user/transactions/{id}")
     public ResponseEntity<Object> findAllHistoryTransactionId(@PathVariable Long id){
         try{
             TransactionResponseDTO results = transactionService.findByTransactionId(id);
@@ -40,7 +40,7 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/Transactions/buyer/{id}")
+    @GetMapping("/user/transactions/buyer/{id}")
     public ResponseEntity<Object> findTransactionByBuyer(@PathVariable Long id){
         try{
             List<TransactionResponseDTO> results = transactionService.findByTransactionBuyerId(id);
@@ -50,7 +50,7 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/Transactions/seller/{id}")
+    @GetMapping("/user/transactions/seller/{id}")
     public ResponseEntity<Object> findTransactionBySeller(@PathVariable Long id){
         try{
             List<TransactionResponseDTO> results = transactionService.findByTransactionSellerId(id);
@@ -60,7 +60,7 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/TransactionDetails")
+    @GetMapping("/user/transaction-details")
     public ResponseEntity<Object> findAllTransactionDetails(){
         try{
             List<TransactionDetailDTO> results = transactionService.findAllTransactionDetail();
@@ -70,7 +70,7 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/TransactionDetails/{id}")
+    @GetMapping("/user/transaction-details/{id}")
     public ResponseEntity<Object> findTransactionDetailsId(@PathVariable Long id){
         try{
             TransactionDetailDTO results = transactionService.findByTransactionDetailId(id);
@@ -80,7 +80,7 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/TransactionsDetail/buyer/{id}")
+    @GetMapping("/user/transactions-detail/buyer/{id}")
     public ResponseEntity<Object> findTransactionDetailsByBuyer(@PathVariable Long id){
         try{
             List<TransactionDetailDTO> results = transactionService.findByTransactionDetailBuyerId(id);
@@ -90,7 +90,7 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/TransactionsDetail/seller/{id}")
+    @GetMapping("/user/transactions-detail/seller/{id}")
     public ResponseEntity<Object> findTransactionDetailBySeller(@PathVariable Long id){
         try{
             List<TransactionDetailDTO> results = transactionService.findByTransactionDetailSellerId(id);
@@ -100,7 +100,7 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/FinishOrder/{id}")
+    @GetMapping("/user/finish-order/{id}")
     public ResponseEntity<Object> postCart(@PathVariable Long id) {
         try {
             String results = transactionService.createTransaction(id);

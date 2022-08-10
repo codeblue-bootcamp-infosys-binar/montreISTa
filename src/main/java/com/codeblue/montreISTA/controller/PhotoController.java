@@ -99,7 +99,7 @@ public class PhotoController {
      * @param photo
      * @return
      */
-    @PostMapping("/photo")
+    @PostMapping("/user/photo")
     public ResponseEntity<Object> postPhoto(@RequestBody PhotoRequestDTO photo) {
         try {
             PhotoResponseDTO results = photoService.createPhoto(photo);
@@ -115,7 +115,7 @@ public class PhotoController {
      * @param photo
      * @return
      */
-    @PutMapping("/photo/{id}")
+    @PutMapping("/user/photo/{id}")
     public ResponseEntity<Object> updatePhoto(@PathVariable Long id, @RequestBody PhotoRequestDTO photo){
     try{
         PhotoResponseDTO results = photoService.updatePhoto(photo,id);
@@ -125,7 +125,7 @@ public class PhotoController {
         }
     }
 
-    @DeleteMapping("/photo/{id}")
+    @DeleteMapping("/user/photo/{id}")
     public ResponseEntity<Object> deletePhoto(@PathVariable Long id){
        try{
            photoService.deleteById(id);
