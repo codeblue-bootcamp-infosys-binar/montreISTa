@@ -58,6 +58,26 @@ public class PhotoController {
         }
     }
 
+    @GetMapping("/photo/seller/{id}")
+    public ResponseEntity<Object> findBySellerId(@PathVariable Long id){
+        try{
+            List<PhotoResponseDTO> results = photoService.findBySellerId(id);
+            return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, results);
+        }catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
+        }
+    }
+
+    @GetMapping("/photo/product/{id}")
+    public ResponseEntity<Object> findByProduct(@PathVariable Long id){
+        try{
+            List<PhotoResponseDTO> results = photoService.findByProductId(id);
+            return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, results);
+        }catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
+        }
+    }
+
     /**
      * Create Photo
      * @param photo
