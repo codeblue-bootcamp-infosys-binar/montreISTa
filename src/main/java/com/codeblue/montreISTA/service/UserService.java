@@ -14,7 +14,7 @@ public interface UserService {
 
     public List<User> findAllUser();
 
-    public Optional<User> findUserById(Long id);
+    public User findByUserId(Long id) throws Exception;
 
     public User createUser(User user);
 
@@ -22,7 +22,6 @@ public interface UserService {
 
     public void deleteUser(Long id);
 
-    public List<User> findUserByUserId(Long id) ;
     public List<User> findByUsername(String keyword) ;
     public List<User> findByName(String keyword) ;
 }
