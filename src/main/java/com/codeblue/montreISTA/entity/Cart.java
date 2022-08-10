@@ -3,7 +3,6 @@ package com.codeblue.montreISTA.entity;
 import com.codeblue.montreISTA.DTO.CartResponseDTO;
 import com.codeblue.montreISTA.DTO.OrderCartDTO;
 import com.codeblue.montreISTA.DTO.PhotoProductDTO;
-import com.codeblue.montreISTA.service.PhotoServiceImp;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
@@ -48,18 +47,15 @@ public class Cart extends AuditEntity{
     private String jwttoken; //pas uda ada security, coba
 */
 
-    public OrderCartDTO convertToOrder(){
+    public OrderCartDTO convertToOrder(String photo){
         return OrderCartDTO.builder()
                 .cart_id(this.cartId)
                 .buyer_id(this.getBuyer().getBuyerId())
-                .buyer_username(this.getBuyer().getUser().getUsername())
-                .seller_name(this.getProduct().getSeller().getUserId().getName())
-                .store_name(this.getProduct().getSeller().getStoreName())
-                .store_address(this.getProduct().getSeller().getStoreAddress())
+                .product_id(this.getProduct().getProductId())
                 .product_name(this.getProduct().getProductName())
                 .product_price(this.getProduct().getPrice())
-                .product_description(this.getProduct().getDescription())
                 .quantity(this.quantity)
+                .photo_product(photo)
                 .build();
     }
     public CartResponseDTO convertToResponse(List<PhotoProductDTO> photoDTO, List<String> categories){

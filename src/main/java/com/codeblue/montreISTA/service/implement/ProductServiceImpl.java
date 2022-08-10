@@ -1,29 +1,24 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
-import com.codeblue.montreISTA.DTO.PhotoProductDTO;
 import com.codeblue.montreISTA.DTO.ProductRequestDTO;
-import com.codeblue.montreISTA.DTO.ProductResponseDTO;
-import com.codeblue.montreISTA.entity.Category;
-import com.codeblue.montreISTA.entity.Photo;
 import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.entity.Seller;
-import com.codeblue.montreISTA.helper.DTOConverter;
 import com.codeblue.montreISTA.repository.ProductRepository;
+import com.codeblue.montreISTA.service.ProductService;
+import com.codeblue.montreISTA.service.implement.SellerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductRepository productRepository;
     @Autowired
-    SellerService sellerService;
+    SellerServiceImpl sellerService;
 
     public List<Product> findAllProduct() {
         List<Product> products = productRepository.findAll();
@@ -75,7 +70,11 @@ public class ProductServiceImpl implements ProductService{
         return productRepository.save(newProduct);
     }
 
-    public Product updateProduct(Product product, Long id) {
+    public Product updateProduct(ProductRequestDTO productRequestDTO, Long id) {
+
+        //GET SELLER FROM DATABASE BY ID
+        Optional<Seller> productSeller = sellerService.findSellerById(productRequestDTO.getSellerId());
+        Product product = productRequestDTO.convertToEntity(productSeller.get());
 
         Optional<Product> targetProduct = findProductById(id);
         Product updateProduct = targetProduct.get();

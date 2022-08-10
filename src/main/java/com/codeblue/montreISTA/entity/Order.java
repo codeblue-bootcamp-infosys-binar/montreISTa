@@ -1,9 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
 
-import com.codeblue.montreISTA.DTO.OrderCartDTO;
-import com.codeblue.montreISTA.DTO.OrderResponseDTO;
-import com.codeblue.montreISTA.DTO.OrderResponsePost;
+import com.codeblue.montreISTA.DTO.*;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
@@ -48,7 +46,15 @@ public class Order extends AuditEntity{
             fetch = FetchType.LAZY)
     private List<Cart> listCart;
 
-    public OrderResponseDTO convertToResponse(List<OrderCartDTO> cartDTO){
+    public OrderResponseCartDTO convertCart(List<OrderCartDTO> carts){
+        return OrderResponseCartDTO.builder()
+                .orderId(this.getOrderId())
+                .total_price(this.getTotalprice())
+                .cart(carts)
+                .build();
+    }
+
+    public OrderResponseDTO convertToResponse(List<CartResponseDTO> cartDTO){
         return OrderResponseDTO.builder()
                 .orderId(this.getOrderId())
                 .listCart(cartDTO)
@@ -66,17 +72,7 @@ public class Order extends AuditEntity{
                 .build();
         }
 
-   public OrderResponsePost convertToResponsePost(){
-        return OrderResponsePost.builder()
-                .order_id(this.getOrderId())
-                .payment_id(this.getPayment().getPaymentId())
-                .payment_name(this.payment.getName())
-                .shipping_id(this.getShipping().getShippingId())
-                .shipping_name(this.getShipping().getName())
-                .createdAt(this.getCreatedAt())
-                .modifiedAt(this.getModifiedAt())
-                .build();
-    }
+
     @Override
     public String toString() {
         return "Order{" +

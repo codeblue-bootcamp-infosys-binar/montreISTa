@@ -1,19 +1,19 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.repository.*;
+import com.codeblue.montreISTA.service.CartService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class CartServiceImpl implements CartServices {
+public class CartServiceImpl implements CartService {
 
     private CartRepository cartRepository;
     private CategoryRepository categoryRepository;
@@ -22,6 +22,7 @@ public class CartServiceImpl implements CartServices {
     private BuyerRepository buyerRepository;
     private PaymentRepository paymentRepository;
     private ShippingRepository shippingRepository;
+    private WishlistRepository wishlistRepository;
 
     @Override
     public List<CartResponseDTO> findAll() {
@@ -97,6 +98,24 @@ public class CartServiceImpl implements CartServices {
     }
 
     @Override
+    public CartResponseDTO wishlistToCart(Long id) throws Exception {
+        Optional<Wishlist> wishlist = wishlistRepository.findFirstByBuyerBuyerIdOrderByCreatedAtDesc(id);
+        if(wishlist.isEmpty()){
+            throw new Exception("Your wishlist is empty");
+        }
+        CartRequestDTO cartDTO = new CartRequestDTO();
+        cartDTO.setBuyer_id(wishlist.get().getBuyer().getBuyerId());
+        cartDTO.setProduct_id(wishlist.get().getProduct().getProductId());
+        cartDTO.setQuantity(wishlist.get().getQuantity());
+        if(cartDTO==null){
+            throw new Exception("failed to parsing data from wishlist to cart");
+        }else {
+            wishlistRepository.deleteById(wishlist.get().getWishlistId());
+        }
+        return this.createCart(cartDTO);
+    }
+
+    @Override
     public CartResponseDTO updateCart(CartRequestDTO cartRequestDTO, Long id) throws Exception {
         Optional<Cart> cartId = this.cartRepository.findById(id);
         if(cartId.isEmpty()){
@@ -137,7 +156,6 @@ public class CartServiceImpl implements CartServices {
                 .map(Category::getName)
                 .collect(Collectors.toList());
         return cart.convertToResponse(photosDTO, categoriesDTO);
-
     }
 
     public Cart requestToEntity (CartRequestDTO cartRequestDTO, Long id)throws Exception{

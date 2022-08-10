@@ -7,6 +7,7 @@ import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.OrderService;
 import com.codeblue.montreISTA.service.PaymentService;
 import com.codeblue.montreISTA.service.ShippingService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -18,13 +19,11 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping
 @AllArgsConstructor
+@Tag(name="8. Order")
 public class OrderController {
 
     private OrderService orderService;
-
-
 
     /**
      * FindAll
@@ -49,6 +48,16 @@ public class OrderController {
     public ResponseEntity<Object> getOrderById(@PathVariable("id") Long id){
         try{
             OrderResponseDTO results = orderService.findOrderById(id);
+            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    @GetMapping("/order/buyer/{id}")
+    public ResponseEntity<Object> getOrderByBuyerId(@PathVariable("id") Long id){
+        try{
+            OrderResponseCartDTO results = orderService.findByBuyerId(id);
             return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -104,7 +113,7 @@ public class OrderController {
      * Update Order
      * @return
      */
-    @PutMapping("/order/update/buyer/{id}")
+    @PutMapping("/orderNow/buyer/{id}")
     public ResponseEntity<Object> updateOrder(@RequestBody OrderRequestDTO orderRequestDTO, @PathVariable("id") Long id){
         try {
             OrderResponseDTO results = orderService.updateOrder(orderRequestDTO,id);

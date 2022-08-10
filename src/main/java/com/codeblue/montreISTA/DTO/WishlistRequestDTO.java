@@ -15,15 +15,18 @@ public class WishlistRequestDTO {
 
     private Long wishlistId;
 
-    private Buyer buyer;
+    private Long buyerId;
 
-    private Product product;
+    private Long productId;
 
-    public Wishlist convertToEntity(Wishlist wishlist){
+    private Integer quantity;
+
+    public Wishlist convertToEntity(Buyer buyer, Product product){
         return Wishlist.builder()
                 .wishlistId(this.wishlistId)
-                .buyer(this.buyer)
-                .product(this.product)
+                .buyer(buyer)
+                .product(product)
+                .quantity(this.quantity)
                 .build();
     }
 

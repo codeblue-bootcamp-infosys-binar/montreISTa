@@ -13,27 +13,23 @@ import java.time.ZonedDateTime;
 public class WishlistResponseDTO {
 
     private Long wishlist_id;
+    private Long buyer_id;
 
-    private Long buyerId;
-
-    private Long productId;
-
-    private ZonedDateTime createdAt;
-
-    private ZonedDateTime modifiedAt;
+    private ProductResponseDTO product;
+    private Integer quantity;
+    private ZonedDateTime created_at;
+    private ZonedDateTime modified_at;
 
 
     @Override
     public String toString() {
         return "WishlistResponseDTO{" +
-                "wishlistId=" + wishlist_id +
-                ", buyerId=" + buyerId +
-                ", productId='" + productId + '\'' +
-                ", createdAt=" + createdAt +
-                ", modifiedAt=" + modifiedAt +
+                "wishlist_id=" + wishlist_id +
+                ", buyer_id=" + buyer_id +
+                ", product_id=" + product +
+                ", quantity=" + quantity +
+                ", created_at=" + created_at +
+                ", modified_at=" + modified_at +
                 '}';
     }
-
-
-
 }

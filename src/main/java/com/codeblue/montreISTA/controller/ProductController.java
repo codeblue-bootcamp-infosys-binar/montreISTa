@@ -1,46 +1,42 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.DTO.PhotoProductDTO;
 import com.codeblue.montreISTA.DTO.ProductRequestDTO;
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
-import com.codeblue.montreISTA.entity.Category;
-import com.codeblue.montreISTA.entity.Photo;
 import com.codeblue.montreISTA.entity.Product;
-import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.helper.DTOConverter;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.*;
+import com.codeblue.montreISTA.service.implement.SellerServiceImpl;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
+@Tag(name="3. Product")
 public class ProductController {
 
     @Autowired
     ProductService productService;
 
+
     @Autowired
     CategoryService categoryService;
 
     @Autowired
-    SellerService sellerService;
-//==============================
-
+    SellerServiceImpl sellerService;
 
     //GET ALL PRODUCTS
     @GetMapping("/products")
     public ResponseEntity<Object> getAllProduct(){
         try{
             List<Product> products = productService.findAllProduct();
-//            List<Category> categories = categoryService.findByProductId(products.getProductId());
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
 
             return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, productResponseDTOS);
@@ -68,11 +64,7 @@ public class ProductController {
     public ResponseEntity<Object> getProductById(@PathVariable("id") Long id){
         try{
             Optional<Product> product = productService.findProductById(id);
-            List<PhotoProductDTO> photosDTO = DTOConverter.convertPhoto(product.get().getPhotos());
-            List<Category> categories = categoryService.findByProductId(product.get().getProductId());
-            List<String> categoriesDTO = DTOConverter.convertCategories(categories);
-
-            ProductResponseDTO productResponseDTO = product.get().convertToResponse(photosDTO, categoriesDTO);
+            ProductResponseDTO productResponseDTO = DTOConverter.convertOneProducts(product.get());
 
             return ResponseHandler.generateResponse("successfully retrieved product", HttpStatus.OK, productResponseDTO);
         } catch (Exception e){
@@ -132,17 +124,16 @@ public class ProductController {
         }
     }
 
-
     //CREATE PRODUCT
     @PostMapping("/products/create")
     public ResponseEntity<Object> createProduct(@RequestBody ProductRequestDTO productRequestDTO){
         try {
             Product newProduct = productService.createProduct(productRequestDTO);
-            ProductResponseDTO productResponseDTO = newProduct.convertToResponse(null, null);
+            ProductResponseDTO productResponseDTO = DTOConverter.convertOneProducts(newProduct);
 
             return ResponseHandler.generateResponse("successfully retrieved product", HttpStatus.CREATED, productResponseDTO);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,null);
         }
     }
 
@@ -150,24 +141,12 @@ public class ProductController {
     @PutMapping("/products/update/{id}")
     public ResponseEntity<Object> updateProduct(@RequestBody ProductRequestDTO productRequestDTO, @PathVariable("id") Long id){
         try{
-            //GET SELLER FROM DATABASE BY ID
-            Optional<Seller> productSeller = sellerService.findSellerById(productRequestDTO.getSellerId());
-            Product product = productRequestDTO.convertToEntity(productSeller.get());
-
-            //SAVING THE UPDATES TO DATABASE
-            Product updateProduct = productService.updateProduct(product, id);
-
-//            //LOOPING THROUGH PHOTO TO CONVERT PHOTO AND CATEGORIES WITH DTO
-//            List<PhotoProductDTO> photoProductDTOS = DTOConverter.convertPhoto(product.getPhotos());
-//            List<Category> categories = categoryService.findByProductId(product.getProductId());
-//            List<String> categoriesDTO = DTOConverter.convertCategories(categories);
-
-            //CONVERTING PRODUCT TO RESPONSE DTO
-            ProductResponseDTO productResponseDTO = updateProduct.convertToResponse(null,null);
+            Product updateProduct = productService.updateProduct(productRequestDTO, id);
+            ProductResponseDTO productResponseDTO = DTOConverter.convertOneProducts(updateProduct);
 
             return ResponseHandler.generateResponse("successfully updated product", HttpStatus.CREATED, productResponseDTO);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
         }
     }
 
@@ -176,9 +155,10 @@ public class ProductController {
     public ResponseEntity<Object> deleteProduct(@PathVariable("id") Long id){
         try{
             productService.deleteProduct(id);
+
             return ResponseHandler.generateResponse("successfully deleted product", HttpStatus.MULTI_STATUS, null);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
         }
 
     }

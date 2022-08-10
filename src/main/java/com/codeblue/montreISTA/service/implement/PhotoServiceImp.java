@@ -1,10 +1,11 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 
 import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.repository.PhotoRepository;
 import com.codeblue.montreISTA.repository.ProductRepository;
+import com.codeblue.montreISTA.service.PhotoService;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
@@ -97,8 +98,17 @@ public class PhotoServiceImp implements PhotoService {
      * @return
      */
     @Override
-    public PhotoResponseDTO createPhoto(PhotoRequestDTO photoRequestDTO) {
+    public PhotoResponseDTO createPhoto(PhotoRequestDTO photoRequestDTO) throws Exception {
         Optional<Product> photoproduct = productRepository.findById(photoRequestDTO.getProduct_id());
+        if(photoproduct.isEmpty()){
+            throw new Exception("Product not found");
+        }
+        /* validation
+        if(photoproduct.get().getSeller().getUserId().getName()!=principal.getName)
+        {
+            throw new Exception("You only can add photo for your product");
+        }
+        */
         Product product = photoproduct.get();
         Photo savePhoto = photoRequestDTO.convertToEntity(product);
         photoRepository.save(savePhoto);
@@ -116,12 +126,20 @@ public class PhotoServiceImp implements PhotoService {
     public PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO, Long id) throws Exception {
         Optional<Product> photoproduct = productRepository.findById(photoRequestDTO.getProduct_id());
         Product product = photoproduct.get();
-        Photo photo = photoRequestDTO.convertToEntity(product);
+        /* validation
+        if(photoproduct.get().getSeller().getUserId().getName()!=principal.getName)
+        {
+            throw new Exception("You only can add photo for your product");
+        }
+        */
+        Photo photo = photoRepository.findById(photoRequestDTO.getPhoto_id()).orElseThrow(Exception::new);
         Optional<Photo> photoId = photoRepository.findById(id);
         if (photoId.isEmpty()) {
             throw new Exception("Photo not found");
         }
-        photo.setPhotoId(id);
+        photo.setProduct(product);
+        photo.setPhotoURL(photoRequestDTO.getPhoto_url());
+        photo.setPhotoName(photoRequestDTO.getPhoto_name());
         Photo savePhoto = photoRepository.save(photo);
         return savePhoto.convertToResponse();
     }

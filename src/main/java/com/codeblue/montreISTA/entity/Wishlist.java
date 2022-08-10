@@ -1,10 +1,11 @@
 package com.codeblue.montreISTA.entity;
 
 
-import com.codeblue.montreISTA.service.PhotoServiceImp;
+import com.codeblue.montreISTA.DTO.ProductResponseDTO;
+import com.codeblue.montreISTA.DTO.WishlistResponseDTO;
 import com.sun.istack.NotNull;
 import lombok.*;
-import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 
 @Getter
@@ -29,5 +30,18 @@ public class Wishlist extends AuditEntity {
     @JoinColumn(name = "product_id")
     @NotNull
     private Product product;
+
+    private Integer quantity;
+
+    public WishlistResponseDTO convertToResponse(ProductResponseDTO productDTO){
+        return WishlistResponseDTO.builder()
+                .wishlist_id(this.wishlistId)
+                .product(productDTO)
+                .buyer_id(this.getBuyer().getBuyerId())
+                .quantity(this.quantity)
+                .created_at(this.getCreatedAt())
+                .modified_at(this.getModifiedAt())
+                .build();
+    }
 
 }

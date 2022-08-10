@@ -1,18 +1,32 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.repository.UserRepository;
+import com.codeblue.montreISTA.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface UserService {
+@Service
+@AllArgsConstructor
+public class UserServiceImpl implements UserService {
 
-   List<User> findAllUser();
-   User createUser(User user);
+    private UserRepository userRepository;
+
+    @Override
+    public List<User> findAllUser() {
+        return userRepository.findAllByOrderByUserIdAsc();
+    }
+
+    @Override
+    public User createUser(User user) {
+        return userRepository.save(user);
+    }
+
 
 //    public List<User> findAllUser() {
 //        List<User> users = userRepository.findAll();
@@ -42,5 +56,13 @@ public interface UserService {
 //        } else {
 //            return user;
 //        }
+//    }
+//    public List<User> findByUsername(String keyword) {
+//        List<User> users = userRepository.findByUsername(keyword);
+//        return users;
+//    }
+//    public List<User> findByName(String keyword) {
+//        List<User> users = userRepository.findByName(keyword);
+//        return users;
 //    }
 }
