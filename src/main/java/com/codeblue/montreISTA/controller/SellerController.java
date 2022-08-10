@@ -54,15 +54,15 @@ public class SellerController {
                 seller.put("Store Photo        ", sellerData.getStorePhoto());
                 maps.add(seller);
             }
-            logger.info("==================== Logger End Get All Sellers     ====================");
+            logger.info("==================== Logger End Get All Sellers    ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse("successfully retrieved sellers", HttpStatus.OK, sellers);
+            return ResponseHandler.generateResponse("successfully get all sellers", HttpStatus.OK, sellers);
         } catch (Exception e){
             logger.info("==================== Logger Start Get All Sellers     ====================");
-            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,"Table has no value!")));
+            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,"Seller had no value!")));
             logger.info("==================== Logger End Get All Sellers     ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, "Table has no value!");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Seller had no value!");
         }
     }
 
@@ -70,30 +70,15 @@ public class SellerController {
     public ResponseEntity<Object> findByUsername(@Param("keyword") String keyword){
         try{
             List<Seller> sellers = sellerService.findByUsername(keyword);
-            List<Map<String, Object>> maps = new ArrayList<>();
-            logger.info("==================== Logger Start Get All Sellers by Username     ====================");
-            for(Seller sellerData : sellers){
-                Map<String, Object> seller = new HashMap<>();
-                logger.info("-------------------------");
-                logger.info("Seller ID       : " + sellerData.getSellerId());
-                logger.info("Store Address   : " + sellerData.getStoreAddress());
-                logger.info("Store Name      : " + sellerData.getStoreName());
-                logger.info("Store Photo     : " + sellerData.getStorePhoto());
-                seller.put("Seller ID          ", sellerData.getSellerId());
-                seller.put("Store Address      ", sellerData.getStoreAddress());
-                seller.put("Store Name         ", sellerData.getStoreName());
-                seller.put("Store Photo        ", sellerData.getStorePhoto());
-                maps.add(seller);
-            }
-            logger.info("==================== Logger End Get All Sellers by Username     ====================");
-            logger.info(" ");
-            return ResponseHandler.generateResponse("successfully retrieved username", HttpStatus.OK, sellers);
+            logger.info(Line + "Logger Start Get seller username " + Line);
+            logger.info(String.valueOf(sellers));
+            logger.info(Line + "Logger End Get seller username " + Line);
+            return ResponseHandler.generateResponse("success get seller username", HttpStatus.OK, sellers);
         } catch (Exception e){
-            logger.info("==================== Logger Start Get All Sellers by Username    ====================");
-            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,"Data not Found!")));
-            logger.info("==================== Logger End Get All Sellers Username     ====================");
-            logger.info(" ");
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!");
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND, "seller had no value!");
         }
     }
 
@@ -111,7 +96,7 @@ public class SellerController {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND, "Seller no value");
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND, "Seller had no value");
         }
     }
 
@@ -137,7 +122,7 @@ public class SellerController {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Seller no value");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Seller had no value");
         }
     }
 
@@ -146,31 +131,15 @@ public class SellerController {
     public ResponseEntity<Object> createSeller(@RequestBody SellerRequestDTO sellerRequestDTO){
         try {
             Seller seller = sellerService.createSeller(sellerRequestDTO);
-            Map<String, Object> sellerMap = new HashMap<>();
-            List<Map<String, Object>> maps = new ArrayList<>();
-
-            logger.info("==================== Logger Start Create Sellers ====================");
-            logger.info("Seller Successfully Created !");
-            logger.info("Seller ID       : " + seller.getSellerId());
-            logger.info("Store Address   : " + seller.getStoreAddress());
-            logger.info("Store Name      : " + seller.getStoreName());
-            logger.info("Store Photo     : " + seller.getStorePhoto());
-
-
-            sellerMap.put("Seller ID            ", seller.getSellerId());
-            sellerMap.put("Store Address        ", seller.getStoreAddress());
-            sellerMap.put("Store Name           ", seller.getStoreName());
-            sellerMap.put("Store Photo          ",seller.getStorePhoto());
-            maps.add(sellerMap);
-            logger.info("==================== Logger End Create Sellers   ====================");
-            logger.info(" ");
+            logger.info(Line + "Logger Start Create " + Line);
+            logger.info(String.valueOf(seller));
+            logger.info(Line + "Logger End Create " + Line);
             return ResponseHandler.generateResponse("successfully created seller", HttpStatus.CREATED, seller);
         } catch (Exception e){
-            logger.info("==================== Logger Start Create Sellers     ====================");
-            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,"User Already Exist!")));
-            logger.info("==================== Logger End Create Sellers     ====================");
-            logger.info(" ");
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,"Seller Already Exist!");
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,"Failed create seller!");
         }
     }
 
@@ -185,21 +154,15 @@ public class SellerController {
             updateSeller.setStoreAddress(sellerRequestDTO.getStoreAddress());
             updateSeller.setStorePhoto(sellerRequestDTO.getStorePhoto());
             sellerService.updateSeller(updateSeller);
-            logger.info("==================== Logger Start Update Seller ====================");
-            logger.info("Seller Data Successfully Updated !");
-            logger.info("Seller ID       : " + updateSeller.getSellerId());
-            logger.info("Store Address   : " + updateSeller.getStoreAddress());
-            logger.info("Store Name      : " + updateSeller.getStoreName());
-            logger.info("Store Photo     : " + updateSeller.getStorePhoto());
-            logger.info("==================== Logger End Update Sellers   ====================");
-            logger.info(" ");
-            return ResponseHandler.generateResponse("successfully updated Seller", HttpStatus.OK, updateSeller);
+            logger.info(Line + "Logger Start Update By Id " + Line);
+            logger.info(String.valueOf(updateSeller));
+            logger.info(Line + "Logger End Update By Id " + Line);
+            return ResponseHandler.generateResponse("successfully updated Buyer", HttpStatus.OK, updateSeller);
         } catch (Exception e){
-            logger.info("==================== Logger Start Update Sellers     ====================");
-            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,"Data Not Found!")));
-            logger.info("==================== Logger End Update Sellers     ====================");
-            logger.info(" ");
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Data Not Found!");
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed update seller!");
         }
     }
 
