@@ -2,6 +2,7 @@ package com.codeblue.montreISTA.controller;
 
 
 
+import com.codeblue.montreISTA.DTO.ShippingResponseDTO;
 import com.codeblue.montreISTA.entity.Shipping;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.ShippingService;
@@ -15,8 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @AllArgsConstructor
 @RestController
@@ -33,10 +33,28 @@ public class ShippingController {
     public ResponseEntity<Object> getAllShipping(){
         try{
             List<Shipping> shippings = shippingService.findAllShipping();
-
+            List<Map<String, Object>> maps = new ArrayList<>();
+            logger.info("==================== Logger Start Get All Shipping    ====================");
+            for(Shipping shippingData : shippings){
+                Map<String, Object> shipping = new HashMap<>();
+                logger.info("-------------------------");
+                logger.info("Shipping ID  : " + shippingData.getShippingId());
+                logger.info("Name         : " + shippingData.getName());
+                logger.info("Price        : " + shippingData.getPrice());
+                shipping.put("Shipping ID   ", shippingData.getShippingId());
+                shipping.put("Name          ", shippingData.getName());
+                shipping.put("Price         ", shippingData.getPrice());
+                maps.add(shipping);
+            }
+            logger.info("==================== Logger End Get All Shipping    ====================");
+            logger.info(" ");
             return ResponseHandler.generateResponse("successfully retrieved shippings", HttpStatus.OK, shippings);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            logger.info("==================== Logger Start Get All Shippings    ====================");
+            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,"Table has no value")));
+            logger.info("==================== Logger End Get All Shippings     ====================");
+            logger.info(" ");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, "Table has no value");
         }
     }
 
@@ -45,23 +63,34 @@ public class ShippingController {
     public ResponseEntity<Object> findByName(@Param("keyword") String keyword){
         try{
             List<Shipping> shippings = shippingService.findByName(keyword);
-
-            return ResponseHandler.generateResponse("successfully retrieved username", HttpStatus.OK, shippings);
+            logger.info(Line + " Logger Start Get by Shipping Name " + Line);
+            logger.info("Update Shipping : " + shippings);
+            logger.info(Line + " Logger End Get  by Shipping Name " + Line);
+            return ResponseHandler.generateResponse("successfully retrieved name", HttpStatus.OK, shippings);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data not Found!");
         }
     }
 
 
 
-    //GET ALL BY SELLER ID
+    //GET ALL BY Shipping ID
     @GetMapping("/shipping/store/{shipping_id}")
     public ResponseEntity<Object> getAllShippingByShippingId(@PathVariable("shipping_id") Long shippingId){
         try{
             List<Shipping> shipping = shippingService.findShippingByShippingId(shippingId);
-            return ResponseHandler.generateResponse("successfully retrieved sellers", HttpStatus.OK, shipping);
+            logger.info(Line + " Logger Start Get All by Shipping id " + Line);
+            logger.info("Update Shipping : " + shipping);
+            logger.info(Line + " Logger End Get All by Shipping id " + Line);
+            return ResponseHandler.generateResponse("success get all by shipping id", HttpStatus.OK, shipping);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.MULTI_STATUS, null);
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND, "Data not Found!");
         }
     }
 
@@ -70,9 +99,15 @@ public class ShippingController {
     public ResponseEntity<Object> getShippingById(@PathVariable("id") Long id){
         try{
             Optional<Shipping> shipping = shippingService.findShippingById(id);
-            return ResponseHandler.generateResponse("successfully retrieved shipping", HttpStatus.OK, shipping);
+            logger.info(Line + " Logger Start Get By id Shipping " + Line);
+            logger.info("Update Shipping : " + shipping);
+            logger.info(Line + " Logger End Get By id Shipping " + Line);
+            return ResponseHandler.generateResponse("success get by id", HttpStatus.OK, shipping);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data not found!");
         }
     }
 
@@ -81,9 +116,15 @@ public class ShippingController {
     public ResponseEntity<Object> createShipping(@RequestBody Shipping shippingRequestDTO){
         try {
             Shipping shipping = shippingService.createShipping(shippingRequestDTO);
-            return ResponseHandler.generateResponse("successfully retrieved shipping", HttpStatus.CREATED, shipping);
+            logger.info(Line + " Logger Start Create Shipping " + Line);
+            logger.info("Create Shipping : " + shipping);
+            logger.info(Line + " Logger End Create Shipping " + Line);
+            return ResponseHandler.generateResponse("successfully create shipping", HttpStatus.CREATED, shipping);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,"Failed create database!");
         }
     }
 
@@ -96,11 +137,16 @@ public class ShippingController {
             updateShipping.setShippingId(id);
             updateShipping.setName(shipping.getName());
             updateShipping.setPrice(shipping.getPrice());
-
             shippingService.updateShipping(updateShipping);
+            logger.info(Line + " Logger Start Update Shipping " + Line);
+            logger.info("Update Shipping : " + updateShipping);
+            logger.info(Line + " Logger End Update Shipping " + Line);
             return ResponseHandler.generateResponse("successfully updated Shipping", HttpStatus.CREATED, updateShipping);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Bad Request!");
         }
     }
 
@@ -109,9 +155,16 @@ public class ShippingController {
     public ResponseEntity<Object> deleteShipping(@PathVariable("id") Long id){
         try{
             shippingService.deleteShipping(id);
-            return ResponseHandler.generateResponse("successfully deleted shipping", HttpStatus.MULTI_STATUS, null);
+            Boolean result = Boolean.TRUE;
+            logger.info(Line + " Logger Start Delete Shipping " + Line);
+            logger.info("Success Delete Shipping by ID :"+result);
+            logger.info(Line + " Logger End Delete Shipping " + Line);
+            return ResponseHandler.generateResponse("successfully deleted shipping by id", HttpStatus.OK, result);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data not found!");
         }
 
     }
