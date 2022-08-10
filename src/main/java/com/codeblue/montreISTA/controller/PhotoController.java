@@ -3,7 +3,7 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.DTO.PhotoRequestDTO;
 import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
 
-import com.codeblue.montreISTA.service.CloudinaryService;
+import com.codeblue.montreISTA.service.implement.CloudinaryService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

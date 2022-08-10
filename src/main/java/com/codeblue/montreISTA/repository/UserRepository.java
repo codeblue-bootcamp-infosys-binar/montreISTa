@@ -1,10 +1,9 @@
 package com.codeblue.montreISTA.repository;
 
-import DTO.UserResponseDTO;
 import com.codeblue.montreISTA.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RestController;
 
 
 import java.util.List;

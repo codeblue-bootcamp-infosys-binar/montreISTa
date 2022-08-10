@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
+import com.codeblue.montreISTA.DTO.BuyerResponseDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,5 +28,13 @@ public class Buyer extends AuditEntity {
                 "buyerId=" + buyerId +
                 ", user=" + user +
                 '}';
+    }
+    public BuyerResponseDTO convertToResponse(){
+        return BuyerResponseDTO.builder()
+                .buyerId(this.getBuyerId())
+                .userId(this.getUser())
+                .createdAt(this.getCreatedAt())
+                .modifiedAt(this.getModifiedAt()                )
+                .build();
     }
 }
