@@ -6,23 +6,18 @@ import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.repository.PhotoRepository;
 import com.codeblue.montreISTA.repository.ProductRepository;
 import com.codeblue.montreISTA.service.PhotoService;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
-import org.hibernate.annotations.Type;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class PhotoServiceImp implements PhotoService {
-    private PhotoRepository photoRepository;
-    private ProductRepository productRepository;
+    private final PhotoRepository photoRepository;
+    private final ProductRepository productRepository;
 
     @Override
     public List<PhotoResponseDTO> findAll() {
@@ -35,33 +30,6 @@ public class PhotoServiceImp implements PhotoService {
         return results;
     }
 
-    @Override
-    public List<PhotoResponseDTO> findByPhotoName(String photoName) throws Exception {
-        List<Photo> photos = photoRepository.findByPhotoNameIgnoreCaseContaining(photoName);
-        if (photos == null) {
-            throw new Exception("photo not found");
-        }
-        List<PhotoResponseDTO> results = new ArrayList<>();
-        for (Photo data : photos) {
-            PhotoResponseDTO photosDTO = data.convertToResponse();
-            results.add(photosDTO);
-        }
-        return results;
-    }
-
-    @Override
-    public List<PhotoResponseDTO> findByProductName(String productName) throws Exception {
-        List<Photo> photos = photoRepository.findByProductProductNameIgnoreCaseContainingOrderByPhotoIdAsc(productName);
-        if (photos == null) {
-            throw new Exception("photo not found");
-        }
-        List<PhotoResponseDTO> results = new ArrayList<>();
-        for (Photo data : photos) {
-            PhotoResponseDTO photosDTO = data.convertToResponse();
-            results.add(photosDTO);
-        }
-        return results;
-    }
 
     @Override
     public List<PhotoResponseDTO> findBySellerName(String keyword) throws Exception {
@@ -69,33 +37,35 @@ public class PhotoServiceImp implements PhotoService {
         if (photos == null) {
             throw new Exception("photo not found");
         }
-        List<PhotoResponseDTO> results = new ArrayList<>();
-        for (Photo data : photos) {
-            PhotoResponseDTO photosDTO = data.convertToResponse();
-            results.add(photosDTO);
-        }
-        return results;
+        return photos.stream()
+                .map(Photo::convertToResponse)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<PhotoResponseDTO> findByStoreName(String keyword) throws Exception {
-        List<Photo> photos = photoRepository.findByProductSellerStoreNameIgnoreCaseContainingOrderByPhotoIdAsc(keyword);
-        if (photos == null) {
-            throw new Exception("photo not found");
-        }
-        List<PhotoResponseDTO> results = new ArrayList<>();
-        for (Photo data : photos) {
-            PhotoResponseDTO photosDTO = data.convertToResponse();
-            results.add(photosDTO);
-        }
-        return results;
+    public PhotoResponseDTO findById(Long id) throws Exception {
+        return photoRepository.findById(id).orElseThrow(()->new Exception("Photo Not Found")).convertToResponse();
+    }
+
+    @Override
+    public List<PhotoResponseDTO> findBySellerId(Long id) throws Exception {
+        return photoRepository.findByProductSellerSellerIdOrderByPhotoIdAsc(id)
+                .stream()
+                .map(Photo::convertToResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PhotoResponseDTO> findByProductId(Long id) throws Exception {
+        return photoRepository.findByProductProductIdOrderByPhotoIdAsc(id)
+                .stream()
+                .map(Photo::convertToResponse)
+                .collect(Collectors.toList());
     }
 
     /**
      * belumada validasi optionalphoto by id isPresent, throw
      *
-     * @param photoRequestDTO
-     * @return
      */
     @Override
     public PhotoResponseDTO createPhoto(PhotoRequestDTO photoRequestDTO) throws Exception {

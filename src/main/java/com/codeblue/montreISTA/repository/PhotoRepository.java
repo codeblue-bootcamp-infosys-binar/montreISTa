@@ -14,13 +14,10 @@ import java.util.List;
 public interface PhotoRepository extends JpaRepository<Photo,Long> {
     List<Photo> findByPhotoNameIgnoreCaseContaining(String photoName);
 
-//    long deleteByPhotoName(long photoName);
     List<Photo> findAllByOrderByPhotoIdAsc();
 
-    List<Photo> findByProductProductNameIgnoreCaseContainingOrderByPhotoIdAsc(String productName);
-
     List<Photo> findByProductSellerUserIdNameIgnoreCaseContainingOrderByPhotoIdAsc(String productName);
-    List<Photo> findByProductSellerStoreNameIgnoreCaseContainingOrderByPhotoIdAsc(String productName);
+    List<Photo> findByProductSellerSellerIdOrderByPhotoIdAsc(long id);
 
     List<Photo> findByProductProductIdOrderByPhotoIdAsc(Long id);
 
