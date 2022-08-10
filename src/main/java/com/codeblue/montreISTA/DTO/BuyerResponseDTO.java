@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.DTO;
 
+import com.codeblue.montreISTA.entity.User;
 import lombok.*;
 
 import java.time.ZonedDateTime;
@@ -10,21 +11,22 @@ import java.time.ZonedDateTime;
 @NoArgsConstructor
 @Builder
 public class BuyerResponseDTO {
-    private Long buyerId;
 
-    private Long user_id;
+    private Long buyerId;
+    private User userId;
 
     private ZonedDateTime createdAt;
     private ZonedDateTime modifiedAt;
 
-
     @Override
     public String toString() {
-        return "BuyerResponseDTO{" +
+       return "OrderResponseDTO{" +
                 "buyerId=" + buyerId +
-                ", user_id=" + user_id +
+                ", userId=" + userId + '\'' +
                 ", createdAt=" + createdAt +
                 ", modifiedAt=" + modifiedAt +
                 '}';
     }
+
+
 }
