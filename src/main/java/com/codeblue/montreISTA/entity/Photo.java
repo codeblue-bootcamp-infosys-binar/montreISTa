@@ -1,20 +1,31 @@
 package com.codeblue.montreISTA.entity;
 
-import DTO.PhotoPostDTO;
-import DTO.PhotoResponseDTO;
+
+import com.codeblue.montreISTA.DTO.PhotoProductDTO;
+import lombok.AllArgsConstructor;
+import com.codeblue.montreISTA.DTO.PhotoPostDTO;
+import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.*;
 import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "photos")
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "photos")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "photoId")
+@Builder
 public class Photo extends AuditEntity{
 
     @Id
@@ -24,14 +35,13 @@ public class Photo extends AuditEntity{
     @NotEmpty
     private String photoName;
 
-
-    @NotBlank
     @Lob
     @Type(type = "org.hibernate.type.TextType")
     @Column(columnDefinition = "TEXT")
+    @NotEmpty
     private String photoURL;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Product.class)
     @JoinColumn(name = "product_id")
     private Product product;
 
@@ -56,6 +66,14 @@ public class Photo extends AuditEntity{
                 .photo_name(this.photoName)
                 .photo_url(this.photoURL)
                 .product_id(this.getProduct().getProductId())
+                .build();
+    }
+
+    public PhotoProductDTO convertToProduct(){
+        return PhotoProductDTO.builder()
+                .photo_id(this.photoId)
+                .photo_name(this.photoName)
+                .photo_url(this.photoURL)
                 .build();
     }
 

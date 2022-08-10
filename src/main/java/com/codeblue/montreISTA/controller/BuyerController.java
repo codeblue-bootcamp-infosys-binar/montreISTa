@@ -1,11 +1,13 @@
 package com.codeblue.montreISTA.controller;
 
 
+import com.codeblue.montreISTA.DTO.BuyerRequestDTO;
 import com.codeblue.montreISTA.entity.Buyer;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.BuyerService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +18,10 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
+@Tag(name="06. Buyer")
 public class BuyerController {
 
-    @Autowired
-    BuyerService buyerService;
+    private BuyerService buyerService;
 
     //GET ALL
     @GetMapping("/buyer")
@@ -38,10 +40,19 @@ public class BuyerController {
         try {
             List<Buyer> buyer = buyerService.findBuyerByBuyerId(buyerId);
             return ResponseHandler.generateResponse("succesfully retrieved buyer", HttpStatus.OK, buyer);
+
+
+    //GET ALL BY BUYER ID
+    @GetMapping("/buyers/store{buyer_id}")
+    public ResponseEntity<Object> getAllBuyerByBuyerId(@PathVariable("buyer_id") Long buyerId){
+        try{
+            List<Buyer> buyer = buyerService.findBuyerByBuyerId(buyerId);
+            return ResponseHandler.generateResponse("successfully retrieved buyer", HttpStatus.OK, buyer);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
+
 
     //GET ONE BY ID
     @GetMapping("buyers/{id}")
@@ -56,7 +67,7 @@ public class BuyerController {
 
     //CREATE
     @PostMapping("/buyers/create")
-    public ResponseEntity<Object> createBuyer(@RequestBody Buyer newBuyer){
+    public ResponseEntity<Object> createBuyer(@RequestBody BuyerRequestDTO newBuyer){
         try {
             Buyer buyer = buyerService.createBuyer(newBuyer);
             return ResponseHandler.generateResponse("Succesfully Create Buyer", HttpStatus.CREATED, buyer);

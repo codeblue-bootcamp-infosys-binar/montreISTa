@@ -1,9 +1,11 @@
 package com.codeblue.montreISTA.entity;
 
 
+import com.codeblue.montreISTA.DTO.CategoryResponseDTO;
 import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,6 +20,18 @@ public class Category extends AuditEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoriesId;
 
-    @NotBlank
     private String name;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "category",
+            fetch = FetchType.LAZY)
+    private List<ProductCategory> products;
+
+
+    public CategoryResponseDTO convertToResponse(){
+        return CategoryResponseDTO.builder()
+                .categoryId(this.categoriesId)
+                .name(this.name)
+                .build();
+    }
 }

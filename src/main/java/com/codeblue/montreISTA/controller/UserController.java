@@ -3,6 +3,7 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -14,11 +15,10 @@ import java.util.*;
 
 @AllArgsConstructor
 @RestController
+@Tag(name="01. User")
 public class UserController {
 
-@Autowired
-UserService userService;
-
+    private UserService userService;
 
     //GET ALL
     @GetMapping("/users")
@@ -79,7 +79,6 @@ UserService userService;
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
-
     //CREATE
     @PostMapping("/users/create")
     public ResponseEntity<Object> createUser(@RequestBody User newUser) {
@@ -90,6 +89,7 @@ UserService userService;
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
+
 
     //UPDATE
     @PutMapping("/users/update/{id}")
@@ -123,4 +123,5 @@ UserService userService;
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
+
 }

@@ -1,7 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
 import lombok.*;
-import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 
 @Getter
@@ -19,6 +19,13 @@ public class Buyer extends AuditEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    @NotBlank
     private User user;
+
+    @Override
+    public String toString() {
+        return "Buyer{" +
+                "buyerId=" + buyerId +
+                ", user=" + user +
+                '}';
+    }
 }

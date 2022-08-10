@@ -1,47 +1,29 @@
 package com.codeblue.montreISTA.service;
 
+import com.codeblue.montreISTA.DTO.ProductRequestDTO;
 import com.codeblue.montreISTA.entity.Product;
-import com.codeblue.montreISTA.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class ProductService {
+public interface ProductService {
 
-    @Autowired
-    ProductRepository productRepository;
+    List<Product> findAllProduct();
 
-    public List<Product> findAllProduct() {
-        List<Product> products = productRepository.findAll();
-        return products;
-    }
+    Optional<Product> findProductById(Long id);
 
-    public Optional<Product> findProductById(Long id) {
-        return productRepository.findById(id);
-    }
+    List<Product> findByProductName(String name);
 
-    public Product createProduct(Product product) {
-        return productRepository.save(product);
-    }
+    List<Product> findBySellerName(String name);
 
-    public Product updateProduct(Product updateProduct) {
-        return productRepository.save(updateProduct);
-    }
+    List<Product> findByStoreName(String name);
 
-    public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
-    }
+    List<Product> findByCategoryId(Long id);
 
-    public List<Product> findProductBySellerId(Long id) {
-        List<Product> product = productRepository.findBySellerId(id);
-        if(product.isEmpty()){
-            return null;
-        } else {
-            return product;
-        }
-    }
+    List<Product> findProductBySellerId(Long id);
+    Product createProduct(ProductRequestDTO productRequestDTO) throws Exception;
+
+    Product updateProduct(ProductRequestDTO productRequestDTO, Long id);
+
+    void deleteProduct(Long id);
 }

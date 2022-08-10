@@ -4,7 +4,9 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.PaymentService;
 import com.codeblue.montreISTA.entity.Payment;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,13 +15,18 @@ import java.util.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/codeBlue")
+@RequestMapping
+@Tag(name = "12. Payment")
 public class PaymentController {
 
     private PaymentService paymentService;
 
 
-    //CREATE
+    /**
+     * Create Payment
+     * @param newPayment
+     * @return
+     */
     @PostMapping("/payment/create")
     public ResponseEntity<Object> addPayment(@RequestBody Payment newPayment) {
         try {
@@ -30,19 +37,39 @@ public class PaymentController {
         }
     }
 
-    //READ
+    /**
+     * Find All Payment
+     * @return
+     */
     @GetMapping("/payment")
     public ResponseEntity<Object> getAllPayment(){
         try{
             List<Payment> payments = paymentService.findAllPayment();
-
             return ResponseHandler.generateResponse("successfully retrieved payment", HttpStatus.OK, payments);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
 
-    //READ BY ID
+    /**
+     * find By paymentName
+     * @param keyword
+     * @return
+     */
+    @GetMapping("/payment/paymentName")
+    public ResponseEntity<Object> findByPaymentName(@Param("keyword") String keyword){
+        try{
+            List<Payment> payments = paymentService.findByPaymentName(keyword);
+            return ResponseHandler.generateResponse("successfully retrieved payment", HttpStatus.OK, payments);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    /**
+     * Find By Id
+     * @return
+     */
     @GetMapping("/payment/{id}")
     public ResponseEntity<Object> getPaymentById(@PathVariable("id") Long id) {
         try{
@@ -53,50 +80,38 @@ public class PaymentController {
         }
     }
 
-    //UPDATE
+    /**
+     * Update Payment
+     * @param id
+     * @param payment
+     * @return
+     */
     @PutMapping("/payment/update/{id}")
     public ResponseEntity<Object> updatePayment(@RequestBody Payment payment, @PathVariable("id") Long id) {
         try {
-            Optional<Payment> targetProduct = paymentService.findPaymentById(id);
-            Payment updatePayment = targetProduct.get();
-            updatePayment.setPaymentId(id);
-            updatePayment.setName(payment.getName());
-            updatePayment.setPaymentCode(payment.getPaymentCode());
-
-            paymentService.updatePayment(updatePayment);
-            return ResponseHandler.generateResponse("successfully updated payment", HttpStatus.CREATED, updatePayment);
+            Payment results = paymentService.updatePayment(payment,id);
+            return ResponseHandler.generateResponse("successfully updated payment", HttpStatus.CREATED, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
 
 
-    //DELETE
+    /**
+     * Delete Payment
+     * @param id
+     * @return
+     */
     @DeleteMapping("/payment/delete/{id}")
     public ResponseEntity<Object> deletePayment(@PathVariable("id") Long id) {
     try{
         paymentService.deletePayment(id);
-        return ResponseHandler.generateResponse("successfully deleted product", HttpStatus.MULTI_STATUS, null);
+        return ResponseHandler.generateResponse("successfully deleted payment", HttpStatus.MULTI_STATUS, null);
     } catch(Exception e){
         return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
     }
 
     }
-
-
-    //READ BY NAME
-//    @GetMapping("/payment/:name")
-//    public ResponseEntity<Object> getPaymentByName(String name) {
-//        List<Payment> payment = paymentServiceImpl.findPaymentByName(name);
-//        List<PaymentResponseDTO> result = new ArrayList<>();
-//
-//        for (Payment data : payment) {
-//            PaymentResponseDTO paymentResponseDTO = data.convertToResponse();
-//            result.add(paymentResponseDTO);
-//        }
-//
-//        return ResponseHandler.generateResponse("Succes All", HttpStatus.OK, result);
-//    }
 
 }
 
