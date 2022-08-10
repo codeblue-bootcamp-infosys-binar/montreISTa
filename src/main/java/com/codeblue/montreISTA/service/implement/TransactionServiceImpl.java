@@ -1,4 +1,4 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.PhotoProductDTO;
 import com.codeblue.montreISTA.DTO.TransactionDetailDTO;
@@ -8,6 +8,8 @@ import com.codeblue.montreISTA.repository.CartRepository;
 import com.codeblue.montreISTA.repository.HistoryTransactionRepository;
 import com.codeblue.montreISTA.repository.OrderRepository;
 import com.codeblue.montreISTA.repository.TransactionDetailsRepository;
+import com.codeblue.montreISTA.service.CategoryService;
+import com.codeblue.montreISTA.service.TransactionService;
 import lombok.AllArgsConstructor;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
@@ -136,9 +138,10 @@ public class TransactionServiceImpl implements TransactionService {
             transactionDetail.setQuantity(cart.getQuantity());
             HistoryTransactionDetail transactionDetailSave = transactionDetailsRepository.save(transactionDetail);
         }
-        Optional<Order> orderDelete = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(id);
-        orderRepository.deleteById(orderDelete.get().getOrderId());
-        List<Cart> Carts = cartRepository.findByBuyerBuyerIdOrderByCreatedAtDesc(id);
+        Order orderDelete = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(id).orElseThrow(Exception::new);
+        orderRepository.deleteById(orderDelete.getOrderId());
+        List<Cart> Carts = cartRepository.findByBuyerBuyerIdOrderByModifiedAtDesc(id);
+        cartRepository.deleteAll(Carts);
         return "Order Success, transactions saved";
     }
 

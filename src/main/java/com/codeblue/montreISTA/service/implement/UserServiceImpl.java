@@ -1,7 +1,8 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.repository.UserRepository;
+import com.codeblue.montreISTA.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserServiceImpl implements  UserService{
+public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
 

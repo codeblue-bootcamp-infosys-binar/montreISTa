@@ -1,11 +1,13 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.repository.*;
+import com.codeblue.montreISTA.service.CartService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -97,21 +99,26 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public CartResponseDTO wishlistToCart(Long id) throws Exception {
-        Optional<Wishlist> wishlist = wishlistRepository.findFirstByBuyerBuyerIdOrderByCreatedAtDesc(id);
-        if(wishlist.isEmpty()){
+    public List<CartResponseDTO> wishlistToCart(Long id) throws Exception {
+        List<Wishlist> wishlists = wishlistRepository.findByBuyerBuyerIdOrderByModifiedAtDesc(id);
+        if(wishlists==null){
             throw new Exception("Your wishlist is empty");
         }
-        CartRequestDTO cartDTO = new CartRequestDTO();
-        cartDTO.setBuyer_id(wishlist.get().getBuyer().getBuyerId());
-        cartDTO.setProduct_id(wishlist.get().getProduct().getProductId());
-        cartDTO.setQuantity(wishlist.get().getQuantity());
-        if(cartDTO==null){
+        List<CartResponseDTO> carts = new ArrayList<>();
+        for(Wishlist wishlist:wishlists){
+           CartRequestDTO cartRequestDTO = new CartRequestDTO();
+           cartRequestDTO.setBuyer_id(wishlist.getBuyer().getBuyerId());
+           cartRequestDTO.setProduct_id(wishlist.getProduct().getProductId());
+           cartRequestDTO.setQuantity(wishlist.getQuantity());
+           CartResponseDTO cartResponseDTO = this.createCart(cartRequestDTO);
+           carts.add(cartResponseDTO);
+        }
+        if(carts==null){
             throw new Exception("failed to parsing data from wishlist to cart");
         }else {
-            wishlistRepository.deleteById(wishlist.get().getWishlistId());
+            wishlistRepository.deleteAll(wishlists);
         }
-        return this.createCart(cartDTO);
+        return carts;
     }
 
     @Override

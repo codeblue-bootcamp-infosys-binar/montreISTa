@@ -1,9 +1,11 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.ProductRequestDTO;
 import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.repository.ProductRepository;
+import com.codeblue.montreISTA.service.ProductService;
+import com.codeblue.montreISTA.service.implement.SellerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductRepository productRepository;
@@ -60,7 +62,12 @@ public class ProductServiceImpl implements ProductService{
         }
     }
 
-    public Product createProduct(ProductRequestDTO productRequestDTO) {
+    public Product createProduct(ProductRequestDTO productRequestDTO) throws Exception{
+        List<Product> products = productRepository.findBySellerSellerId(productRequestDTO.getSellerId());
+        Integer count = products.size();
+        if(count >=5 ){
+            throw new Exception("User can only have 4 Products");
+        }
         Optional<Seller> productSeller = sellerService.findSellerById(productRequestDTO.getSellerId());
         Seller seller = productSeller.get();
         Product newProduct = productRequestDTO.convertToEntity(seller);

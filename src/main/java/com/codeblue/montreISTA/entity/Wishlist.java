@@ -3,10 +3,9 @@ package com.codeblue.montreISTA.entity;
 
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.DTO.WishlistResponseDTO;
-import com.codeblue.montreISTA.service.PhotoServiceImp;
 import com.sun.istack.NotNull;
 import lombok.*;
-import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 
 @Getter

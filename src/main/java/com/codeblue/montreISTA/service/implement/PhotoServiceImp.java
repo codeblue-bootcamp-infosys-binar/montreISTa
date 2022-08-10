@@ -1,27 +1,23 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 
 import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.repository.PhotoRepository;
 import com.codeblue.montreISTA.repository.ProductRepository;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.codeblue.montreISTA.service.PhotoService;
 import lombok.*;
-import org.hibernate.annotations.Type;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class PhotoServiceImp implements PhotoService {
-    private PhotoRepository photoRepository;
-    private ProductRepository productRepository;
+    private final PhotoRepository photoRepository;
+    private final ProductRepository productRepository;
 
     @Override
     public List<PhotoResponseDTO> findAll() {
@@ -34,33 +30,6 @@ public class PhotoServiceImp implements PhotoService {
         return results;
     }
 
-    @Override
-    public List<PhotoResponseDTO> findByPhotoName(String photoName) throws Exception {
-        List<Photo> photos = photoRepository.findByPhotoNameIgnoreCaseContaining(photoName);
-        if (photos == null) {
-            throw new Exception("photo not found");
-        }
-        List<PhotoResponseDTO> results = new ArrayList<>();
-        for (Photo data : photos) {
-            PhotoResponseDTO photosDTO = data.convertToResponse();
-            results.add(photosDTO);
-        }
-        return results;
-    }
-
-    @Override
-    public List<PhotoResponseDTO> findByProductName(String productName) throws Exception {
-        List<Photo> photos = photoRepository.findByProductProductNameIgnoreCaseContainingOrderByPhotoIdAsc(productName);
-        if (photos == null) {
-            throw new Exception("photo not found");
-        }
-        List<PhotoResponseDTO> results = new ArrayList<>();
-        for (Photo data : photos) {
-            PhotoResponseDTO photosDTO = data.convertToResponse();
-            results.add(photosDTO);
-        }
-        return results;
-    }
 
     @Override
     public List<PhotoResponseDTO> findBySellerName(String keyword) throws Exception {
@@ -68,39 +37,46 @@ public class PhotoServiceImp implements PhotoService {
         if (photos == null) {
             throw new Exception("photo not found");
         }
-        List<PhotoResponseDTO> results = new ArrayList<>();
-        for (Photo data : photos) {
-            PhotoResponseDTO photosDTO = data.convertToResponse();
-            results.add(photosDTO);
-        }
-        return results;
+        return photos.stream()
+                .map(Photo::convertToResponse)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<PhotoResponseDTO> findByStoreName(String keyword) throws Exception {
-        List<Photo> photos = photoRepository.findByProductSellerStoreNameIgnoreCaseContainingOrderByPhotoIdAsc(keyword);
-        if (photos == null) {
-            throw new Exception("photo not found");
-        }
-        List<PhotoResponseDTO> results = new ArrayList<>();
-        for (Photo data : photos) {
-            PhotoResponseDTO photosDTO = data.convertToResponse();
-            results.add(photosDTO);
-        }
-        return results;
+    public PhotoResponseDTO findById(Long id) throws Exception {
+        return photoRepository.findById(id).orElseThrow(()->new Exception("Photo Not Found")).convertToResponse();
+    }
+
+    @Override
+    public List<PhotoResponseDTO> findBySellerId(Long id) throws Exception {
+        return photoRepository.findByProductSellerSellerIdOrderByPhotoIdAsc(id)
+                .stream()
+                .map(Photo::convertToResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PhotoResponseDTO> findByProductId(Long id) throws Exception {
+        return photoRepository.findByProductProductIdOrderByPhotoIdAsc(id)
+                .stream()
+                .map(Photo::convertToResponse)
+                .collect(Collectors.toList());
     }
 
     /**
      * belumada validasi optionalphoto by id isPresent, throw
      *
-     * @param photoRequestDTO
-     * @return
      */
     @Override
     public PhotoResponseDTO createPhoto(PhotoRequestDTO photoRequestDTO) throws Exception {
         Optional<Product> photoproduct = productRepository.findById(photoRequestDTO.getProduct_id());
         if(photoproduct.isEmpty()){
             throw new Exception("Product not found");
+        }
+        List<Photo> photos = photoRepository.findByProductProductIdOrderByPhotoIdAsc(photoRequestDTO.getProduct_id());
+        int count = photos.size();
+        if(count>=4){
+            throw new Exception("Product can only have 4 photos");
         }
         /* validation
         if(photoproduct.get().getSeller().getUserId().getName()!=principal.getName)
@@ -124,8 +100,8 @@ public class PhotoServiceImp implements PhotoService {
     @Override
     public PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO, Long id) throws Exception {
         Optional<Product> photoproduct = productRepository.findById(photoRequestDTO.getProduct_id());
-        Product product = photoproduct.get();
-        /* validation
+        Product product = productRepository.findById(photoRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not found"));
+    /* validation
         if(photoproduct.get().getSeller().getUserId().getName()!=principal.getName)
         {
             throw new Exception("You only can add photo for your product");
@@ -145,7 +121,7 @@ public class PhotoServiceImp implements PhotoService {
 
     @Override
     public void deleteById(Long id) {
-        photoRepository.deleteAll();
+        photoRepository.deleteById(id);
     }
 
 

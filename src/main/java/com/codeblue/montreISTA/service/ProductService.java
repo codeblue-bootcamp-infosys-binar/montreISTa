@@ -21,7 +21,7 @@ public interface ProductService {
     List<Product> findByCategoryId(Long id);
 
     List<Product> findProductBySellerId(Long id);
-    Product createProduct(ProductRequestDTO productRequestDTO);
+    Product createProduct(ProductRequestDTO productRequestDTO) throws Exception;
 
     Product updateProduct(ProductRequestDTO productRequestDTO, Long id);
 

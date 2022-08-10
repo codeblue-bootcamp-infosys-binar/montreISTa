@@ -10,7 +10,7 @@ import java.util.List;
 public interface CartRepository extends JpaRepository<Cart,Long> {
     List<Cart> findAllByOrderByCartIdAsc();
     List<Cart> findByBuyerUserNameIgnoreCaseContainingOrderByCartIdAsc(String keyword);
-    List<Cart> findByBuyerBuyerIdOrderByCreatedAtDesc(long id);
+    List<Cart> findByBuyerBuyerIdOrderByModifiedAtDesc(long id);
     List<Cart> findByProductSellerUserIdNameIgnoreCaseContainingOrderByCartIdAsc(String keyword);
     List<Cart> findByProductProductNameIgnoreCaseContainingOrderByCartIdAsc(String keyword);
     List<Cart> findByProductCategoriesCategoryNameIgnoreCaseContainingOrderByCartIdAsc(String keyword);

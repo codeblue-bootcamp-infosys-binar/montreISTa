@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="9. Transaction")
+@Tag(name="10. Transaction")
 public class TransactionController {
     private final TransactionService transactionService;
 

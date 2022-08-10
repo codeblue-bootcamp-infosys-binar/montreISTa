@@ -10,4 +10,6 @@ import java.util.List;
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Long> {
     List<ProductCategory> findByProductProductNameIgnoreCaseContaining(String name);
     List<ProductCategory> findByCategoryNameIgnoreCaseContaining(String name);
+    List<ProductCategory> findByCategoryCategoriesId(Long id);
+    List<ProductCategory> findByProductProductId(Long id);
 }

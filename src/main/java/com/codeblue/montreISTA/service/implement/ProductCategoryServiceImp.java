@@ -1,4 +1,4 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.entity.Category;
@@ -8,6 +8,7 @@ import com.codeblue.montreISTA.entity.ProductCategory;
 import com.codeblue.montreISTA.repository.CategoryRepository;
 import com.codeblue.montreISTA.repository.ProductCategoryRepository;
 import com.codeblue.montreISTA.repository.ProductRepository;
+import com.codeblue.montreISTA.service.ProductCategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +41,24 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
     }
 
     @Override
+    public List<ProductCategoryResponseDTO> findByProductId(Long id) throws Exception {
+        List<ProductCategory> results = productCategoryRepository.findByProductProductId(id);
+        if(results==null){
+            throw new Exception("Product Category not found");
+        }
+        return this.convertDTO(results);
+    }
+
+    @Override
+    public List<ProductCategoryResponseDTO> findByCategoryId(Long id) throws Exception {
+        List<ProductCategory> results = productCategoryRepository.findByCategoryCategoriesId(id);
+        if(results==null){
+            throw new Exception("Product Category not found");
+        }
+        return this.convertDTO(results);
+    }
+
+    @Override
     public List<ProductCategoryResponseDTO> findByCategoryName(String keyword) throws Exception {
         List<ProductCategory> results = productCategoryRepository.findByCategoryNameIgnoreCaseContaining(keyword);
         if(results==null){
@@ -50,7 +69,12 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
 
 
     @Override
-    public ProductCategoryResponseDTO createProductCategory(ProductCategoryRequestDTO productCategory) {
+    public ProductCategoryResponseDTO createProductCategory(ProductCategoryRequestDTO productCategory) throws Exception {
+        List<ProductCategory> productCategories = productCategoryRepository.findByProductProductId(productCategory.getProduct_id());
+        Integer count = productCategories.size();
+        if(count>=4){
+            throw new Exception("Product can only have 4 categories");
+        }
         return this.requestToEntity(productCategory,null);
     }
 
@@ -88,12 +112,9 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
 
         return productCategoryResponseDTO;
     }
-    public ProductCategoryResponseDTO requestToEntity (ProductCategoryRequestDTO productCategory, Long id){
-        Optional<Product> productId = productRepository.findById(productCategory.getProduct_id());
-        Product product = productId.get();
-        Optional<Category> categoryId = categoryRepository.findById(productCategory.getCategory_id());
-        Category category= categoryId.get();
-
+    public ProductCategoryResponseDTO requestToEntity (ProductCategoryRequestDTO productCategory, Long id)throws Exception{
+        Product product = productRepository.findById(productCategory.getProduct_id()).orElseThrow(()-> new Exception("Product not found"));
+        Category category= categoryRepository.findById(productCategory.getCategory_id()).orElseThrow(()-> new Exception("Category not found"));
         //save to entity
         ProductCategory saveProductCategory = productCategory.convertToEntity(product,category);
         if(id != null){

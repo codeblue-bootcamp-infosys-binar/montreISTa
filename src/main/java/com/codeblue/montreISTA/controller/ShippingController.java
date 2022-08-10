@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
-@Tag(name = "10. Shipping")
+@Tag(name = "11. Shipping")
 public class ShippingController {
 
     @Autowired

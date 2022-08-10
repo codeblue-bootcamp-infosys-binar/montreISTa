@@ -1,9 +1,10 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 
 
 import com.codeblue.montreISTA.entity.Wishlist;
 import com.codeblue.montreISTA.repository.WishlistRepository;
+import com.codeblue.montreISTA.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
