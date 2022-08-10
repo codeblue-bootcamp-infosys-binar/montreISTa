@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="6. Wishlist")
+@Tag(name="07. Wishlist")
 public class WishlistController {
 
     private BuyerRepository buyerRepository;

@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="5. Product Category")
+@Tag(name="05. Product Category")
 public class ProductCategoryController {
     private ProductCategoryService productCategoryService;
 
@@ -48,6 +48,15 @@ public class ProductCategoryController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
         }
     }
+    @GetMapping("/productCategory/product/{id}")
+    public ResponseEntity<Object> findByProductId(@PathVariable Long id) {
+        try {
+            List<ProductCategoryResponseDTO> results = productCategoryService.findByProductId(id);
+            return ResponseHandler.generateResponse("successfully delete product category", HttpStatus.OK, "deleted");
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
+        }
+    }
 
     /**
      * findBycategoryname
@@ -63,6 +72,15 @@ public class ProductCategoryController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
         }
     }
+    @GetMapping("/productCategory/category/{id}")
+    public ResponseEntity<Object> findByCategoryId(@PathVariable Long id) {
+        try {
+            List<ProductCategoryResponseDTO> results = productCategoryService.findByCategoryId(id);
+            return ResponseHandler.generateResponse("successfully delete product category", HttpStatus.OK, "deleted");
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
+        }
+    }
 
     /**
      * post
@@ -70,7 +88,7 @@ public class ProductCategoryController {
      * @return
      */
     @PostMapping("/productCategory")
-    public ResponseEntity<Object> postProductCategory(@RequestBody ProductCategoryRequestDTO productCategory) {
+    public ResponseEntity<Object> postProductCategory(@RequestBody ProductCategoryRequestDTO productCategory) throws Exception{
         try {
             ProductCategoryResponseDTO results = productCategoryService.createProductCategory(productCategory);
             return ResponseHandler.generateResponse("successfully create product category", HttpStatus.OK, results);
@@ -100,7 +118,7 @@ public class ProductCategoryController {
      * @param id
      * @return
      */
-    @DeleteMapping("/productCategory/{id}")
+    @DeleteMapping("/productCategory/delete/{id}")
     public ResponseEntity<Object> deletePhoto(@PathVariable Long id) {
         try {
             productCategoryService.deleteById(id);

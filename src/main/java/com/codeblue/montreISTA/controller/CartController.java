@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="7. Cart")
+@Tag(name="08. Cart")
 public class CartController {
     private CartService cartService;
 
@@ -110,7 +110,7 @@ public class CartController {
     @PostMapping("/cart/wishlist/buyer/{id}")
     public ResponseEntity<Object> postCart(@PathVariable Long id) {
         try {
-            CartResponseDTO results = cartService.wishlistToCart(id);
+            List<CartResponseDTO> results = cartService.wishlistToCart(id);
             return ResponseHandler.generateResponse("successfully create product category", HttpStatus.OK, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, null);
