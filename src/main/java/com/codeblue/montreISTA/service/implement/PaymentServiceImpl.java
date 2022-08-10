@@ -1,7 +1,8 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.entity.Payment;
 import com.codeblue.montreISTA.repository.PaymentRepository;
+import com.codeblue.montreISTA.service.PaymentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class PaymentServiceImpl implements PaymentService{
+public class PaymentServiceImpl implements PaymentService {
 
     private PaymentRepository paymentRepository;
 

@@ -2,11 +2,11 @@ package com.codeblue.montreISTA.controller;
 
 import com.codeblue.montreISTA.DTO.ProductRequestDTO;
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
-import com.codeblue.montreISTA.entity.Category;
 import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.helper.DTOConverter;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.*;
+import com.codeblue.montreISTA.service.implement.SellerServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

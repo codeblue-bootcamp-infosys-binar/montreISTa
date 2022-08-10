@@ -5,7 +5,7 @@ import com.codeblue.montreISTA.DTO.SellerRequestDTO;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
-import com.codeblue.montreISTA.service.SellerServiceImpl;
+import com.codeblue.montreISTA.service.implement.SellerServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;

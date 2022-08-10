@@ -1,9 +1,10 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 
 
 import com.codeblue.montreISTA.entity.Shipping;
 import com.codeblue.montreISTA.repository.ShippingRepository;
+import com.codeblue.montreISTA.service.ShippingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ShippingServiceImpl implements ShippingService{
+public class ShippingServiceImpl implements ShippingService {
     @Autowired
     ShippingRepository shippingRepository;
 
