@@ -14,4 +14,6 @@ public interface SellerService {
     void deleteSeller(Long id);
     List<Seller> findSellertBySellerId(Long id);
     List<Seller> findByUsername(String keyword);
-    }
+
+
+}

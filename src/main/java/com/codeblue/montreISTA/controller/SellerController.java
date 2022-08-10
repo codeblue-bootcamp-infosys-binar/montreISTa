@@ -2,6 +2,7 @@ package com.codeblue.montreISTA.controller;
 
 
 import com.codeblue.montreISTA.DTO.SellerRequestDTO;
+import com.codeblue.montreISTA.DTO.SellerResponseDTO;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
@@ -25,6 +26,8 @@ public class SellerController {
 
     private static final Logger logger =  LoggerFactory.getLogger(SellerController.class);
 
+    private static final String Line = "====================";
+
     @Autowired
     SellerServiceImpl sellerService;
 
@@ -40,25 +43,26 @@ public class SellerController {
             logger.info("==================== Logger Start Get All Sellers     ====================");
             for(Seller sellerData : sellers){
                 Map<String, Object> seller = new HashMap<>();
-//                logger.info("-------------------------");
-//                logger.info("Seller ID       : " + userData.getUserId());
-//                logger.info("Store Address : " + userData.getUserName());
-//                logger.info("Store Name    : " + userData.getEmailId());
-//                logger.info("Password : " + userData.getPassword());
-//                seller.put("ID            ", userData.getUserId());
-//                seller.put("Username      ", userData.getUserName());
-//                seller.put("Email         ", userData.getEmailId());
-//                maps.add(seller);
+                logger.info("-------------------------");
+                logger.info("Seller ID       : " + sellerData.getSellerId());
+                logger.info("Store Address   : " + sellerData.getStoreAddress());
+                logger.info("Store Name      : " + sellerData.getStoreName());
+                logger.info("Store Photo     : " + sellerData.getStorePhoto());
+                seller.put("Seller ID          ", sellerData.getSellerId());
+                seller.put("Store Address      ", sellerData.getStoreAddress());
+                seller.put("Store Name         ", sellerData.getStoreName());
+                seller.put("Store Photo        ", sellerData.getStorePhoto());
+                maps.add(seller);
             }
-            logger.info("==================== Logger End Get All Users     ====================");
+            logger.info("==================== Logger End Get All Sellers     ====================");
             logger.info(" ");
             return ResponseHandler.generateResponse("successfully retrieved sellers", HttpStatus.OK, sellers);
         } catch (Exception e){
-            logger.info("==================== Logger Start Get All Users     ====================");
-            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,"Table has no value")));
-            logger.info("==================== Logger End Get All Users     ====================");
+            logger.info("==================== Logger Start Get All Sellers     ====================");
+            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,"Table has no value!")));
+            logger.info("==================== Logger End Get All Sellers     ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, "Table has no value!");
         }
     }
 
@@ -66,10 +70,30 @@ public class SellerController {
     public ResponseEntity<Object> findByUsername(@Param("keyword") String keyword){
         try{
             List<Seller> sellers = sellerService.findByUsername(keyword);
-
+            List<Map<String, Object>> maps = new ArrayList<>();
+            logger.info("==================== Logger Start Get All Sellers by Username     ====================");
+            for(Seller sellerData : sellers){
+                Map<String, Object> seller = new HashMap<>();
+                logger.info("-------------------------");
+                logger.info("Seller ID       : " + sellerData.getSellerId());
+                logger.info("Store Address   : " + sellerData.getStoreAddress());
+                logger.info("Store Name      : " + sellerData.getStoreName());
+                logger.info("Store Photo     : " + sellerData.getStorePhoto());
+                seller.put("Seller ID          ", sellerData.getSellerId());
+                seller.put("Store Address      ", sellerData.getStoreAddress());
+                seller.put("Store Name         ", sellerData.getStoreName());
+                seller.put("Store Photo        ", sellerData.getStorePhoto());
+                maps.add(seller);
+            }
+            logger.info("==================== Logger End Get All Sellers by Username     ====================");
+            logger.info(" ");
             return ResponseHandler.generateResponse("successfully retrieved username", HttpStatus.OK, sellers);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            logger.info("==================== Logger Start Get All Sellers by Username    ====================");
+            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,"Data not Found!")));
+            logger.info("==================== Logger End Get All Sellers Username     ====================");
+            logger.info(" ");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!");
         }
     }
 
@@ -79,9 +103,15 @@ public class SellerController {
     public ResponseEntity<Object> getAllSellerBySellerId(@PathVariable("seller_id") Long sellerId){
         try{
             List<Seller> seller = sellerService.findSellertBySellerId(sellerId);
-            return ResponseHandler.generateResponse("successfully retrieved sellers", HttpStatus.OK, seller);
+            logger.info(Line + "Logger Start Get By Id " + Line);
+            logger.info(String.valueOf(seller));
+            logger.info(Line + "Logger End Get By Id " + Line);
+            return ResponseHandler.generateResponse("successfully get by seller id", HttpStatus.OK, seller);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.MULTI_STATUS, null);
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND, "Seller no value");
         }
     }
 
@@ -89,10 +119,25 @@ public class SellerController {
     @GetMapping("/sellers/{id}")
     public ResponseEntity<Object> getSellerById(@PathVariable("id") Long id){
         try{
-            Optional<Seller> seller = sellerService.findSellerById(id);
-            return ResponseHandler.generateResponse("successfully retrieved seller", HttpStatus.OK, seller);
+           Optional<Seller> seller = sellerService.findSellerById(id);
+            logger.info(Line + "Logger Start Get By Id " + Line);
+            logger.info(String.valueOf(seller));
+            logger.info(Line + "Logger End Get By Id " + Line);
+//            List<Map<String, Object>> maps = new ArrayList<>();
+//            for(Seller sellerData : seller) {
+//                logger.info("==================== Logger Start Find By ID Users ====================");
+//                logger.info("ID       : " + sellerData.getSellerId());
+//                logger.info("Username : " + userResult.getUserName());
+//                logger.info("Email    : " + userResult.getEmailId());
+//                logger.info("==================== Logger End Find By ID Users   ====================");
+//                logger.info(" ");
+//            }
+            return ResponseHandler.generateResponse("successfully get by id", HttpStatus.OK, seller);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Seller no value");
         }
     }
 
@@ -100,11 +145,32 @@ public class SellerController {
     @PostMapping("/sellers/create")
     public ResponseEntity<Object> createSeller(@RequestBody SellerRequestDTO sellerRequestDTO){
         try {
-
             Seller seller = sellerService.createSeller(sellerRequestDTO);
-            return ResponseHandler.generateResponse("successfully retrieved seller", HttpStatus.CREATED, seller);
+            Map<String, Object> sellerMap = new HashMap<>();
+            List<Map<String, Object>> maps = new ArrayList<>();
+
+            logger.info("==================== Logger Start Create Sellers ====================");
+            logger.info("Seller Successfully Created !");
+            logger.info("Seller ID       : " + seller.getSellerId());
+            logger.info("Store Address   : " + seller.getStoreAddress());
+            logger.info("Store Name      : " + seller.getStoreName());
+            logger.info("Store Photo     : " + seller.getStorePhoto());
+
+
+            sellerMap.put("Seller ID            ", seller.getSellerId());
+            sellerMap.put("Store Address        ", seller.getStoreAddress());
+            sellerMap.put("Store Name           ", seller.getStoreName());
+            sellerMap.put("Store Photo          ",seller.getStorePhoto());
+            maps.add(sellerMap);
+            logger.info("==================== Logger End Create Sellers   ====================");
+            logger.info(" ");
+            return ResponseHandler.generateResponse("successfully created seller", HttpStatus.CREATED, seller);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
+            logger.info("==================== Logger Start Create Sellers     ====================");
+            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,"User Already Exist!")));
+            logger.info("==================== Logger End Create Sellers     ====================");
+            logger.info(" ");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,"Seller Already Exist!");
         }
     }
 
@@ -118,11 +184,22 @@ public class SellerController {
             updateSeller.setStoreName(sellerRequestDTO.getStoreName());
             updateSeller.setStoreAddress(sellerRequestDTO.getStoreAddress());
             updateSeller.setStorePhoto(sellerRequestDTO.getStorePhoto());
-
             sellerService.updateSeller(updateSeller);
-            return ResponseHandler.generateResponse("successfully updated Seller", HttpStatus.CREATED, updateSeller);
+            logger.info("==================== Logger Start Update Seller ====================");
+            logger.info("Seller Data Successfully Updated !");
+            logger.info("Seller ID       : " + updateSeller.getSellerId());
+            logger.info("Store Address   : " + updateSeller.getStoreAddress());
+            logger.info("Store Name      : " + updateSeller.getStoreName());
+            logger.info("Store Photo     : " + updateSeller.getStorePhoto());
+            logger.info("==================== Logger End Update Sellers   ====================");
+            logger.info(" ");
+            return ResponseHandler.generateResponse("successfully updated Seller", HttpStatus.OK, updateSeller);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            logger.info("==================== Logger Start Update Sellers     ====================");
+            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,"Data Not Found!")));
+            logger.info("==================== Logger End Update Sellers     ====================");
+            logger.info(" ");
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Data Not Found!");
         }
     }
 
@@ -137,13 +214,13 @@ public class SellerController {
             logger.info("Seller Data Successfully Deleted! :" + response.put("deleted", Boolean.TRUE));
             logger.info("==================== Logger End Delete Sellers   ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse("successfully deleted seller!", HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse("successfully deleted seller!", HttpStatus.OK, response);
         } catch (Exception e){
             logger.info("==================== Logger Start Delete Sellers     ====================");
             logger.error(e.getMessage());
             logger.info("==================== Logger End Delete Sellers     ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, "Data not found!");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data not found!");
         }
 
     }
