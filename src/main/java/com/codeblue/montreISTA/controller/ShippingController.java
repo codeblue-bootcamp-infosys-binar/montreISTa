@@ -7,6 +7,8 @@ import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.ShippingService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,8 @@ public class ShippingController {
 
     @Autowired
     ShippingService shippingService;
+    private static final Logger logger = LoggerFactory.getLogger(ShippingController.class);
+    private static final String Line = "====================";
 
     //GET ALL
     @GetMapping("/shipping")
