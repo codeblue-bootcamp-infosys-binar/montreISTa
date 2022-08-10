@@ -2,13 +2,11 @@ package com.codeblue.montreISTA.entity;
 
 
 import com.codeblue.montreISTA.DTO.*;
-import com.codeblue.montreISTA.service.PhotoServiceImp;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Setter
 @Getter

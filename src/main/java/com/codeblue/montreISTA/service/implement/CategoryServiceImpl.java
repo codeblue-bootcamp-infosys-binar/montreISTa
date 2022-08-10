@@ -1,8 +1,9 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.entity.Category;
 import com.codeblue.montreISTA.helper.ResourceNotFoundException;
 import com.codeblue.montreISTA.repository.CategoryRepository;
+import com.codeblue.montreISTA.service.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;

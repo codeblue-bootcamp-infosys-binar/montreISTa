@@ -1,10 +1,11 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.BuyerRequestDTO;
 import com.codeblue.montreISTA.entity.Buyer;
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.repository.BuyerRepository;
 import com.codeblue.montreISTA.repository.UserRepository;
+import com.codeblue.montreISTA.service.BuyerService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

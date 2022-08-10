@@ -1,4 +1,4 @@
-package com.codeblue.montreISTA.service;
+package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.entity.Category;
@@ -8,6 +8,7 @@ import com.codeblue.montreISTA.entity.ProductCategory;
 import com.codeblue.montreISTA.repository.CategoryRepository;
 import com.codeblue.montreISTA.repository.ProductCategoryRepository;
 import com.codeblue.montreISTA.repository.ProductRepository;
+import com.codeblue.montreISTA.service.ProductCategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
