@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="8. Order")
+@Tag(name="09. Order")
 public class OrderController {
 
     private OrderService orderService;

@@ -103,6 +103,11 @@ public class PhotoServiceImp implements PhotoService {
         if(photoproduct.isEmpty()){
             throw new Exception("Product not found");
         }
+        List<Photo> photos = photoRepository.findByProductProductIdOrderByPhotoIdAsc(photoRequestDTO.getProduct_id());
+        int count = photos.size();
+        if(count>=4){
+            throw new Exception("Product can only have 4 photos");
+        }
         /* validation
         if(photoproduct.get().getSeller().getUserId().getName()!=principal.getName)
         {
@@ -125,8 +130,8 @@ public class PhotoServiceImp implements PhotoService {
     @Override
     public PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO, Long id) throws Exception {
         Optional<Product> photoproduct = productRepository.findById(photoRequestDTO.getProduct_id());
-        Product product = photoproduct.get();
-        /* validation
+        Product product = productRepository.findById(photoRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not found"));
+    /* validation
         if(photoproduct.get().getSeller().getUserId().getName()!=principal.getName)
         {
             throw new Exception("You only can add photo for your product");
