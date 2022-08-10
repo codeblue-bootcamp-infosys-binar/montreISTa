@@ -32,18 +32,6 @@ public class UserController {
         }
     }
 
-    //GET ALL BY User ID
-    @GetMapping("/users/{user_id}")
-    public ResponseEntity<Object> getAllUserByUserId(@PathVariable("user_id") Long userId) {
-        try {
-            Optional<User> user = userService.findUserById(userId);
-            return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, user);
-        } catch (Exception e) {
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-        }
-    }
-
-
     //GET BY NAME
     @GetMapping("/users/name")
     public ResponseEntity<Object> findByName(@Param("keyword") String keyword){
@@ -73,7 +61,7 @@ public class UserController {
     @GetMapping("/users/{id}")
     public ResponseEntity<Object> getUserById(@PathVariable("id") Long id) {
         try {
-            Optional<User> user = userService.findUserById(id);
+            User user = userService.findByUserId(id);
             return ResponseHandler.generateResponse("Successfully Retrieved User", HttpStatus.OK, user);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -95,8 +83,7 @@ public class UserController {
     @PutMapping("/users/update/{id}")
     public ResponseEntity<Object> updateUser(@RequestBody User user, @PathVariable("id") Long id) {
         try {
-            Optional<User> targetUser = userService.findUserById(id);
-            User updateUser = targetUser.get();
+           User updateUser = userService.findByUserId(id);
             updateUser.setUserId(id);
             updateUser.setAddress(user.getName());
             updateUser.setEmail(user.getEmail());
