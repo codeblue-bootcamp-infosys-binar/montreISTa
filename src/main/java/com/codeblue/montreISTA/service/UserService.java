@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.service;
 
+import com.codeblue.montreISTA.DTO.RegistrationDTO;
 import com.codeblue.montreISTA.DTO.UserResponseDTO;
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.repository.UserRepository;
@@ -15,7 +16,7 @@ public interface UserService {
 
     public List<UserResponseDTO> findAllUser();
     public UserResponseDTO findByUserId(Long id) throws Exception;
-    public UserResponseDTO createUser(User user)throws Exception;
+    public UserResponseDTO registrationUser(RegistrationDTO user)throws Exception;
     public UserResponseDTO updateUser(User updateUser, Long id)throws Exception;
     public void deleteUser(Long id)throws Exception;
 }

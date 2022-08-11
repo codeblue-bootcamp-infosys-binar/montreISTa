@@ -30,13 +30,15 @@ public class User extends AuditEntity{
     @Column(unique = true)
     private String username;
 
-    @Column(unique = true)
     @Email
+    @Column(unique = true)
     private String email;
+
     private String password;
 
     @Column(unique = true)
     private String phone;
+
     private String photo;
     private String address;
 

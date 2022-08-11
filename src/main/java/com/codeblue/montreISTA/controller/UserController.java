@@ -1,6 +1,7 @@
 package com.codeblue.montreISTA.controller;
 
 import com.codeblue.montreISTA.DTO.LoginUserRequest;
+import com.codeblue.montreISTA.DTO.RegistrationDTO;
 import com.codeblue.montreISTA.DTO.UserResponseDTO;
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.response.ResponseHandler;
@@ -65,9 +66,9 @@ public class UserController {
     }
     //CREATE
     @PostMapping("/signup")
-    public ResponseEntity<Object> createUser(@RequestBody User newUser) {
+    public ResponseEntity<Object> createUser(@RequestBody RegistrationDTO newUser) {
         try {
-            UserResponseDTO user = userService.createUser(newUser);
+            UserResponseDTO user = userService.registrationUser(newUser);
             return ResponseHandler.generateResponse("successfully retrieved user", HttpStatus.CREATED, user);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
