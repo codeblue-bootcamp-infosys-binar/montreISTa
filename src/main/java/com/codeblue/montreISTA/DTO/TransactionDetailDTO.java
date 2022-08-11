@@ -20,7 +20,7 @@ public class TransactionDetailDTO {
     private String buyer_name;
     private String photo_name;
     private String photo_url;
-    private Integer total_price;
+
     private String destination_name;
     private String destination_address;
     private String destination_phone;
@@ -28,13 +28,14 @@ public class TransactionDetailDTO {
     private String payment_name;
     private String payment_code;
     private String shipping_name;
-    private Integer shipping_price;
     private String categories;
     private Long product_id;
     private String product_name;
-    private Integer product_price;
     private String product_description;
+    private Integer product_price;
     private Integer quantity;
+    private Integer shipping_price;
+    private Integer total_price;
     private ZonedDateTime created_at;
     private ZonedDateTime modified_at;
 }
