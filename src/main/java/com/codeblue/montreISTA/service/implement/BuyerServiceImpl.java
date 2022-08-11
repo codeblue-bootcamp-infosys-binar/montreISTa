@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -22,44 +23,39 @@ public class BuyerServiceImpl implements BuyerService {
 
 
     @Override
-    public List<Buyer> findAllBuyer() {
-        return buyerRepository.findAllByOrderByBuyerIdAsc();
+    public List<BuyerResponseDTO> findAllBuyer() {
+        return buyerRepository.findAllByOrderByBuyerIdAsc().stream().map(Buyer::convertToResponse)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Optional<Buyer> findBuyerById(Long id) { return buyerRepository.findById(id); }
+    public BuyerResponseDTO findBuyerById(Long id) throws Exception{
+        return buyerRepository.findById(id).orElseThrow(()->new Exception("Buyer not found")).convertToResponse(); }
 
     @Override
     public BuyerResponseDTO createBuyer(BuyerRequestDTO buyer) throws Exception {
-        Optional<User> userOptional = userRepository.findById(buyer.getUser_id());
+        User user = userRepository.findById(buyer.getUser_id()).orElseThrow(()->new Exception("Buyer not found"));
         Optional<Buyer> buyerUser = buyerRepository.findByUserUserId(buyer.getUser_id());
-        if (buyerUser.isPresent() || userOptional.isEmpty()){
-            throw new Exception("User have buyer id or user not found");
+        if (buyerUser.isPresent()){
+            throw new Exception("User have buyer id");
         }
-        Buyer buyersave = buyerRepository.save(buyer.convertToEntity(userOptional.get()));
-        return buyersave.convertToResponse();
+        return buyerRepository.save(buyer.convertToEntity(user)).convertToResponse();
     }
 
     @Override
-    public Buyer updateBuyer(Buyer updateBuyer) { return buyerRepository.save(updateBuyer); }
+    public BuyerResponseDTO updateBuyer(BuyerRequestDTO buyer,Long id)throws Exception {
+        Buyer targetBuyer = buyerRepository.findById(id).orElseThrow(()->new Exception("Buyer not found"));
+        User user = userRepository.findById(buyer.getUser_id()).orElseThrow(() -> new Exception("Buyer not found"));
+        return buyerRepository.save(buyer.convertToEntity(user)).convertToResponse();
+    }
 
 
     @Override
     public void deleteBuyer(Long id) { buyerRepository.deleteById(id); }
 
-
     @Override
-    public List<Buyer> findBuyerByBuyerId(Long id) {
-        List<Buyer> buyer = buyerRepository.findByBuyerId(id);
-        if (buyer.isEmpty()){
-            return  null;
-        } else {
-            return buyer;
-        }
-    }
-
-    public List<Buyer> findByUsername(String keywoard) {
-        List<Buyer> buyerUsername = buyerRepository.findByUserUsername(keywoard);
-        return buyerUsername;
+    public List<BuyerResponseDTO> findByUsername(String keywoard) {
+        return buyerRepository.findByUserUsername(keywoard).stream().map(Buyer::convertToResponse)
+                .collect(Collectors.toList());
     }
 }

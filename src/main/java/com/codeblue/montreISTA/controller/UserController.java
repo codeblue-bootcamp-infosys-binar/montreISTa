@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.controller;
 
+import com.codeblue.montreISTA.DTO.LoginUserRequest;
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.UserService;
@@ -9,6 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -19,6 +25,19 @@ import java.util.*;
 public class UserController {
 
     private UserService userService;
+    private AuthenticationManager authenticationManager;
+
+
+    @PostMapping("/login")
+    public ResponseEntity<Object> login(@RequestBody LoginUserRequest userRequest) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword()));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            return ResponseHandler.generateResponse("successfully login", HttpStatus.OK, userRequest.getUsername());
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
 
     //GET ALL
     @GetMapping("/dashboard/users")
@@ -33,7 +52,7 @@ public class UserController {
     }
 
     //GET BY NAME
-    @GetMapping("/users/name")
+    @GetMapping("/user/name")
     public ResponseEntity<Object> findByName(@Param("keyword") String keyword){
         try{
             List<User> users = userService.findByName(keyword);
@@ -46,7 +65,7 @@ public class UserController {
 
 
     //GET BY USERNAME
-    @GetMapping("/users/username")
+    @GetMapping("/user/username")
     public ResponseEntity<Object> findByUsername(@Param("keyword") String keyword){
         try{
             User users = userService.findByUsername(keyword);
@@ -58,7 +77,7 @@ public class UserController {
     }
 
     //GET ONE BY ID
-    @GetMapping("/users/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<Object> getUserById(@PathVariable("id") Long id) {
         try {
             User user = userService.findByUserId(id);
@@ -68,7 +87,7 @@ public class UserController {
         }
     }
     //CREATE
-    @PostMapping("/users/create")
+    @PostMapping("/signup")
     public ResponseEntity<Object> createUser(@RequestBody User newUser) {
         try {
             User user = userService.createUser(newUser);
@@ -80,7 +99,7 @@ public class UserController {
 
 
     //UPDATE
-    @PutMapping("/users/update/{id}")
+    @PutMapping("/user/update/{id}")
     public ResponseEntity<Object> updateUser(@RequestBody User user, @PathVariable("id") Long id) {
         try {
            User updateUser = userService.findByUserId(id);
@@ -110,5 +129,7 @@ public class UserController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
+
+
 
 }

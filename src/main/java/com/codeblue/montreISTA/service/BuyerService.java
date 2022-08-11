@@ -8,14 +8,14 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BuyerService {
-    public List<Buyer> findAllBuyer();
+    List<BuyerResponseDTO> findAllBuyer();
 
-    public Optional<Buyer> findBuyerById(Long id);
+    BuyerResponseDTO findBuyerById(Long id) throws Exception;
 
     BuyerResponseDTO createBuyer(BuyerRequestDTO buyer)throws Exception ;
-    Buyer updateBuyer(Buyer updateBuyer);
+    BuyerResponseDTO updateBuyer(BuyerRequestDTO buyer, Long id)throws Exception;
     void deleteBuyer(Long id);
-    List<Buyer> findBuyerByBuyerId(Long id);
-    List<Buyer> findByUsername(String keywoard);
+
+    List<BuyerResponseDTO> findByUsername(String keywoard);
 
 }

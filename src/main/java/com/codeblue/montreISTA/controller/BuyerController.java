@@ -33,16 +33,16 @@ public class BuyerController {
     @GetMapping("/user/buyer")
     public ResponseEntity<Object> getAllBuyer(){
         try{
-            List<Buyer> buyers = buyerService.findAllBuyer();
+            List<BuyerResponseDTO> buyers = buyerService.findAllBuyer();
             List<Map<String, Object>> maps = new ArrayList<>();
             logger.info("==================== Logger Start Get All Buyers     ====================");
-            for(Buyer buyerData : buyers){
+            for(BuyerResponseDTO buyerData : buyers){
                 Map<String, Object> buyer = new HashMap<>();
                 logger.info("-------------------------");
-                logger.info("Buyer ID    : " + buyerData.getBuyerId());
-                logger.info("User ID     : " + buyerData.getUser());
-                buyer.put("Buyer ID        ", buyerData.getBuyerId());
-                buyer.put("User ID         ", buyerData.getUser());
+                logger.info("Buyer ID    : " + buyerData.getBuyer_id());
+                logger.info("User ID     : " + buyerData.getUser_id());
+                buyer.put("Buyer ID        ", buyerData.getBuyer_id());
+                buyer.put("User ID         ", buyerData.getBuyer_id());
                 maps.add(buyer);
             }
             logger.info("==================== Logger End Get All Buyers     ====================");
@@ -60,7 +60,7 @@ public class BuyerController {
     @GetMapping("/buyers/store")
     public ResponseEntity<Object> findByUsername(@Param ("keyword")String keyword){
         try{
-            List<Buyer> buyers = buyerService.findByUsername(keyword);
+            List<BuyerResponseDTO> buyers = buyerService.findByUsername(keyword);
             logger.info(Line + "Logger Start Get buyer username " + Line);
             logger.info(String.valueOf(buyers));
             logger.info(Line + "Logger End Get buyer username " + Line);
@@ -73,29 +73,12 @@ public class BuyerController {
         }
     }
 
-    //GET ALL BY BUYER ID
-    @GetMapping("/dashboard/buyers/store{buyer_id}")
-    public ResponseEntity<Object> getAllBuyerByBuyerId(@PathVariable("buyer_id") Long buyerId){
-        try{
-            List<Buyer> buyer = buyerService.findBuyerByBuyerId(buyerId);
-            logger.info(Line + "Logger Start Get buyer By Id " + Line);
-            logger.info(String.valueOf(buyer));
-            logger.info(Line + "Logger End Get buyer By Id " + Line);
-            return ResponseHandler.generateResponse("success get buyer id", HttpStatus.OK, buyer);
-        } catch (Exception e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Buyer no value!");
-        }
-    }
-
 
     //GET ONE BY ID
     @GetMapping("/buyers/{id}")
     public ResponseEntity<Object> getBuyerById(@PathVariable("id") Long id){
         try{
-            Optional<Buyer> buyer = buyerService.findBuyerById(id);
+            BuyerResponseDTO buyer = buyerService.findBuyerById(id);
             logger.info(Line + "Logger Start Get By Id " + Line);
             logger.info(String.valueOf(buyer));
             logger.info(Line + "Logger End Get By Id " + Line);
@@ -127,12 +110,9 @@ public class BuyerController {
 
     //UPDATE
     @PutMapping("/user/buyers/update/{id}")
-    public ResponseEntity<Object> updateBuyer(@RequestBody Buyer buyer, @PathVariable("id") Long id){
+    public ResponseEntity<Object> updateBuyer(@RequestBody BuyerRequestDTO buyer, @PathVariable("id") Long id){
         try{
-            Optional<Buyer> targetBuyer = buyerService.findBuyerById(id);
-            Buyer updateBuyer = targetBuyer.get();
-            updateBuyer.setBuyerId(id);
-            buyerService.updateBuyer(updateBuyer);
+            BuyerResponseDTO updateBuyer = buyerService.updateBuyer(buyer,id);
             logger.info(Line + "Logger Start Update By Id " + Line);
             logger.info(String.valueOf(updateBuyer));
             logger.info(Line + "Logger End Update By Id " + Line);
