@@ -136,7 +136,7 @@ public class PhotoController {
         }
     }
 
-    @PostMapping(value="/photoCloudinary",consumes = "multipart/form-data")
+    @PostMapping(value="/user/photoCloudinary",consumes = "multipart/form-data")
     public ResponseEntity<Object> postPhoto(@RequestParam ("file") MultipartFile file,
                                             @RequestParam String photoName,
                                             @RequestParam Long id) throws IOException {

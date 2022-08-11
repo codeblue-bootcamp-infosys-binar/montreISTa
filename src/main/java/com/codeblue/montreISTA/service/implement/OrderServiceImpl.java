@@ -87,23 +87,18 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderResponseDTO updateOrder(OrderRequestDTO orderRequestDTO, Long id) throws Exception {
-        Optional<Order> orderOrder = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(id);
-        Optional<Payment> orderPayment = paymentRepository.findById(orderRequestDTO.getPaymentId());
-        Optional<Shipping> orderShipping = shippingRepository.findById(orderRequestDTO.getShippingId());
-        if(orderOrder.isEmpty() || orderPayment.isEmpty() || orderShipping.isEmpty()){
-            throw new Exception("Please Take Product To Cart First");
-        }
-        Order order = orderOrder.get();
-                orderRequestDTO.convertToEntity(orderPayment.get(), orderShipping.get());
+        Order order = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(id).orElseThrow(()->new Exception("Please add product to cart before order"));
+        Payment payment = paymentRepository.findById(orderRequestDTO.getPaymentId()).orElseThrow(()->new Exception("Payment Not found"));
+        Shipping shipping = shippingRepository.findById(orderRequestDTO.getShippingId()).orElseThrow(()->new Exception("Shipping Not found"));
+        orderRequestDTO.convertToEntity(payment, shipping);
         Integer tempPrice = 0;
         for(Cart cart : order.getListCart()){
-            int total = cart.getQuantity() * cart.getProduct().getPrice();
+            int total = cart.getQuantity() * cart.getProduct().getPrice()+shipping.getPrice();
             tempPrice += total;
         }
-        tempPrice += order.getShipping().getPrice();
         //UPDATE
-        order.setPayment(orderPayment.get());
-        order.setShipping(orderShipping.get());
+        order.setPayment(payment);
+        order.setShipping(shipping);
         order.setDestinationName(orderRequestDTO.getDestination_name());
         order.setDestinationAddress(orderRequestDTO.getDestination_address());
         order.setDestinationPhone(orderRequestDTO.getDestination_phone());

@@ -119,7 +119,7 @@ public class TransactionServiceImpl implements TransactionService {
             transaction.setSeller(cart.getProduct().getSeller());
             transaction.setPhotoName(photoName);
             transaction.setPhotoUrl(photoURL);
-            transaction.setTotalPrice(order.getTotalprice());
+            transaction.setTotalPrice(cart.getQuantity()*cart.getProduct().getPrice()+order.getShipping().getPrice());
             HistoryTransaction transactionSave = transactionRepository.save(transaction);
             transactionDetail.setHistoryTransaction(transactionSave);
             transactionDetail.setDestinationName(order.getDestinationName());
