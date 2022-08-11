@@ -73,7 +73,7 @@ public class ShippingController {
     }
 
     //CREATE
-    @PostMapping("/shipping/create")
+    @PostMapping("/dashboard/shipping/create")
     public ResponseEntity<Object> createShipping(@RequestBody Shipping shippingRequestDTO){
         try {
             Shipping shipping = shippingService.createShipping(shippingRequestDTO);
@@ -84,7 +84,7 @@ public class ShippingController {
     }
 
     //UPDATE
-    @PutMapping("/shipping/update/{id}")
+    @PutMapping("/dashboard/shipping/update/{id}")
     public ResponseEntity<Object> updateShipping(@RequestBody Shipping shipping, @PathVariable("id") Long id){
         try{
             Optional<Shipping> targetShipping = shippingService.findShippingById(id);
@@ -101,7 +101,7 @@ public class ShippingController {
     }
 
     //DELETE
-    @DeleteMapping("/shipping/delete/{id}")
+    @DeleteMapping("/dashboard/shipping/delete/{id}")
     public ResponseEntity<Object> deleteShipping(@PathVariable("id") Long id){
         try{
             shippingService.deleteShipping(id);

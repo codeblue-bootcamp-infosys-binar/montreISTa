@@ -1,12 +1,9 @@
 package com.codeblue.montreISTA.entity;
 
 import lombok.*;
-import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
+import java.util.List;
 
 @Getter
 @Setter
@@ -37,6 +34,10 @@ public class User extends AuditEntity{
     private String photo;
     private String address;
 
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "user",
+            fetch = FetchType.LAZY)
+    private List<UserRole> roles;
     @Override
     public String toString() {
         return "User{" +

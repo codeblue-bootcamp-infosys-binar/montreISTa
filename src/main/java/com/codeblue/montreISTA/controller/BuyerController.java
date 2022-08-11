@@ -23,8 +23,54 @@ public class BuyerController {
     private BuyerService buyerService;
 
     //GET ALL
-    @GetMapping("/buyer")
-    public ResponseEntity<Object> getAllBuyer() {
+    @GetMapping("/user/buyer")
+    public ResponseEntity<Object> getAllBuyer(){
+        try{
+            List<Buyer> buyers = buyerService.findAllBuyer();
+
+            return ResponseHandler.generateResponse("successfully retrieved buyers", HttpStatus.OK, buyers);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    @GetMapping("/buyers/store")
+    public ResponseEntity<Object> findByUsername(@Param ("keyword")String keyword){
+        try{
+            List<Buyer> buyers = buyerService.findByUsername(keyword);
+
+            return ResponseHandler.generateResponse("successfully retrieved buyers", HttpStatus.OK, buyers);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    //GET ALL BY BUYER ID
+    @GetMapping("/dashboard/buyers/store{buyer_id}")
+    public ResponseEntity<Object> getAllBuyerByBuyerId(@PathVariable("buyer_id") Long buyerId){
+        try{
+            List<Buyer> buyer = buyerService.findBuyerByBuyerId(buyerId);
+            return ResponseHandler.generateResponse("successfully retrieved buyer", HttpStatus.OK, buyer);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+
+    //GET ONE BY ID
+    @GetMapping("/buyers/{id}")
+    public ResponseEntity<Object> getBuyerById(@PathVariable("id") Long id){
+        try{
+            Optional<Buyer> buyer = buyerService.findBuyerById(id);
+            return ResponseHandler.generateResponse("successfully retrieved buyer", HttpStatus.OK, buyer);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    //CREATE
+    @PostMapping("/user/buyers/create")
+    public ResponseEntity<Object> createBuyer(@RequestBody BuyerRequestDTO newBuyer){
         try {
             List<Buyer> buyers = buyerService.findAllBuyer();
             return ResponseHandler.generateResponse("succesfully retrieved buyers", HttpStatus.OK, buyers);
@@ -33,62 +79,31 @@ public class BuyerController {
         }
     }
 
-            //GET ALL BY BUYER ID
-            @GetMapping("/buyers/store{buyer_id}")
-            public ResponseEntity<Object> getAllBuyerByBuyerId (@PathVariable("buyer_id") Long buyerId){
-                try {
-                    List<Buyer> buyer = buyerService.findBuyerByBuyerId(buyerId);
-                    return ResponseHandler.generateResponse("successfully retrieved buyer", HttpStatus.OK, buyer);
-                } catch (Exception e) {
-                    return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-                }
-            }
+    //UPDATE
+    @PutMapping("/user/buyers/update/{id}")
+    public ResponseEntity<Object> updateBuyer(@RequestBody Buyer buyer, @PathVariable("id") Long id){
+        try{
+            Optional<Buyer> targetBuyer = buyerService.findBuyerById(id);
+            Buyer updateBuyer = targetBuyer.get();
+            updateBuyer.setBuyerId(id);
 
-
-            //GET ONE BY ID
-            @GetMapping("buyers/{id}")
-            public ResponseEntity<Object> getBuyerById (@PathVariable("id") Long id){
-                try {
-                    Optional<Buyer> buyer = buyerService.findBuyerById(id);
-                    return ResponseHandler.generateResponse("Succesfully Retrieved Buyer", HttpStatus.OK, buyer);
-                } catch (Exception e) {
-                    return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-                }
-            }
-
-            //CREATE
-            @PostMapping("/buyers/create")
-            public ResponseEntity<Object> createBuyer (@RequestBody BuyerRequestDTO newBuyer){
-                try {
-                    BuyerResponseDTO buyer = buyerService.createBuyer(newBuyer);
-                    return ResponseHandler.generateResponse("Succesfully Create Buyer", HttpStatus.CREATED, buyer);
-                } catch (Exception e) {
-                    return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-                }
-            }
-
-            //UPDATE
-            @PutMapping("/buyers/update/{id}")
-            public ResponseEntity<Object> updateBuyer (@RequestBody Buyer buyer, @PathVariable("id") Long id){
-                try {
-                    Optional<Buyer> targetBuyer = buyerService.findBuyerById(id);
-                    Buyer updateBuyer = targetBuyer.get();
-                    updateBuyer.setBuyerId(id);
-                    buyerService.updateBuyer(updateBuyer);
-                    return ResponseHandler.generateResponse("successfully updated Buyer", HttpStatus.CREATED, updateBuyer);
-                } catch (Exception e) {
-                    return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-                }
-            }
-
-            //DELETE
-            @DeleteMapping("/buyers/delete/{id}")
-            public ResponseEntity<Object> deleteBuyer (@PathVariable("id") Long id){
-                try {
-                    buyerService.deleteBuyer(id);
-                    return ResponseHandler.generateResponse("Succesfully Delete Buyer", HttpStatus.MULTI_STATUS, null);
-                } catch (Exception e) {
-                    return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-                }
-            }
+            buyerService.updateBuyer(updateBuyer);
+            return ResponseHandler.generateResponse("successfully updated Buyer", HttpStatus.CREATED, updateBuyer);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
+    }
+
+    //DELETE
+    @DeleteMapping("/user/buyers/delete/{id}")
+    public ResponseEntity<Object> deleteBuyer(@PathVariable("id") Long id){
+        try{
+            buyerService.deleteBuyer(id);
+            return ResponseHandler.generateResponse("successfully deleted buyer", HttpStatus.MULTI_STATUS, null);
+        } catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+
+    }
+}
+

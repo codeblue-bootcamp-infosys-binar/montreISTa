@@ -23,7 +23,7 @@ public class CartController {
      * findAll
      * @return
      */
-    @GetMapping("/carts")
+    @GetMapping("/user/carts")
     public ResponseEntity<Object> findAll(){
         try{
             List<CartResponseDTO> results = cartService.findAll();
@@ -38,7 +38,7 @@ public class CartController {
      * @param keyword
      * @return
      */
-    @GetMapping("/cart/buyer")
+    @GetMapping("/user/cart/buyer")
     public ResponseEntity<Object> findByBuyer(@Param("keyword") String keyword){
         try{
             List<CartResponseDTO> results = cartService.findByBuyer(keyword);
@@ -53,7 +53,7 @@ public class CartController {
      * @param keyword
      * @return
      */
-    @GetMapping("/cart/seller")
+    @GetMapping("/user/cart/seller")
     public ResponseEntity<Object> findBySeller(@Param("keyword") String keyword){
         try{
             List<CartResponseDTO> results = cartService.findBySeller(keyword);
@@ -67,7 +67,7 @@ public class CartController {
      * @param keyword
      * @return
      */
-    @GetMapping("/cart/productname")
+    @GetMapping("/user/cart/productname")
     public ResponseEntity<Object> findByProductName(@Param("keyword") String keyword){
         try{
             List<CartResponseDTO> results = cartService.findByProductName(keyword);
@@ -82,7 +82,7 @@ public class CartController {
      * @param keyword
      * @return
      */
-    @GetMapping("/cart/Category")
+    @GetMapping("/user/cart/category")
     public ResponseEntity<Object> findByCategory(@Param("keyword") String keyword){
         try{
             List<CartResponseDTO> results = cartService.findByCategory(keyword);
@@ -97,7 +97,7 @@ public class CartController {
      * @param cart
      * @return
      */
-    @PostMapping("/addToCart")
+    @PostMapping("/user/add-to-cart")
     public ResponseEntity<Object> postCart(@RequestBody CartRequestDTO cart) {
         try {
             CartResponseDTO results = cartService.createCart(cart);
@@ -107,7 +107,7 @@ public class CartController {
         }
     }
 
-    @PostMapping("/cart/wishlist/buyer/{id}")
+    @PostMapping("/user/cart/wishlist/buyer/{id}")
     public ResponseEntity<Object> postCart(@PathVariable Long id) {
         try {
             List<CartResponseDTO> results = cartService.wishlistToCart(id);
@@ -123,7 +123,7 @@ public class CartController {
      * @param cart
      * @return
      */
-    @PutMapping("/cart/{id}")
+    @PutMapping("/user/cart/{id}")
     public ResponseEntity<Object> updateCart(@PathVariable Long id, @RequestBody CartRequestDTO cart) {
         try {
             CartResponseDTO results = cartService.updateCart(cart,id);
@@ -138,7 +138,7 @@ public class CartController {
      * @param id
      * @return
      */
-    @DeleteMapping("/cart/{id}")
+    @DeleteMapping("/user/cart/{id}")
     public ResponseEntity<Object> deleteCart(@PathVariable Long id) {
         try {
             cartService.deleteById(id);

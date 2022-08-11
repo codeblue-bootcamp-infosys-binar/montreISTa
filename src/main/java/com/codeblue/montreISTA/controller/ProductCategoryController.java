@@ -87,8 +87,8 @@ public class ProductCategoryController {
      * @param productCategory
      * @return
      */
-    @PostMapping("/productCategory")
-    public ResponseEntity<Object> postProductCategory(@RequestBody ProductCategoryRequestDTO productCategory) throws Exception{
+    @PostMapping("/user/productCategory")
+    public ResponseEntity<Object> postProductCategory(@RequestBody ProductCategoryRequestDTO productCategory) throws Exception {
         try {
             ProductCategoryResponseDTO results = productCategoryService.createProductCategory(productCategory);
             return ResponseHandler.generateResponse("successfully create product category", HttpStatus.OK, results);
@@ -103,7 +103,7 @@ public class ProductCategoryController {
      * @param productCategory
      * @return
      */
-    @PutMapping("/productCategory/{id}")
+    @PutMapping("/user/productCategory/{id}")
     public ResponseEntity<Object> updateProductCategory(@PathVariable Long id,@RequestBody ProductCategoryRequestDTO productCategory) {
         try {
             ProductCategoryResponseDTO results = productCategoryService.updateProductCategory(productCategory,id);
@@ -118,7 +118,8 @@ public class ProductCategoryController {
      * @param id
      * @return
      */
-    @DeleteMapping("/productCategory/delete/{id}")
+
+    @DeleteMapping("/user/productCategory/{id}")
     public ResponseEntity<Object> deletePhoto(@PathVariable Long id) {
         try {
             productCategoryService.deleteById(id);

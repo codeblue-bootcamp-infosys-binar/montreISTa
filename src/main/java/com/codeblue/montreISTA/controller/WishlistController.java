@@ -37,7 +37,7 @@ public class WishlistController {
     private WishlistService wishlistService;
 
     //GET ALL
-    @GetMapping("/wishlist")
+    @GetMapping("/user/wishlist")
     public ResponseEntity<Object> getAllWishlist(){
         try{
             List<Wishlist> wishlists = wishlistService.findAllWishlist();
@@ -61,7 +61,7 @@ public class WishlistController {
     }
 
     //GET ALL BY SELLER ID
-    @GetMapping("/wishlist/store/{wishlist_id}")
+    @GetMapping("/user/wishlist/store/{wishlist_id}")
     public ResponseEntity<Object> getAllWishlistByWishlistId(@PathVariable("wishlist_id") Long wishlistId){
         try{
             List<Wishlist> wishlist = wishlistService.findWishlisttByWishlistId(wishlistId);
@@ -74,7 +74,7 @@ public class WishlistController {
         }
     }
 
-    @GetMapping("/wishlist/buyer/username")
+    @GetMapping("/user/wishlist/buyer/username")
     public ResponseEntity<Object> findByBuyerUsername(@Param("keyword") String keyword){
         try{
             List<Wishlist> wishlists = wishlistService.findByBuyerUserName(keyword);
@@ -87,7 +87,7 @@ public class WishlistController {
         }
     }
 
-    @GetMapping("/wishlist/Buyer/User/username")
+    @GetMapping("/user/wishlist/Buyer/User/username")
     public ResponseEntity<Object> findByBuyerUserUsername(@Param("keyword") String keyword){
         try{
             List<Wishlist> wishlists = wishlistService.findByBuyerUserUsername(keyword);
@@ -101,7 +101,7 @@ public class WishlistController {
     }
 
     //GET ONE BY ID
-    @GetMapping("/wishlist/{id}")
+    @GetMapping("/user/wishlist/{id}")
     public ResponseEntity<Object> getWishlistById(@PathVariable("id") Long id){
         try{
             Optional<Wishlist> wishlist = wishlistService.findWishlistById(id);
@@ -114,7 +114,7 @@ public class WishlistController {
     }
 
     //CREATE
-    @PostMapping("/wishlist/create")
+    @PostMapping("/user/wishlist/create")
     public ResponseEntity<Object> createWishlist(@RequestBody WishlistRequestDTO wishlistRequestDTO)throws Exception{
         try {
             Buyer buyer = buyerRepository.findById(wishlistRequestDTO.getBuyerId()).orElseThrow(Exception::new);
@@ -130,7 +130,7 @@ public class WishlistController {
     }
 
     //UPDATE
-    @PutMapping("/wishlist/update/{id}")
+    @PutMapping("/user/wishlist/update/{id}")
     public ResponseEntity<Object> updateWishlist(@RequestBody WishlistRequestDTO wishlistRequestDTO, @PathVariable("id") Long id){
         try{
             Optional<Wishlist> targetWishlist = wishlistService.findWishlistById(id);
@@ -151,7 +151,7 @@ public class WishlistController {
     }
 
     //DELETE
-    @DeleteMapping("/wishlist/delete/{id}")
+    @DeleteMapping("/user/wishlist/delete/{id}")
     public ResponseEntity<Object> deleteWishlist(@PathVariable("id") Long id){
         try{
             wishlistService.deleteWishlist(id);

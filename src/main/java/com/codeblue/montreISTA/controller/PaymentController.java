@@ -27,7 +27,7 @@ public class PaymentController {
      * @param newPayment
      * @return
      */
-    @PostMapping("/payment/create")
+    @PostMapping("/dashboard/payment/create")
     public ResponseEntity<Object> addPayment(@RequestBody Payment newPayment) {
         try {
             Payment payment = paymentService.addPayment(newPayment);
@@ -86,7 +86,7 @@ public class PaymentController {
      * @param payment
      * @return
      */
-    @PutMapping("/payment/update/{id}")
+    @PutMapping("/dashboard/payment/update/{id}")
     public ResponseEntity<Object> updatePayment(@RequestBody Payment payment, @PathVariable("id") Long id) {
         try {
             Payment results = paymentService.updatePayment(payment,id);
@@ -102,7 +102,7 @@ public class PaymentController {
      * @param id
      * @return
      */
-    @DeleteMapping("/payment/delete/{id}")
+    @DeleteMapping("/dashboard/payment/delete/{id}")
     public ResponseEntity<Object> deletePayment(@PathVariable("id") Long id) {
     try{
         paymentService.deletePayment(id);

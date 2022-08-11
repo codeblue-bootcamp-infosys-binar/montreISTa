@@ -21,7 +21,7 @@ public class UserController {
     private UserService userService;
 
     //GET ALL
-    @GetMapping("/users")
+    @GetMapping("/dashboard/users")
     public ResponseEntity<Object> getAllUser() {
         try {
             List<User> users = userService.findAllUser();
