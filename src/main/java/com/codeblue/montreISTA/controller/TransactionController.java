@@ -20,7 +20,7 @@ import java.util.List;
 public class TransactionController {
     private final TransactionService transactionService;
 
-    @GetMapping("/user/transactions")
+    @GetMapping("/dashboard/transactions")
     public ResponseEntity<Object> findAllHistoryTransaction(){
         try{
             List<TransactionResponseDTO> results = transactionService.findAllTransaction();
