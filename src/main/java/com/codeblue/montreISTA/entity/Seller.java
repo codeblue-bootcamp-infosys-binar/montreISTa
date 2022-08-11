@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
+import com.codeblue.montreISTA.DTO.SellerResponseDTO;
 import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -31,6 +32,22 @@ public class Seller extends AuditEntity{
 
     @NotNull
     private String storeAddress;
+
+    public SellerResponseDTO convertToResponse(){
+        return SellerResponseDTO.builder()
+                .sellerId(this.getSellerId())
+                .user_id(this.getUserId().getUserId())
+                .name(this.getUserId().getName())
+                .username(this.getUserId().getUsername())
+                .email(this.getUserId().getEmail())
+                .photo(this.getUserId().getPhoto())
+                .store_address(this.getStoreAddress())
+                .store_name(this.getStoreName())
+                .store_photo(this.getStorePhoto())
+                .createdAt(this.getCreatedAt())
+                .modifiedAt(this.getModifiedAt())
+                .build();
+    }
 
     @Override
     public String toString() {

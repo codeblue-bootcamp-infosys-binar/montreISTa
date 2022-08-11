@@ -119,7 +119,11 @@ public class TransactionServiceImpl implements TransactionService {
             transaction.setSeller(cart.getProduct().getSeller());
             transaction.setPhotoName(photoName);
             transaction.setPhotoUrl(photoURL);
-            transaction.setTotalPrice(order.getTotalprice());
+            transaction.setProduct_id(cart.getProduct().getProductId());
+            transaction.setProduct_name(cart.getProduct().getProductName());
+            transaction.setProduct_price(cart.getProduct().getPrice());
+            transaction.setQuantity(cart.getQuantity());
+            transaction.setTotalPrice(cart.getQuantity()*cart.getProduct().getPrice()+order.getShipping().getPrice());
             HistoryTransaction transactionSave = transactionRepository.save(transaction);
             transactionDetail.setHistoryTransaction(transactionSave);
             transactionDetail.setDestinationName(order.getDestinationName());
@@ -131,16 +135,13 @@ public class TransactionServiceImpl implements TransactionService {
             transactionDetail.setShippingName(order.getShipping().getName());
             transactionDetail.setShippingPrice(order.getShipping().getPrice());
             transactionDetail.setCategories(category);
-            transactionDetail.setProductId(cart.getProduct().getProductId());
-            transactionDetail.setProductName(cart.getProduct().getProductName());
-            transactionDetail.setProductPrice(cart.getProduct().getPrice());
             transactionDetail.setProductDescription(cart.getProduct().getDescription());
-            transactionDetail.setQuantity(cart.getQuantity());
-            HistoryTransactionDetail transactionDetailSave = transactionDetailsRepository.save(transactionDetail);
+            transactionDetailsRepository.save(transactionDetail);
         }
-        Optional<Order> orderDelete = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(id);
-        orderRepository.deleteById(orderDelete.get().getOrderId());
-        List<Cart> Carts = cartRepository.findByBuyerBuyerIdOrderByCreatedAtDesc(id);
+        Order orderDelete = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(id).orElseThrow(Exception::new);
+        orderRepository.deleteById(orderDelete.getOrderId());
+        List<Cart> Carts = cartRepository.findByBuyerBuyerIdOrderByModifiedAtDesc(id);
+        cartRepository.deleteAll(Carts);
         return "Order Success, transactions saved";
     }
 

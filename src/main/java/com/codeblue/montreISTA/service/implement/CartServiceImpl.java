@@ -7,6 +7,7 @@ import com.codeblue.montreISTA.service.CartService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -82,8 +83,8 @@ public class CartServiceImpl implements CartService {
             Payment payment = this.paymentRepository.findById(id).orElseThrow(Exception::new);
             Shipping shipping = this.shippingRepository.findById(id).orElseThrow(Exception::new);
             newOrder.setShipping(shipping);
-            Integer price = cartRequestDTO.getQuantity()*productId.get().getPrice();
-            newOrder.setTotalprice(price);
+            Integer subtotal = (cartRequestDTO.getQuantity()*productId.get().getPrice());
+            newOrder.setTotalprice(subtotal+shipping.getPrice());
             newOrder.setPayment(payment);
             Order saveOrder = orderRepository.save(newOrder);
             orderId = saveOrder.getOrderId();
@@ -98,30 +99,32 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public CartResponseDTO wishlistToCart(Long id) throws Exception {
-        Optional<Wishlist> wishlist = wishlistRepository.findFirstByBuyerBuyerIdOrderByCreatedAtDesc(id);
-        if(wishlist.isEmpty()){
+    public List<CartResponseDTO> wishlistToCart(Long id) throws Exception {
+        List<Wishlist> wishlists = wishlistRepository.findByBuyerBuyerIdOrderByModifiedAtDesc(id);
+        if(wishlists==null){
             throw new Exception("Your wishlist is empty");
         }
-        CartRequestDTO cartDTO = new CartRequestDTO();
-        cartDTO.setBuyer_id(wishlist.get().getBuyer().getBuyerId());
-        cartDTO.setProduct_id(wishlist.get().getProduct().getProductId());
-        cartDTO.setQuantity(wishlist.get().getQuantity());
-        if(cartDTO==null){
+        List<CartResponseDTO> carts = new ArrayList<>();
+        for(Wishlist wishlist:wishlists){
+           CartRequestDTO cartRequestDTO = new CartRequestDTO();
+           cartRequestDTO.setBuyer_id(wishlist.getBuyer().getBuyerId());
+           cartRequestDTO.setProduct_id(wishlist.getProduct().getProductId());
+           cartRequestDTO.setQuantity(wishlist.getQuantity());
+           CartResponseDTO cartResponseDTO = this.createCart(cartRequestDTO);
+           carts.add(cartResponseDTO);
+        }
+        if(carts==null){
             throw new Exception("failed to parsing data from wishlist to cart");
         }else {
-            wishlistRepository.deleteById(wishlist.get().getWishlistId());
+            wishlistRepository.deleteAll(wishlists);
         }
-        return this.createCart(cartDTO);
+        return carts;
     }
 
     @Override
     public CartResponseDTO updateCart(CartRequestDTO cartRequestDTO, Long id) throws Exception {
-        Optional<Cart> cartId = this.cartRepository.findById(id);
-        if(cartId.isEmpty()){
-            throw new Exception("Cart not found");
-        }
-        Cart cart = cartId.get();
+        Cart cart = this.cartRepository.findById(id).orElseThrow(()->new Exception("Cart not found"));
+        Order orderBuyerId = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(cart.getBuyer().getBuyerId()).orElseThrow(()->new Exception("Please add cart before edit"));;
         Long orderId = cart.getOrder().getOrderId();
         Cart saveCart = this.requestToEntity(cartRequestDTO,orderId);
         saveCart.setCartId(id);
@@ -171,16 +174,14 @@ public class CartServiceImpl implements CartService {
         return cartRequestDTO.convertToEntity(buyer,product,order);
     }
 
-    public void updatePrice(Long orderId){
-        Optional<Order> getOrder = orderRepository.findById(orderId);
-        Order updatePrice = getOrder.get();
+    public void updatePrice(Long orderId) throws Exception{
+        Order updatePrice = orderRepository.findById(orderId).orElseThrow(()->new Exception("Cart not found"));
         if(updatePrice.getListCart()!=null){
             Integer tempPrice = 0;
             for(Cart cartLoop : updatePrice.getListCart()){
-                int total = cartLoop.getQuantity() * cartLoop.getProduct().getPrice();
-                tempPrice += total;
+                int subtotal = cartLoop.getQuantity() * cartLoop.getProduct().getPrice();
+                tempPrice += subtotal+updatePrice.getShipping().getPrice();
             }
-            tempPrice += updatePrice.getShipping().getPrice();
             updatePrice.setTotalprice(tempPrice);
             orderRepository.save(updatePrice);
         }

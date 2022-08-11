@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.service;
 
+
 import com.codeblue.montreISTA.entity.Wishlist;
 
 import java.util.List;
@@ -21,5 +22,5 @@ public interface WishlistService {
 
     List<Wishlist> findByBuyerUserName(String keyword);
 
-     List<Wishlist> findByBuyerUserUsername(String keyword);
+    List<Wishlist> findByBuyerUserUsername(String keyword);
 }

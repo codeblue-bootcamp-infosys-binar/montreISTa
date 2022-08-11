@@ -36,6 +36,13 @@ public class HistoryTransaction{
     @NotNull
     private String photoUrl;
 
+    private Long product_id;
+    private String product_name;
+
+    private Integer product_price;
+
+    private Integer quantity;
+
     @NotNull
     private Integer totalPrice;
 
@@ -43,8 +50,12 @@ public class HistoryTransaction{
         return TransactionResponseDTO.builder()
                 .transaction_id(this.getHistoryTransactionId())
                 .buyer_id(this.getBuyer().getBuyerId())
+                .store_name(this.getSeller().getStoreName())
                 .seller_id(this.getSeller().getSellerId())
                 .photo_url(this.getPhotoUrl())
+                .product_name(this.getProduct_name())
+                .product_price(this.getProduct_price())
+                .quantity(this.getQuantity())
                 .total_price(this.getTotalPrice())
                 .build();
     }
