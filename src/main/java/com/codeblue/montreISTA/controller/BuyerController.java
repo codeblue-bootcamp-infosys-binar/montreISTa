@@ -112,7 +112,7 @@ public class BuyerController {
     @PostMapping("/user/buyers/create")
     public ResponseEntity<Object> createBuyer(@RequestBody BuyerRequestDTO newBuyer){
         try {
-            Buyer buyer = buyerService.createBuyer(newBuyer);
+            BuyerResponseDTO buyer = buyerService.createBuyer(newBuyer);
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(buyer));
             logger.info(Line + "Logger End Create " + Line);

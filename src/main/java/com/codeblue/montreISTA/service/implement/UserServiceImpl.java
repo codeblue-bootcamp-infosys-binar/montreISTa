@@ -42,9 +42,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElseThrow(()->new Exception("User not found"));
     }
 
-    public List<User> findByUsername(String keyword) {
-        List<User> users = userRepository.findByUsername(keyword);
-        return users;
+    public User findByUsername(String keyword) throws Exception{
+
+        return userRepository.findByUsername(keyword).orElseThrow(()->new Exception("User not found"));
     }
     public List<User> findByName(String keyword) {
         List<User> users = userRepository.findByName(keyword);

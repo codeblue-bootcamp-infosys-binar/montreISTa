@@ -49,7 +49,7 @@ public class UserController {
     @GetMapping("/users/username")
     public ResponseEntity<Object> findByUsername(@Param("keyword") String keyword){
         try{
-            List<User> users = userService.findByUsername(keyword);
+            User users = userService.findByUsername(keyword);
 
             return ResponseHandler.generateResponse("successfully retrieved username", HttpStatus.OK, users);
         } catch (Exception e){
