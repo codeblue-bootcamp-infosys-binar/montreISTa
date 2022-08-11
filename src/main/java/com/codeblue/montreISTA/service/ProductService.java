@@ -23,7 +23,7 @@ public interface ProductService {
     List<Product> findProductBySellerId(Long id);
     Product createProduct(ProductRequestDTO productRequestDTO) throws Exception;
 
-    Product updateProduct(ProductRequestDTO productRequestDTO, Long id);
+    Product updateProduct(ProductRequestDTO productRequestDTO, Long id)throws Exception;
 
     void deleteProduct(Long id);
 }

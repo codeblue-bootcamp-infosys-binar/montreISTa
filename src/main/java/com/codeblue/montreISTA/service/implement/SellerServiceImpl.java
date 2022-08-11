@@ -1,6 +1,7 @@
 package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.SellerRequestDTO;
+import com.codeblue.montreISTA.DTO.SellerResponseDTO;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.repository.SellerRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -21,49 +23,47 @@ public class SellerServiceImpl implements SellerService {
     private SellerRepository sellerRepository;
 
     @Override
-    public List<Seller> findAllSeller() {
-      return sellerRepository.findByOrderBySellerIdAsc();
+    public List<SellerResponseDTO> findAllSeller() {
+      return sellerRepository.findByOrderBySellerIdAsc().stream()
+              .map(Seller::convertToResponse)
+              .collect(Collectors.toList());
 
     }
     @Override
-    public Optional<Seller> findSellerById(Long id) {
-
-        return sellerRepository.findById(id);
+    public SellerResponseDTO findSellerById(Long id) throws Exception{
+        return sellerRepository.findById(id).orElseThrow(()->new Exception("Seller Not Found")).convertToResponse();
     }
     @Override
-    public Seller createSeller(SellerRequestDTO seller) throws Exception  {
-        Optional<User> userOptional = userRepository.findById(seller.getUserId());
+    public SellerResponseDTO createSeller(SellerRequestDTO seller) throws Exception  {
+        User user = userRepository.findById(seller.getUserId()).orElseThrow(()->new Exception("Seller Not Found"));
         Optional<Seller> sellerOptional = sellerRepository.findByUserIdUserId(seller.getUserId());
-        if(userOptional.isEmpty() || sellerOptional.isPresent()){
-            throw new Exception("User not found or User has been seller");
+        if(sellerOptional.isPresent()){
+            throw new Exception("User has been seller");
         }
-        User user = userOptional.get();
-        Seller sellerSave = seller.convertToEntity(user);
-        return sellerRepository.save(sellerSave);
+        return sellerRepository.save(seller.convertToEntity(user)).convertToResponse();
     }
     @Override
-    public Seller updateSeller(Seller updateSeller) {
-
-        return sellerRepository.save(updateSeller);
+    public SellerResponseDTO updateSeller(SellerRequestDTO seller,Long id)throws Exception {
+        User user = userRepository.findById(seller.getUserId()).orElseThrow(()->new Exception("User Not Found"));
+        Seller sellerUpdate = sellerRepository.findById(id).orElseThrow(()->new Exception("Seller Not Found"));
+        sellerUpdate.setUserId(user);
+        sellerUpdate.setStoreAddress(seller.getStoreAddress());
+        sellerUpdate.setStoreName(seller.getStoreName());
+        sellerUpdate.setStorePhoto(seller.getStorePhoto());
+        return sellerRepository.save(sellerUpdate).convertToResponse();
     }
+
     @Override
     public void deleteSeller(Long id) {
         sellerRepository.deleteById(id);
     }
 
+
     @Override
-    public List<Seller> findSellertBySellerId(Long id) {
-        List<Seller> seller = sellerRepository.findBySellerId(id);
-        if(seller.isEmpty()){
-            return null;
-        } else {
-            return seller;
-        }
-    }
-    @Override
-    public List<Seller> findByUsername(String keyword) {
-        List<Seller> sellerUsername = sellerRepository.findByUserIdUsername(keyword);
-        return sellerUsername;
+    public List<SellerResponseDTO> findByUsername(String keyword) {
+        return sellerRepository.findByUserIdUsername(keyword).stream()
+                .map(Seller::convertToResponse)
+                .collect(Collectors.toList());
     }
 
 

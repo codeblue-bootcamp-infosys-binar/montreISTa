@@ -38,21 +38,14 @@ public class SellerController {
     @GetMapping("/sellers")
     public ResponseEntity<Object> getAllSeller(){
         try{
-            List<Seller> sellers = sellerService.findAllSeller();
-            List<Map<String, Object>> maps = new ArrayList<>();
+            List<SellerResponseDTO> sellers = sellerService.findAllSeller();
             logger.info("==================== Logger Start Get All Sellers     ====================");
-            for(Seller sellerData : sellers){
-                Map<String, Object> seller = new HashMap<>();
+            for(SellerResponseDTO sellerData : sellers){
                 logger.info("-------------------------");
                 logger.info("Seller ID       : " + sellerData.getSellerId());
-                logger.info("Store Address   : " + sellerData.getStoreAddress());
-                logger.info("Store Name      : " + sellerData.getStoreName());
-                logger.info("Store Photo     : " + sellerData.getStorePhoto());
-                seller.put("Seller ID          ", sellerData.getSellerId());
-                seller.put("Store Address      ", sellerData.getStoreAddress());
-                seller.put("Store Name         ", sellerData.getStoreName());
-                seller.put("Store Photo        ", sellerData.getStorePhoto());
-                maps.add(seller);
+                logger.info("Store Address   : " + sellerData.getStore_address());
+                logger.info("Store Name      : " + sellerData.getStore_name());
+                logger.info("Store Photo     : " + sellerData.getStore_photo());
             }
             logger.info("==================== Logger End Get All Sellers    ====================");
             logger.info(" ");
@@ -69,7 +62,7 @@ public class SellerController {
     @GetMapping("/sellers/username")
     public ResponseEntity<Object> findByUsername(@Param("keyword") String keyword){
         try{
-            List<Seller> sellers = sellerService.findByUsername(keyword);
+            List<SellerResponseDTO> sellers = sellerService.findByUsername(keyword);
             logger.info(Line + "Logger Start Get seller username " + Line);
             logger.info(String.valueOf(sellers));
             logger.info(Line + "Logger End Get seller username " + Line);
@@ -83,28 +76,11 @@ public class SellerController {
     }
 
 
-    //GET ALL BY SELLER ID
-    @GetMapping("/sellers/store/{seller_id}")
-    public ResponseEntity<Object> getAllSellerBySellerId(@PathVariable("seller_id") Long sellerId){
-        try{
-            List<Seller> seller = sellerService.findSellertBySellerId(sellerId);
-            logger.info(Line + "Logger Start Get By Id " + Line);
-            logger.info(String.valueOf(seller));
-            logger.info(Line + "Logger End Get By Id " + Line);
-            return ResponseHandler.generateResponse("successfully get by seller id", HttpStatus.OK, seller);
-        } catch (Exception e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND, "Seller had no value");
-        }
-    }
-
     //GET ONE BY ID
     @GetMapping("/sellers/{id}")
     public ResponseEntity<Object> getSellerById(@PathVariable("id") Long id){
         try{
-           Optional<Seller> seller = sellerService.findSellerById(id);
+           SellerResponseDTO seller = sellerService.findSellerById(id);
             logger.info(Line + "Logger Start Get By Id " + Line);
             logger.info(String.valueOf(seller));
             logger.info(Line + "Logger End Get By Id " + Line);
@@ -130,7 +106,7 @@ public class SellerController {
     @PostMapping("/user/sellers/create")
     public ResponseEntity<Object> createSeller(@RequestBody SellerRequestDTO sellerRequestDTO){
         try {
-            Seller seller = sellerService.createSeller(sellerRequestDTO);
+            SellerResponseDTO seller = sellerService.createSeller(sellerRequestDTO);
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(seller));
             logger.info(Line + "Logger End Create " + Line);
@@ -147,13 +123,7 @@ public class SellerController {
     @PutMapping("/user/sellers/update/{id}")
     public ResponseEntity<Object> updateSeller(@RequestBody SellerRequestDTO sellerRequestDTO, @PathVariable("id") Long id){
         try{
-            Optional<Seller> targetSeller = sellerService.findSellerById(id);
-            Seller updateSeller = targetSeller.get();
-            updateSeller.setSellerId(id);
-            updateSeller.setStoreName(sellerRequestDTO.getStoreName());
-            updateSeller.setStoreAddress(sellerRequestDTO.getStoreAddress());
-            updateSeller.setStorePhoto(sellerRequestDTO.getStorePhoto());
-            sellerService.updateSeller(updateSeller);
+            SellerResponseDTO updateSeller = sellerService.updateSeller(sellerRequestDTO,id);
             logger.info(Line + "Logger Start Update By Id " + Line);
             logger.info(String.valueOf(updateSeller));
             logger.info(Line + "Logger End Update By Id " + Line);

@@ -1,6 +1,8 @@
 package com.codeblue.montreISTA.controller;
 
 import com.codeblue.montreISTA.DTO.LoginUserRequest;
+import com.codeblue.montreISTA.DTO.RegistrationDTO;
+import com.codeblue.montreISTA.DTO.UserResponseDTO;
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.UserService;
@@ -43,7 +45,7 @@ public class UserController {
     @GetMapping("/dashboard/users")
     public ResponseEntity<Object> getAllUser() {
         try {
-            List<User> users = userService.findAllUser();
+            List<UserResponseDTO> users = userService.findAllUser();
 
             return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, users);
         } catch (Exception e) {
@@ -51,36 +53,12 @@ public class UserController {
         }
     }
 
-    //GET BY NAME
-    @GetMapping("/user/name")
-    public ResponseEntity<Object> findByName(@Param("keyword") String keyword){
-        try{
-            List<User> users = userService.findByName(keyword);
-
-            return ResponseHandler.generateResponse("successfully retrieved username", HttpStatus.OK, users);
-        } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-        }
-    }
-
-
-    //GET BY USERNAME
-    @GetMapping("/user/username")
-    public ResponseEntity<Object> findByUsername(@Param("keyword") String keyword){
-        try{
-            User users = userService.findByUsername(keyword);
-
-            return ResponseHandler.generateResponse("successfully retrieved username", HttpStatus.OK, users);
-        } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-        }
-    }
 
     //GET ONE BY ID
     @GetMapping("/user/{id}")
     public ResponseEntity<Object> getUserById(@PathVariable("id") Long id) {
         try {
-            User user = userService.findByUserId(id);
+            UserResponseDTO user = userService.findByUserId(id);
             return ResponseHandler.generateResponse("Successfully Retrieved User", HttpStatus.OK, user);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -88,9 +66,9 @@ public class UserController {
     }
     //CREATE
     @PostMapping("/signup")
-    public ResponseEntity<Object> createUser(@RequestBody User newUser) {
+    public ResponseEntity<Object> createUser(@RequestBody RegistrationDTO newUser) {
         try {
-            User user = userService.createUser(newUser);
+            UserResponseDTO user = userService.registrationUser(newUser);
             return ResponseHandler.generateResponse("successfully retrieved user", HttpStatus.CREATED, user);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -102,17 +80,7 @@ public class UserController {
     @PutMapping("/user/update/{id}")
     public ResponseEntity<Object> updateUser(@RequestBody User user, @PathVariable("id") Long id) {
         try {
-           User updateUser = userService.findByUserId(id);
-            updateUser.setUserId(id);
-            updateUser.setAddress(user.getName());
-            updateUser.setEmail(user.getEmail());
-            updateUser.setName(user.getName());
-            updateUser.setPassword(user.getPassword());
-            updateUser.setPhone(user.getPhone());
-            updateUser.setPhoto(user.getPhoto());
-            updateUser.setUsername(user.getUsername());
-
-            userService.updateUser(updateUser);
+           UserResponseDTO updateUser = userService.updateUser(user,id);
             return ResponseHandler.generateResponse("successfully updated User", HttpStatus.CREATED, updateUser);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);

@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
+import com.codeblue.montreISTA.DTO.UserResponseDTO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
@@ -29,13 +30,15 @@ public class User extends AuditEntity{
     @Column(unique = true)
     private String username;
 
-    @Column(unique = true)
     @Email
+    @Column(unique = true)
     private String email;
+
     private String password;
 
     @Column(unique = true)
     private String phone;
+
     private String photo;
     private String address;
 
@@ -43,6 +46,19 @@ public class User extends AuditEntity{
             mappedBy = "user",
             fetch = FetchType.LAZY)
     private List<UserRole> roles;
+
+    public UserResponseDTO convertToResponse(List<String> roles){
+        return UserResponseDTO.builder()
+                .user_id(this.getUserId())
+                .username(this.getUsername())
+                .email_id(this.getEmail())
+                .address(this.getAddress())
+                .name(this.getName())
+                .phone(this.getPhone())
+                .photo(this.getPhoto())
+                .roles(roles)
+                .build();
+    }
     @Override
     public String toString() {
         return "User{" +
@@ -54,6 +70,7 @@ public class User extends AuditEntity{
                 ", phone='" + phone + '\'' +
                 ", photo='" + photo + '\'' +
                 ", address='" + address + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }

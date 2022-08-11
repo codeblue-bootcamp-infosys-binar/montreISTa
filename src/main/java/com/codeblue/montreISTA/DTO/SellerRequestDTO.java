@@ -16,11 +16,8 @@ public class SellerRequestDTO {
     private String storePhoto;
     private String storeAddress;
 
-
-
 public Seller convertToEntity(User user){
     return Seller.builder()
-
             .userId(user)
             .storeName(this.storeName)
             .storePhoto(this.storePhoto)
