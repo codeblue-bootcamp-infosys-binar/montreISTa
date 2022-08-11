@@ -4,6 +4,7 @@ import com.codeblue.montreISTA.DTO.ProductRequestDTO;
 import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.repository.ProductRepository;
+import com.codeblue.montreISTA.repository.SellerRepository;
 import com.codeblue.montreISTA.service.ProductService;
 import com.codeblue.montreISTA.service.implement.SellerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductRepository productRepository;
     @Autowired
-    SellerServiceImpl sellerService;
+    SellerRepository sellerRepository;
 
     public List<Product> findAllProduct() {
         List<Product> products = productRepository.findAll();
@@ -68,18 +69,17 @@ public class ProductServiceImpl implements ProductService {
         if(count >=4 ){
             throw new Exception("User can only have 4 Products");
         }
-        Optional<Seller> productSeller = sellerService.findSellerById(productRequestDTO.getSellerId());
-        Seller seller = productSeller.get();
+        Seller seller = sellerRepository.findById(productRequestDTO.getSellerId()).orElseThrow(()->new Exception("Seller not found"));
         Product newProduct = productRequestDTO.convertToEntity(seller);
 
         return productRepository.save(newProduct);
     }
 
-    public Product updateProduct(ProductRequestDTO productRequestDTO, Long id) {
+    public Product updateProduct(ProductRequestDTO productRequestDTO, Long id) throws Exception{
 
         //GET SELLER FROM DATABASE BY ID
-        Optional<Seller> productSeller = sellerService.findSellerById(productRequestDTO.getSellerId());
-        Product product = productRequestDTO.convertToEntity(productSeller.get());
+        Seller productSeller = sellerRepository.findById(productRequestDTO.getSellerId()).orElseThrow(()->new Exception("Seller not found"));
+        Product product = productRequestDTO.convertToEntity(productSeller);
 
         Optional<Product> targetProduct = findProductById(id);
         Product updateProduct = targetProduct.get();
