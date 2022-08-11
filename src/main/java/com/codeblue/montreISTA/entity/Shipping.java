@@ -1,8 +1,9 @@
 package com.codeblue.montreISTA.entity;
 
 import lombok.*;
-import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
@@ -17,11 +18,11 @@ public class Shipping extends AuditEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long shippingId;
 
-    @NotBlank(message = "name must not be blank")
+    @NotEmpty
     @Column(unique = true)
     private String name;
 
-    @NotBlank(message= "price must not be blank")
+    @NotEmpty
     private Integer price;
 
 }

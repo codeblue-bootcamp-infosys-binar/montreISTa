@@ -22,6 +22,6 @@ public interface UserService {
 
     public void deleteUser(Long id);
 
-    public List<User> findByUsername(String keyword) ;
+    public User findByUsername(String keyword)throws Exception ;
     public List<User> findByName(String keyword) ;
 }
