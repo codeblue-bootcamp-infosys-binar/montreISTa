@@ -10,14 +10,11 @@ import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.repository.UserRoleRepository;
 import com.codeblue.montreISTA.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,6 +24,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private UserRoleRepository userRoleRepository;
+
 
     @Override
     public List<UserResponseDTO> findAllUser() {
@@ -53,34 +51,60 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDTO registrationUser(RegistrationDTO registrationDTO) throws Exception {
         List<String> requestRole = registrationDTO.getRoles();
-        requestRole.forEach(String::toUpperCase);
-        Boolean check = requestRole.stream().anyMatch(r->r.contains("ROLE_ADMIN"));
-        if(check){
-            throw new Exception("User need admin for ROLE_ADMIN");
-        }
-        User userSave = userRepository.save(registrationDTO.convertToEntity());
-        requestRole.forEach(role ->{
-            try {
-          if(requestRole==null){
-                  this.addToRole(userSave);
-          }else if(role.equals("ROLE_USER")){
-              this.addToRole(userSave);
-          }else {
-              { throw new Exception("For now you can only have ROLE_USER, next patch we will upgrade");
-              }
-          }
-            } catch (Exception e) {
-                e.printStackTrace();
+        AtomicReference<UserResponseDTO> userDTOlambda = new AtomicReference<>(new UserResponseDTO());
+        if(requestRole==null) {
+            userDTOlambda.set(this.addToRoleCreate(registrationDTO.convertToEntity()));
+            }else {
+            boolean check = requestRole.stream().anyMatch(r->r.contains("ROLE_ADMIN"));
+            if(check){
+                throw new Exception("User need admin for ROLE_ADMIN");
             }
-        });
-        List<Role> roles = roleRepository.findByUsersUserUserId(userSave.getUserId());
-        List<String> role = roles.stream().map(Role::getRoleName).collect(Collectors.toList());
-        return userSave.convertToResponse(role);
+            requestRole.forEach(String::toUpperCase);
+            requestRole.forEach(role->{
+                try{
+                if(role.equals("ROLE_USER")){
+                    userDTOlambda.set(this.addToRoleCreate(registrationDTO.convertToEntity()));
+                }else {
+                    {
+                        throw new Exception("For now you can only have ROLE_USER, next patch we will upgrade");
+                    }
+                }
+            } catch (Exception e) {
+                    e.printStackTrace();
+                }});
+          };
+        return userDTOlambda.get();
     }
 
     @Override
-    public UserResponseDTO updateUser(User updateUser, Long id) throws Exception {
-        return null;
+    public UserResponseDTO updateUser(RegistrationDTO registrationDTO, Long id) throws Exception {
+        userRepository.findById(id).orElseThrow(()->new Exception("User not found"));
+        User user = registrationDTO.convertToEntity();
+        user.setUserId(id);
+        List<String> requestRole = registrationDTO.getRoles();
+        AtomicReference<UserResponseDTO> userDTOlambda = new AtomicReference<>(new UserResponseDTO());
+        if(requestRole==null) {
+            userDTOlambda.set(this.addToRoleCreate(user));
+        }else {
+            boolean check = requestRole.stream().anyMatch(r->r.contains("ROLE_ADMIN"));
+            if(check){
+                throw new Exception("User need admin for ROLE_ADMIN");
+            }
+            requestRole.forEach(String::toUpperCase);
+            requestRole.forEach(role->{
+                try{
+                    if(role.equals("ROLE_USER")){
+                        userDTOlambda.set(this.addToRoleCreate(user));
+                    }else {
+                        {
+                            throw new Exception("For now you can only have ROLE_USER, next patch we will upgrade");
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }});
+        };
+        return userDTOlambda.get();
     }
 
     @Override
@@ -88,17 +112,27 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-    public void addToRole(User userSave)throws Exception{
-        List<Role> roles = roleRepository.findByUsersUserUserId(userSave.getUserId());
+    public void checkRole_user(User user)throws Exception{
+        List<Role> roles = roleRepository.findByUsersUserUserId(user.getUserId());
         Boolean check = roles.stream().anyMatch(role->role.getRoleName()
                 .contains("ROLE_USER"));
-        if(check){
-            throw new Exception("User have ROLE_USER");
+        if(!check){
+            UserRole addrole = new UserRole();
+            Role role = roleRepository.findByRoleNameOrderByCreatedAt("ROLE_USER");
+            addrole.setRole(role);
+            addrole.setUser(user);
+            userRoleRepository.save(addrole);
         }
-        UserRole addrole = new UserRole();
-        Role role = roleRepository.findByRoleNameOrderByCreatedAt("ROLE_USER");
-        addrole.setRole(role);
-        addrole.setUser(userSave);
-        userRoleRepository.save(addrole);
+    }
+    public UserResponseDTO convertResponse(User userSave)throws Exception{
+        List<Role> rolesUser = roleRepository.findByUsersUserUserId(userSave.getUserId());
+        List<String> roleDTO = rolesUser.stream().map(Role::getRoleName).collect(Collectors.toList());
+        return userSave.convertToResponse(roleDTO);
+    }
+
+    public UserResponseDTO addToRoleCreate(User user)throws Exception{
+        User userSave = userRepository.save(user);
+        this.checkRole_user(user);
+        return this.convertResponse(userSave);
     }
 }

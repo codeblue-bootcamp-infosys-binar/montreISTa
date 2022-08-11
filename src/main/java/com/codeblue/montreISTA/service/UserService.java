@@ -17,6 +17,6 @@ public interface UserService {
     public List<UserResponseDTO> findAllUser();
     public UserResponseDTO findByUserId(Long id) throws Exception;
     public UserResponseDTO registrationUser(RegistrationDTO user)throws Exception;
-    public UserResponseDTO updateUser(User updateUser, Long id)throws Exception;
+    public UserResponseDTO updateUser(RegistrationDTO user, Long id)throws Exception;
     public void deleteUser(Long id)throws Exception;
 }
