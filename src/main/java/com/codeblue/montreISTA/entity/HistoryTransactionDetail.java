@@ -34,12 +34,8 @@ public class HistoryTransactionDetail extends AuditEntity {
     private String shippingName;
     private Integer shippingPrice;
     private String categories;
-    private Long productId;
-    private String productName;
-    private Integer productPrice;
     @Column(columnDefinition = "TEXT")
     private String productDescription;
-    private Integer quantity;
 
     public TransactionDetailDTO convertToResponse(){
         return TransactionDetailDTO.builder()
@@ -62,11 +58,11 @@ public class HistoryTransactionDetail extends AuditEntity {
                 .shipping_name(this.getShippingName())
                 .shipping_price(this.getShippingPrice())
                 .categories(this.getCategories())
-                .product_id(this.getProductId())
-                .product_name(this.getProductName())
-                .product_price(this.getProductPrice())
+                .product_id(this.getHistoryTransaction().getProduct_id())
+                .product_name(this.getHistoryTransaction().getProduct_name())
+                .product_price(this.getHistoryTransaction().getProduct_price())
                 .product_description(this.getProductDescription())
-                .quantity(this.getQuantity())
+                .quantity(this.getHistoryTransaction().getQuantity())
                 .created_at(this.getCreatedAt())
                 .modified_at(this.getModifiedAt())
                 .build();
@@ -87,11 +83,7 @@ public class HistoryTransactionDetail extends AuditEntity {
                 ", shippingName='" + shippingName + '\'' +
                 ", shippingPrice=" + shippingPrice +
                 ", categories='" + categories + '\'' +
-                ", productId=" + productId +
-                ", productName='" + productName + '\'' +
-                ", productPrice=" + productPrice +
                 ", productDescription='" + productDescription + '\'' +
-                ", quantity=" + quantity +
                 '}';
     }
 }

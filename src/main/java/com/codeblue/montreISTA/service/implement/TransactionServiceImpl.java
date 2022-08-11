@@ -119,6 +119,10 @@ public class TransactionServiceImpl implements TransactionService {
             transaction.setSeller(cart.getProduct().getSeller());
             transaction.setPhotoName(photoName);
             transaction.setPhotoUrl(photoURL);
+            transaction.setProduct_id(cart.getProduct().getProductId());
+            transaction.setProduct_name(cart.getProduct().getProductName());
+            transaction.setProduct_price(cart.getProduct().getPrice());
+            transaction.setQuantity(cart.getQuantity());
             transaction.setTotalPrice(cart.getQuantity()*cart.getProduct().getPrice()+order.getShipping().getPrice());
             HistoryTransaction transactionSave = transactionRepository.save(transaction);
             transactionDetail.setHistoryTransaction(transactionSave);
@@ -131,12 +135,8 @@ public class TransactionServiceImpl implements TransactionService {
             transactionDetail.setShippingName(order.getShipping().getName());
             transactionDetail.setShippingPrice(order.getShipping().getPrice());
             transactionDetail.setCategories(category);
-            transactionDetail.setProductId(cart.getProduct().getProductId());
-            transactionDetail.setProductName(cart.getProduct().getProductName());
-            transactionDetail.setProductPrice(cart.getProduct().getPrice());
             transactionDetail.setProductDescription(cart.getProduct().getDescription());
-            transactionDetail.setQuantity(cart.getQuantity());
-            HistoryTransactionDetail transactionDetailSave = transactionDetailsRepository.save(transactionDetail);
+            transactionDetailsRepository.save(transactionDetail);
         }
         Order orderDelete = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(id).orElseThrow(Exception::new);
         orderRepository.deleteById(orderDelete.getOrderId());
