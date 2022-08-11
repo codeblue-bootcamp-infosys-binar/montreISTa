@@ -138,9 +138,10 @@ public class TransactionServiceImpl implements TransactionService {
             transactionDetail.setQuantity(cart.getQuantity());
             HistoryTransactionDetail transactionDetailSave = transactionDetailsRepository.save(transactionDetail);
         }
-        Optional<Order> orderDelete = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(id);
-        orderRepository.deleteById(orderDelete.get().getOrderId());
-        List<Cart> Carts = cartRepository.findByBuyerBuyerIdOrderByCreatedAtDesc(id);
+        Order orderDelete = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(id).orElseThrow(Exception::new);
+        orderRepository.deleteById(orderDelete.getOrderId());
+        List<Cart> Carts = cartRepository.findByBuyerBuyerIdOrderByModifiedAtDesc(id);
+        cartRepository.deleteAll(Carts);
         return "Order Success, transactions saved";
     }
 

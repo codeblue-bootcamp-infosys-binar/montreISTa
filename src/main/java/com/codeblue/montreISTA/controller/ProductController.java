@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
-@Tag(name="3. Product")
+@Tag(name="03. Product")
 public class ProductController {
 
     @Autowired

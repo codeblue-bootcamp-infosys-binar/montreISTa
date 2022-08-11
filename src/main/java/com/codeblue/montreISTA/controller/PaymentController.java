@@ -16,7 +16,7 @@ import java.util.*;
 @AllArgsConstructor
 @RestController
 @RequestMapping
-@Tag(name = "11. Payment")
+@Tag(name = "12. Payment")
 public class PaymentController {
 
     private PaymentService paymentService;

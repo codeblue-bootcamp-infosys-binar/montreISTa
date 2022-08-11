@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@Tag(name = "12. Category")
+@Tag(name = "13. Category")
 public class CategoryController {
 
     @Autowired

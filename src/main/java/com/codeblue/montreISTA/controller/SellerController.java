@@ -20,7 +20,7 @@ import java.util.*;
 
 @AllArgsConstructor
 @RestController
-@Tag(name="2. Seller")
+@Tag(name="02. Seller")
 public class SellerController {
 
     private static final Logger logger =  LoggerFactory.getLogger(SellerController.class);
