@@ -18,5 +18,6 @@ public interface BuyerRepository extends JpaRepository<Buyer, Long> {
 
     List<Buyer> findAllByOrderByBuyerIdAsc();
     Optional<Buyer> findByUserUserId(Long id);
+
 }
 

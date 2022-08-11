@@ -182,7 +182,7 @@ public class ProductController {
     }
 
     //CREATE PRODUCT
-    @PostMapping("/products/create")
+    @PostMapping("/user/products/create")
     public ResponseEntity<Object> createProduct(@RequestBody ProductRequestDTO productRequestDTO){
         try {
             Product newProduct = productService.createProduct(productRequestDTO);
@@ -200,7 +200,7 @@ public class ProductController {
     }
 
     //UPDATE PRODUCT
-    @PutMapping("/products/update/{id}")
+    @PutMapping("/user/products/update/{id}")
     public ResponseEntity<Object> updateProduct(@RequestBody ProductRequestDTO productRequestDTO, @PathVariable("id") Long id){
         try{
             Product updateProduct = productService.updateProduct(productRequestDTO, id);
@@ -218,7 +218,7 @@ public class ProductController {
     }
 
     //DELETE PRODUCT
-    @DeleteMapping("/products/delete/{id}")
+    @DeleteMapping("/user/products/delete/{id}")
     public ResponseEntity<Object> deleteProduct(@PathVariable("id") Long id){
         try{
             productService.deleteProduct(id);

@@ -22,47 +22,32 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAllByOrderByUserIdAsc();
     }
 
+
     @Override
     public User createUser(User user) {
         return userRepository.save(user);
     }
 
+    @Override
+    public User updateUser(User updateUser) {
+        return userRepository.save(updateUser);
+    }
 
-//    public List<User> findAllUser() {
-//        List<User> users = userRepository.findAll();
-//        return users;
-//    }
-//
-//    public Optional<User> findUserById(Long id) {
-//        return userRepository.findById(id);
-//    }
-//
-//    public User createUser(User user) {
-//        return userRepository.save(user);
-//    }
-//
-//    public User updateUser(User updateUser) {
-//        return userRepository.save(updateUser);
-//    }
-//
-//    public void deleteUser(Long id) {
-//        userRepository.deleteById(id);
-//    }
-//
-//    public List<User> findUserByUserId(Long id) {
-//        List<User> user = userRepository.findByUserId(id);
-//        if(user.isEmpty()){
-//            return null;
-//        } else {
-//            return user;
-//        }
-//    }
-//    public List<User> findByUsername(String keyword) {
-//        List<User> users = userRepository.findByUsername(keyword);
-//        return users;
-//    }
-//    public List<User> findByName(String keyword) {
-//        List<User> users = userRepository.findByName(keyword);
-//        return users;
-//    }
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
+
+    public User findByUserId(Long id) throws Exception{
+        return userRepository.findById(id).orElseThrow(()->new Exception("User not found"));
+    }
+
+    public List<User> findByUsername(String keyword) {
+        List<User> users = userRepository.findByUsername(keyword);
+        return users;
+    }
+    public List<User> findByName(String keyword) {
+        List<User> users = userRepository.findByName(keyword);
+        return users;
+    }
 }

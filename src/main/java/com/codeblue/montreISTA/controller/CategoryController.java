@@ -92,7 +92,7 @@ public class CategoryController {
     }
 
     //CREATE
-    @PostMapping("/categories/create")
+    @PostMapping("/dashboard/categories/create")
     public ResponseEntity<Object> createCategory(@RequestBody CategoryRequestDTO categoryRequestDTO){
         try{
             Category category = categoryRequestDTO.convertToEntity();
@@ -112,7 +112,7 @@ public class CategoryController {
 
 
     //UPDATE
-    @PutMapping("/categories/update/{id}")
+    @PutMapping("/dashboard/categories/update/{id}")
     public ResponseEntity<Object> updateCategory(@PathVariable("id") Long id, @RequestBody CategoryRequestDTO categoryRequestDTO){
         try{
             Optional<Category> targetCategory = categoryService.findById(id);
@@ -134,7 +134,7 @@ public class CategoryController {
     }
 
     //DELETE
-    @DeleteMapping("/categories/delete/{id}")
+    @DeleteMapping("/dashboard/categories/delete/{id}")
     public ResponseEntity<Object> deleteCategory(@PathVariable("id") Long id){
         try{
             categoryService.deleteCategory(id);

@@ -1,13 +1,13 @@
 package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.BuyerRequestDTO;
+import com.codeblue.montreISTA.DTO.BuyerResponseDTO;
 import com.codeblue.montreISTA.entity.Buyer;
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.repository.BuyerRepository;
 import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.service.BuyerService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,14 +30,15 @@ public class BuyerServiceImpl implements BuyerService {
     public Optional<Buyer> findBuyerById(Long id) { return buyerRepository.findById(id); }
 
     @Override
-    public Buyer createBuyer(BuyerRequestDTO buyer) throws Exception {
+    public BuyerResponseDTO createBuyer(BuyerRequestDTO buyer) throws Exception {
         Optional<User> userOptional = userRepository.findById(buyer.getUser_id());
         Optional<Buyer> buyerUser = buyerRepository.findByUserUserId(buyer.getUser_id());
         if (buyerUser.isPresent() || userOptional.isEmpty()){
             throw new Exception("User have buyer id or user not found");
         }
-
-        return buyerRepository.save(buyer.convertToEntity(userOptional.get())); }
+        Buyer buyersave = buyerRepository.save(buyer.convertToEntity(userOptional.get()));
+        return buyersave.convertToResponse();
+    }
 
     @Override
     public Buyer updateBuyer(Buyer updateBuyer) { return buyerRepository.save(updateBuyer); }

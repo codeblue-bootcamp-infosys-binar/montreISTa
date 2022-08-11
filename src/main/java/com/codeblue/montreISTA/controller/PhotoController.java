@@ -3,9 +3,8 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.DTO.CartResponseDTO;
 import com.codeblue.montreISTA.DTO.PhotoRequestDTO;
 import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
-
 import com.codeblue.montreISTA.entity.Photo;
-import com.codeblue.montreISTA.service.CloudinaryService;
+import com.codeblue.montreISTA.service.implement.CloudinaryService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -96,12 +95,32 @@ public class PhotoController {
         }
     }
 
+    @GetMapping("/photo/seller/{id}")
+    public ResponseEntity<Object> findBySellerId(@PathVariable Long id){
+        try{
+            List<PhotoResponseDTO> results = photoService.findBySellerId(id);
+            return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, results);
+        }catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
+        }
+    }
+
+    @GetMapping("/photo/product/{id}")
+    public ResponseEntity<Object> findByProduct(@PathVariable Long id){
+        try{
+            List<PhotoResponseDTO> results = photoService.findByProductId(id);
+            return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, results);
+        }catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
+        }
+    }
+
     /**
      * Create Photo
      * @param photo
      * @return
      */
-    @PostMapping("/photo")
+    @PostMapping("/user/photo")
     public ResponseEntity<Object> postPhoto(@RequestBody PhotoRequestDTO photo) {
         try {
             PhotoResponseDTO results = photoService.createPhoto(photo);
@@ -148,7 +167,7 @@ public class PhotoController {
      * @param photo
      * @return
      */
-    @PutMapping("/photo/{id}")
+    @PutMapping("/user/photo/{id}")
     public ResponseEntity<Object> updatePhoto(@PathVariable Long id, @RequestBody PhotoRequestDTO photo){
     try{
         PhotoResponseDTO results = photoService.updatePhoto(photo,id);
@@ -164,9 +183,8 @@ public class PhotoController {
         }
     }
 
-
-    @DeleteMapping("/photo/{id}")
-    public ResponseEntity<Object> deletePhoto(@RequestParam Long id){
+    @DeleteMapping("/user/photo/{id}")
+    public ResponseEntity<Object> deletePhoto(@PathVariable Long id){
        try{
            photoService.deleteById(id);
            logger.info(Line + "Logger Start Delete By Id " + Line);

@@ -17,7 +17,6 @@ import java.util.List;
 @Component
 public class DTOConverter {
 
-    @Autowired
     private static CategoryService categoryService;
 
     @Autowired

@@ -29,7 +29,7 @@ public class OrderController {
      * FindAll
      * @return
      */
-    @GetMapping("/orders")
+    @GetMapping("/user/orders")
     public ResponseEntity<Object> getAllOrder(){
         try{
             List<OrderResponseDTO> results = orderService.findAllOrder();
@@ -44,7 +44,7 @@ public class OrderController {
      * @param id
      * @return
      */
-    @GetMapping("/order/{id}")
+    @GetMapping("/user/order/{id}")
     public ResponseEntity<Object> getOrderById(@PathVariable("id") Long id){
         try{
             OrderResponseDTO results = orderService.findOrderById(id);
@@ -54,7 +54,7 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/order/buyer/{id}")
+    @GetMapping("/user/order/buyer/{id}")
     public ResponseEntity<Object> getOrderByBuyerId(@PathVariable("id") Long id){
         try{
             OrderResponseCartDTO results = orderService.findByBuyerId(id);
@@ -69,7 +69,7 @@ public class OrderController {
      * @param keyword
      * @return
      */
-    @GetMapping("/order/productname")
+    @GetMapping("/user/order/productname")
     public ResponseEntity<Object> findByProductName(@Param("keyword") String keyword){
         try{
             List<OrderResponseDTO> results = orderService.findByProductName(keyword);
@@ -84,7 +84,7 @@ public class OrderController {
      * @param keyword
      * @return
      */
-    @GetMapping("/order/buyername")
+    @GetMapping("/user/order/buyername")
     public ResponseEntity<Object> findByBuyerUserName(@Param("keyword") String keyword){
         try{
             List<OrderResponseDTO> results = orderService.findByBuyerName(keyword);
@@ -99,7 +99,7 @@ public class OrderController {
      * @param keyword
      * @return
      */
-    @GetMapping("/order/storename")
+    @GetMapping("/user/order/storename")
     public ResponseEntity<Object> findBySellerStoreName(@Param("keyword") String keyword){
         try{
             List<OrderResponseDTO> results = orderService.findByStoreName(keyword);
@@ -113,7 +113,7 @@ public class OrderController {
      * Update Order
      * @return
      */
-    @PutMapping("/orderNow/buyer/{id}")
+    @PutMapping("/user/orderNow/buyer/{id}")
     public ResponseEntity<Object> updateOrder(@RequestBody OrderRequestDTO orderRequestDTO, @PathVariable("id") Long id){
         try {
             OrderResponseDTO results = orderService.updateOrder(orderRequestDTO,id);
@@ -128,7 +128,7 @@ public class OrderController {
      * Delete Order
      * @return
      */
-    @DeleteMapping("/order/delete/{id}")
+    @DeleteMapping("/user/order/delete/{id}")
     public ResponseEntity<Object> deleteOrder(@PathVariable("id") Long id){
         try{
             orderService.deleteOrder(id);

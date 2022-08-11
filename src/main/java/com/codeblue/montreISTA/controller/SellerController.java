@@ -66,7 +66,7 @@ public class SellerController {
         }
     }
 
-    @GetMapping("/sellers/Username")
+    @GetMapping("/sellers/username")
     public ResponseEntity<Object> findByUsername(@Param("keyword") String keyword){
         try{
             List<Seller> sellers = sellerService.findByUsername(keyword);
@@ -127,7 +127,7 @@ public class SellerController {
     }
 
     //CREATE
-    @PostMapping("/sellers/create")
+    @PostMapping("/user/sellers/create")
     public ResponseEntity<Object> createSeller(@RequestBody SellerRequestDTO sellerRequestDTO){
         try {
             Seller seller = sellerService.createSeller(sellerRequestDTO);
@@ -144,7 +144,7 @@ public class SellerController {
     }
 
     //UPDATE
-    @PutMapping("/sellers/update/{id}")
+    @PutMapping("/user/sellers/update/{id}")
     public ResponseEntity<Object> updateSeller(@RequestBody SellerRequestDTO sellerRequestDTO, @PathVariable("id") Long id){
         try{
             Optional<Seller> targetSeller = sellerService.findSellerById(id);
@@ -167,7 +167,7 @@ public class SellerController {
     }
 
     //DELETE
-    @DeleteMapping("/sellers/delete/{id}")
+    @DeleteMapping("/user/sellers/delete/{id}")
     public ResponseEntity<Object> deleteSeller(@PathVariable("id") Long id){
         try{
             sellerService.deleteSeller(id);
