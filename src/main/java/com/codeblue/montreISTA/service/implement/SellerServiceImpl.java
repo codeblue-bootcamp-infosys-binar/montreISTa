@@ -65,4 +65,6 @@ public class SellerServiceImpl implements SellerService {
         List<Seller> sellerUsername = sellerRepository.findByUserIdUsername(keyword);
         return sellerUsername;
     }
+
+
 }
