@@ -108,6 +108,7 @@ public class PhotoController {
         }
     }
 
+
     @DeleteMapping("/photo/{id}")
     public ResponseEntity<Object> deletePhoto(@RequestParam Long id){
        try{
