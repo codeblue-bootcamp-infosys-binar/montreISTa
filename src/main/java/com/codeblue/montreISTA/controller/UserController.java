@@ -78,7 +78,7 @@ public class UserController {
 
     //UPDATE
     @PutMapping("/user/update/{id}")
-    public ResponseEntity<Object> updateUser(@RequestBody User user, @PathVariable("id") Long id) {
+    public ResponseEntity<Object> updateUser(@RequestBody RegistrationDTO user, @PathVariable("id") Long id) {
         try {
            UserResponseDTO updateUser = userService.updateUser(user,id);
             return ResponseHandler.generateResponse("successfully updated User", HttpStatus.CREATED, updateUser);
