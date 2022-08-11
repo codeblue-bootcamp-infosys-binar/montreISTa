@@ -56,9 +56,10 @@ public class CartController {
             logger.info(" ");
             return ResponseHandler.generateResponse("successfully retrieved cart", HttpStatus.OK, results);
         }catch (Exception e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
+            logger.info("==================== Logger Start Get All Cart     ====================");
+            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,"Cart had no value!")));
+            logger.info("==================== Logger End Get All Cart     ====================");
+            logger.info(" ");
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Failed retrieved cart!");
         }
     }
