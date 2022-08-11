@@ -35,11 +35,10 @@ public class CartController {
     @GetMapping("/user/carts")
     public ResponseEntity<Object> findAll(){
         try{
-            List<CartResponseDTO> result = cartService.findAll();
             List<CartResponseDTO> results = cartService.findAll();
             List<Map<String, Object>> maps = new ArrayList<>();
             logger.info("==================== Logger Start Get All Cart     ====================");
-            for(CartResponseDTO cartData : result){
+            for(CartResponseDTO cartData : results){
                 Map<String, Object> cart = new HashMap<>();
                 logger.info("-------------------------");
                 logger.info("Cart ID       : " + cartData.getCart_id());
