@@ -33,14 +33,16 @@ public class SellerServiceImpl implements SellerService {
     public SellerResponseDTO findSellerById(Long id) throws Exception{
         return sellerRepository.findById(id).orElseThrow(()->new Exception("Seller Not Found")).convertToResponse();
     }
+
     @Override
     public SellerResponseDTO createSeller(SellerRequestDTO seller) throws Exception  {
-        User user = userRepository.findById(seller.getUserId()).orElseThrow(()->new Exception("Seller Not Found"));
+        User user = userRepository.findById(seller.getUserId()).orElseThrow(()->new Exception("User Not Found"));
         Optional<Seller> sellerOptional = sellerRepository.findByUserIdUserId(seller.getUserId());
         if(sellerOptional.isPresent()){
             throw new Exception("User has been seller");
         }
-        return sellerRepository.save(seller.convertToEntity(user)).convertToResponse();
+        Seller sellerDTO = sellerRepository.save(seller.convertToEntity(user));
+        return sellerDTO.convertToResponse();
     }
     @Override
     public SellerResponseDTO updateSeller(SellerRequestDTO seller,Long id)throws Exception {
