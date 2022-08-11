@@ -29,10 +29,15 @@ public class Buyer extends AuditEntity {
                 ", user=" + user +
                 '}';
     }
+
     public BuyerResponseDTO convertToResponse(){
         return BuyerResponseDTO.builder()
-                .buyerId(this.getBuyerId())
-                .userId(this.getUser())
+                .buyer_id(this.getBuyerId())
+                .user_id(this.getUser().getUserId())
+                .name(this.getUser().getName())
+                .username(this.getUser().getUsername())
+                .email(this.getUser().getEmail())
+                .photo(this.getUser().getPhoto())
                 .createdAt(this.getCreatedAt())
                 .modifiedAt(this.getModifiedAt()                )
                 .build();

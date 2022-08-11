@@ -12,21 +12,27 @@ import java.time.ZonedDateTime;
 @Builder
 public class BuyerResponseDTO {
 
-    private Long buyerId;
-    private User userId;
-
+    private Long buyer_id;
+    private Long user_id;
+    private String name;
+    private String username;
+    private String email;
+    private String photo;
     private ZonedDateTime createdAt;
     private ZonedDateTime modifiedAt;
 
+
     @Override
     public String toString() {
-       return "OrderResponseDTO{" +
-                "buyerId=" + buyerId +
-                ", userId=" + userId + '\'' +
+        return "BuyerResponseDTO{" +
+                "buyer_id=" + buyer_id +
+                ", user_id=" + user_id +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", photo='" + photo + '\'' +
                 ", createdAt=" + createdAt +
                 ", modifiedAt=" + modifiedAt +
                 '}';
     }
-
-
 }
