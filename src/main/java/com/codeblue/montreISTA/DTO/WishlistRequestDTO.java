@@ -13,7 +13,6 @@ import lombok.*;
 @Builder
 public class WishlistRequestDTO {
 
-    private Long wishlistId;
 
     private Long buyerId;
 
@@ -23,7 +22,6 @@ public class WishlistRequestDTO {
 
     public Wishlist convertToEntity(Buyer buyer, Product product){
         return Wishlist.builder()
-                .wishlistId(this.wishlistId)
                 .buyer(buyer)
                 .product(product)
                 .quantity(this.quantity)

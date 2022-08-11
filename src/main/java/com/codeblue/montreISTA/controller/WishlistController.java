@@ -108,6 +108,9 @@ public class WishlistController {
         try {
             Buyer buyer = buyerRepository.findById(wishlistRequestDTO.getBuyerId()).orElseThrow(Exception::new);
             Product product = productRepository.findById(wishlistRequestDTO.getProductId()).orElseThrow(Exception::new);
+            if(buyer.getUser().getUserId().equals(product.getSeller().getUserId().getUserId())){
+                throw new Exception("You can't order your own product honey");
+            }
             Wishlist wishlist1 = wishlistRequestDTO.convertToEntity(buyer,product);
             Wishlist wishlist = wishlistService.createWishlist(wishlist1);
             WishlistResponseDTO wishlistResponseDTO = DTOConverter.convertWishlist(wishlist);
