@@ -28,6 +28,7 @@ public class WishlistServiceImpl implements WishlistService {
 
     @Override
     public Wishlist createWishlist(Wishlist wishlist) {
+
         return wishlistRepository.save(wishlist);
     }
 

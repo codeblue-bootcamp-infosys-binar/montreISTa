@@ -5,6 +5,7 @@ import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.repository.*;
 import com.codeblue.montreISTA.service.CartService;
 import lombok.AllArgsConstructor;
+import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -70,10 +71,11 @@ public class CartServiceImpl implements CartService {
     @Override
     public CartResponseDTO createCart(CartRequestDTO cartRequestDTO) throws Exception {
         Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(cartRequestDTO.getBuyer_id());
-        Optional<Product> productId = productRepository.findById(cartRequestDTO.getProduct_id());
+        Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(()->new Exception("Product not Found"));
+        Optional<Buyer> buyer = buyerRepository.findById(cartRequestDTO.getBuyer_id());
         Long orderId;
-        if(productId.isEmpty()){
-            throw new Exception("Product not found");
+        if(buyer.get().getUser().getUserId().equals(productId.getSeller().getUserId().getUserId())){
+            throw new Exception("You can't order your own product honey");
         }
         if(orderBuyerId.isPresent()){
             orderId = orderBuyerId.get().getOrderId();
@@ -83,7 +85,7 @@ public class CartServiceImpl implements CartService {
             Payment payment = this.paymentRepository.findById(id).orElseThrow(Exception::new);
             Shipping shipping = this.shippingRepository.findById(id).orElseThrow(Exception::new);
             newOrder.setShipping(shipping);
-            Integer subtotal = (cartRequestDTO.getQuantity()*productId.get().getPrice());
+            Integer subtotal = (cartRequestDTO.getQuantity()*productId.getPrice());
             newOrder.setTotalprice(subtotal+shipping.getPrice());
             newOrder.setPayment(payment);
             Order saveOrder = orderRepository.save(newOrder);
