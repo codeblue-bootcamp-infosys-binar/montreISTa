@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
-    private OrderRepository orderRepository;
-    private PaymentRepository paymentRepository;
-    private ShippingRepository shippingRepository;
-    private CartService cartService;
+    private final OrderRepository orderRepository;
+    private final PaymentRepository paymentRepository;
+    private final ShippingRepository shippingRepository;
+    private final CartService cartService;
 
     public List<OrderResponseDTO> findAllOrder() {
         List<Order> results = orderRepository.findAllByOrderByOrderIdAsc();
@@ -65,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderResponseCartDTO findByBuyerId(Long id)throws Exception {
-        Optional<Order> results = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(id);
+        Optional<Order> results = orderRepository.findFirstByListCartBuyerBuyerIdOrderByModifiedAtDesc(id);
         if(results.isEmpty()){
             throw new Exception("Orders not found");
         }
@@ -87,7 +87,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderResponseDTO updateOrder(OrderRequestDTO orderRequestDTO, Long id) throws Exception {
-        Order order = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(id).orElseThrow(()->new Exception("Please add product to cart before order"));
+        Order order = orderRepository.findFirstByListCartBuyerBuyerIdOrderByModifiedAtDesc(id).orElseThrow(()->new Exception("Please add product to cart before order"));
         Payment payment = paymentRepository.findById(orderRequestDTO.getPaymentId()).orElseThrow(()->new Exception("Payment Not found"));
         Shipping shipping = shippingRepository.findById(orderRequestDTO.getShippingId()).orElseThrow(()->new Exception("Shipping Not found"));
         orderRequestDTO.convertToEntity(payment, shipping);

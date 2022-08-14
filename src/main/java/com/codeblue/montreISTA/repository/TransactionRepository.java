@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface HistoryTransactionRepository extends JpaRepository<HistoryTransaction,Long> {
+public interface TransactionRepository extends JpaRepository<HistoryTransaction,Long> {
     List<HistoryTransaction> findAllByOrderByHistoryTransactionIdAsc();
     List<HistoryTransaction> findByBuyerBuyerIdOrderByHistoryTransactionIdAsc(Long id);
     List<HistoryTransaction> findBySellerSellerIdOrderByHistoryTransactionIdAsc(Long id);

@@ -5,9 +5,7 @@ import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.repository.*;
 import com.codeblue.montreISTA.service.CartService;
 import lombok.AllArgsConstructor;
-import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,25 +15,28 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class CartServiceImpl implements CartService {
 
-    private CartRepository cartRepository;
-    private CategoryRepository categoryRepository;
-    private ProductRepository productRepository;
-    private OrderRepository orderRepository;
-    private BuyerRepository buyerRepository;
-    private PaymentRepository paymentRepository;
-    private ShippingRepository shippingRepository;
-    private WishlistRepository wishlistRepository;
+    private final CartRepository cartRepository;
+    private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
+    private final OrderRepository orderRepository;
+    private final BuyerRepository buyerRepository;
+    private final PaymentRepository paymentRepository;
+    private final ShippingRepository shippingRepository;
+    private final WishlistRepository wishlistRepository;
 
     @Override
-    public List<CartResponseDTO> findAll() {
+    public List<CartResponseDTO> findAll() throws Exception {
         List<Cart> results= this.cartRepository.findAllByOrderByCartIdAsc();
+        if(results.isEmpty()){
+            throw new Exception("Carts not found");
+        }
     return this.convertListDTO(results);
     }
 
     @Override
     public List<CartResponseDTO> findByBuyer(String keyword) throws Exception {
         List<Cart> results = this.cartRepository.findByBuyerUserNameIgnoreCaseContainingOrderByCartIdAsc(keyword);
-        if(results==null){
+        if(results.isEmpty()){
             throw new Exception("Carts not found");
         }
         return this.convertListDTO(results);
@@ -44,7 +45,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<CartResponseDTO> findBySeller(String keyword) throws Exception {
         List<Cart> results = this.cartRepository.findByProductSellerUserIdNameIgnoreCaseContainingOrderByCartIdAsc(keyword);
-        if(results==null){
+        if(results.isEmpty()){
             throw new Exception("Carts not found");
         }
         return this.convertListDTO(results);
@@ -53,7 +54,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<CartResponseDTO> findByProductName(String keyword) throws Exception {
         List<Cart> results = this.cartRepository.findByProductProductNameIgnoreCaseContainingOrderByCartIdAsc(keyword);
-        if(results==null){
+        if(results.isEmpty()){
             throw new Exception("Carts not found");
         }
         return this.convertListDTO(results);
@@ -62,7 +63,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<CartResponseDTO> findByCategory(String keyword) throws Exception {
         List<Cart> results = this.cartRepository.findByProductCategoriesCategoryNameIgnoreCaseContainingOrderByCartIdAsc(keyword);
-        if(results==null){
+        if(results.isEmpty()){
             throw new Exception("Cart not found");
         }
         return this.convertListDTO(results);
@@ -70,11 +71,11 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public CartResponseDTO createCart(CartRequestDTO cartRequestDTO) throws Exception {
-        Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(cartRequestDTO.getBuyer_id());
+        Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerBuyerIdOrderByModifiedAtDesc(cartRequestDTO.getBuyer_id());
         Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(()->new Exception("Product not Found"));
-        Optional<Buyer> buyer = buyerRepository.findById(cartRequestDTO.getBuyer_id());
+        Buyer buyer = buyerRepository.findById(cartRequestDTO.getBuyer_id()).orElseThrow(()->new Exception("Buyer not Found"));
         Long orderId;
-        if(buyer.get().getUser().getUserId().equals(productId.getSeller().getUserId().getUserId())){
+        if(buyer.getUser().getUserId().equals(productId.getSeller().getUserId().getUserId())){
             throw new Exception("You can't order your own product honey");
         }
         if(orderBuyerId.isPresent()){
@@ -92,18 +93,19 @@ public class CartServiceImpl implements CartService {
             orderId = saveOrder.getOrderId();
         }
         Cart saveCart = this.requestToEntity(cartRequestDTO, orderId);
-        this.cartRepository.save(saveCart);
 
         //update Price
         this.updatePrice(orderId);
+        Cart cartResponse = this.cartRepository.save(saveCart);
+
         //show Cart
-        return convertDTO(saveCart);
+        return convertDTO(cartResponse);
     }
 
     @Override
     public List<CartResponseDTO> wishlistToCart(Long id) throws Exception {
         List<Wishlist> wishlists = wishlistRepository.findByBuyerBuyerIdOrderByModifiedAtDesc(id);
-        if(wishlists==null){
+        if(wishlists.isEmpty()){
             throw new Exception("Your wishlist is empty");
         }
         List<CartResponseDTO> carts = new ArrayList<>();
@@ -115,7 +117,7 @@ public class CartServiceImpl implements CartService {
            CartResponseDTO cartResponseDTO = this.createCart(cartRequestDTO);
            carts.add(cartResponseDTO);
         }
-        if(carts==null){
+        if(carts.isEmpty()){
             throw new Exception("failed to parsing data from wishlist to cart");
         }else {
             wishlistRepository.deleteAll(wishlists);
@@ -126,15 +128,14 @@ public class CartServiceImpl implements CartService {
     @Override
     public CartResponseDTO updateCart(CartRequestDTO cartRequestDTO, Long id) throws Exception {
         Cart cart = this.cartRepository.findById(id).orElseThrow(()->new Exception("Cart not found"));
-        Order orderBuyerId = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(cart.getBuyer().getBuyerId()).orElseThrow(()->new Exception("Please add cart before edit"));;
         Long orderId = cart.getOrder().getOrderId();
         Cart saveCart = this.requestToEntity(cartRequestDTO,orderId);
         saveCart.setCartId(id);
-        this.cartRepository.save(saveCart);
-
+        saveCart.setQuantity(cartRequestDTO.getQuantity());
         //update Price
         this.updatePrice(orderId);
-        return convertDTO(saveCart);
+        Cart cartResponse = this.cartRepository.save(saveCart);
+        return convertDTO(cartResponse);
     }
 
     @Override
@@ -163,23 +164,23 @@ public class CartServiceImpl implements CartService {
         return cart.convertToResponse(photosDTO, categoriesDTO);
     }
 
-    public Cart requestToEntity (CartRequestDTO cartRequestDTO, Long id)throws Exception{
-        Optional<Product> productId = productRepository.findById(cartRequestDTO.getProduct_id());
-        Optional<Order> orderId = orderRepository.findById(id);
-        Optional<Buyer> buyerId = buyerRepository.findById(cartRequestDTO.getBuyer_id());
-        if(productId.isEmpty() || orderId.isEmpty() || buyerId.isEmpty()){
+    public Cart requestToEntity (CartRequestDTO cartRequestDTO, Long orderId)throws Exception{
+        Optional<Product> productById = productRepository.findById(cartRequestDTO.getProduct_id());
+        Optional<Order> orderById = orderRepository.findById(orderId);
+        Optional<Buyer> buyerById = buyerRepository.findById(cartRequestDTO.getBuyer_id());
+        if(productById.isEmpty() || orderById.isEmpty() || buyerById.isEmpty()){
             throw new Exception("Data not found");
         }
-        Product product = productId.get();
-        Order order = orderId.get();
-        Buyer buyer = buyerId.get();
+        Product product = productById.get();
+        Order order = orderById.get();
+        Buyer buyer = buyerById.get();
         return cartRequestDTO.convertToEntity(buyer,product,order);
     }
 
     public void updatePrice(Long orderId) throws Exception{
         Order updatePrice = orderRepository.findById(orderId).orElseThrow(()->new Exception("Cart not found"));
         if(updatePrice.getListCart()!=null){
-            Integer tempPrice = 0;
+            int tempPrice = 0;
             for(Cart cartLoop : updatePrice.getListCart()){
                 int subtotal = cartLoop.getQuantity() * cartLoop.getProduct().getPrice();
                 tempPrice += subtotal+updatePrice.getShipping().getPrice();

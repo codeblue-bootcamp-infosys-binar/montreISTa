@@ -1,9 +1,7 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.DTO.CartResponseDTO;
 import com.codeblue.montreISTA.DTO.PhotoRequestDTO;
 import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
-import com.codeblue.montreISTA.entity.Photo;
 import com.codeblue.montreISTA.service.implement.CloudinaryService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -43,7 +41,7 @@ public class PhotoController {
      * FindAll
      * @return
      */
-    @GetMapping("/photos")
+    @GetMapping("/dashboard/photos")
     public ResponseEntity<Object> findAll(){
         try {
             List<PhotoResponseDTO> photos = photoService.findAll();
@@ -79,7 +77,7 @@ public class PhotoController {
      * @param keyword
      * @return
      */
-    @GetMapping("/photo/sellername")
+    @GetMapping("/dashboard/sellername")
     public ResponseEntity<Object> findBySellerName(@Param("keyword") String keyword){
         try{
         List<PhotoResponseDTO> results = photoService.findBySellerName(keyword);
@@ -95,7 +93,7 @@ public class PhotoController {
         }
     }
 
-    @GetMapping("/photo/seller/{id}")
+    @GetMapping("/user/photo/seller/{id}")
     public ResponseEntity<Object> findBySellerId(@PathVariable Long id){
         try{
             List<PhotoResponseDTO> results = photoService.findBySellerId(id);
@@ -105,34 +103,13 @@ public class PhotoController {
         }
     }
 
-    @GetMapping("/photo/product/{id}")
+    @GetMapping("/dashboard/photo/product/{id}")
     public ResponseEntity<Object> findByProduct(@PathVariable Long id){
         try{
             List<PhotoResponseDTO> results = photoService.findByProductId(id);
             return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
-        }
-    }
-
-    /**
-     * Create Photo
-     * @param photo
-     * @return
-     */
-    @PostMapping("/user/photo")
-    public ResponseEntity<Object> postPhoto(@RequestBody PhotoRequestDTO photo) {
-        try {
-            PhotoResponseDTO results = photoService.createPhoto(photo);
-            logger.info(Line + "Logger Start Create " + Line);
-            logger.info(String.valueOf(results));
-            logger.info(Line + "Logger End Create " + Line);
-            return ResponseHandler.generateResponse("successfully create product", HttpStatus.OK, results);
-        } catch (Exception e) {
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed post photo!");
         }
     }
 

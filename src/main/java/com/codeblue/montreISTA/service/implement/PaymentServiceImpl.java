@@ -13,12 +13,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class PaymentServiceImpl implements PaymentService {
 
-    private PaymentRepository paymentRepository;
+    private final PaymentRepository paymentRepository;
 
     @Override
     public List<Payment> findAllPayment() {
-        List<Payment> payments = paymentRepository.findAll();
-            return payments;
+        return paymentRepository.findAll();
     }
 
     @Override
@@ -28,8 +27,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public List<Payment> findByPaymentName(String keyword) {
-        List<Payment> paymentName = paymentRepository.findByNameContaining(keyword);
-        return paymentName;
+        return paymentRepository.findByNameContaining(keyword);
     }
 
     @Override
@@ -38,8 +36,11 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Payment updatePayment(Payment payment, Long id) {
+    public Payment updatePayment(Payment payment, Long id) throws Exception {
         Optional<Payment> targetProduct = paymentRepository.findById(id);
+        if(targetProduct.isEmpty()){
+            throw new Exception("Payment not found");
+        }
         Payment updatePayment = targetProduct.get();
         updatePayment.setPaymentId(id);
         updatePayment.setName(payment.getName());

@@ -14,7 +14,7 @@ public interface BuyerRepository extends JpaRepository<Buyer, Long> {
     @Query(value = "SELECT * FROM buyers s WHERE buyer_id=?1", nativeQuery = true)
     List<Buyer> findByBuyerId(Long id);
 
-    List<Buyer> findByUserUsername(String keywoard);
+    Optional<Buyer> findByUserUsername(String keyword);
 
     List<Buyer> findAllByOrderByBuyerIdAsc();
     Optional<Buyer> findByUserUserId(Long id);
