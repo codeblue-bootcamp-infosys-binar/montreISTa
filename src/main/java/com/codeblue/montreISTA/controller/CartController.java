@@ -12,7 +12,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +31,7 @@ public class CartController {
      * findAll
      * @return
      */
-    @GetMapping("/user/carts")
+    @GetMapping("/dashboard/carts")
     public ResponseEntity<Object> findAll(){
         try{
             List<CartResponseDTO> results = cartService.findAll();
@@ -89,7 +88,7 @@ public class CartController {
      * @param keyword
      * @return
      */
-    @GetMapping("/user/cart/seller")
+    @GetMapping("/dashboard/cart/seller")
     public ResponseEntity<Object> findBySeller(@Param("keyword") String keyword){
         try{
             List<CartResponseDTO> results = cartService.findBySeller(keyword);
