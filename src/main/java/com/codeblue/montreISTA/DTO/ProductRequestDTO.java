@@ -11,14 +11,12 @@ import lombok.*;
 @Builder
 public class ProductRequestDTO {
 
-    private Long productId;
-    private Long sellerId;
     private String ProductName;
     private String description;
     private Integer price;
 
     public Product convertToEntity(Seller seller){
-        return Product.builder().productId(this.productId)
+        return Product.builder()
                 .seller(seller)
                 .productName(this.ProductName)
                 .description(this.description)
