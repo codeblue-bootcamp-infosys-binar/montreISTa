@@ -14,8 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.*;
 
 @AllArgsConstructor
@@ -92,10 +95,10 @@ public class BuyerController {
     }
 
     //CREATE
-    @PostMapping("/user/buyers/create")
-    public ResponseEntity<Object> createBuyer(@RequestBody BuyerRequestDTO newBuyer){
+    @GetMapping("/user/buyers/loginAsBuyer")
+    public ResponseEntity<Object> createBuyer(Authentication authentication){
         try {
-            BuyerResponseDTO buyer = buyerService.createBuyer(newBuyer);
+            BuyerResponseDTO buyer = buyerService.createBuyer(authentication);
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(buyer));
             logger.info(Line + "Logger End Create " + Line);

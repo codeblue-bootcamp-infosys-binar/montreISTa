@@ -8,8 +8,10 @@ import com.codeblue.montreISTA.repository.BuyerRepository;
 import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.service.BuyerService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,13 +35,16 @@ public class BuyerServiceImpl implements BuyerService {
         return buyerRepository.findById(id).orElseThrow(()->new Exception("Buyer not found")).convertToResponse(); }
 
     @Override
-    public BuyerResponseDTO createBuyer(BuyerRequestDTO buyer) throws Exception {
-        User user = userRepository.findById(buyer.getUser_id()).orElseThrow(()->new Exception("Buyer not found"));
-        Optional<Buyer> buyerUser = buyerRepository.findByUserUserId(buyer.getUser_id());
+    public BuyerResponseDTO createBuyer(Authentication authentication) throws Exception {
+        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Buyer not found"));
+//        User user = userRepository.findById(buyer.getUser_id()).orElseThrow(()->new Exception("Buyer not found"));
+        Optional<Buyer> buyerUser = buyerRepository.findByUserUserId(user.getUserId());
         if (buyerUser.isPresent()){
             throw new Exception("User have buyer id");
         }
-        return buyerRepository.save(buyer.convertToEntity(user)).convertToResponse();
+        Buyer buyer = new Buyer();
+        buyer.setUser(user);
+        return buyerRepository.save(buyer).convertToResponse();
     }
 
     @Override
