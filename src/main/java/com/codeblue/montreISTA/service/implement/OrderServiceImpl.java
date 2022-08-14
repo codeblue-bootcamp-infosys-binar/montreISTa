@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
-    private OrderRepository orderRepository;
-    private PaymentRepository paymentRepository;
-    private ShippingRepository shippingRepository;
-    private CartService cartService;
+    private final OrderRepository orderRepository;
+    private final PaymentRepository paymentRepository;
+    private final ShippingRepository shippingRepository;
+    private final CartService cartService;
 
     public List<OrderResponseDTO> findAllOrder() {
         List<Order> results = orderRepository.findAllByOrderByOrderIdAsc();

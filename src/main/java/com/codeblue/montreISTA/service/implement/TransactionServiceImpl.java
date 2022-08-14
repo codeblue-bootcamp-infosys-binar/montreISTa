@@ -3,15 +3,14 @@ package com.codeblue.montreISTA.service.implement;
 import com.codeblue.montreISTA.DTO.TransactionDetailDTO;
 import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
 import com.codeblue.montreISTA.entity.*;
-import com.codeblue.montreISTA.repository.CartRepository;
-import com.codeblue.montreISTA.repository.TransactionRepository;
-import com.codeblue.montreISTA.repository.OrderRepository;
-import com.codeblue.montreISTA.repository.TransactionDetailsRepository;
+import com.codeblue.montreISTA.repository.*;
 import com.codeblue.montreISTA.service.CategoryService;
 import com.codeblue.montreISTA.service.TransactionService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,11 +19,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class TransactionServiceImpl implements TransactionService {
 
-    private TransactionRepository transactionRepository;
-    private TransactionDetailsRepository transactionDetailsRepository;
-    private CartRepository cartRepository;
-    private OrderRepository orderRepository;
-    private CategoryService categoryService;
+    private final TransactionRepository transactionRepository;
+    private final TransactionDetailsRepository transactionDetailsRepository;
+    private final CartRepository cartRepository;
+    private final OrderRepository orderRepository;
+    private final CategoryService categoryService;
+    private final BuyerRepository buyerRepository;
+    private final SellerRepository sellerRepository;
 
     @Override
     public List<TransactionResponseDTO> findAllTransaction() {
@@ -41,29 +42,49 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<TransactionResponseDTO> findByTransactionBuyerId(Long id) throws Exception {
-        return transactionRepository.findByBuyerBuyerIdOrderByHistoryTransactionIdAsc(id).stream()
+    public List<TransactionResponseDTO> findByTransactionBuyerId(Authentication authentication) throws Exception {
+        Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please order first"));
+        List<HistoryTransaction> transaction = transactionRepository.findByBuyerBuyerIdOrderByHistoryTransactionIdAsc(buyer.getBuyerId());
+        if(transaction.isEmpty()){
+            throw new Exception("You don't have order");
+        }
+        return transaction.stream()
                 .map(HistoryTransaction::convertToResponse)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<TransactionResponseDTO> findByTransactionSellerId(Long id) throws Exception {
-        return transactionRepository.findBySellerSellerIdOrderByHistoryTransactionIdAsc(id).stream()
+    public List<TransactionResponseDTO> findByTransactionSellerId(Authentication authentication) throws Exception {
+        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        List<HistoryTransaction> transaction = transactionRepository.findBySellerSellerIdOrderByHistoryTransactionIdAsc(seller.getSellerId());
+        if(transaction.isEmpty()){
+            throw new Exception("You don't have product");
+        }
+        return transaction.stream()
                 .map(HistoryTransaction::convertToResponse)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<TransactionDetailDTO> findByTransactionDetailBuyerId(Long id) throws Exception {
-        return transactionDetailsRepository.findByHistoryTransactionBuyerBuyerIdOrderByTransactionDetailIdAsc(id).stream()
+    public List<TransactionDetailDTO> findByTransactionDetailBuyerId(Authentication authentication) throws Exception {
+        Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please order first"));
+        List<HistoryTransactionDetail> transactionDetail = transactionDetailsRepository.findByHistoryTransactionBuyerBuyerIdOrderByTransactionDetailIdAsc(buyer.getBuyerId());
+        if(transactionDetail.isEmpty()){
+            throw new Exception("You don't have order");
+        }
+        return transactionDetailsRepository.findByHistoryTransactionBuyerBuyerIdOrderByTransactionDetailIdAsc(buyer.getBuyerId()).stream()
                 .map(HistoryTransactionDetail::convertToResponse)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<TransactionDetailDTO> findByTransactionDetailSellerId(Long id) throws Exception {
-        return transactionDetailsRepository.findByHistoryTransactionSellerSellerIdOrderByTransactionDetailIdAsc(id).stream()
+    public List<TransactionDetailDTO> findByTransactionDetailSellerId(Authentication authentication) throws Exception {
+        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        List<HistoryTransactionDetail> transactionDetail = transactionDetailsRepository.findByHistoryTransactionSellerSellerIdOrderByTransactionDetailIdAsc(seller.getSellerId());
+        if(transactionDetail.isEmpty()){
+            throw new Exception("You don't have product");
+        }
+        return transactionDetail.stream()
                 .map(HistoryTransactionDetail::convertToResponse)
                 .collect(Collectors.toList());
     }
@@ -87,12 +108,14 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public String createTransaction(Long id) throws Exception {
-        Optional<Order> orderOptional = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(id);
+    public List<TransactionDetailDTO> createTransaction(Authentication authentication) throws Exception {
+        Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please order first"));
+        Optional<Order> orderOptional = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(buyer.getBuyerId());
         if(orderOptional.isEmpty()){
             throw new Exception("Please order first");
         }
         Order order = orderOptional.get();
+        List<TransactionDetailDTO> results = new ArrayList<>();
         for(Cart cart:order.getListCart()){
             HistoryTransaction transaction = new HistoryTransaction();
             HistoryTransactionDetail transactionDetail = new HistoryTransactionDetail();
@@ -134,13 +157,14 @@ public class TransactionServiceImpl implements TransactionService {
             transactionDetail.setShippingPrice(order.getShipping().getPrice());
             transactionDetail.setCategories(category);
             transactionDetail.setProductDescription(cart.getProduct().getDescription());
-            transactionDetailsRepository.save(transactionDetail);
+            HistoryTransactionDetail transactionDetailSave = transactionDetailsRepository.save(transactionDetail);
+            results.add(transactionDetailSave.convertToResponse());
         }
-        Order orderDelete = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(id).orElseThrow(Exception::new);
+        Order orderDelete = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(buyer.getBuyerId()).orElseThrow(Exception::new);
         orderRepository.deleteById(orderDelete.getOrderId());
-        List<Cart> Carts = cartRepository.findByBuyerBuyerIdOrderByModifiedAtDesc(id);
+        List<Cart> Carts = cartRepository.findByBuyerBuyerIdOrderByModifiedAtDesc(buyer.getBuyerId());
         cartRepository.deleteAll(Carts);
-        return "Order Success, transactions saved";
+        return results;
     }
 
 }

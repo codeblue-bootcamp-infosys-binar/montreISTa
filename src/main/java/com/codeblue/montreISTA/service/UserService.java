@@ -6,6 +6,7 @@ import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +17,9 @@ public interface UserService {
 
     public List<UserResponseDTO> findAllUser();
     public UserResponseDTO findByUserId(Long id) throws Exception;
+    UserResponseDTO findByUsername(String keyword)throws Exception;
     public UserResponseDTO registrationUser(RegistrationDTO user)throws Exception;
-    public UserResponseDTO updateUser(RegistrationDTO user, Long id)throws Exception;
+    public UserResponseDTO updateUser(RegistrationDTO user, Authentication authentication)throws Exception;
+
     public void deleteUser(Long id)throws Exception;
 }

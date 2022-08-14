@@ -6,7 +6,7 @@ import com.codeblue.montreISTA.entity.Cart;
 import java.util.List;
 
 public interface CartService {
-    List<CartResponseDTO> findAll();
+    List<CartResponseDTO> findAll() throws Exception;
 
     List<CartResponseDTO> findByBuyer(String keyword) throws Exception;
     List<CartResponseDTO> findBySeller(String keyword) throws Exception;

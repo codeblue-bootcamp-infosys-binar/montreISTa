@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class ProductCategoryServiceImp implements ProductCategoryService {
-    private ProductCategoryRepository productCategoryRepository;
-    private ProductRepository productRepository;
-    private CategoryRepository categoryRepository;
+    private final ProductCategoryRepository productCategoryRepository;
+    private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
 
 
     @Override
@@ -34,7 +34,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
     @Override
     public List<ProductCategoryResponseDTO> findByProductName(String keyword) throws Exception{
         List<ProductCategory> results = productCategoryRepository.findByProductProductNameIgnoreCaseContaining(keyword);
-        if(results==null){
+        if(results.isEmpty()){
             throw new Exception("Product Category not found");
         }
         return this.convertDTO(results);
@@ -43,7 +43,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
     @Override
     public List<ProductCategoryResponseDTO> findByProductId(Long id) throws Exception {
         List<ProductCategory> results = productCategoryRepository.findByProductProductId(id);
-        if(results==null){
+        if(results.isEmpty()){
             throw new Exception("Product Category not found");
         }
         return this.convertDTO(results);
@@ -52,7 +52,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
     @Override
     public List<ProductCategoryResponseDTO> findByCategoryId(Long id) throws Exception {
         List<ProductCategory> results = productCategoryRepository.findByCategoryCategoriesId(id);
-        if(results==null){
+        if(results.isEmpty()){
             throw new Exception("Product Category not found");
         }
         return this.convertDTO(results);
@@ -61,7 +61,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
     @Override
     public List<ProductCategoryResponseDTO> findByCategoryName(String keyword) throws Exception {
         List<ProductCategory> results = productCategoryRepository.findByCategoryNameIgnoreCaseContaining(keyword);
-        if(results==null){
+        if(results.isEmpty()){
             throw new Exception("Product Category not found");
         }
         return this.convertDTO(results);

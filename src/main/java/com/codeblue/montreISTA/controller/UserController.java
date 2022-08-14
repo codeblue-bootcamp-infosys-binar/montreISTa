@@ -35,12 +35,34 @@ public class UserController {
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            return ResponseHandler.generateResponse("successfully login", HttpStatus.OK, userRequest.getUsername());
+            UserResponseDTO user = userService.findByUsername(authentication.getName());
+            return ResponseHandler.generateResponse("successfully login", HttpStatus.OK, user);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
 
+    //CREATE
+    @PostMapping("/signup")
+    public ResponseEntity<Object> createUser(@RequestBody RegistrationDTO newUser) {
+        try {
+            UserResponseDTO user = userService.registrationUser(newUser);
+            return ResponseHandler.generateResponse("successfully retrieved user", HttpStatus.CREATED, user);
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    //UPDATE
+    @PutMapping("/user/editProfile")
+    public ResponseEntity<Object> updateUser(@RequestBody RegistrationDTO user,Authentication authentication) {
+        try {
+           UserResponseDTO updateUser = userService.updateUser(user,authentication);
+            return ResponseHandler.generateResponse("successfully updated User", HttpStatus.CREATED, updateUser);
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
     //GET ALL
     @GetMapping("/dashboard/users")
     public ResponseEntity<Object> getAllUser() {
@@ -53,9 +75,8 @@ public class UserController {
         }
     }
 
-
-    //GET ONE BY ID
-    @GetMapping("/user/{id}")
+    //GET BY ID
+    @GetMapping("/dashboard/user/{id}")
     public ResponseEntity<Object> getUserById(@PathVariable("id") Long id) {
         try {
             UserResponseDTO user = userService.findByUserId(id);
@@ -64,31 +85,9 @@ public class UserController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
-    //CREATE
-    @PostMapping("/signup")
-    public ResponseEntity<Object> createUser(@RequestBody RegistrationDTO newUser) {
-        try {
-            UserResponseDTO user = userService.registrationUser(newUser);
-            return ResponseHandler.generateResponse("successfully retrieved user", HttpStatus.CREATED, user);
-        } catch (Exception e) {
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-        }
-    }
-
-
-    //UPDATE
-    @PutMapping("/user/update/{id}")
-    public ResponseEntity<Object> updateUser(@RequestBody RegistrationDTO user, @PathVariable("id") Long id) {
-        try {
-           UserResponseDTO updateUser = userService.updateUser(user,id);
-            return ResponseHandler.generateResponse("successfully updated User", HttpStatus.CREATED, updateUser);
-        } catch (Exception e) {
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-        }
-    }
 
     //DELETE
-    @DeleteMapping("/users/delete/{id}")
+    @DeleteMapping("/dashboard/delete/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable("id") Long id) {
         try {
             userService.deleteUser(id);
