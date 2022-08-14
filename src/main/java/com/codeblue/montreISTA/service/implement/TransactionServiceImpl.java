@@ -110,7 +110,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public List<TransactionDetailDTO> createTransaction(Authentication authentication) throws Exception {
         Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please order first"));
-        Optional<Order> orderOptional = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(buyer.getBuyerId());
+        Optional<Order> orderOptional = orderRepository.findFirstByListCartBuyerBuyerIdOrderByModifiedAtDesc(buyer.getBuyerId());
         if(orderOptional.isEmpty()){
             throw new Exception("Please order first");
         }
@@ -160,7 +160,7 @@ public class TransactionServiceImpl implements TransactionService {
             HistoryTransactionDetail transactionDetailSave = transactionDetailsRepository.save(transactionDetail);
             results.add(transactionDetailSave.convertToResponse());
         }
-        Order orderDelete = orderRepository.findFirstByListCartBuyerBuyerIdOrderByCreatedAtDesc(buyer.getBuyerId()).orElseThrow(Exception::new);
+        Order orderDelete = orderRepository.findFirstByListCartBuyerBuyerIdOrderByModifiedAtDesc(buyer.getBuyerId()).orElseThrow(Exception::new);
         orderRepository.deleteById(orderDelete.getOrderId());
         List<Cart> Carts = cartRepository.findByBuyerBuyerIdOrderByModifiedAtDesc(buyer.getBuyerId());
         cartRepository.deleteAll(Carts);
