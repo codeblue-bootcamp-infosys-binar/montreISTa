@@ -3,22 +3,21 @@ package com.codeblue.montreISTA.service.implement;
 import com.codeblue.montreISTA.entity.Wishlist;
 import com.codeblue.montreISTA.repository.WishlistRepository;
 import com.codeblue.montreISTA.service.WishlistService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class WishlistServiceImpl implements WishlistService {
 
-    @Autowired
-    WishlistRepository wishlistRepository;
+
+    private final WishlistRepository wishlistRepository;
 
     @Override
     public List<Wishlist> findAllWishlist() {
-        List<Wishlist> wishlists = wishlistRepository.findAll();
-        return wishlists;
+        return wishlistRepository.findAll();
     }
 
     @Override
@@ -51,18 +50,13 @@ public class WishlistServiceImpl implements WishlistService {
         }
     }
 
-
-
-
     @Override
     public List<Wishlist> findByBuyerUserName(String keyword) {
-        List<Wishlist> wishlistBuyerUsername = wishlistRepository.findByBuyerUserName(keyword);
-        return wishlistBuyerUsername;
+        return wishlistRepository.findByBuyerUserName(keyword);
     }
 
     @Override
     public List<Wishlist> findByBuyerUserUsername(String keyword) {
-        List<Wishlist> wishlistBuyerUserUsername = wishlistRepository.findByBuyerUserUsername(keyword);
-        return wishlistBuyerUserUsername;
+        return wishlistRepository.findByBuyerUserUsername(keyword);
     }
 }

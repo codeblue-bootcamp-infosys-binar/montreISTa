@@ -5,6 +5,7 @@ package com.codeblue.montreISTA.service.implement;
 import com.codeblue.montreISTA.entity.Shipping;
 import com.codeblue.montreISTA.repository.ShippingRepository;
 import com.codeblue.montreISTA.service.ShippingService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +13,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ShippingServiceImpl implements ShippingService {
-    @Autowired
-    ShippingRepository shippingRepository;
+
+    private final ShippingRepository shippingRepository;
 
     @Override
     public List<Shipping> findAllShipping() {
-        List<Shipping> shippings = shippingRepository.findAll();
-        return shippings;
+        return shippingRepository.findAll();
     }
 
     @Override
@@ -52,7 +53,6 @@ public class ShippingServiceImpl implements ShippingService {
 
     @Override
     public List<Shipping> findByName(String keyword) {
-        List<Shipping> shippingName = shippingRepository.findByName(keyword);
-        return shippingName;
+        return shippingRepository.findByName(keyword);
     }
 }

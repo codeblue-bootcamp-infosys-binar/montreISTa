@@ -11,7 +11,6 @@ import lombok.*;
 @Builder
 public class SellerRequestDTO {
 
-    private Long userId;
     private String storeName;
     private String storePhoto;
     private String storeAddress;

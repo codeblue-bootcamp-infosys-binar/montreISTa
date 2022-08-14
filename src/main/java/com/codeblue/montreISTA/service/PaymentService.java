@@ -13,7 +13,7 @@ public interface PaymentService {
     Optional<Payment> findPaymentById(Long id);
     List<Payment> findByPaymentName(String keyword);
     Payment addPayment(Payment payment);
-    Payment updatePayment(Payment payment, Long id);
+    Payment updatePayment(Payment payment, Long id) throws Exception;
     void deletePayment(Long paymentId);
 
 }

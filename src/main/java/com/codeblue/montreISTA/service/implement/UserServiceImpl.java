@@ -10,6 +10,7 @@ import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.repository.UserRoleRepository;
 import com.codeblue.montreISTA.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +22,9 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private UserRoleRepository userRoleRepository;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final UserRoleRepository userRoleRepository;
 
 
     @Override
@@ -49,10 +50,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserResponseDTO findByUsername(String keyword) throws Exception {
+        List<Role> roles = roleRepository.findByUsersUserUsername(keyword);
+        List<String> role = roles.stream().map(Role::getRoleName).collect(Collectors.toList());
+        return userRepository.findByUsername(keyword).orElseThrow(()-> new Exception("User not found"))
+                .convertToResponse(role); }
+
+    @Override
     public UserResponseDTO registrationUser(RegistrationDTO registrationDTO) throws Exception {
         List<String> requestRole = registrationDTO.getRoles();
         AtomicReference<UserResponseDTO> userDTOlambda = new AtomicReference<>(new UserResponseDTO());
-        if(requestRole==null) {
+        if(requestRole.isEmpty()) {
             userDTOlambda.set(this.addToRoleCreate(registrationDTO.convertToEntity()));
             }else {
             boolean check = requestRole.stream().anyMatch(r->r.contains("ROLE_ADMIN"));
@@ -77,13 +85,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDTO updateUser(RegistrationDTO registrationDTO, Long id) throws Exception {
-        userRepository.findById(id).orElseThrow(()->new Exception("User not found"));
+    public UserResponseDTO updateUser(RegistrationDTO registrationDTO, Authentication authentication) throws Exception {
+        User userByUsername = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("User not found"));
         User user = registrationDTO.convertToEntity();
-        user.setUserId(id);
+        user.setUserId(userByUsername.getUserId());
         List<String> requestRole = registrationDTO.getRoles();
         AtomicReference<UserResponseDTO> userDTOlambda = new AtomicReference<>(new UserResponseDTO());
-        if(requestRole==null) {
+        if(requestRole.isEmpty()) {
             userDTOlambda.set(this.addToRoleCreate(user));
         }else {
             boolean check = requestRole.stream().anyMatch(r->r.contains("ROLE_ADMIN"));
@@ -106,6 +114,8 @@ public class UserServiceImpl implements UserService {
         };
         return userDTOlambda.get();
     }
+
+
 
     @Override
     public void deleteUser(Long id) throws Exception {
