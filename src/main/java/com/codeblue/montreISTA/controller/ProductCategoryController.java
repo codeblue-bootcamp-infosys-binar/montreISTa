@@ -1,6 +1,6 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
+
 import com.codeblue.montreISTA.DTO.ProductCategoryRequestDTO;
 import com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;

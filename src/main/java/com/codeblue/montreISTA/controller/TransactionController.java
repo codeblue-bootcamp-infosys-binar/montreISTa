@@ -2,8 +2,6 @@ package com.codeblue.montreISTA.controller;
 
 import com.codeblue.montreISTA.DTO.TransactionDetailDTO;
 import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
-import com.codeblue.montreISTA.entity.HistoryTransaction;
-import com.codeblue.montreISTA.entity.HistoryTransactionDetail;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.TransactionService;
 import io.swagger.v3.oas.annotations.tags.Tag;
