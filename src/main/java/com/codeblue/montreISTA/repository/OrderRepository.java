@@ -15,7 +15,9 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
     List<Order> findByListCartBuyerUserUsernameContaining(String keyword);
     List<Order> findByListCartProductSellerStoreNameContaining(String keyword);
     Order findFirstByOrderByCreatedAtDesc();
+    Optional<Order> findFirstByListCartBuyerUserUsernameOrderByModifiedAtDesc(String keyword);
     Optional<Order> findFirstByListCartBuyerBuyerIdOrderByModifiedAtDesc(Long id);
     Optional<Order> findFirstByListCartProductSellerSellerIdOrderByCreatedAtDesc(Long id);
+    Optional<Order> findFirstByListCartProductSellerUserIdUsernameOrderByCreatedAtDesc(String keyword);
     List<Order> findAllByOrderByOrderIdAsc();
 }

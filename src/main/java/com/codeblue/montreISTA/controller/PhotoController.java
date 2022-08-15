@@ -2,6 +2,8 @@ package com.codeblue.montreISTA.controller;
 
 import com.codeblue.montreISTA.DTO.PhotoRequestDTO;
 import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
+import com.codeblue.montreISTA.entity.Product;
+import com.codeblue.montreISTA.service.ProductService;
 import com.codeblue.montreISTA.service.implement.CloudinaryService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -33,6 +35,7 @@ public class PhotoController {
     private static final String Line = "====================";
     private final PhotoService photoService;
     private final CloudinaryService cloudinaryService;
+    private final ProductService productService;
 
 
 
@@ -55,12 +58,30 @@ public class PhotoController {
         }
     }
 
-    @PostMapping(value="/user/postPhoto",consumes ="multipart/form-data" )
-    public ResponseEntity<Object> postPhoto(@RequestParam ("file") List<MultipartFile> files,
-                                            @RequestParam Long productId,
-                                            Authentication authentication) throws IOException {
+    @PostMapping(value="/user/postPhoto/productId",consumes ="multipart/form-data" )
+    public ResponseEntity<Object> postPhotoProduct(@RequestParam ("file") List<MultipartFile> files,
+                                                   @RequestParam Long productId,
+                                                   Authentication authentication) throws IOException {
         try {
             List<PhotoResponseDTO> results = photoService.createPhoto(productId,files, authentication);
+            logger.info(Line + "Logger Start Query " + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Query " + Line);
+            return ResponseHandler.generateResponse("successfully create product", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed photo cloud!");
+        }
+    }
+
+    @PostMapping(value="/user/postPhoto",consumes ="multipart/form-data" )
+    public ResponseEntity<Object> postPhoto(@RequestParam ("file") List<MultipartFile> files,
+                                            Authentication authentication) throws IOException {
+        try {
+            Product product = productService.findBySellerUsername(authentication.getName());
+            List<PhotoResponseDTO> results = photoService.createPhoto(product.getProductId(),files, authentication);
             logger.info(Line + "Logger Start Query " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Query " + Line);

@@ -3,7 +3,6 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.DTO.JwtResponse;
 import com.codeblue.montreISTA.DTO.LoginUserRequest;
 import com.codeblue.montreISTA.DTO.RegistrationDTO;
-import com.codeblue.montreISTA.repository.RoleRepository;
 import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.security.JwtUtils;
@@ -18,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,23 +36,15 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class AuthenticationController {
 
-    @Autowired
-    AuthenticationManager authenticationManager;
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    RoleRepository roleRepository;
+    private final AuthenticationManager authenticationManager;
+    private final UserService userService;
+    private final UserRepository userRepository;
 
     @Autowired
     PasswordEncoder encoder;
 
     @Autowired
     JwtUtils jwtUtils;
-
-    @Autowired
-    UserRepository userRepository;
 
     //CREATE
 
@@ -66,7 +58,7 @@ public class AuthenticationController {
 
             MyUserDetails userDetails = (MyUserDetails)authentication.getPrincipal();
             List<String> roles = userDetails.getAuthorities().stream()
-                    .map(item -> item.getAuthority())
+                    .map(GrantedAuthority::getAuthority)
                     .collect(Collectors.toList());
 
             JwtResponse jwtResponse = new JwtResponse(jwt,userDetails.getUserId(),userDetails.getUsername(), userDetails.getEmail(),roles);

@@ -11,6 +11,8 @@ public interface ProductService {
 
     List<Product> findAllProduct();
 
+    Product findBySellerUsername(String keyword) throws Exception;
+
     Optional<Product> findProductById(Long id);
 
     List<Product> findByProductName(String name);

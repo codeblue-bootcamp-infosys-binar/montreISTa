@@ -12,7 +12,7 @@ import lombok.*;
 @Setter
 @Builder
 public class CartRequestDTO {
-    private Long buyer_id;
+
     private Long product_id;
     private Integer quantity;
 
