@@ -46,7 +46,6 @@ public class HistoryTransactionDetail extends AuditEntity {
                 .store_address(this.getHistoryTransaction().getSeller().getStoreAddress())
                 .buyer_id(this.getHistoryTransaction().getBuyer().getBuyerId())
                 .buyer_name(this.getHistoryTransaction().getBuyer().getUser().getName())
-                .photo_name(this.getHistoryTransaction().getPhotoName())
                 .photo_url(this.getHistoryTransaction().getPhotoUrl())
                 .total_price(this.getHistoryTransaction().getTotalPrice())
                 .destination_name(this.getDestinationName())
