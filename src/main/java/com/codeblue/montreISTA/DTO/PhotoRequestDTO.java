@@ -10,17 +10,14 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class PhotoRequestDTO {
-    private Long photo_id;
-    private String photo_name;
+
     private String photo_url;
     private Long product_id;
 
 
     public Photo convertToEntity(Product product){
         return Photo.builder()
-                .photoId(this.photo_id)
                 .photoURL(this.photo_url)
-                .photoName(this.photo_name)
                 .product(product)
                 .build();
     }

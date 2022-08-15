@@ -7,5 +7,8 @@ import java.util.List;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {
     List<Role> findByUsersUserUserId(Long id);
-    Role findByRoleNameOrderByCreatedAt(String rolename);
+    List<Role> findByUsersUserUsername(String keyword);
+    Role findByRoleNameOrderByRoleIdDesc(String rolename);
+
+    Role findByRoleName(String rolename);
 }

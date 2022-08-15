@@ -44,7 +44,7 @@ public class User extends AuditEntity{
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "user",
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
     private List<UserRole> roles;
 
     public UserResponseDTO convertToResponse(List<String> roles){
@@ -55,7 +55,6 @@ public class User extends AuditEntity{
                 .address(this.getAddress())
                 .name(this.getName())
                 .phone(this.getPhone())
-                .photo(this.getPhoto())
                 .roles(roles)
                 .build();
     }

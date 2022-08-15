@@ -1,11 +1,9 @@
 package com.codeblue.montreISTA.controller;
 
-
-
-import com.codeblue.montreISTA.DTO.ShippingResponseDTO;
 import com.codeblue.montreISTA.entity.Shipping;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.ShippingService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -21,6 +19,7 @@ import java.util.*;
 @AllArgsConstructor
 @RestController
 @Tag(name = "11. Shipping")
+@SecurityRequirement(name = "bearer-key")
 public class ShippingController {
 
     @Autowired

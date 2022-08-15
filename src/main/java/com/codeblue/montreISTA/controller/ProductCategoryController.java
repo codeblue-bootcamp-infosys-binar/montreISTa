@@ -1,10 +1,11 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
+
 import com.codeblue.montreISTA.DTO.ProductCategoryRequestDTO;
 import com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.ProductCategoryService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -22,6 +23,7 @@ import java.util.Map;
 @RestController
 @AllArgsConstructor
 @Tag(name="05. Product Category")
+@SecurityRequirement(name = "bearer-key")
 public class ProductCategoryController {
 
 

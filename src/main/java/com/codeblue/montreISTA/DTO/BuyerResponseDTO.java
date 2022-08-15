@@ -17,7 +17,6 @@ public class BuyerResponseDTO {
     private String name;
     private String username;
     private String email;
-    private String photo;
     private ZonedDateTime createdAt;
     private ZonedDateTime modifiedAt;
 
@@ -30,7 +29,6 @@ public class BuyerResponseDTO {
                 ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", photo='" + photo + '\'' +
                 ", createdAt=" + createdAt +
                 ", modifiedAt=" + modifiedAt +
                 '}';

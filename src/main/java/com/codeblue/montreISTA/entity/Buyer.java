@@ -37,9 +37,9 @@ public class Buyer extends AuditEntity {
                 .name(this.getUser().getName())
                 .username(this.getUser().getUsername())
                 .email(this.getUser().getEmail())
-                .photo(this.getUser().getPhoto())
                 .createdAt(this.getCreatedAt())
-                .modifiedAt(this.getModifiedAt()                )
+                .modifiedAt(this.getModifiedAt())
                 .build();
     }
+
 }

@@ -18,7 +18,6 @@ public class SellerResponseDTO {
     private String name;
     private String username;
     private String email;
-    private String photo;
     private String store_address;
     private String store_name;
     private String store_photo;

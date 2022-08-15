@@ -26,12 +26,12 @@ public class MyUserDetailsService implements UserDetailsService {
 
         User user = userRepository.findByUsername(userName)
                 .orElseThrow(() -> new UsernameNotFoundException("Not Found " + userName));
-        List<Role> userRoles = roleRepository.findByUsersUserUserId(user.getUserId());
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        userRoles.forEach(role ->{
-            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-        });
+//        List<Role> userRoles = roleRepository.findByUsersUserUserId(user.getUserId());
+//        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+//        userRoles.forEach(role ->{
+//            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+//        });
 
-        return new MyUserDetails(user, authorities);
+        return MyUserDetails.build(user);
     }
 }

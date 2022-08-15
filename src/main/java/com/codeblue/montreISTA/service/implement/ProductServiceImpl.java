@@ -7,86 +7,90 @@ import com.codeblue.montreISTA.repository.ProductRepository;
 import com.codeblue.montreISTA.repository.SellerRepository;
 import com.codeblue.montreISTA.service.ProductService;
 import com.codeblue.montreISTA.service.implement.SellerServiceImpl;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    ProductRepository productRepository;
-    @Autowired
-    SellerRepository sellerRepository;
+    private final ProductRepository productRepository;
+    private final SellerRepository sellerRepository;
 
     public List<Product> findAllProduct() {
-        List<Product> products = productRepository.findAll();
-        return products;
+        return productRepository.findAllByOrderByCreatedAtAsc();
+    }
+
+    @Override
+    public Product findBySellerUsername(String keyword) throws Exception{
+        return productRepository.findFirstBySellerUserIdUsernameOrderByProductIdDesc(keyword)
+                .orElseThrow(()->new Exception("Product not found"));
     }
 
     public Optional<Product> findProductById(Long id) {
+
         return productRepository.findById(id);
     }
 
     @Override
     public List<Product> findByProductName(String name) {
-        List<Product> products = productRepository.findByProductNameIgnoreCaseContaining(name);
-        return products;
+        return productRepository.findByProductNameIgnoreCaseContaining(name);
     }
 
     @Override
     public List<Product> findBySellerName(String name) {
-        List<Product> products = productRepository.findBySellerUserIdNameIgnoreCaseContaining(name);
-        return products;
+        return productRepository.findBySellerUserIdNameIgnoreCaseContaining(name);
     }
 
     @Override
     public List<Product> findByStoreName(String name) {
-        List<Product> products = productRepository.findBySellerStoreNameIgnoreCaseContaining(name);
-        return products;
+        return productRepository.findBySellerStoreNameIgnoreCaseContaining(name);
     }
 
     @Override
     public List<Product> findByCategoryId(Long id) {
-        List<Product> products = productRepository.findByCategoriesCategoryCategoriesId(id);
-        return products;
+        return productRepository.findByCategoriesCategoryCategoriesId(id);
     }
 
-    public List<Product> findProductBySellerId(Long id) {
-        List<Product> product = productRepository.findBySellerSellerId(id);
+    @Override
+    public List<Product> findProductBySellerId(Authentication authentication) throws Exception{
+        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller"));
+        List<Product> product = productRepository.findBySellerSellerId(seller.getSellerId());
         if(product.isEmpty()){
-            return null;
-        } else {
-            return product;
+            throw new Exception("You don't have a product");
         }
+        return product;
     }
 
-    public Product createProduct(ProductRequestDTO productRequestDTO) throws Exception{
-        List<Product> products = productRepository.findBySellerSellerId(productRequestDTO.getSellerId());
-        Integer count = products.size();
+    @Override
+    public Product createProduct(ProductRequestDTO productRequestDTO,Authentication authentication) throws Exception{
+        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        List<Product> products = productRepository.findBySellerSellerId(seller.getSellerId());
+        int count = products.size();
         if(count >=4 ){
             throw new Exception("User can only have 4 Products");
         }
-        Seller seller = sellerRepository.findById(productRequestDTO.getSellerId()).orElseThrow(()->new Exception("Seller not found"));
         Product newProduct = productRequestDTO.convertToEntity(seller);
 
         return productRepository.save(newProduct);
     }
 
-    public Product updateProduct(ProductRequestDTO productRequestDTO, Long id) throws Exception{
-
+    @Override
+    public Product updateProduct(ProductRequestDTO productRequestDTO, Long id, Authentication authentication) throws Exception{
+        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
         //GET SELLER FROM DATABASE BY ID
-        Seller productSeller = sellerRepository.findById(productRequestDTO.getSellerId()).orElseThrow(()->new Exception("Seller not found"));
-        Product product = productRequestDTO.convertToEntity(productSeller);
-
-        Optional<Product> targetProduct = findProductById(id);
-        Product updateProduct = targetProduct.get();
-
+        Product product = productRequestDTO.convertToEntity(seller);
+        Product updateProduct = findProductById(id).orElseThrow(()->new Exception("Product Not Found"));
+        if(seller!=updateProduct.getSeller()){
+            throw new Exception("You only can edit your product");
+        }
         //UPDATING PRODUCT DATA
         updateProduct.setProductId(id);
-        updateProduct.setSeller(product.getSeller());
         updateProduct.setProductName(product.getProductName());
         updateProduct.setDescription(product.getDescription());
         updateProduct.setPrice(product.getPrice());
@@ -94,8 +98,13 @@ public class ProductServiceImpl implements ProductService {
         //SAVING THE UPDATES TO DATABASE
         return productRepository.save(updateProduct);
     }
-
-    public void deleteProduct(Long id) {
+    @Override
+    public void deleteProduct(Long id, Authentication authentication)throws Exception {
+        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        Product productById = findProductById(id).orElseThrow(()->new Exception("Product Not Found"));
+        if(seller!=productById.getSeller()){
+            throw new Exception("You only can delete your product");
+        }
         productRepository.deleteById(id);
     }
 

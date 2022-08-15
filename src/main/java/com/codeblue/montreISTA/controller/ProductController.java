@@ -3,18 +3,18 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.DTO.ProductRequestDTO;
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.entity.Product;
-import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.helper.DTOConverter;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.*;
 import com.codeblue.montreISTA.service.implement.SellerServiceImpl;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -22,21 +22,16 @@ import java.util.*;
 @AllArgsConstructor
 @RestController
 @Tag(name="03. Product")
+@SecurityRequirement(name = "bearer-key")
 public class ProductController {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     private static final String Line = "====================";
 
-    @Autowired
-    ProductService productService;
-
-
-    @Autowired
-    CategoryService categoryService;
-
-    @Autowired
-    SellerServiceImpl sellerService;
+    private final ProductService productService;
+    private final CategoryService categoryService;
+    private final SellerServiceImpl sellerService;
 
     //GET ALL PRODUCTS
     @GetMapping("/products")
@@ -44,7 +39,6 @@ public class ProductController {
         try{
             List<Product> products = productService.findAllProduct();
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
-            List<Map<String, Object>> maps = new ArrayList<>();
             logger.info("==================== Logger Start Get All Products     ====================");
             for(Product productData : products){
                 Map<String, Object> product = new HashMap<>();
@@ -54,11 +48,6 @@ public class ProductController {
                 logger.info("Price         : " + productData.getPrice());
                 logger.info("Product name  : " + productData.getProductName());
                 logger.info("Seller ID     : " + productData.getSeller());
-                product.put("Product ID          ", productData.getProductId());
-                product.put("Description      ", productData.getDescription());
-                product.put("Price           ", productData.getPrice());
-                product.put("Product name       ", productData.getProductName());
-                maps.add(product);
             }
             logger.info("==================== Logger End Get All Products    ====================");
             logger.info(" ");
@@ -74,10 +63,10 @@ public class ProductController {
 
 
     //GET ALL PRODUCTS BY SELLER ID
-    @GetMapping("/products/store/{seller_id}")
-    public ResponseEntity<Object> getAllProductBySellerId(@PathVariable("seller_id") Long sellerId){
+    @GetMapping("user/products/seller")
+    public ResponseEntity<Object> getAllProductBySellerId(Authentication authentication){
         try{
-            List<Product> products = productService.findProductBySellerId(sellerId);
+            List<Product> products = productService.findProductBySellerId(authentication);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
             logger.info(Line + "Logger Start Get seller id " + Line);
             logger.info(String.valueOf(productResponseDTOS));
@@ -110,7 +99,7 @@ public class ProductController {
     }
 
     //GET BY PRODUCT NAME
-    @GetMapping("/products/productname")
+    @GetMapping("/products/name")
     public ResponseEntity<Object> getAllProductByProductName(@RequestParam String productName){
         try{
             List<Product> products = productService.findByProductName(productName);
@@ -128,7 +117,7 @@ public class ProductController {
     }
 
     //GET BY SELLER USERNAME
-    @GetMapping("/products/sellername")
+    @GetMapping("/products/seller")
     public ResponseEntity<Object> getAllProductBySellerName(@RequestParam String sellername){
         try{
             List<Product> products = productService.findBySellerName(sellername);
@@ -146,7 +135,7 @@ public class ProductController {
     }
 
     //GET BY STORE NAME
-    @GetMapping("/products/storename")
+    @GetMapping("/products/store")
     public ResponseEntity<Object> getAllProductByStoreName(@RequestParam String storeName){
         try{
             List<Product> products = productService.findByStoreName(storeName);
@@ -183,9 +172,9 @@ public class ProductController {
 
     //CREATE PRODUCT
     @PostMapping("/user/products/create")
-    public ResponseEntity<Object> createProduct(@RequestBody ProductRequestDTO productRequestDTO){
+    public ResponseEntity<Object> createProduct(@RequestBody ProductRequestDTO productRequestDTO, Authentication authentication){
         try {
-            Product newProduct = productService.createProduct(productRequestDTO);
+            Product newProduct = productService.createProduct(productRequestDTO,authentication);
             ProductResponseDTO productResponseDTO = DTOConverter.convertOneProducts(newProduct);
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(productResponseDTO));
@@ -201,9 +190,9 @@ public class ProductController {
 
     //UPDATE PRODUCT
     @PutMapping("/user/products/update/{id}")
-    public ResponseEntity<Object> updateProduct(@RequestBody ProductRequestDTO productRequestDTO, @PathVariable("id") Long id){
+    public ResponseEntity<Object> updateProduct(@RequestBody ProductRequestDTO productRequestDTO, @PathVariable("id") Long id,Authentication authentication){
         try{
-            Product updateProduct = productService.updateProduct(productRequestDTO, id);
+            Product updateProduct = productService.updateProduct(productRequestDTO, id,authentication);
             ProductResponseDTO productResponseDTO = DTOConverter.convertOneProducts(updateProduct);
             logger.info(Line + "Logger Start Update By Id " + Line);
             logger.info(String.valueOf(productResponseDTO));
@@ -219,9 +208,9 @@ public class ProductController {
 
     //DELETE PRODUCT
     @DeleteMapping("/user/products/delete/{id}")
-    public ResponseEntity<Object> deleteProduct(@PathVariable("id") Long id){
+    public ResponseEntity<Object> deleteProduct(@PathVariable("id") Long id,Authentication authentication){
         try{
-            productService.deleteProduct(id);
+            productService.deleteProduct(id,authentication);
             logger.info(Line + "Logger Start Delete By Id " + Line);
             logger.info("Delete Success");
             logger.info(Line + "Logger End Delete By Id " + Line);
