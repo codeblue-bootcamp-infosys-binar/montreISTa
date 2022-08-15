@@ -72,7 +72,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public CartResponseDTO createCart(CartRequestDTO cartRequestDTO, Authentication authentication) throws Exception {
-        Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByModifiedAtDesc(authentication.getName());
+        Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName());
         Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(()->new Exception("Product not Found"));
         Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Buyer not Found"));
         if(buyer.getUser().equals(productId.getSeller().getUserId())){
@@ -117,11 +117,7 @@ public class CartServiceImpl implements CartService {
            CartResponseDTO cartResponseDTO = this.createCart(cartRequestDTO,authentication);
            carts.add(cartResponseDTO);
         }
-        if(carts.isEmpty()){
-            throw new Exception("failed to parsing data from wishlist to cart");
-        }else {
-            wishlistRepository.deleteAll(wishlists);
-        }
+        wishlistRepository.deleteAll(wishlists);
         return carts;
     }
 

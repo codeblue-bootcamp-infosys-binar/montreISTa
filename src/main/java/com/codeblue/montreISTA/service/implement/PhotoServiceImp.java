@@ -66,9 +66,6 @@ public class PhotoServiceImp implements PhotoService {
                 .collect(Collectors.toList());
     }
 
-    /**
-     *
-     */
     @Override
     public List<PhotoResponseDTO> createPhoto(Long productId,List<MultipartFile> files, Authentication authentication) throws Exception {
         Product product = productRepository.findById(productId).orElseThrow(()->new Exception("Product not found"));

@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findBySellerUsername(String keyword) throws Exception{
-        return productRepository.findFirstBySellerUserIdUsernameOrderByCreatedAtDesc(keyword)
+        return productRepository.findFirstBySellerUserIdUsernameOrderByProductIdDesc(keyword)
                 .orElseThrow(()->new Exception("Product not found"));
     }
 

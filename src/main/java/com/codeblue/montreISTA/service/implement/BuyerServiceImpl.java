@@ -41,10 +41,11 @@ public class BuyerServiceImpl implements BuyerService {
     @Override
     public List<ProductResponseDTO> createBuyer(Authentication authentication) throws Exception {
         User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Buyer not found"));
-        Optional<Buyer> buyerUser = buyerRepository.findByUserUserId(user.getUserId());
+        Optional<Buyer> buyerUser = buyerRepository.findByUserUsername(authentication.getName());
         if (buyerUser.isEmpty()) {
             Buyer buyer = new Buyer();
             buyer.setUser(user);
+            buyerRepository.save(buyer);
         }
         List<Product> products = productRepository.findAllByOrderByCreatedAtAsc();
         return DTOConverter.convertProducts(products);

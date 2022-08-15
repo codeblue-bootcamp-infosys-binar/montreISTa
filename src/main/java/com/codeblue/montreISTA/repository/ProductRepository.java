@@ -15,7 +15,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     List<Product> findAllByOrderByCreatedAtAsc();
 
-    Optional<Product> findFirstBySellerUserIdUsernameOrderByCreatedAtDesc(String keyword);
+    Optional<Product> findFirstBySellerUserIdUsernameOrderByProductIdDesc(String keyword);
     
     List<Product> findBySellerUserIdNameIgnoreCaseContaining(String name);
 

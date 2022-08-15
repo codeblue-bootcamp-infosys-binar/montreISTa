@@ -1,6 +1,6 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.DTO.TransactionDetailDTO;
+import com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO;
 import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.TransactionService;
@@ -64,7 +64,7 @@ public class TransactionController {
     @GetMapping("/dashboard/transaction-details")
     public ResponseEntity<Object> findAllTransactionDetails(){
         try{
-            List<TransactionDetailDTO> results = transactionService.findAllTransactionDetail();
+            List<TransactionDetailResponseDTO> results = transactionService.findAllTransactionDetail();
             return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -74,7 +74,7 @@ public class TransactionController {
     @GetMapping("/dashboard/transaction-details/{id}")
     public ResponseEntity<Object> findTransactionDetailsId(@PathVariable Long id){
         try{
-            TransactionDetailDTO results = transactionService.findByTransactionDetailId(id);
+            TransactionDetailResponseDTO results = transactionService.findByTransactionDetailId(id);
             return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -84,7 +84,7 @@ public class TransactionController {
     @GetMapping("/user/transactions-detail/buyer")
     public ResponseEntity<Object> findTransactionDetailsByBuyer(Authentication authentication)throws Exception{
         try{
-            List<TransactionDetailDTO> results = transactionService.findByTransactionDetailBuyerId(authentication);
+            List<TransactionDetailResponseDTO> results = transactionService.findByTransactionDetailBuyerId(authentication);
             return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -94,7 +94,7 @@ public class TransactionController {
     @GetMapping("/user/transactions-detail/seller/")
     public ResponseEntity<Object> findTransactionDetailBySeller(Authentication authentication)throws Exception{
         try{
-            List<TransactionDetailDTO> results = transactionService.findByTransactionDetailSellerId(authentication);
+            List<TransactionDetailResponseDTO> results = transactionService.findByTransactionDetailSellerId(authentication);
             return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
         }catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
@@ -104,7 +104,7 @@ public class TransactionController {
     @GetMapping("/user/finish-order")
     public ResponseEntity<Object> postCart(Authentication authentication) throws Exception{
         try {
-            List<TransactionDetailDTO> results = transactionService.createTransaction(authentication);
+            List<TransactionDetailResponseDTO> results = transactionService.createTransaction(authentication);
             return ResponseHandler.generateResponse("Successfully Transaction", HttpStatus.OK, results);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Doing Transactions");

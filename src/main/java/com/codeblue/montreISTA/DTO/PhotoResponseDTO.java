@@ -9,7 +9,6 @@ import lombok.*;
 @Builder
 public class PhotoResponseDTO {
     private Long photo_id;
-    private String photo_name;
     private String photo_url;
     private Long product_id;
     private String product_name;
@@ -24,7 +23,6 @@ public class PhotoResponseDTO {
     public String toString() {
         return "PhotoResponseDTO{" +
                 "photo_id=" + photo_id +
-                ", photo_name='" + photo_name + '\'' +
                 ", photo_url='" + photo_url + '\'' +
                 ", product_id=" + product_id +
                 ", product_name='" + product_name + '\'' +

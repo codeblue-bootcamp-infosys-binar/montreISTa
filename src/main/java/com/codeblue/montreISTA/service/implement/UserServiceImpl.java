@@ -124,11 +124,11 @@ public class UserServiceImpl implements UserService {
 
     public void checkRole_user(User user)throws Exception{
         List<Role> roles = roleRepository.findByUsersUserUserId(user.getUserId());
-        Boolean check = roles.stream().anyMatch(role->role.getRoleName()
+        boolean check = roles.stream().anyMatch(role->role.getRoleName()
                 .contains("ROLE_USER"));
         if(!check){
             UserRole addrole = new UserRole();
-            Role role = roleRepository.findByRoleNameOrderByCreatedAt("ROLE_USER");
+            Role role = roleRepository.findByRoleNameOrderByRoleIdDesc("ROLE_USER");
             addrole.setRole(role);
             addrole.setUser(user);
             userRoleRepository.save(addrole);
