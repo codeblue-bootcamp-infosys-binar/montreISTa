@@ -122,15 +122,11 @@ public class TransactionServiceImpl implements TransactionService {
 
             List<Photo> photo = cart.getProduct().getPhotos();
             String photoURL;
-            String photoName;
             boolean checkURL = photo.stream().map(Photo::getPhotoURL).findAny().isEmpty();
-            boolean checkName = photo.stream().map(Photo::getPhotoName).findAny().isEmpty();
-            if(checkURL || checkName){
+            if(checkURL){
                 photoURL = "-";
-                photoName = "-";
             }else {
                 photoURL = photo.get(0).getPhotoURL();
-                photoName = photo.get(0).getPhotoName();
             }
             List<Category> categories = categoryService.findByProductId(cart.getProduct().getProductId());
             String category = categories.stream()
@@ -138,7 +134,6 @@ public class TransactionServiceImpl implements TransactionService {
                     .collect(Collectors.joining(","));
             transaction.setBuyer(cart.getBuyer());
             transaction.setSeller(cart.getProduct().getSeller());
-            transaction.setPhotoName(photoName);
             transaction.setPhotoUrl(photoURL);
             transaction.setProduct_id(cart.getProduct().getProductId());
             transaction.setProduct_name(cart.getProduct().getProductName());

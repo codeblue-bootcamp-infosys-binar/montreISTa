@@ -12,20 +12,15 @@ import java.util.List;
 
 @Repository
 public interface PhotoRepository extends JpaRepository<Photo,Long> {
-    List<Photo> findByPhotoNameIgnoreCaseContaining(String photoName);
-
     List<Photo> findAllByOrderByPhotoIdAsc();
-
     List<Photo> findByProductSellerUserIdNameIgnoreCaseContainingOrderByPhotoIdAsc(String productName);
     List<Photo> findByProductSellerSellerIdOrderByPhotoIdAsc(long id);
-
     List<Photo> findByProductProductIdOrderByPhotoIdAsc(Long id);
-
     @Query("Select p from Photo p where p.product.productName like %:name% ORDER BY p.product.productName ASC")
-    public List<Photo> findByProductName(@Param("name")String name);
+    List<Photo> findByProductName(@Param("name")String name);
 
     @Query("Select p from Photo p where concat(p.product.seller.userId.name, ' ', p.product.seller.userId.username, ' ') like %:name% ORDER BY p.product.seller.userId.name ASC")
-    public List<Photo> findByUsername(@Param("name")String name);
+    List<Photo> findByUsername(@Param("name")String name);
 
 
 }
