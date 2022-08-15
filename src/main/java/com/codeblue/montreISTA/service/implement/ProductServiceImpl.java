@@ -26,6 +26,12 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAllByOrderByCreatedAtAsc();
     }
 
+    @Override
+    public Product findBySellerUsername(String keyword) throws Exception{
+        return productRepository.findFirstBySellerUserIdUsernameOrderByCreatedAtDesc(keyword)
+                .orElseThrow(()->new Exception("Product not found"));
+    }
+
     public Optional<Product> findProductById(Long id) {
 
         return productRepository.findById(id);
