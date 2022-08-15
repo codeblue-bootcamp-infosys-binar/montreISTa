@@ -6,8 +6,8 @@ import com.codeblue.montreISTA.repository.*;
 import com.codeblue.montreISTA.service.CartService;
 import com.codeblue.montreISTA.service.OrderService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -64,13 +64,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderResponseCartDTO findByBuyerId(Long id)throws Exception {
-        Optional<Order> results = orderRepository.findFirstByListCartBuyerBuyerIdOrderByModifiedAtDesc(id);
-        if(results.isEmpty()){
-            throw new Exception("Orders not found");
-        }
+    public OrderResponseCartDTO findByBuyer(String keyword) throws Exception {
+        Order results = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(keyword).orElseThrow(()->new Exception("Order not found"));
         List<OrderCartDTO> carts = new ArrayList<>();
-        for(Cart cart:results.get().getListCart()){
+        for(Cart cart:results.getListCart()){
             List<Photo> photos = cart.getProduct().getPhotos();
             String photoURL;
             boolean check = photos.stream().map(Photo::getPhotoURL).findAny().isEmpty();
@@ -82,16 +79,16 @@ public class OrderServiceImpl implements OrderService {
             OrderCartDTO cartDTO = cart.convertToOrder(photoURL);
             carts.add(cartDTO);
         }
-        return results.get().convertCart(carts);
+        return results.convertCart(carts);
     }
 
     @Override
-    public OrderResponseDTO updateOrder(OrderRequestDTO orderRequestDTO, Long id) throws Exception {
-        Order order = orderRepository.findFirstByListCartBuyerBuyerIdOrderByModifiedAtDesc(id).orElseThrow(()->new Exception("Please add product to cart before order"));
+    public OrderResponseDTO updateOrder(OrderRequestDTO orderRequestDTO, String keyword) throws Exception {
+        Order order = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(keyword).orElseThrow(()->new Exception("Please add product to cart before order"));
         Payment payment = paymentRepository.findById(orderRequestDTO.getPaymentId()).orElseThrow(()->new Exception("Payment Not found"));
         Shipping shipping = shippingRepository.findById(orderRequestDTO.getShippingId()).orElseThrow(()->new Exception("Shipping Not found"));
         orderRequestDTO.convertToEntity(payment, shipping);
-        Integer tempPrice = 0;
+        int tempPrice = 0;
         for(Cart cart : order.getListCart()){
             int total = cart.getQuantity() * cart.getProduct().getPrice()+shipping.getPrice();
             tempPrice += total;
@@ -110,27 +107,25 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void deleteOrder(Long id) throws Exception {
-        Optional<Order> orderId = orderRepository.findById(id);
-        if(orderId.isEmpty()){
-            throw new Exception("Order not found");
+    public void deleteOrder(Authentication authentication) throws Exception {
+        List<Order> orders = orderRepository.findByListCartBuyerUserUsernameContaining(authentication.getName());
+        if(orders.isEmpty()){
+            throw new Exception("Orders not found");
         }
-        orderRepository.deleteById(id);
+        orderRepository.deleteAll(orders);
     }
-
 
     public List<OrderResponseDTO> convertListDTO(List<Order> orders) {
         return orders.stream()
                 .map(this::convertDTO)
                 .collect(Collectors.toList());
     }
-
     public OrderResponseDTO convertDTO(Order order) {
-   List<CartResponseDTO> cartDTO = order.getListCart()
+    List<CartResponseDTO> cartDTO = order.getListCart()
                 .stream()
                 .map(cartService::convertDTO)
                 .collect(Collectors.toList());
-   return order.convertToResponse(cartDTO);
+    return order.convertToResponse(cartDTO);
     }
 
 }

@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class RegistrationDTO {
-
     @Size(min = 3, max = 40)
     private String name;
     @Size(max = 50)
@@ -27,10 +26,9 @@ public class RegistrationDTO {
     private String photo;
     @Size(min=5)
     private String address;
-
     private List<String> roles;
 
-    public User  convertToEntity(){
+    public User convertToEntity(){
         return User.builder()
                 .name(this.name)
                 .username(this.username)

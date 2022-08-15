@@ -42,7 +42,7 @@ public class PhotoController {
     /**
      * find by seller.name/username
      */
-    @GetMapping("/user/sellername")
+    @GetMapping("/user/seller-name")
     public ResponseEntity<Object> findBySellerName(Authentication authentication){
         try{
         List<PhotoResponseDTO> results = photoService.findBySellerName(authentication);
@@ -58,7 +58,7 @@ public class PhotoController {
         }
     }
 
-    @PostMapping(value="/user/postPhoto/productId",consumes ="multipart/form-data" )
+    @PostMapping(value="/user/upload-photo/product-id",consumes ="multipart/form-data" )
     public ResponseEntity<Object> postPhotoProduct(@RequestParam ("file") List<MultipartFile> files,
                                                    @RequestParam Long productId,
                                                    Authentication authentication) throws IOException {
@@ -76,7 +76,7 @@ public class PhotoController {
         }
     }
 
-    @PostMapping(value="/user/postPhoto",consumes ="multipart/form-data" )
+    @PostMapping(value="/user/upload-photo/last-product-seller",consumes ="multipart/form-data" )
     public ResponseEntity<Object> postPhoto(@RequestParam ("file") List<MultipartFile> files,
                                             Authentication authentication) throws IOException {
         try {
@@ -169,7 +169,7 @@ public class PhotoController {
             for (PhotoResponseDTO photoData : results) {
                 logger.info("-------------------------");
                 logger.info("Photo ID      : " + photoData.getPhoto_id());
-                logger.info("Photo Name    : " + photoData.getPhoto_name());
+
                 logger.info("Photo Url     : " + photoData.getPhoto_url());
                 logger.info("Product ID    : " + photoData.getProduct_id());
             }

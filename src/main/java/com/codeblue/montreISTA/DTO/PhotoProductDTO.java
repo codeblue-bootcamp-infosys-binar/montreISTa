@@ -9,6 +9,5 @@ import lombok.*;
 @Builder
 public class PhotoProductDTO {
     private Long photo_id;
-    private String photo_name;
     private String photo_url;
 }

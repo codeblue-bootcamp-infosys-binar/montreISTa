@@ -2,7 +2,6 @@ package com.codeblue.montreISTA.DTO;
 
 import lombok.*;
 
-import javax.persistence.Column;
 import java.time.ZonedDateTime;
 
 @Getter
@@ -10,7 +9,7 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TransactionDetailDTO {
+public class TransactionDetailResponseDTO {
     private Long transaction_detail_id;
     private Long seller_id;
     private String seller_name;
@@ -18,7 +17,6 @@ public class TransactionDetailDTO {
     private String store_address;
     private Long buyer_id;
     private String buyer_name;
-    private String photo_name;
     private String photo_url;
 
     private String destination_name;

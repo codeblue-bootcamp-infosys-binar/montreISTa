@@ -3,6 +3,7 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.DTO.JwtResponse;
 import com.codeblue.montreISTA.DTO.LoginUserRequest;
 import com.codeblue.montreISTA.DTO.RegistrationDTO;
+import com.codeblue.montreISTA.DTO.UserResponseDTO;
 import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.security.JwtUtils;
@@ -78,9 +79,9 @@ public class AuthenticationController {
                 return ResponseHandler.generateResponse("Email is already in use!", HttpStatus.BAD_REQUEST, null);
             }
 
-            userService.registrationUser(registrationRequest);
+            UserResponseDTO result = userService.registrationUser(registrationRequest);
 
-            return ResponseHandler.generateResponse("successfully registered! please login", HttpStatus.CREATED, null);
+            return ResponseHandler.generateResponse("successfully registered! please login", HttpStatus.CREATED, result);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }

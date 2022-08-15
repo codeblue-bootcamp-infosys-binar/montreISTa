@@ -55,7 +55,6 @@ public class User extends AuditEntity{
                 .address(this.getAddress())
                 .name(this.getName())
                 .phone(this.getPhone())
-                .photo(this.getPhoto())
                 .roles(roles)
                 .build();
     }
