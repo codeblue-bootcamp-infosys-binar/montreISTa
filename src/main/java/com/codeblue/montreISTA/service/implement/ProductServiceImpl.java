@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService {
     private final SellerRepository sellerRepository;
 
     public List<Product> findAllProduct() {
-        return productRepository.findAll();
+        return productRepository.findAllByOrderByCreatedAtAsc();
     }
 
     public Optional<Product> findProductById(Long id) {

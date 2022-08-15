@@ -42,4 +42,5 @@ public class Buyer extends AuditEntity {
                 .modifiedAt(this.getModifiedAt()                )
                 .build();
     }
+
 }
