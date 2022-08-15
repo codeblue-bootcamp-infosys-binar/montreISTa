@@ -28,6 +28,6 @@ public class Role extends AuditEntity {
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "role",
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
     private List<UserRole> users;
 }

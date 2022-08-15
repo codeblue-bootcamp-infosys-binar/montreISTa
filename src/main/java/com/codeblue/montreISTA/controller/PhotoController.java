@@ -3,15 +3,14 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.DTO.PhotoRequestDTO;
 import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
 import com.codeblue.montreISTA.service.implement.CloudinaryService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.PhotoService;
@@ -20,13 +19,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
 @RestController
 @AllArgsConstructor
 @Tag(name="04. Photo")
+@SecurityRequirement(name = "bearer-key")
 public class PhotoController {
 
     private static final Logger logger = LoggerFactory.getLogger(PhotoController.class);

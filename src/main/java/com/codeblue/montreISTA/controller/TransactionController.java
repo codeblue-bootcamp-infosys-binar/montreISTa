@@ -4,6 +4,7 @@ import com.codeblue.montreISTA.DTO.TransactionDetailDTO;
 import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.TransactionService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @Tag(name="10. Transaction")
+@SecurityRequirement(name = "bearer-key")
 public class TransactionController {
     private final TransactionService transactionService;
 

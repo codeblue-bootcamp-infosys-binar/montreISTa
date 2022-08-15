@@ -5,6 +5,7 @@ import com.codeblue.montreISTA.DTO.BuyerResponseDTO;
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.BuyerService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ import java.util.*;
 @AllArgsConstructor
 @RestController
 @Tag(name="06. Buyer")
+@SecurityRequirement(name = "bearer-key")
 public class BuyerController {
 
     private static final Logger logger = LoggerFactory.getLogger(BuyerController.class);
