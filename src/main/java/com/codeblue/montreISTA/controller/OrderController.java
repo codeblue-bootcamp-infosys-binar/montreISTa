@@ -3,6 +3,7 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.OrderService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @Tag(name="09. Order")
+@SecurityRequirement(name = "bearer-key")
 public class OrderController {
 
     private OrderService orderService;

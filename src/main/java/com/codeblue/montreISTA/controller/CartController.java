@@ -4,6 +4,7 @@ import com.codeblue.montreISTA.DTO.CartRequestDTO;
 import com.codeblue.montreISTA.DTO.CartResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.CartService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ import java.util.Map;
 @RestController
 @AllArgsConstructor
 @Tag(name="08. Cart")
+@SecurityRequirement(name = "bearer-key")
 public class CartController {
 
     private static final Logger logger = LoggerFactory.getLogger(CartController.class);

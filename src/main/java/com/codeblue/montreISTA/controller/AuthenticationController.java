@@ -3,18 +3,13 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.DTO.JwtResponse;
 import com.codeblue.montreISTA.DTO.LoginUserRequest;
 import com.codeblue.montreISTA.DTO.RegistrationDTO;
-import com.codeblue.montreISTA.DTO.UserResponseDTO;
-import com.codeblue.montreISTA.entity.Role;
-import com.codeblue.montreISTA.entity.User;
-import com.codeblue.montreISTA.entity.UserRole;
 import com.codeblue.montreISTA.repository.RoleRepository;
 import com.codeblue.montreISTA.repository.UserRepository;
-import com.codeblue.montreISTA.repository.UserRoleRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.security.JwtUtils;
 import com.codeblue.montreISTA.security.MyUserDetails;
-import com.codeblue.montreISTA.security.MyUserDetailsService;
 import com.codeblue.montreISTA.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +26,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
 @Tag(name="00. Authentication")
+@SecurityRequirement(name = "bearer-key")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class AuthenticationController {
 

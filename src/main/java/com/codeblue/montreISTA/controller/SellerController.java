@@ -9,6 +9,7 @@ import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.SellerService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -18,13 +19,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
 @Tag(name="02. Seller")
+@SecurityRequirement(name = "bearer-key")
 public class SellerController {
 
     private static final Logger logger =  LoggerFactory.getLogger(SellerController.class);
