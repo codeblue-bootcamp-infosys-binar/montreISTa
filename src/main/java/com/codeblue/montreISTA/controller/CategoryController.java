@@ -5,6 +5,7 @@ import com.codeblue.montreISTA.DTO.CategoryResponseDTO;
 import com.codeblue.montreISTA.entity.Category;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.CategoryService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @Tag(name = "13. Category")
+@SecurityRequirement(name = "bearer-key")
 public class CategoryController {
 
     private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);

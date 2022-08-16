@@ -31,9 +31,6 @@ public class HistoryTransaction{
     private Seller seller;
 
     @NotNull
-    private String photoName;
-
-    @NotNull
     private String photoUrl;
 
     private Long product_id;
@@ -66,7 +63,6 @@ public class HistoryTransaction{
                 "historyTransactionId=" + historyTransactionId +
                 ", buyer=" + buyer +
                 ", seller=" + seller +
-                ", photoName='" + photoName + '\'' +
                 ", photoUrl='" + photoUrl + '\'' +
                 ", totalPrice=" + totalPrice +
                 '}';

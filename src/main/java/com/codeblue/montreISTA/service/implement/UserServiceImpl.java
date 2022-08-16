@@ -12,6 +12,8 @@ import com.codeblue.montreISTA.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final UserRoleRepository userRoleRepository;
+    private final CloudinaryService cloudinaryService;
 
 
     @Override
@@ -59,29 +62,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDTO registrationUser(RegistrationDTO registrationDTO) throws Exception {
         List<String> requestRole = registrationDTO.getRoles();
-        AtomicReference<UserResponseDTO> userDTOlambda = new AtomicReference<>(new UserResponseDTO());
-        if(requestRole.isEmpty()) {
-            userDTOlambda.set(this.addToRoleCreate(registrationDTO.convertToEntity()));
-            }else {
-            boolean check = requestRole.stream().anyMatch(r->r.contains("ROLE_ADMIN"));
-            if(check){
-                throw new Exception("User need admin for ROLE_ADMIN");
-            }
-            requestRole.forEach(String::toUpperCase);
-            requestRole.forEach(role->{
-                try{
-                if(role.equals("ROLE_USER")){
-                    userDTOlambda.set(this.addToRoleCreate(registrationDTO.convertToEntity()));
-                }else {
-                    {
-                        throw new Exception("For now you can only have ROLE_USER, next patch we will upgrade");
-                    }
-                }
-            } catch (Exception e) {
-                    e.printStackTrace();
-                }});
-          };
-        return userDTOlambda.get();
+        User user = registrationDTO.convertToEntity();
+        user.setPhoto("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+        this.checkRole(requestRole);
+
+        User userSave = userRepository.save(user);
+        //addRole
+        this.addRole(requestRole,userSave);
+
+        return this.convertResponse(userSave);
     }
 
     @Override
@@ -90,59 +79,68 @@ public class UserServiceImpl implements UserService {
         User user = registrationDTO.convertToEntity();
         user.setUserId(userByUsername.getUserId());
         List<String> requestRole = registrationDTO.getRoles();
-        AtomicReference<UserResponseDTO> userDTOlambda = new AtomicReference<>(new UserResponseDTO());
-        if(requestRole.isEmpty()) {
-            userDTOlambda.set(this.addToRoleCreate(user));
-        }else {
-            boolean check = requestRole.stream().anyMatch(r->r.contains("ROLE_ADMIN"));
-            if(check){
-                throw new Exception("User need admin for ROLE_ADMIN");
-            }
-            requestRole.forEach(String::toUpperCase);
-            requestRole.forEach(role->{
-                try{
-                    if(role.equals("ROLE_USER")){
-                        userDTOlambda.set(this.addToRoleCreate(user));
-                    }else {
-                        {
-                            throw new Exception("For now you can only have ROLE_USER, next patch we will upgrade");
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }});
-        };
-        return userDTOlambda.get();
+
+        this.checkRole(requestRole);
+
+        User userSave = userRepository.save(user);
+                //addRole
+        this.addRole(requestRole,userSave);
+
+        return this.convertResponse(userSave);
     }
 
-
+    @Override
+    public UserResponseDTO uploadPhotoProfile(Authentication authentication, MultipartFile file) throws Exception {
+        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Please sign up"));
+        String url = cloudinaryService.uploadFile(file);
+        user.setPhoto(url);
+        User userSave = userRepository.save(user);
+        return this.convertResponse(userSave);
+    }
 
     @Override
     public void deleteUser(Long id) throws Exception {
         userRepository.deleteById(id);
     }
-
-    public void checkRole_user(User user)throws Exception{
-        List<Role> roles = roleRepository.findByUsersUserUserId(user.getUserId());
-        Boolean check = roles.stream().anyMatch(role->role.getRoleName()
-                .contains("ROLE_USER"));
-        if(!check){
-            UserRole addrole = new UserRole();
-            Role role = roleRepository.findByRoleNameOrderByCreatedAt("ROLE_USER");
-            addrole.setRole(role);
-            addrole.setUser(user);
-            userRoleRepository.save(addrole);
-        }
+    public void checkRole(List<String> requestRole){
+        requestRole.forEach(role-> {
+            try {
+                roleRepository.findByRoleNameIgnoreCase(role).orElseThrow(() -> new Exception("Role not found"));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }}
+        );
     }
+
     public UserResponseDTO convertResponse(User userSave)throws Exception{
         List<Role> rolesUser = roleRepository.findByUsersUserUserId(userSave.getUserId());
         List<String> roleDTO = rolesUser.stream().map(Role::getRoleName).collect(Collectors.toList());
         return userSave.convertToResponse(roleDTO);
     }
 
-    public UserResponseDTO addToRoleCreate(User user)throws Exception{
-        User userSave = userRepository.save(user);
-        this.checkRole_user(user);
-        return this.convertResponse(userSave);
+
+    public void addRole(List<String> requestRole, User user)throws Exception{
+        if(requestRole.isEmpty()) {
+            Role roleGet = roleRepository.findByRoleNameIgnoreCase("ROLE_USER").orElseThrow(()->new Exception("Role not found"));
+            UserRole addRole = new UserRole();
+            addRole.setRole(roleGet);
+            addRole.setUser(user);
+            userRoleRepository.save(addRole);
+        }else {
+            boolean check = requestRole.stream().anyMatch(r->r.contains("ROLE_ADMIN"));
+            if(check){
+                throw new Exception("User need admin for ROLE_ADMIN");
+            }
+            requestRole.forEach(role->{
+                try{
+                    Role roleGet = roleRepository.findByRoleNameIgnoreCase(role).orElseThrow(()->new Exception("Role not found"));
+                    UserRole addRole = new UserRole();
+                    addRole.setRole(roleGet);
+                    addRole.setUser(user);
+                    userRoleRepository.save(addRole);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }});
+        }
     }
 }

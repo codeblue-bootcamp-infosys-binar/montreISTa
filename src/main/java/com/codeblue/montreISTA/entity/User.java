@@ -3,9 +3,11 @@ package com.codeblue.montreISTA.entity;
 import com.codeblue.montreISTA.DTO.UserResponseDTO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.sun.istack.NotNull;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Getter
@@ -24,27 +26,28 @@ public class User extends AuditEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
     
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     private String name;
 
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     private String username;
 
     @Email
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     private String email;
-
+    @Column(nullable = false)
     private String password;
 
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     private String phone;
-
-    private String photo;
+    @Column(nullable = false)
     private String address;
+    @Column(columnDefinition = "TEXT",nullable = false)
+    private String photo;
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "user",
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
     private List<UserRole> roles;
 
     public UserResponseDTO convertToResponse(List<String> roles){
@@ -54,8 +57,8 @@ public class User extends AuditEntity{
                 .email_id(this.getEmail())
                 .address(this.getAddress())
                 .name(this.getName())
-                .phone(this.getPhone())
                 .photo(this.getPhoto())
+                .phone(this.getPhone())
                 .roles(roles)
                 .build();
     }

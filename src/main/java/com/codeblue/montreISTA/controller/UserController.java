@@ -1,30 +1,38 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.DTO.LoginUserRequest;
 import com.codeblue.montreISTA.DTO.RegistrationDTO;
 import com.codeblue.montreISTA.DTO.UserResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.*;
 
 @AllArgsConstructor
 @RestController
 @Tag(name="01. User")
+@SecurityRequirement(name = "bearer-key")
 public class UserController {
 
     private final UserService userService;
 
-
+    @GetMapping("/user/my-profile")
+    public ResponseEntity<Object> getMyProfile(Authentication authentication) {
+        try {
+            UserResponseDTO result = userService.findByUsername(authentication.getName());
+            return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, result);
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
     //UPDATE
     @PutMapping("/user/editProfile")
     public ResponseEntity<Object> updateUser(@RequestBody RegistrationDTO user,Authentication authentication) {
@@ -35,7 +43,19 @@ public class UserController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
-    //GET ALL
+
+    @PostMapping(value="/user/upload-photo-profile",consumes ="multipart/form-data" )
+    public ResponseEntity<Object> postPhotoProfile(@RequestParam ("file") MultipartFile file,
+                                                   Authentication authentication) throws IOException {
+        try{
+            UserResponseDTO results = userService.uploadPhotoProfile(authentication,file);
+            return ResponseHandler.generateResponse("Success upload photo profile",HttpStatus.OK,results);
+        }catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"failed update photo");
+        }
+    }
+
+        //GET ALL
     @GetMapping("/dashboard/users")
     public ResponseEntity<Object> getAllUser() {
         try {

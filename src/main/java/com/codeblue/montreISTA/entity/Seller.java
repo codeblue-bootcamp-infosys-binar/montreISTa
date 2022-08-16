@@ -23,8 +23,7 @@ public class Seller extends AuditEntity{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User userId;
-
-    @NotNull
+    @Column(nullable = false)
     private String storeName;
 
     @NotNull
@@ -40,7 +39,6 @@ public class Seller extends AuditEntity{
                 .name(this.getUserId().getName())
                 .username(this.getUserId().getUsername())
                 .email(this.getUserId().getEmail())
-                .photo(this.getUserId().getPhoto())
                 .store_address(this.getStoreAddress())
                 .store_name(this.getStoreName())
                 .store_photo(this.getStorePhoto())

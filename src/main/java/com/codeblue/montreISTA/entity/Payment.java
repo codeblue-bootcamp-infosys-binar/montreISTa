@@ -17,12 +17,9 @@ public class Payment extends AuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long paymentId;
 
-
-    @NotEmpty(message = "name must not be blank")
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     private String name;
 
-
-    @NotEmpty(message = "name must not be blank")
+    @Column(nullable = false)
     private String paymentCode;
 }

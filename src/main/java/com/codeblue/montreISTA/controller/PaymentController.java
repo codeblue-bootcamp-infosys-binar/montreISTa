@@ -4,6 +4,7 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.PaymentService;
 import com.codeblue.montreISTA.entity.Payment;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ import java.util.*;
 @RestController
 @RequestMapping
 @Tag(name = "12. Payment")
+@SecurityRequirement(name = "bearer-key")
 public class PaymentController {
 
     private static final Logger logger = LoggerFactory.getLogger(PaymentController.class);

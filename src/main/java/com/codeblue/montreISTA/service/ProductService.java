@@ -11,6 +11,8 @@ public interface ProductService {
 
     List<Product> findAllProduct();
 
+    Product findBySellerUsername(String keyword) throws Exception;
+
     Optional<Product> findProductById(Long id);
 
     List<Product> findByProductName(String name);
@@ -20,6 +22,7 @@ public interface ProductService {
     List<Product> findByStoreName(String name);
 
     List<Product> findByCategoryId(Long id);
+    List<Product> findByCategoryName(String name);
 
     List<Product> findProductBySellerId(Authentication authentication) throws Exception;
 

@@ -1,6 +1,6 @@
 package com.codeblue.montreISTA.entity;
 
-import com.codeblue.montreISTA.DTO.TransactionDetailDTO;
+import com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -37,8 +37,8 @@ public class HistoryTransactionDetail extends AuditEntity {
     @Column(columnDefinition = "TEXT")
     private String productDescription;
 
-    public TransactionDetailDTO convertToResponse(){
-        return TransactionDetailDTO.builder()
+    public TransactionDetailResponseDTO convertToResponse(){
+        return TransactionDetailResponseDTO.builder()
                 .transaction_detail_id(this.getTransactionDetailId())
                 .seller_id(this.getHistoryTransaction().getSeller().getSellerId())
                 .seller_name(this.getHistoryTransaction().getSeller().getStoreName())
@@ -46,7 +46,6 @@ public class HistoryTransactionDetail extends AuditEntity {
                 .store_address(this.getHistoryTransaction().getSeller().getStoreAddress())
                 .buyer_id(this.getHistoryTransaction().getBuyer().getBuyerId())
                 .buyer_name(this.getHistoryTransaction().getBuyer().getUser().getName())
-                .photo_name(this.getHistoryTransaction().getPhotoName())
                 .photo_url(this.getHistoryTransaction().getPhotoUrl())
                 .total_price(this.getHistoryTransaction().getTotalPrice())
                 .destination_name(this.getDestinationName())

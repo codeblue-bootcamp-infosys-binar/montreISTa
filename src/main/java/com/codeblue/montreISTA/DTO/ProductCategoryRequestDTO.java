@@ -5,6 +5,8 @@ import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.entity.ProductCategory;
 import lombok.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -13,6 +15,7 @@ import lombok.*;
 public class ProductCategoryRequestDTO {
     private Long product_id;
     private Long category_id;
+
     public ProductCategory convertToEntity(Product product, Category category)
     {
         return ProductCategory.builder()
