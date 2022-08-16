@@ -23,7 +23,6 @@ public class RegistrationDTO {
     private String password;
     @Size(min = 11, max=14)
     private String phone;
-    private String photo;
     @Size(min=5)
     private String address;
     private List<String> roles;
@@ -35,7 +34,6 @@ public class RegistrationDTO {
                 .email(this.email)
                 .password(this.password)
                 .phone(this.phone)
-                .photo(this.photo)
                 .address(this.address)
                 .build();
     }

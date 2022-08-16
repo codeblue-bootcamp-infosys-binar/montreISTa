@@ -16,13 +16,13 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="07. Wishlist")
+@Tag(name="06. Wishlist")
 @SecurityRequirement(name = "bearer-key")
 public class WishlistController {
 
     private final WishlistService wishlistService;
 
-    @GetMapping("/user/wishlist/Buyer")
+    @GetMapping("/user/wishlist/my-wishlist")
     public ResponseEntity<Object> findByBuyerUserUsername(Authentication authentication) {
         try{
             List<WishlistResponseDTO> wishlists = wishlistService.findByBuyerUserUsername(authentication);

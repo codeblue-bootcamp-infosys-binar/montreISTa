@@ -19,7 +19,7 @@ import java.util.*;
 
 @AllArgsConstructor
 @RestController
-@Tag(name="06. Buyer")
+@Tag(name="05. Buyer")
 @SecurityRequirement(name = "bearer-key")
 public class BuyerController {
 

@@ -12,6 +12,8 @@ import com.codeblue.montreISTA.service.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,8 +39,12 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class AuthenticationController {
 
-    private final AuthenticationManager authenticationManager;
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
+
+    private static final String Line = "====================";
+
     private final UserService userService;
+    private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
 
     @Autowired
@@ -55,6 +61,7 @@ public class AuthenticationController {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword()));
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
+            
             String jwt = jwtUtils.generateJwtToken(authentication);
 
             MyUserDetails userDetails = (MyUserDetails)authentication.getPrincipal();
@@ -63,13 +70,19 @@ public class AuthenticationController {
                     .collect(Collectors.toList());
 
             JwtResponse jwtResponse = new JwtResponse(jwt,userDetails.getUserId(),userDetails.getUsername(), userDetails.getEmail(),roles);
-
+            logger.info(Line + "Logger Start Login " + Line);
+            logger.info(String.valueOf(jwtResponse));
+            logger.info(Line + "Logger End Login " + Line);
             return ResponseHandler.generateResponse("successfully login", HttpStatus.OK, jwtResponse);
+
         } catch (Exception e) {
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Login!");
         }
     }
-    @PostMapping("/signup")
+    @PostMapping("/sign-up")
     public ResponseEntity<Object> createUser(@RequestBody RegistrationDTO registrationRequest) {
         try {
             if (userRepository.existsByUsername(registrationRequest.getUsername())){
@@ -80,10 +93,16 @@ public class AuthenticationController {
             }
 
             UserResponseDTO result = userService.registrationUser(registrationRequest);
-
+            logger.info(Line + "Logger Start Create " + Line);
+            logger.info(String.valueOf(result));
+            logger.info(Line + "Logger End Create " + Line);
             return ResponseHandler.generateResponse("successfully registered! please login", HttpStatus.CREATED, result);
+
         } catch (Exception e) {
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed create user!");
         }
     }
 }
