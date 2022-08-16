@@ -46,8 +46,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderResponseDTO> findByBuyerName(String keyword) throws Exception {
-        List<Order> results = orderRepository.findByListCartBuyerUserUsernameContaining(keyword);
+    public List<OrderResponseDTO> findByBuyerId(Long id) throws Exception {
+        List<Order> results = orderRepository.findByListCartBuyerBuyerIdOrderByOrderIdAsc(id);
         if(results.isEmpty()){
             throw new Exception("Orders not found");
         }
