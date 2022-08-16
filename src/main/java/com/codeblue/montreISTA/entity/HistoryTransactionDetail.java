@@ -52,7 +52,7 @@ public class HistoryTransactionDetail extends AuditEntity {
                 .destination_address(this.getDestinationAddress())
                 .destination_phone(this.getDestinationPhone())
                 .zip_code(this.getZipCode())
-                .payment_name(this.getPaymentCode())
+                .payment_name(this.getPaymentName())
                 .payment_code(this.getPaymentCode())
                 .shipping_name(this.getShippingName())
                 .shipping_price(this.getShippingPrice())
