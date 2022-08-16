@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="09. Order")
+@Tag(name="08. Order")
 @SecurityRequirement(name = "bearer-key")
 public class OrderController {
 

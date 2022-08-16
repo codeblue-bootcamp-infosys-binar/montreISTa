@@ -22,7 +22,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="05. Product Category")
+@Tag(name="10. Product Category")
 @SecurityRequirement(name = "bearer-key")
 public class ProductCategoryController {
 
