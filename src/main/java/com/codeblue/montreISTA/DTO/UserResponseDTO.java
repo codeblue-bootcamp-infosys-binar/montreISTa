@@ -16,7 +16,7 @@ public class UserResponseDTO {
     private String address;
     private String name;
     private String phone;
-
+    private String photo;
     private List<String> roles;
 
     @Override
@@ -27,7 +27,9 @@ public class UserResponseDTO {
                 ", email_id='" + email_id + '\'' +
                 ", address='" + address + '\'' +
                 ", name='" + name + '\'' +
+                ", photo='" + photo + '\'' +
                 ", phone='" + phone + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }

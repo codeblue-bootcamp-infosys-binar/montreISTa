@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.*;
 
 @AllArgsConstructor
@@ -33,7 +35,19 @@ public class UserController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
         }
     }
-    //GET ALL
+
+    @PostMapping(value="/user/upload-photo-profile",consumes ="multipart/form-data" )
+    public ResponseEntity<Object> postPhotoProfile(@RequestParam ("file") MultipartFile file,
+                                                   Authentication authentication) throws IOException {
+        try{
+            UserResponseDTO results = userService.uploadPhotoProfile(authentication,file);
+            return ResponseHandler.generateResponse("Success upload photo profile",HttpStatus.OK,results);
+        }catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"failed update photo");
+        }
+    }
+
+        //GET ALL
     @GetMapping("/dashboard/users")
     public ResponseEntity<Object> getAllUser() {
         try {

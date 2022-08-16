@@ -18,11 +18,10 @@ public class Shipping extends AuditEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long shippingId;
 
-    @NotEmpty
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     private String name;
 
-    @NotEmpty
+    @Column(nullable = false)
     private Integer price;
 
 }
