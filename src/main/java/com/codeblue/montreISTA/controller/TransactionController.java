@@ -1,6 +1,5 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.DTO.PhotoResponseDTO;
 import com.codeblue.montreISTA.DTO.TransactionDetailDTO;
 import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
@@ -86,6 +85,8 @@ public class TransactionController {
         }
     }
 
+
+
     @GetMapping("/user/transactions/buyer")
     public ResponseEntity<Object> findTransactionByBuyer(Authentication authentication)throws Exception{
         try{
@@ -98,7 +99,7 @@ public class TransactionController {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Transaction doesn't exist!");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
         }
     }
 
@@ -146,7 +147,7 @@ public class TransactionController {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Transactions no value!");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Transactions detail doesn't exist!");
         }
     }
 
