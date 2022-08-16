@@ -21,7 +21,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="08. Cart")
+@Tag(name="07. Cart")
 @SecurityRequirement(name = "bearer-key")
 public class CartController {
 

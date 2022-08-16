@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="10. Transaction")
+@Tag(name="09. Transaction")
 @SecurityRequirement(name = "bearer-key")
 public class TransactionController {
     private final TransactionService transactionService;

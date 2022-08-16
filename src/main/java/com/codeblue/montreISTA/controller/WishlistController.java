@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="07. Wishlist")
+@Tag(name="06. Wishlist")
 @SecurityRequirement(name = "bearer-key")
 public class WishlistController {
 

@@ -40,6 +40,10 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public Object createSeller(SellerRequestDTO seller, Authentication authentication) throws Exception  {
+        Optional<Seller> sellerValidation = sellerRepository.findByStoreName(seller.getStoreName());
+        if(sellerValidation.isPresent()){
+            throw new Exception("Your Store Name has been used");
+        }
         if(authentication==null){
             throw new Exception("Please login");
         }
