@@ -143,10 +143,10 @@ public class OrderController {
      * @param
      * @return
      */
-    @GetMapping("/dashboard/order/buyer")
-    public ResponseEntity<Object> findByBuyerUserName(@RequestParam String keyword){
+    @GetMapping("/dashboard/order/buyer/{id}")
+    public ResponseEntity<Object> findByBuyerUserName(@PathVariable("id") Long id){
         try{
-            List<OrderResponseDTO> results = orderService.findByBuyerName(keyword);
+            List<OrderResponseDTO> results = orderService.findByBuyerId(id);
             logger.info(Line + "Logger Start Get Order By Username  " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Order By Username " + Line);
