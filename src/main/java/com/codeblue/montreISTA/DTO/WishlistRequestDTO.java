@@ -14,10 +14,7 @@ import lombok.*;
 public class WishlistRequestDTO {
 
 
-    private Long buyerId;
-
     private Long productId;
-
     private Integer quantity;
 
     public Wishlist convertToEntity(Buyer buyer, Product product){

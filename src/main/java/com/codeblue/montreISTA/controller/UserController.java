@@ -1,18 +1,15 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.DTO.LoginUserRequest;
 import com.codeblue.montreISTA.DTO.RegistrationDTO;
 import com.codeblue.montreISTA.DTO.UserResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -20,6 +17,7 @@ import java.util.*;
 @AllArgsConstructor
 @RestController
 @Tag(name="01. User")
+@SecurityRequirement(name = "bearer-key")
 public class UserController {
 
     private final UserService userService;

@@ -2,8 +2,10 @@ package com.codeblue.montreISTA.controller;
 
 
 import com.codeblue.montreISTA.DTO.BuyerResponseDTO;
+import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.BuyerService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -17,7 +19,8 @@ import java.util.*;
 
 @AllArgsConstructor
 @RestController
-@Tag(name="06. Buyer")
+@Tag(name="05. Buyer")
+@SecurityRequirement(name = "bearer-key")
 public class BuyerController {
 
     private static final Logger logger = LoggerFactory.getLogger(BuyerController.class);
@@ -30,11 +33,11 @@ public class BuyerController {
     @GetMapping("/user/buyers/loginAsBuyer")
     public ResponseEntity<Object> createBuyer(Authentication authentication){
         try {
-            BuyerResponseDTO buyer = buyerService.createBuyer(authentication);
+            List<ProductResponseDTO> results = buyerService.createBuyer(authentication);
             logger.info(Line + "Logger Start Create " + Line);
-            logger.info(String.valueOf(buyer));
+            logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Create " + Line);
-            return ResponseHandler.generateResponse("successfully login as buyer", HttpStatus.CREATED, buyer);
+            return ResponseHandler.generateResponse("successfully login as buyer", HttpStatus.CREATED, results);
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());

@@ -5,6 +5,7 @@ import com.codeblue.montreISTA.DTO.ProductCategoryRequestDTO;
 import com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.ProductCategoryService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -21,7 +22,8 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="05. Product Category")
+@Tag(name="10. Product Category")
+@SecurityRequirement(name = "bearer-key")
 public class ProductCategoryController {
 
 
@@ -35,7 +37,7 @@ public class ProductCategoryController {
      * findAll
      * @return
      */
-    @GetMapping("/productCategories")
+    @GetMapping("/product-categories")
     public ResponseEntity<Object> findAllProductCategory(){
         try{
             List<ProductCategoryResponseDTO> photos = productCategoryService.findAll();
@@ -70,8 +72,8 @@ public class ProductCategoryController {
      * @param keyword
      * @return
      */
-    @GetMapping("/productCategory/productname")
-    public ResponseEntity<Object> findByProductname(@Param("keyword") String keyword){
+    @GetMapping("/product-category/product-name")
+    public ResponseEntity<Object> findByProductName(@Param("keyword") String keyword){
         try{
             List<ProductCategoryResponseDTO> results = productCategoryService.findByProductName(keyword);
             logger.info(Line + "Logger Start Get productname " + Line);
@@ -85,7 +87,7 @@ public class ProductCategoryController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product category had no value!");
         }
     }
-    @GetMapping("/productCategory/product/{id}")
+    @GetMapping("/product-category/product/{id}")
     public ResponseEntity<Object> findByProductId(@PathVariable Long id) {
         try {
             List<ProductCategoryResponseDTO> results = productCategoryService.findByProductId(id);
@@ -106,7 +108,7 @@ public class ProductCategoryController {
      * @param keyword
      * @return
      */
-    @GetMapping("/productCategory/categoryname")
+    @GetMapping("/product-category/category-name")
     public ResponseEntity<Object> findByCategoryName(@Param("keyword") String keyword){
         try{
             List<ProductCategoryResponseDTO> results = productCategoryService.findByCategoryName(keyword);
@@ -121,7 +123,7 @@ public class ProductCategoryController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "product category had no value!");
         }
     }
-    @GetMapping("/productCategory/category/{id}")
+    @GetMapping("/product-category/category/{id}")
     public ResponseEntity<Object> findByCategoryId(@PathVariable Long id) {
         try {
             List<ProductCategoryResponseDTO> results = productCategoryService.findByCategoryId(id);
@@ -142,7 +144,7 @@ public class ProductCategoryController {
      * @param productCategory
      * @return
      */
-    @PostMapping("/user/productCategory")
+    @PostMapping("/dashboard/product-category")
     public ResponseEntity<Object> postProductCategory(@RequestBody ProductCategoryRequestDTO productCategory) throws Exception {
         try {
             ProductCategoryResponseDTO results = productCategoryService.createProductCategory(productCategory);
@@ -164,7 +166,7 @@ public class ProductCategoryController {
      * @param productCategory
      * @return
      */
-    @PutMapping("/user/productCategory/{id}")
+    @PutMapping("/dashboard/product-category/{id}")
     public ResponseEntity<Object> updateProductCategory(@PathVariable Long id,@RequestBody ProductCategoryRequestDTO productCategory) {
         try {
             ProductCategoryResponseDTO results = productCategoryService.updateProductCategory(productCategory,id);
@@ -186,7 +188,7 @@ public class ProductCategoryController {
      * @return
      */
 
-    @DeleteMapping("/user/productCategory/{id}")
+    @DeleteMapping("/dashboard/product-category/{id}")
     public ResponseEntity<Object> deletePhoto(@PathVariable Long id) {
         try {
             productCategoryService.deleteById(id);

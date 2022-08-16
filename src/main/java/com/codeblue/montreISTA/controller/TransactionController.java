@@ -1,9 +1,10 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.DTO.TransactionDetailDTO;
+import com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO;
 import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.TransactionService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -20,7 +21,8 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="10. Transaction")
+@Tag(name="09. Transaction")
+@SecurityRequirement(name = "bearer-key")
 public class TransactionController {
 
     private static final Logger logger = LoggerFactory.getLogger(TransactionController.class);
@@ -122,7 +124,7 @@ public class TransactionController {
     @GetMapping("/dashboard/transaction-details")
     public ResponseEntity<Object> findAllTransactionDetails(){
         try{
-            List<TransactionDetailDTO> results = transactionService.findAllTransactionDetail();
+            List<TransactionDetailResponseDTO> results = transactionService.findAllTransactionDetail();
             logger.info(Line + "Logger Start Get Transaction Detail" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transaction Detail" + Line);
@@ -138,7 +140,7 @@ public class TransactionController {
     @GetMapping("/dashboard/transaction-details/{id}")
     public ResponseEntity<Object> findTransactionDetailsId(@PathVariable Long id){
         try{
-            TransactionDetailDTO results = transactionService.findByTransactionDetailId(id);
+            TransactionDetailResponseDTO results = transactionService.findByTransactionDetailId(id);
             logger.info(Line + "Logger Start Get By ID" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get By ID" + Line);
@@ -154,7 +156,7 @@ public class TransactionController {
     @GetMapping("/user/transactions-detail/buyer")
     public ResponseEntity<Object> findTransactionDetailsByBuyer(Authentication authentication)throws Exception{
         try{
-            List<TransactionDetailDTO> results = transactionService.findByTransactionDetailBuyerId(authentication);
+            List<TransactionDetailResponseDTO> results = transactionService.findByTransactionDetailBuyerId(authentication);
             logger.info(Line + "Logger Start Get Transactions Detail Buyer" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transactions Detail Buyer" + Line);
@@ -170,7 +172,7 @@ public class TransactionController {
     @GetMapping("/user/transactions-detail/seller/")
     public ResponseEntity<Object> findTransactionDetailBySeller(Authentication authentication)throws Exception{
         try{
-            List<TransactionDetailDTO> results = transactionService.findByTransactionDetailSellerId(authentication);
+            List<TransactionDetailResponseDTO> results = transactionService.findByTransactionDetailSellerId(authentication);
             logger.info(Line + "Logger Start Get Transactions Detail Seller" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transactions Detail Seller" + Line);
@@ -186,7 +188,7 @@ public class TransactionController {
     @GetMapping("/user/finish-order")
     public ResponseEntity<Object> postCart(Authentication authentication) throws Exception{
         try {
-            List<TransactionDetailDTO> results = transactionService.createTransaction(authentication);
+            List<TransactionDetailResponseDTO> results = transactionService.createTransaction(authentication);
             logger.info(Line + "Logger Start Get Finish Order" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Finish Order " + Line);

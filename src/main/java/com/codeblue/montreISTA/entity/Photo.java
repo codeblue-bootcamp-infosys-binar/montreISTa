@@ -32,8 +32,6 @@ public class Photo extends AuditEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long photoId;
 
-    @NotEmpty
-    private String photoName;
 
     @Lob
     @Type(type = "org.hibernate.type.TextType")
@@ -48,7 +46,6 @@ public class Photo extends AuditEntity{
     public PhotoResponseDTO convertToResponse(){
         return PhotoResponseDTO.builder()
                 .photo_id(this.photoId)
-                .photo_name(this.photoName)
                 .photo_url(this.photoURL)
                 .product_id(this.getProduct().getProductId())
                 .product_name(this.getProduct().getProductName())
@@ -63,7 +60,6 @@ public class Photo extends AuditEntity{
     public PhotoPostDTO convertToPost(){
         return PhotoPostDTO.builder()
                 .photo_id(this.photoId)
-                .photo_name(this.photoName)
                 .photo_url(this.photoURL)
                 .product_id(this.getProduct().getProductId())
                 .build();
@@ -72,7 +68,6 @@ public class Photo extends AuditEntity{
     public PhotoProductDTO convertToProduct(){
         return PhotoProductDTO.builder()
                 .photo_id(this.photoId)
-                .photo_name(this.photoName)
                 .photo_url(this.photoURL)
                 .build();
     }
@@ -81,7 +76,6 @@ public class Photo extends AuditEntity{
     public String toString() {
         return "Photo{" +
                 "photoId=" + photoId +
-                ", photoName='" + photoName + '\'' +
                 ", photoURL='" + photoURL + '\'' +
                 ", product=" + product +
                 '}';

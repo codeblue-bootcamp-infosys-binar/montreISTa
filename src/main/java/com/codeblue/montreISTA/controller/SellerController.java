@@ -1,11 +1,15 @@
 package com.codeblue.montreISTA.controller;
 
 
+import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.DTO.SellerRequestDTO;
 import com.codeblue.montreISTA.DTO.SellerResponseDTO;
+import com.codeblue.montreISTA.entity.Buyer;
+import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.SellerService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -15,12 +19,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.*;
 
 @AllArgsConstructor
 @RestController
 @Tag(name="02. Seller")
+@SecurityRequirement(name = "bearer-key")
 public class SellerController {
 
     private static final Logger logger =  LoggerFactory.getLogger(SellerController.class);
@@ -32,11 +36,11 @@ public class SellerController {
     @PostMapping("/user/sellers/loginAsSeller")
     public ResponseEntity<Object> createSeller(@RequestBody SellerRequestDTO sellerRequestDTO, Authentication authentication){
         try {
-            SellerResponseDTO seller = sellerService.createSeller(sellerRequestDTO,authentication);
+            Object results = sellerService.createSeller(sellerRequestDTO,authentication);
             logger.info(Line + "Logger Start Create " + Line);
-            logger.info(String.valueOf(seller));
+            logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Create " + Line);
-            return ResponseHandler.generateResponse("successfully login as seller", HttpStatus.CREATED, seller);
+            return ResponseHandler.generateResponse("successfully login as seller", HttpStatus.OK, results);
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
