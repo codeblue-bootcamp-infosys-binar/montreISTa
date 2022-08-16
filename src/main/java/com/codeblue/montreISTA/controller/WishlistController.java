@@ -22,7 +22,7 @@ public class WishlistController {
 
     private final WishlistService wishlistService;
 
-    @GetMapping("/user/wishlist/Buyer")
+    @GetMapping("/user/wishlist/my-wishlist")
     public ResponseEntity<Object> findByBuyerUserUsername(Authentication authentication) {
         try{
             List<WishlistResponseDTO> wishlists = wishlistService.findByBuyerUserUsername(authentication);

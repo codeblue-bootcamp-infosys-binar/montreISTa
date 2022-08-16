@@ -24,7 +24,15 @@ public class UserController {
 
     private final UserService userService;
 
-
+    @GetMapping("/user/my-profile")
+    public ResponseEntity<Object> getMyProfile(Authentication authentication) {
+        try {
+            UserResponseDTO result = userService.findByUsername(authentication.getName());
+            return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, result);
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
     //UPDATE
     @PutMapping("/user/editProfile")
     public ResponseEntity<Object> updateUser(@RequestBody RegistrationDTO user,Authentication authentication) {

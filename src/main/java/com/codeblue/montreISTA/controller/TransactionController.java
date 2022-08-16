@@ -169,7 +169,7 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/user/transactions-detail/seller/")
+    @GetMapping("/user/transactions-detail/seller")
     public ResponseEntity<Object> findTransactionDetailBySeller(Authentication authentication)throws Exception{
         try{
             List<TransactionDetailResponseDTO> results = transactionService.findByTransactionDetailSellerId(authentication);

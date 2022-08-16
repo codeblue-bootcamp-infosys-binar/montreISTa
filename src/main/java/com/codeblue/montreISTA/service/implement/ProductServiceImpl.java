@@ -64,6 +64,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> findByCategoryName(String name) {
+        return productRepository.findByCategoriesCategoryNameIgnoreCaseContaining(name);
+    }
+
+    @Override
     public List<Product> findProductBySellerId(Authentication authentication) throws Exception{
         Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller"));
         List<Product> product = productRepository.findBySellerSellerId(seller.getSellerId());

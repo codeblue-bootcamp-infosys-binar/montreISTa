@@ -42,7 +42,7 @@ public class PhotoController {
     /**
      * find by seller.name/username
      */
-    @GetMapping("/user/seller-name")
+    @GetMapping("/user/my-photo-product")
     public ResponseEntity<Object> findBySellerName(Authentication authentication){
         try{
         List<PhotoResponseDTO> results = photoService.findBySellerName(authentication);
