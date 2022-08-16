@@ -10,8 +10,8 @@ import lombok.*;
 @Builder
 public class OrderRequestDTO {
 
-    private Long paymentId;
-    private Long shippingId;
+    private String payment;
+    private String shipping;
     private String destination_name;
     private String destination_address;
     private String destination_phone;

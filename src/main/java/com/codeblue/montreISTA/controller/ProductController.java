@@ -30,8 +30,6 @@ public class ProductController {
     private static final String Line = "====================";
 
     private final ProductService productService;
-    private final CategoryService categoryService;
-    private final SellerServiceImpl sellerService;
 
     //GET ALL PRODUCTS
     @GetMapping("/products")
@@ -63,8 +61,8 @@ public class ProductController {
 
 
     //GET ALL PRODUCTS BY SELLER ID
-    @GetMapping("user/products/seller")
-    public ResponseEntity<Object> getAllProductBySellerId(Authentication authentication){
+    @GetMapping("user/products/my-product")
+    public ResponseEntity<Object> getProductBySellerId(Authentication authentication){
         try{
             List<Product> products = productService.findProductBySellerId(authentication);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
@@ -99,8 +97,8 @@ public class ProductController {
     }
 
     //GET BY PRODUCT NAME
-    @GetMapping("/products/name")
-    public ResponseEntity<Object> getAllProductByProductName(@RequestParam String productName){
+    @GetMapping("/products/product-name")
+    public ResponseEntity<Object> getProductByProductName(@RequestParam String productName){
         try{
             List<Product> products = productService.findByProductName(productName);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
@@ -117,8 +115,8 @@ public class ProductController {
     }
 
     //GET BY SELLER USERNAME
-    @GetMapping("/products/seller")
-    public ResponseEntity<Object> getAllProductBySellerName(@RequestParam String sellername){
+    @GetMapping("/products/seller-name")
+    public ResponseEntity<Object> getProductBySellerName(@RequestParam String sellername){
         try{
             List<Product> products = productService.findBySellerName(sellername);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
@@ -135,14 +133,30 @@ public class ProductController {
     }
 
     //GET BY STORE NAME
-    @GetMapping("/products/store")
-    public ResponseEntity<Object> getAllProductByStoreName(@RequestParam String storeName){
+    @GetMapping("/products/store-name")
+    public ResponseEntity<Object> getProductByStoreName(@RequestParam String storeName){
         try{
             List<Product> products = productService.findByStoreName(storeName);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
-            logger.info(Line + "Logger Start Get storename " + Line);
+            logger.info(Line + "Logger Start Get store name " + Line);
             logger.info(String.valueOf(productResponseDTOS));
-            logger.info(Line + "Logger End Get storename " + Line);
+            logger.info(Line + "Logger End Get store name " + Line);
+            return ResponseHandler.generateResponse("successfully get products", HttpStatus.OK, productResponseDTOS);
+        } catch (Exception e){
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,"Product had no value!");
+        }
+    }
+    @GetMapping("/products/category-name")
+    public ResponseEntity<Object> getProductByCategoryName(@RequestParam String categoryName){
+        try{
+            List<Product> products = productService.findByCategoryName(categoryName);
+            List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
+            logger.info(Line + "Logger Start Get store name " + Line);
+            logger.info(String.valueOf(productResponseDTOS));
+            logger.info(Line + "Logger End Get store name " + Line);
             return ResponseHandler.generateResponse("successfully get products", HttpStatus.OK, productResponseDTOS);
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
@@ -154,7 +168,7 @@ public class ProductController {
 
     //GET BY CATEGORY ID
     @GetMapping("/products/category/{id}")
-    public ResponseEntity<Object> getAllProductsByCategoryId(@PathVariable("id") Long id){
+    public ResponseEntity<Object> getProductsByCategoryId(@PathVariable("id") Long id){
         try{
             List<Product> products = productService.findByCategoryId(id);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);

@@ -50,7 +50,7 @@ public class OrderController {
         }
     }
     
-    @GetMapping("/user/order")
+    @GetMapping("/user/my-order")
     public ResponseEntity<Object> getOrderByBuyer(Authentication authentication){
         try{
             OrderResponseCartDTO results = orderService.findByBuyer(authentication.getName());

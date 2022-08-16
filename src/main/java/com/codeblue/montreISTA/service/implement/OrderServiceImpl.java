@@ -85,8 +85,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderResponseDTO updateOrder(OrderRequestDTO orderRequestDTO, String keyword) throws Exception {
         Order order = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(keyword).orElseThrow(()->new Exception("Please add product to cart before order"));
-        Payment payment = paymentRepository.findById(orderRequestDTO.getPaymentId()).orElseThrow(()->new Exception("Payment Not found"));
-        Shipping shipping = shippingRepository.findById(orderRequestDTO.getShippingId()).orElseThrow(()->new Exception("Shipping Not found"));
+        Payment payment = paymentRepository.findByNameIgnoreCase(orderRequestDTO.getPayment()).orElseThrow(()->new Exception("Payment Not found"));
+        Shipping shipping = shippingRepository.findByNameIgnoreCase(orderRequestDTO.getShipping()).orElseThrow(()->new Exception("Shipping Not found"));
         orderRequestDTO.convertToEntity(payment, shipping);
         int tempPrice = 0;
         for(Cart cart : order.getListCart()){

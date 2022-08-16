@@ -12,10 +12,10 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> findBySellerSellerId(Long id);
 
     List<Product> findByCategoriesCategoryCategoriesId(Long id);
-
+    List<Product> findByCategoriesCategoryNameIgnoreCaseContaining(String name);
     List<Product> findAllByOrderByCreatedAtAsc();
 
-    Optional<Product> findFirstBySellerUserIdUsernameOrderByProductIdDesc(String keyword);
+    Optional<Product> findFirstBySellerUserIdUsernameOrderByProductIdDesc(String username);
     
     List<Product> findBySellerUserIdNameIgnoreCaseContaining(String name);
 

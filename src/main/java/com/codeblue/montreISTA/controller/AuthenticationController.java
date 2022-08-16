@@ -82,7 +82,7 @@ public class AuthenticationController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Login!");
         }
     }
-    @PostMapping("/signup")
+    @PostMapping("/sign-up")
     public ResponseEntity<Object> createUser(@RequestBody RegistrationDTO registrationRequest) {
         try {
             if (userRepository.existsByUsername(registrationRequest.getUsername())){

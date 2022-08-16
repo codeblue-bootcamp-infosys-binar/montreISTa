@@ -12,6 +12,8 @@ import com.codeblue.montreISTA.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final UserRoleRepository userRoleRepository;
+    private final CloudinaryService cloudinaryService;
 
 
     @Override
@@ -60,6 +63,7 @@ public class UserServiceImpl implements UserService {
     public UserResponseDTO registrationUser(RegistrationDTO registrationDTO) throws Exception {
         List<String> requestRole = registrationDTO.getRoles();
         User user = registrationDTO.convertToEntity();
+        user.setPhoto("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
         this.checkRole(requestRole);
 
         User userSave = userRepository.save(user);
@@ -82,6 +86,15 @@ public class UserServiceImpl implements UserService {
                 //addRole
         this.addRole(requestRole,userSave);
 
+        return this.convertResponse(userSave);
+    }
+
+    @Override
+    public UserResponseDTO uploadPhotoProfile(Authentication authentication, MultipartFile file) throws Exception {
+        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Please sign up"));
+        String url = cloudinaryService.uploadFile(file);
+        user.setPhoto(url);
+        User userSave = userRepository.save(user);
         return this.convertResponse(userSave);
     }
 

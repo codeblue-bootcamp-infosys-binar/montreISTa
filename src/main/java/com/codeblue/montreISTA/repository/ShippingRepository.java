@@ -1,11 +1,13 @@
 package com.codeblue.montreISTA.repository;
 
 
+import com.codeblue.montreISTA.entity.Payment;
 import com.codeblue.montreISTA.entity.Shipping;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ShippingRepository extends JpaRepository<Shipping,Long> {
 
@@ -13,4 +15,6 @@ public interface ShippingRepository extends JpaRepository<Shipping,Long> {
     List<Shipping> findByShippingId(Long id);
 
     List<Shipping> findByName(String keyword);
+
+    Optional<Shipping> findByNameIgnoreCase(String keyword);
 }

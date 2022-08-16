@@ -4,6 +4,7 @@ package com.codeblue.montreISTA.controller;
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.DTO.SellerRequestDTO;
 import com.codeblue.montreISTA.DTO.SellerResponseDTO;
+import com.codeblue.montreISTA.DTO.UserResponseDTO;
 import com.codeblue.montreISTA.entity.Buyer;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.repository.UserRepository;
@@ -19,6 +20,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.*;
 
 @AllArgsConstructor
@@ -48,7 +52,25 @@ public class SellerController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,"Failed create seller!");
         }
     }
-
+    @PostMapping(value="/user/upload-photo-store",consumes ="multipart/form-data" )
+    public ResponseEntity<Object> postPhotoStore(@RequestParam ("file") MultipartFile file,
+                                                   Authentication authentication) throws IOException {
+        try{
+            SellerResponseDTO results = sellerService.uploadPhotoStore(authentication,file);
+            return ResponseHandler.generateResponse("Success upload photo profile",HttpStatus.OK,results);
+        }catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"failed update photo");
+        }
+    }
+    @GetMapping("/user/my-store")
+    public ResponseEntity<Object> getMyStore(Authentication authentication) {
+        try {
+            SellerResponseDTO result = sellerService.findByUsername(authentication.getName());
+            return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, result);
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
     //UPDATE
     @PutMapping("/user/sellers/EditStoreProfile")
     public ResponseEntity<Object> updateSeller(@RequestBody SellerRequestDTO sellerRequestDTO, Authentication authentication){
@@ -91,13 +113,13 @@ public class SellerController {
         }
     }
 
-    @GetMapping("/dashboard/sellers/username")
-    public ResponseEntity<Object> findByUsername(@Param("keyword") String keyword){
+    @GetMapping("/dashboard/sellers/{id}")
+    public ResponseEntity<Object> findByUsername(@PathVariable("id") Long id){
         try{
-            List<SellerResponseDTO> sellers = sellerService.findByUsername(keyword);
-            logger.info(Line + "Logger Start Get seller username " + Line);
+            SellerResponseDTO sellers = sellerService.findSellerById(id);
+            logger.info(Line + "Logger Start Get seller id " + Line);
             logger.info(String.valueOf(sellers));
-            logger.info(Line + "Logger End Get seller username " + Line);
+            logger.info(Line + "Logger End Get seller id " + Line);
             return ResponseHandler.generateResponse("success get seller username", HttpStatus.OK, sellers);
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);

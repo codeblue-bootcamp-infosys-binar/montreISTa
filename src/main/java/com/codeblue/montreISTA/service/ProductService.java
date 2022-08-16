@@ -22,6 +22,7 @@ public interface ProductService {
     List<Product> findByStoreName(String name);
 
     List<Product> findByCategoryId(Long id);
+    List<Product> findByCategoryName(String name);
 
     List<Product> findProductBySellerId(Authentication authentication) throws Exception;
 
