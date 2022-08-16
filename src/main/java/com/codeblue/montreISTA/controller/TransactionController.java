@@ -34,8 +34,6 @@ public class TransactionController {
     public ResponseEntity<Object> findAllHistoryTransaction(){
         try{
             List<TransactionResponseDTO> transactions = transactionService.findAllTransaction();
-            List<TransactionResponseDTO> results = transactionService.findAllTransaction();
-            List<Map<String, Object>> maps = new ArrayList<>();
             logger.info("==================== Logger Start Get All Transactions     ====================");
             for(TransactionResponseDTO transactionData : transactions){
                 Map<String, Object> transaction = new HashMap<>();
@@ -49,20 +47,10 @@ public class TransactionController {
                 logger.info("Seller ID        : " + transactionData.getSeller_id());
                 logger.info("Quantity         : " + transactionData.getQuantity());
                 logger.info("Total Price      : " + transactionData.getTotal_price());
-                transaction.put("Transactions ID  : ",  transactionData.getTransaction_id());
-                transaction.put("Store Name       : ",  transactionData.getStore_name());
-                transaction.put("Product Name     : ", transactionData.getProduct_name());
-                transaction.put("Product Price    : ", transactionData.getProduct_price());
-                transaction.put("Photo url        : ", transactionData.getPhoto_url());
-                transaction.put("Buyer ID         : ", transactionData.getBuyer_id());
-                transaction.put("Seller ID        : ", transactionData.getSeller_id());
-                transaction.put("Quantity         : ", transactionData.getQuantity());
-                transaction.put("Total Price      : ", transactionData.getTotal_price());
-                maps.add(transaction);
             }
             logger.info("==================== Logger End Get AlL Transactions   ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, transactions);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -89,7 +77,7 @@ public class TransactionController {
 
 
 
-    @GetMapping("/user/transactions/buyer")
+    @GetMapping("/user/my-transactions/buyer")
     public ResponseEntity<Object> findTransactionByBuyer(Authentication authentication)throws Exception{
         try{
             List<TransactionResponseDTO> results = transactionService.findByTransactionBuyerId(authentication);
@@ -105,7 +93,7 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/user/transactions/seller")
+    @GetMapping("/user/my-transactions/seller")
     public ResponseEntity<Object> findTransactionBySeller(Authentication authentication)throws Exception{
         try{
             List<TransactionResponseDTO> results = transactionService.findByTransactionSellerId(authentication);
@@ -153,7 +141,7 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/user/transactions-detail/buyer")
+    @GetMapping("/user/my-transactions-detail/buyer")
     public ResponseEntity<Object> findTransactionDetailsByBuyer(Authentication authentication)throws Exception{
         try{
             List<TransactionDetailResponseDTO> results = transactionService.findByTransactionDetailBuyerId(authentication);
@@ -169,7 +157,7 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/user/transactions-detail/seller")
+    @GetMapping("/user/my-transactions-detail/seller")
     public ResponseEntity<Object> findTransactionDetailBySeller(Authentication authentication)throws Exception{
         try{
             List<TransactionDetailResponseDTO> results = transactionService.findByTransactionDetailSellerId(authentication);
@@ -185,13 +173,13 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/user/finish-order")
+    @GetMapping("/user/checkout-order")
     public ResponseEntity<Object> postCart(Authentication authentication) throws Exception{
         try {
             List<TransactionDetailResponseDTO> results = transactionService.createTransaction(authentication);
-            logger.info(Line + "Logger Start Get Finish Order" + Line);
+            logger.info(Line + "Logger Start Get Checkout Order" + Line);
             logger.info(String.valueOf(results));
-            logger.info(Line + "Logger End Get Finish Order " + Line);
+            logger.info(Line + "Logger End Get Checkout Order " + Line);
             return ResponseHandler.generateResponse("Successfully Transaction", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
