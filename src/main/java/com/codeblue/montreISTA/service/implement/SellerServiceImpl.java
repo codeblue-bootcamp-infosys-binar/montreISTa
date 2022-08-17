@@ -64,9 +64,7 @@ public class SellerServiceImpl implements SellerService {
     }
     @Override
     public SellerResponseDTO updateSeller(SellerRequestDTO seller, Authentication authentication)throws Exception {
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Please sign up"));
-        Seller sellerUpdate = sellerRepository.findById(user.getUserId()).orElseThrow(()->new Exception("Please login as seller before update seller info"));
-        sellerUpdate.setUserId(user);
+        Seller sellerUpdate = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller before update seller info"));
         sellerUpdate.setStoreAddress(seller.getStoreAddress());
         sellerUpdate.setStoreName(seller.getStoreName());
         return sellerRepository.save(sellerUpdate).convertToResponse();
