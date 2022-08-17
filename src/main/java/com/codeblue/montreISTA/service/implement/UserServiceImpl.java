@@ -11,6 +11,7 @@ import com.codeblue.montreISTA.repository.UserRoleRepository;
 import com.codeblue.montreISTA.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,6 +29,7 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final UserRoleRepository userRoleRepository;
     private final CloudinaryService cloudinaryService;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -65,6 +67,7 @@ public class UserServiceImpl implements UserService {
         User user = registrationDTO.convertToEntity();
         user.setPhoto("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
         this.checkRole(requestRole);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         User userSave = userRepository.save(user);
         //addRole
@@ -78,10 +81,11 @@ public class UserServiceImpl implements UserService {
         User userByUsername = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("User not found"));
         User user = registrationDTO.convertToEntity();
         user.setUserId(userByUsername.getUserId());
+        user.setPhoto(userByUsername.getPhoto());
         List<String> requestRole = registrationDTO.getRoles();
 
         this.checkRole(requestRole);
-
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User userSave = userRepository.save(user);
                 //addRole
         this.addRole(requestRole,userSave);
