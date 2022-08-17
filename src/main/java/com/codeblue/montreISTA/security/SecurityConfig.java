@@ -53,7 +53,7 @@ public class SecurityConfig {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/login/**","/sign-up/**","/swagger-ui/**").permitAll()
+                .antMatchers("/login/**","/sign-up/**","/swagger-ui/**","/v3/api-docs").permitAll()
                 .antMatchers(GET, "/dashboard/**").hasRole("ADMIN")
                 .antMatchers(GET, "/user/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers(GET,"/**").permitAll()
