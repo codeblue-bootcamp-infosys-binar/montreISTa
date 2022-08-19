@@ -23,17 +23,4 @@ public interface TransactionService {
     List<TransactionDetailResponseDTO> createTransaction(Authentication authentication) throws Exception;
 
 
-    Object getTransactionDetail(String name, String page);
-
-    Integer pageUpdate(String page);
-
-    Page<HistoryTransactionDetail> getTransactionDetailID(Long id, String page);
-
-    Page<HistoryTransactionDetail> getHistoryTransactionDetailID(Long id, String page);
-
-    Page<HistoryTransactionDetail> getHistoryTransactionBySeller(Long id, String page);
-
-    Page<HistoryTransactionDetail> getHistoryTransactionByBuyer(Long id, String page);
-
-    Page<HistoryTransactionDetail> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }
