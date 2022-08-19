@@ -1,7 +1,7 @@
 package com.codeblue.montreISTA.repository;
 
-import com.codeblue.montreISTA.entity.HistoryTransaction;
 import com.codeblue.montreISTA.entity.HistoryTransactionDetail;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +12,8 @@ public interface TransactionDetailsRepository extends JpaRepository<HistoryTrans
     List<HistoryTransactionDetail> findAllByOrderByTransactionDetailIdAsc();
     List<HistoryTransactionDetail> findByHistoryTransactionBuyerBuyerIdOrderByTransactionDetailIdAsc(Long id);
     List<HistoryTransactionDetail> findByHistoryTransactionSellerSellerIdOrderByTransactionDetailIdAsc(Long id);
+
+    Page<HistoryTransactionDetail> getTransactionDetail(Long id, Object o);
+
+    Page<HistoryTransactionDetail> getTransactionDetail(String name, Object o);
 }

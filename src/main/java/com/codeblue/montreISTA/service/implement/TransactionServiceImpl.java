@@ -7,6 +7,10 @@ import com.codeblue.montreISTA.repository.*;
 import com.codeblue.montreISTA.service.CategoryService;
 import com.codeblue.montreISTA.service.TransactionService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,8 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class TransactionServiceImpl implements TransactionService {
+
+    public static Integer currentPage;
 
     private final TransactionRepository transactionRepository;
     private final TransactionDetailsRepository transactionDetailsRepository;
@@ -161,5 +167,116 @@ public class TransactionServiceImpl implements TransactionService {
         cartRepository.deleteAll(Carts);
         return results;
     }
+
+
+    @Override
+    public Page<HistoryTransactionDetail> getTransactionDetail(String name, String page) {
+        Integer pageNumber = null;
+
+        //check null pointer
+        if(page != null){
+            pageNumber = pageUpdate(page);
+        }
+        if(name != null){
+            return transactionDetailsRepository.getTransactionDetail(name, null);
+        }else if(page == null){
+            return transactionDetailsRepository.findAll(PageRequest.of(0,10,Sort.by("transaction detail")));
+        }else{
+            return transactionDetailsRepository.findAll(PageRequest.of(pageNumber,10, Sort.by("transaction detail")));
+        }
+
+    }
+
+    @Override
+    public Integer pageUpdate(String page) {
+
+        //container
+        Integer pageNumber = null;
+
+        //check params
+        if(page.equals("prev")){
+            currentPage--;
+        }
+        else if(page.equals("next")){
+            currentPage++;
+        } else{
+            currentPage = Integer.parseInt(page);
+        }
+
+        if(currentPage == 0){
+            currentPage = 1;
+        }
+        //page in bootstrap template starts from 0
+        pageNumber = currentPage-1;
+        return pageNumber;
+    }
+
+    @Override
+    public Page<HistoryTransactionDetail> getTransactionDetailID(Long id, String page) {
+        return null;
+    }
+
+
+    @Override
+    public Page<HistoryTransactionDetail> getHistoryTransactionDetailID(Long id, String page) {
+        Integer pageNumber = null;
+
+        //check null pointer
+        if(page != null){
+            pageNumber = pageUpdate(page);
+        }
+        if(id != null){
+            return transactionDetailsRepository.getTransactionDetail(id, null);
+        }else if(page == null){
+            return transactionDetailsRepository.findAll(PageRequest.of(0,10,Sort.by("transactiondetailId")));
+        }else{
+            return transactionDetailsRepository.findAll(PageRequest.of(pageNumber,10,Sort.by("transactiondetailId")));
+        }
+    }
+
+    @Override
+    public Page<HistoryTransactionDetail> getHistoryTransactionBySeller(Long id, String page) {
+        Integer pageNumber = null;
+
+        //check null pointer
+        if(page != null){
+            pageNumber = pageUpdate(page);
+        }
+        if(id != null){
+            return transactionDetailsRepository.getTransactionDetail(id, null);
+        }else if(page == null){
+            return transactionDetailsRepository.findAll(PageRequest.of(0,10,Sort.by("transactiondetailbyseller")));
+        }else{
+            return transactionDetailsRepository.findAll(PageRequest.of(pageNumber,10,Sort.by("transactiondetailbyseller")));
+        }
+    }
+
+    @Override
+    public Page<HistoryTransactionDetail> getHistoryTransactionByBuyer(Long id, String page) {
+        Integer pageNumber = null;
+
+        //check null pointer
+        if(page != null){
+            pageNumber = pageUpdate(page);
+        }
+        if(id != null){
+            return transactionDetailsRepository.getTransactionDetail(id, null);
+        }else if(page == null){
+            return transactionDetailsRepository.findAll(PageRequest.of(0,10,Sort.by("transactiondetailbybuyer")));
+        }else{
+            return transactionDetailsRepository.findAll(PageRequest.of(pageNumber,10,Sort.by("transactiondetailbybuyer")));
+        }
+    }
+
+    @Override
+    public Page<HistoryTransactionDetail> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        return this.transactionDetailsRepository.findAll(pageable);
+    }
+
+
 
 }
