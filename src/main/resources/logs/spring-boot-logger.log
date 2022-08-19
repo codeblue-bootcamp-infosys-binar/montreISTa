@@ -1,716 +1,289 @@
-2022-08-17 00:25:18,311 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-17 00:25:18,314 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on DESKTOP-VVKE1SS with PID 10408 (C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes started by Win 10 in C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa)
-2022-08-17 00:25:18,315 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-17 00:25:18,376 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-17 00:25:18,376 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-17 00:25:19,504 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-17 00:25:19,624 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 112 ms. Found 16 JPA repository interfaces.
-2022-08-17 00:25:20,697 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-17 00:25:20,722 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-17 00:25:20,722 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-17 00:25:20,722 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-17 00:25:20,828 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-17 00:25:20,829 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 2452 ms
-2022-08-17 00:25:21,037 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-17 00:25:21,133 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-17 00:25:21,406 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-17 00:25:21,529 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-17 00:25:21,730 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-17 00:25:21,752 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-17 00:25:23,048 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-17 00:25:23,056 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:25:23,462 WARN org.springframework.context.support.AbstractApplicationContext [restartedMain] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationController' defined in file [C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes\com\codeblue\montreISTA\controller\AuthenticationController.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfig' defined in file [C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes\com\codeblue\montreISTA\security\SecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2022-08-17 00:25:23,463 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:25:23,465 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown initiated...
-2022-08-17 00:25:23,469 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown completed.
-2022-08-17 00:25:23,472 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Stopping service [Tomcat]
-2022-08-17 00:25:23,486 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [restartedMain] 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-08-17 00:25:23,508 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [restartedMain] 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 2 of constructor in com.codeblue.montreISTA.security.SecurityConfig required a bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' in your configuration.
-
-2022-08-17 00:27:17,163 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-17 00:27:17,168 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on DESKTOP-VVKE1SS with PID 9880 (C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes started by Win 10 in C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa)
-2022-08-17 00:27:17,169 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-17 00:27:17,211 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-17 00:27:17,212 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-17 00:27:17,925 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-17 00:27:18,028 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 95 ms. Found 16 JPA repository interfaces.
-2022-08-17 00:27:18,652 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-17 00:27:18,660 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-17 00:27:18,661 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-17 00:27:18,661 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-17 00:27:18,729 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-17 00:27:18,729 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1517 ms
-2022-08-17 00:27:18,867 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-17 00:27:18,909 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-17 00:27:19,038 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-17 00:27:19,124 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-17 00:27:19,268 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-17 00:27:19,283 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-17 00:27:20,235 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-17 00:27:20,243 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:27:20,593 WARN org.springframework.context.support.AbstractApplicationContext [restartedMain] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationController' defined in file [C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes\com\codeblue\montreISTA\controller\AuthenticationController.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfig': Unsatisfied dependency expressed through field 'authenticationJwtTokenFilter'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
-2022-08-17 00:27:20,594 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:27:20,597 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown initiated...
-2022-08-17 00:27:20,602 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown completed.
-2022-08-17 00:27:20,604 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Stopping service [Tomcat]
-2022-08-17 00:27:20,617 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [restartedMain] 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-08-17 00:27:20,637 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [restartedMain] 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Field authenticationJwtTokenFilter in com.codeblue.montreISTA.security.SecurityConfig required a bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' in your configuration.
-
-2022-08-17 00:28:15,684 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-17 00:28:15,687 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on DESKTOP-VVKE1SS with PID 1184 (C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes started by Win 10 in C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa)
-2022-08-17 00:28:15,688 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-17 00:28:15,729 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-17 00:28:15,729 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-17 00:28:16,440 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-17 00:28:16,541 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 93 ms. Found 16 JPA repository interfaces.
-2022-08-17 00:28:17,150 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-17 00:28:17,158 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-17 00:28:17,159 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-17 00:28:17,159 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-17 00:28:17,229 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-17 00:28:17,230 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1500 ms
-2022-08-17 00:28:17,362 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-17 00:28:17,403 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-17 00:28:17,529 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-17 00:28:17,608 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-17 00:28:17,903 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-17 00:28:17,919 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-17 00:28:18,899 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-17 00:28:18,906 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:28:19,262 WARN org.springframework.context.support.AbstractApplicationContext [restartedMain] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationController' defined in file [C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes\com\codeblue\montreISTA\controller\AuthenticationController.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfig': Unsatisfied dependency expressed through field 'authenticationJwtTokenFilter'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
-2022-08-17 00:28:19,263 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:28:19,265 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown initiated...
-2022-08-17 00:28:19,270 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown completed.
-2022-08-17 00:28:19,273 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Stopping service [Tomcat]
-2022-08-17 00:28:19,285 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [restartedMain] 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-08-17 00:28:19,305 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [restartedMain] 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Field authenticationJwtTokenFilter in com.codeblue.montreISTA.security.SecurityConfig required a bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' in your configuration.
-
-2022-08-17 00:33:48,245 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-17 00:33:48,250 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on DESKTOP-VVKE1SS with PID 13620 (C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes started by Win 10 in C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa)
-2022-08-17 00:33:48,251 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-17 00:33:48,293 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-17 00:33:48,294 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-17 00:33:49,039 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-17 00:33:49,146 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 100 ms. Found 16 JPA repository interfaces.
-2022-08-17 00:33:49,815 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-17 00:33:49,824 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-17 00:33:49,825 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-17 00:33:49,825 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-17 00:33:49,898 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-17 00:33:49,899 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1605 ms
-2022-08-17 00:33:50,035 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-17 00:33:50,079 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-17 00:33:50,211 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-17 00:33:50,299 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-17 00:33:50,449 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-17 00:33:50,464 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-17 00:33:51,481 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-17 00:33:51,489 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:33:51,869 WARN org.springframework.context.support.AbstractApplicationContext [restartedMain] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationController' defined in file [C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes\com\codeblue\montreISTA\controller\AuthenticationController.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfig': Unsatisfied dependency expressed through field 'authenticationJwtTokenFilter'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
-2022-08-17 00:33:51,870 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:33:51,873 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown initiated...
-2022-08-17 00:33:51,877 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown completed.
-2022-08-17 00:33:51,880 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Stopping service [Tomcat]
-2022-08-17 00:33:51,891 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [restartedMain] 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-08-17 00:33:51,912 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [restartedMain] 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Field authenticationJwtTokenFilter in com.codeblue.montreISTA.security.SecurityConfig required a bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' in your configuration.
-
-2022-08-17 00:34:20,714 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-17 00:34:20,716 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on DESKTOP-VVKE1SS with PID 11748 (C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes started by Win 10 in C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa)
-2022-08-17 00:34:20,716 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-17 00:34:20,759 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-17 00:34:20,759 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-17 00:34:21,458 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-17 00:34:21,557 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 91 ms. Found 16 JPA repository interfaces.
-2022-08-17 00:34:22,159 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-17 00:34:22,167 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-17 00:34:22,168 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-17 00:34:22,168 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-17 00:34:22,233 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-17 00:34:22,234 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1474 ms
-2022-08-17 00:34:22,362 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-17 00:34:22,405 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-17 00:34:22,532 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-17 00:34:22,614 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-17 00:34:22,759 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-17 00:34:22,774 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-17 00:34:23,740 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-17 00:34:23,747 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:34:24,740 WARN org.springframework.context.support.AbstractApplicationContext [restartedMain] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through method 'setFilterChains' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'filterChain' defined in class path resource [com/codeblue/montreISTA/security/SecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'filterChain' threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "filter" is null
-2022-08-17 00:34:24,744 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:34:24,746 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown initiated...
-2022-08-17 00:34:24,750 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown completed.
-2022-08-17 00:34:24,752 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Stopping service [Tomcat]
-2022-08-17 00:34:24,763 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [restartedMain] 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-08-17 00:34:24,783 ERROR org.springframework.boot.SpringApplication [restartedMain] Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through method 'setFilterChains' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'filterChain' defined in class path resource [com/codeblue/montreISTA/security/SecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'filterChain' threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "filter" is null
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.resolveMethodArguments(AutowiredAnnotationBeanPostProcessor.java:767)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:719)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
-	at com.codeblue.montreISTA.MontreIstaApplication.main(MontreIstaApplication.java:17)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'filterChain' defined in class path resource [com/codeblue/montreISTA/security/SecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'filterChain' threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "filter" is null
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:658)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1462)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.resolveMethodArguments(AutowiredAnnotationBeanPostProcessor.java:759)
-	... 25 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'filterChain' threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "filter" is null
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
-	... 41 common frames omitted
-Caused by: java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "filter" is null
-	at org.springframework.security.config.annotation.web.builders.HttpSecurity.addFilterAtOffsetOf(HttpSecurity.java:2938)
-	at org.springframework.security.config.annotation.web.builders.HttpSecurity.addFilterBefore(HttpSecurity.java:2932)
-	at com.codeblue.montreISTA.security.SecurityConfig.filterChain(SecurityConfig.java:74)
-	at com.codeblue.montreISTA.security.SecurityConfig$$EnhancerBySpringCGLIB$$f87dda2.CGLIB$filterChain$1(<generated>)
-	at com.codeblue.montreISTA.security.SecurityConfig$$EnhancerBySpringCGLIB$$f87dda2$$FastClassBySpringCGLIB$$ae6a570b.invoke(<generated>)
-	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
-	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
-	at com.codeblue.montreISTA.security.SecurityConfig$$EnhancerBySpringCGLIB$$f87dda2.filterChain(<generated>)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
-	... 42 common frames omitted
-2022-08-17 00:54:08,730 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-17 00:54:08,734 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on DESKTOP-VVKE1SS with PID 7016 (C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes started by Win 10 in C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa)
-2022-08-17 00:54:08,735 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-17 00:54:08,778 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-17 00:54:08,779 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-17 00:54:09,486 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-17 00:54:09,588 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 95 ms. Found 16 JPA repository interfaces.
-2022-08-17 00:54:10,234 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-17 00:54:10,242 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-17 00:54:10,243 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-17 00:54:10,243 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-17 00:54:10,309 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-17 00:54:10,310 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1531 ms
-2022-08-17 00:54:10,443 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-17 00:54:10,485 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-17 00:54:10,619 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-17 00:54:10,704 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-17 00:54:10,846 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-17 00:54:10,860 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-17 00:54:11,899 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-17 00:54:11,907 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:54:12,270 WARN org.springframework.context.support.AbstractApplicationContext [restartedMain] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationController' defined in file [C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes\com\codeblue\montreISTA\controller\AuthenticationController.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.authentication.AuthenticationManager' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2022-08-17 00:54:12,272 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:54:12,274 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown initiated...
-2022-08-17 00:54:12,278 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown completed.
-2022-08-17 00:54:12,281 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Stopping service [Tomcat]
-2022-08-17 00:54:12,292 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [restartedMain] 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-08-17 00:54:12,313 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [restartedMain] 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 1 of constructor in com.codeblue.montreISTA.controller.AuthenticationController required a bean of type 'org.springframework.security.authentication.AuthenticationManager' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'org.springframework.security.authentication.AuthenticationManager' in your configuration.
-
-2022-08-17 00:54:52,884 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-17 00:54:52,888 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on DESKTOP-VVKE1SS with PID 8284 (C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes started by Win 10 in C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa)
-2022-08-17 00:54:52,888 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-17 00:54:52,929 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-17 00:54:52,929 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-17 00:54:53,628 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-17 00:54:53,728 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 93 ms. Found 16 JPA repository interfaces.
-2022-08-17 00:54:54,331 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-17 00:54:54,339 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-17 00:54:54,339 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-17 00:54:54,340 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-17 00:54:54,405 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-17 00:54:54,406 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1476 ms
-2022-08-17 00:54:54,538 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-17 00:54:54,578 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-17 00:54:54,703 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-17 00:54:54,788 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-17 00:54:54,929 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-17 00:54:54,944 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-17 00:54:55,889 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-17 00:54:55,897 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:54:56,247 WARN org.springframework.context.support.AbstractApplicationContext [restartedMain] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationController' defined in file [C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes\com\codeblue\montreISTA\controller\AuthenticationController.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfig' defined in file [C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes\com\codeblue\montreISTA\security\SecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.crypto.password.PasswordEncoder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2022-08-17 00:54:56,248 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 00:54:56,250 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown initiated...
-2022-08-17 00:54:56,254 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown completed.
-2022-08-17 00:54:56,257 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Stopping service [Tomcat]
-2022-08-17 00:54:56,267 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [restartedMain] 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-08-17 00:54:56,289 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [restartedMain] 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 1 of constructor in com.codeblue.montreISTA.security.SecurityConfig required a bean of type 'org.springframework.security.crypto.password.PasswordEncoder' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'org.springframework.security.crypto.password.PasswordEncoder' in your configuration.
-
-2022-08-17 01:00:19,243 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-17 01:00:19,246 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on DESKTOP-VVKE1SS with PID 10168 (C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes started by Win 10 in C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa)
-2022-08-17 01:00:19,247 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-17 01:00:19,288 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-17 01:00:19,289 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-17 01:00:19,983 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-17 01:00:20,080 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 90 ms. Found 16 JPA repository interfaces.
-2022-08-17 01:00:20,695 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-17 01:00:20,703 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-17 01:00:20,704 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-17 01:00:20,704 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-17 01:00:20,769 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-17 01:00:20,770 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1481 ms
-2022-08-17 01:00:20,903 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-17 01:00:20,945 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-17 01:00:21,072 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-17 01:00:21,153 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-17 01:00:21,298 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-17 01:00:21,313 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-17 01:00:22,280 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-17 01:00:22,286 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 01:00:22,664 WARN org.springframework.context.support.AbstractApplicationContext [restartedMain] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationController' defined in file [C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes\com\codeblue\montreISTA\controller\AuthenticationController.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfig' defined in file [C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes\com\codeblue\montreISTA\security\SecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 3; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2022-08-17 01:00:22,665 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 01:00:22,668 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown initiated...
-2022-08-17 01:00:22,672 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Shutdown completed.
-2022-08-17 01:00:22,675 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Stopping service [Tomcat]
-2022-08-17 01:00:22,687 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [restartedMain] 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-08-17 01:00:22,709 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [restartedMain] 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 3 of constructor in com.codeblue.montreISTA.security.SecurityConfig required a bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.codeblue.montreISTA.security.AuthTokenFilter' in your configuration.
-
-2022-08-17 01:12:26,372 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-17 01:12:26,379 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on DESKTOP-VVKE1SS with PID 4292 (C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes started by Win 10 in C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa)
-2022-08-17 01:12:26,380 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-17 01:12:26,422 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-17 01:12:26,423 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-17 01:12:27,141 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-17 01:12:27,266 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 118 ms. Found 16 JPA repository interfaces.
-2022-08-17 01:12:27,870 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-17 01:12:27,878 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-17 01:12:27,879 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-17 01:12:27,880 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-17 01:12:27,945 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-17 01:12:27,946 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1521 ms
-2022-08-17 01:12:28,075 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-17 01:12:28,122 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-17 01:12:28,252 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-17 01:12:28,340 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-17 01:12:28,490 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-17 01:12:28,506 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-17 01:12:29,540 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-17 01:12:29,547 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 01:12:30,710 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-08-17 01:12:31,312 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1c584b3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6984b4af, org.springframework.security.web.context.SecurityContextPersistenceFilter@716f1e1e, org.springframework.security.web.header.HeaderWriterFilter@7d8b5296, org.springframework.web.filter.CorsFilter@7ba2b06f, org.springframework.security.web.authentication.logout.LogoutFilter@26592006, com.codeblue.montreISTA.security.AuthTokenFilter@1ecacf06, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@110b4717, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@51a2da47, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@19c7aa40, org.springframework.security.web.session.SessionManagementFilter@3b61fe47, org.springframework.security.web.access.ExceptionTranslationFilter@98e638, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2705e857]
-2022-08-17 01:12:31,451 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2022-08-17 01:12:31,591 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
-2022-08-17 01:12:31,605 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
-2022-08-17 01:12:31,634 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
-2022-08-17 01:12:31,645 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 5.653 seconds (JVM running for 6.056)
-2022-08-17 01:12:47,073 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-08-17 01:12:47,073 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-2] Initializing Servlet 'dispatcherServlet'
-2022-08-17 01:12:47,075 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-2] Completed initialization in 1 ms
-2022-08-17 01:12:47,137 ERROR com.codeblue.montreISTA.security.JwtUtils [http-nio-8090-exec-2] Invalid JWT signature: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
-2022-08-17 01:12:50,624 ERROR com.codeblue.montreISTA.security.JwtUtils [http-nio-8090-exec-3] Invalid JWT signature: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
-2022-08-17 01:12:50,780 INFO com.codeblue.montreISTA.controller.AuthenticationController [http-nio-8090-exec-3] ====================Logger Start Login ====================
-2022-08-17 01:12:50,780 INFO com.codeblue.montreISTA.controller.AuthenticationController [http-nio-8090-exec-3] com.codeblue.montreISTA.DTO.JwtResponse@ccde334
-2022-08-17 01:12:50,780 INFO com.codeblue.montreISTA.controller.AuthenticationController [http-nio-8090-exec-3] ====================Logger End Login ====================
-2022-08-17 01:13:06,842 INFO com.codeblue.montreISTA.controller.BuyerController [http-nio-8090-exec-4] ====================Logger Start Create ====================
-2022-08-17 01:13:06,843 INFO com.codeblue.montreISTA.controller.BuyerController [http-nio-8090-exec-4] [com.codeblue.montreISTA.DTO.ProductResponseDTO@345aa032, com.codeblue.montreISTA.DTO.ProductResponseDTO@604118da, com.codeblue.montreISTA.DTO.ProductResponseDTO@6ef503d8, com.codeblue.montreISTA.DTO.ProductResponseDTO@3e042653, com.codeblue.montreISTA.DTO.ProductResponseDTO@5f3e5a91, com.codeblue.montreISTA.DTO.ProductResponseDTO@37510e64, com.codeblue.montreISTA.DTO.ProductResponseDTO@717c2095, com.codeblue.montreISTA.DTO.ProductResponseDTO@6ed5b657, com.codeblue.montreISTA.DTO.ProductResponseDTO@431283ce, com.codeblue.montreISTA.DTO.ProductResponseDTO@7c8f87e6, com.codeblue.montreISTA.DTO.ProductResponseDTO@6ce7686a, com.codeblue.montreISTA.DTO.ProductResponseDTO@2f431caf, com.codeblue.montreISTA.DTO.ProductResponseDTO@7898e67a, com.codeblue.montreISTA.DTO.ProductResponseDTO@78a8fe38, com.codeblue.montreISTA.DTO.ProductResponseDTO@2fdb6d7f]
-2022-08-17 01:13:06,843 INFO com.codeblue.montreISTA.controller.BuyerController [http-nio-8090-exec-4] ====================Logger End Create ====================
-2022-08-17 01:16:58,620 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-17 01:16:58,628 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on DESKTOP-VVKE1SS with PID 7844 (C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes started by Win 10 in C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa)
-2022-08-17 01:16:58,630 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-17 01:16:58,715 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-17 01:16:58,716 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-17 01:16:59,642 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-17 01:16:59,736 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 94 ms. Found 16 JPA repository interfaces.
-2022-08-17 01:17:00,425 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-17 01:17:00,425 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-17 01:17:00,425 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-17 01:17:00,425 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-17 01:17:00,503 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-17 01:17:00,503 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1786 ms
-2022-08-17 01:17:00,644 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-17 01:17:00,738 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-17 01:17:00,863 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-17 01:17:00,941 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-17 01:17:01,113 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-17 01:17:01,128 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-17 01:17:02,113 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-17 01:17:02,113 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 01:17:03,269 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-08-17 01:17:03,840 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@74b185ee, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@60d58cf8, org.springframework.security.web.context.SecurityContextPersistenceFilter@f7aec76, org.springframework.security.web.header.HeaderWriterFilter@428e739c, org.springframework.web.filter.CorsFilter@3ac4590d, org.springframework.security.web.authentication.logout.LogoutFilter@32cfff68, com.codeblue.montreISTA.security.AuthTokenFilter@16726d4f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1ac4b879, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@27edb329, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c3ea9f4, org.springframework.security.web.session.SessionManagementFilter@fdad63d, org.springframework.security.web.access.ExceptionTranslationFilter@113fd0b4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@14b792e6]
-2022-08-17 01:17:03,965 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2022-08-17 01:17:04,090 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
-2022-08-17 01:17:04,105 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
-2022-08-17 01:17:04,121 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
-2022-08-17 01:17:04,137 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 5.9 seconds (JVM running for 6.332)
-2022-08-17 01:17:10,639 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-08-17 01:17:10,639 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-2] Initializing Servlet 'dispatcherServlet'
-2022-08-17 01:17:10,640 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-2] Completed initialization in 1 ms
-2022-08-17 01:17:23,586 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8090-exec-4] Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
-2022-08-17 01:17:35,345 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8090-exec-6] Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
-2022-08-17 01:17:41,985 ERROR com.codeblue.montreISTA.security.JwtUtils [http-nio-8090-exec-9] Invalid JWT signature: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
-2022-08-17 01:17:42,014 INFO com.codeblue.montreISTA.controller.AuthenticationController [http-nio-8090-exec-9] ====================Logger Start Login ====================
-2022-08-17 01:17:42,015 INFO com.codeblue.montreISTA.controller.AuthenticationController [http-nio-8090-exec-9] com.codeblue.montreISTA.DTO.JwtResponse@57e45b3f
-2022-08-17 01:17:42,015 INFO com.codeblue.montreISTA.controller.AuthenticationController [http-nio-8090-exec-9] ====================Logger End Login ====================
-2022-08-17 01:17:52,351 INFO com.codeblue.montreISTA.controller.BuyerController [http-nio-8090-exec-1] ====================Logger Start Create ====================
-2022-08-17 01:17:52,351 INFO com.codeblue.montreISTA.controller.BuyerController [http-nio-8090-exec-1] [com.codeblue.montreISTA.DTO.ProductResponseDTO@13830a05, com.codeblue.montreISTA.DTO.ProductResponseDTO@4853c79b, com.codeblue.montreISTA.DTO.ProductResponseDTO@70a1696d, com.codeblue.montreISTA.DTO.ProductResponseDTO@653cf264, com.codeblue.montreISTA.DTO.ProductResponseDTO@6e641fe4, com.codeblue.montreISTA.DTO.ProductResponseDTO@385d62ac, com.codeblue.montreISTA.DTO.ProductResponseDTO@434c8ecb, com.codeblue.montreISTA.DTO.ProductResponseDTO@41e1eb14, com.codeblue.montreISTA.DTO.ProductResponseDTO@f3457f3, com.codeblue.montreISTA.DTO.ProductResponseDTO@5caf0cbb, com.codeblue.montreISTA.DTO.ProductResponseDTO@7b32eb33, com.codeblue.montreISTA.DTO.ProductResponseDTO@3545060a, com.codeblue.montreISTA.DTO.ProductResponseDTO@18e3449e, com.codeblue.montreISTA.DTO.ProductResponseDTO@3c0d59ed, com.codeblue.montreISTA.DTO.ProductResponseDTO@500a462c]
-2022-08-17 01:17:52,352 INFO com.codeblue.montreISTA.controller.BuyerController [http-nio-8090-exec-1] ====================Logger End Create ====================
-2022-08-17 01:18:59,579 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-17 01:18:59,579 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on DESKTOP-VVKE1SS with PID 16240 (C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes started by Win 10 in C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa)
-2022-08-17 01:18:59,579 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-17 01:18:59,625 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-17 01:18:59,625 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-17 01:19:00,304 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-17 01:19:00,414 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 95 ms. Found 16 JPA repository interfaces.
-2022-08-17 01:19:01,023 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-17 01:19:01,023 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-17 01:19:01,023 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-17 01:19:01,023 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-17 01:19:01,101 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-17 01:19:01,101 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1476 ms
-2022-08-17 01:19:01,242 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-17 01:19:01,273 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-17 01:19:01,414 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-17 01:19:01,507 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-17 01:19:01,648 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-17 01:19:01,664 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-17 01:19:02,620 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-17 01:19:02,636 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-17 01:19:03,761 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-08-17 01:19:04,343 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@340a45d7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@78e7be35, org.springframework.security.web.context.SecurityContextPersistenceFilter@6c06379b, org.springframework.security.web.header.HeaderWriterFilter@3bad6cc7, org.springframework.web.filter.CorsFilter@1628588e, org.springframework.security.web.authentication.logout.LogoutFilter@52840bd5, com.codeblue.montreISTA.security.AuthTokenFilter@785341db, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3be96c00, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f444ca6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@321975a1, org.springframework.security.web.session.SessionManagementFilter@2f42f462, org.springframework.security.web.access.ExceptionTranslationFilter@1df1bbe0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4c55ca59]
-2022-08-17 01:19:04,452 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2022-08-17 01:19:04,593 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
-2022-08-17 01:19:04,609 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
-2022-08-17 01:19:04,624 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
-2022-08-17 01:19:04,640 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 5.431 seconds (JVM running for 5.825)
-2022-08-17 01:19:10,593 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-08-17 01:19:10,594 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
-2022-08-17 01:19:10,595 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 1 ms
-2022-08-17 01:19:24,991 ERROR com.codeblue.montreISTA.security.JwtUtils [http-nio-8090-exec-5] Invalid JWT signature: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
-2022-08-17 01:19:25,073 INFO com.codeblue.montreISTA.controller.AuthenticationController [http-nio-8090-exec-5] ====================Logger Start Login ====================
-2022-08-17 01:19:25,074 INFO com.codeblue.montreISTA.controller.AuthenticationController [http-nio-8090-exec-5] com.codeblue.montreISTA.DTO.JwtResponse@40ed517a
-2022-08-17 01:19:25,074 INFO com.codeblue.montreISTA.controller.AuthenticationController [http-nio-8090-exec-5] ====================Logger End Login ====================
-2022-08-17 01:19:38,138 INFO com.codeblue.montreISTA.controller.BuyerController [http-nio-8090-exec-7] ====================Logger Start Create ====================
-2022-08-17 01:19:38,139 INFO com.codeblue.montreISTA.controller.BuyerController [http-nio-8090-exec-7] [com.codeblue.montreISTA.DTO.ProductResponseDTO@64935a22, com.codeblue.montreISTA.DTO.ProductResponseDTO@426b37a2, com.codeblue.montreISTA.DTO.ProductResponseDTO@11a642fd, com.codeblue.montreISTA.DTO.ProductResponseDTO@13f4b237, com.codeblue.montreISTA.DTO.ProductResponseDTO@6dc8a821, com.codeblue.montreISTA.DTO.ProductResponseDTO@7605441d, com.codeblue.montreISTA.DTO.ProductResponseDTO@5597418a, com.codeblue.montreISTA.DTO.ProductResponseDTO@63c43405, com.codeblue.montreISTA.DTO.ProductResponseDTO@4be501fc, com.codeblue.montreISTA.DTO.ProductResponseDTO@171c8131, com.codeblue.montreISTA.DTO.ProductResponseDTO@78e81949, com.codeblue.montreISTA.DTO.ProductResponseDTO@3a4e7e4d, com.codeblue.montreISTA.DTO.ProductResponseDTO@59c77219, com.codeblue.montreISTA.DTO.ProductResponseDTO@2aa16519, com.codeblue.montreISTA.DTO.ProductResponseDTO@123b1355]
-2022-08-17 01:19:38,139 INFO com.codeblue.montreISTA.controller.BuyerController [http-nio-8090-exec-7] ====================Logger End Create ====================
-2022-08-17 01:19:55,450 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] ==================== Logger Start Get All Products     ====================
-2022-08-17 01:19:55,451 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,451 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 1
-2022-08-17 01:19:55,451 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : A modern take on a classic design, the Iconic Link is the revelation behind years of meticulous craftsmanship. The Iconic Link features a luxurious metal bracelet with three-piece links; each segment is comprised of solid steel, individually crafted pieces in an elegantly tapered form, ensuring a seamless transition from case to clasp.
+2022-08-19 00:14:29,470 WARN com.zaxxer.hikari.pool.HikariPool$HouseKeeper [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m17s696ms710µs600ns).
+2022-08-19 00:15:33,502 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-19 00:15:33,505 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on DESKTOP-VVKE1SS with PID 4780 (C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes started by Win 10 in C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa)
+2022-08-19 00:15:33,507 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-19 00:15:33,550 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-19 00:15:33,550 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-19 00:15:34,694 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-19 00:15:34,794 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 93 ms. Found 16 JPA repository interfaces.
+2022-08-19 00:15:35,397 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-19 00:15:35,407 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-19 00:15:35,407 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-19 00:15:35,407 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-19 00:15:35,476 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-19 00:15:35,476 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1925 ms
+2022-08-19 00:15:35,613 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-19 00:15:35,653 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-19 00:15:35,781 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-19 00:15:35,865 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-19 00:15:36,010 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-19 00:15:36,025 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-19 00:15:37,063 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-19 00:15:37,071 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-19 00:15:38,242 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-19 00:15:38,842 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1bf5bb59, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@50343519, org.springframework.security.web.context.SecurityContextPersistenceFilter@7ba73e1b, org.springframework.security.web.header.HeaderWriterFilter@53c7d428, org.springframework.web.filter.CorsFilter@14e05f66, org.springframework.security.web.authentication.logout.LogoutFilter@f870619, com.codeblue.montreISTA.security.AuthTokenFilter@4453daea, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@285e836f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@307667f1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2d9a0bb1, org.springframework.security.web.session.SessionManagementFilter@e00f3e2, org.springframework.security.web.access.ExceptionTranslationFilter@5857cd0c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1f25b96]
+2022-08-19 00:15:38,968 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2022-08-19 00:15:39,091 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-19 00:15:39,106 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-19 00:15:39,125 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-19 00:15:39,143 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 6.05 seconds (JVM running for 6.47)
+2022-08-19 00:15:50,952 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-19 00:15:50,952 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-19 00:15:50,953 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 1 ms
+2022-08-19 00:15:51,117 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] ==================== Logger Start Get All Products     ====================
+2022-08-19 00:15:51,117 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:15:51,118 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 15
+2022-08-19 00:15:51,118 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : DESAIN KLASIK BERPADU DENGAN MINIMALISME MODERN
+Petite Bondi, dengan strap kulit warna putih dan arloji putih telur, menampilkan kesederhanaan dan keanggunan. Jam ultra-tipis ini duduk dengan manis di tangan Anda dan menyoroti semangat Anda yang membara dalam gaya. Tersedia dengan warna rose gold atau silver.
+2022-08-19 00:15:51,118 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:15:51,118 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE BONDI
+2022-08-19 00:15:51,128 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@1ad7ef9d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:15:51,128 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:15:51,128 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 14
+2022-08-19 00:15:51,129 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : SERASI DENGAN SETIAP GAYA ANDA. SETIAP HARI.
+Petite Cornwall menangkap esensi kesederhanaan dan gaya sejati. Mengunggulkan strap NATO serba hitam dan arloji hitam, jam ramping dan elegan ini dengan mudah menjadi sahabat dalam gaya sehari-hari Anda.
+2022-08-19 00:15:51,129 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:15:51,129 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE CORNWALL
+2022-08-19 00:15:51,129 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@1ad7ef9d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:15:51,129 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:15:51,130 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 13
+2022-08-19 00:15:51,130 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : Warna putih berpadu dengan hitam pada perpaduan manis antara gaya minimalisme dan kulit buaya bermotif timbul klasik warna hitam. Padukan atau pasangkan dengan jins dan kaos untuk penampilan santai.
+2022-08-19 00:15:51,130 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:15:51,130 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE READING
+2022-08-19 00:15:51,130 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@1ad7ef9d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:15:51,131 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:15:51,131 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 12
+2022-08-19 00:15:51,131 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : Classic Cornwall menampilkan esensi dari kesederhanaan dan gaya. Dengan tali NATO hitam dan permukaan putih, jam tangan simpel dan elegan ini dapat dengan mudah menjadi ciri khas penampilan Anda sehari-hari.
+2022-08-19 00:15:51,131 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:15:51,131 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : CLASSIC CORNWALL
+2022-08-19 00:15:51,131 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@1ad7ef9d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:15:51,131 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:15:51,131 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 11
+2022-08-19 00:15:51,131 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : With classic features such as the slim case, details in rose gold or silver, and our heritage NATO strap in midnight blue, Classic Bayswater is an effortless day-to-evening timepiece.
+2022-08-19 00:15:51,132 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:15:51,132 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : CLASSIC BAYSWATER
+2022-08-19 00:15:51,132 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@1ad7ef9d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:15:51,132 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:15:51,132 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 10
+2022-08-19 00:15:51,132 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : Masuki musim mode abadi yang baru dengan Petite Ashfield. Jam tangan ultra tipis ini melingkar dengan manis di pergelangan tangan Anda dan dipercantik dengan strap jala warna hitam matte dan arloji hitam yang mewah. Tersedia dengan rincian warna rose gold atau silver.
+2022-08-19 00:15:51,132 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:15:51,133 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE ASHFIELD
+2022-08-19 00:15:51,133 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@1ad7ef9d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:15:51,133 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:15:51,133 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 9
+2022-08-19 00:15:51,133 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : Classic Dover, dengan tombol berwarna putih cangkang telur dan detail dalam emas merah muda, jam elegan ini akan dengan mudah menjadi teman penampilan sehari-hari kamu. Menghadirkan tali NATO serba putih, jam ini memiliki desain klasik modern yang dibuat agar cocok untuk segala kesempatan.
+2022-08-19 00:15:51,133 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:15:51,133 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : CLASSIC DOVER
+2022-08-19 00:15:51,134 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@1ad7ef9d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:15:51,134 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:15:51,134 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 8
+2022-08-19 00:15:51,134 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : The Petite Rosewater features an eggshell white dial and a charming pink NATO strap. This watch gives your look a subtle, yet eye-catching, pop of color that is ideal for the spring season. The delicate pink strap, coupled with chic rose gold details, makes the Rosewater your go-to accessory for when you need to brighten up an outfit.
+2022-08-19 00:15:51,134 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:15:51,134 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE ROSEWATER
+2022-08-19 00:15:51,134 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@1ad7ef9d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:15:51,135 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:15:51,135 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 7
+2022-08-19 00:15:51,135 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : The Petite Evergold 28 is our latest addition to the Petite Collection. Featuring an eggshell white dial and our classic mesh strap in a light shade of gold. Elevate your look with a delicate pop of gold that seamlessly matches any outfit.
+2022-08-19 00:15:51,135 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:15:51,135 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE EVERGOLD
+2022-08-19 00:15:51,135 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@1ad7ef9d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:15:51,136 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:15:51,136 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 6
+2022-08-19 00:15:51,136 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : The Petite Pressed Ashfield is our most delicate timepiece to date. Designed to be worn every day, this watch reflects the beauty in the small things. Crafted with polished stainless steel and plated with refined rose gold. Elevate your look with a graceful touch.
+2022-08-19 00:15:51,136 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:15:51,136 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE PRESSED ASHFIELD
+2022-08-19 00:15:51,137 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@1ad7ef9d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:15:51,137 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] ==================== Logger End Get All Products    ====================
+2022-08-19 00:15:51,137 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1]  
+2022-08-19 00:16:06,349 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8090-exec-3] Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'productName' for method parameter type String is not present]
+2022-08-19 00:16:29,031 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] ====================Logger Start Get productname ====================
+2022-08-19 00:16:29,031 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] [com.codeblue.montreISTA.DTO.ProductResponseDTO@1426d91f, com.codeblue.montreISTA.DTO.ProductResponseDTO@73193b06, com.codeblue.montreISTA.DTO.ProductResponseDTO@26549d5e, com.codeblue.montreISTA.DTO.ProductResponseDTO@4b0ebc08, com.codeblue.montreISTA.DTO.ProductResponseDTO@69426a57, com.codeblue.montreISTA.DTO.ProductResponseDTO@5339ad72, com.codeblue.montreISTA.DTO.ProductResponseDTO@51856426, com.codeblue.montreISTA.DTO.ProductResponseDTO@6fd56ce2, com.codeblue.montreISTA.DTO.ProductResponseDTO@15bfa39d, com.codeblue.montreISTA.DTO.ProductResponseDTO@bf3ce65]
+2022-08-19 00:16:29,032 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] ====================Logger End Get productname ====================
+2022-08-19 00:16:46,546 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] ====================Logger Start Get productname ====================
+2022-08-19 00:16:46,547 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] [com.codeblue.montreISTA.DTO.ProductResponseDTO@2e8e3ee2, com.codeblue.montreISTA.DTO.ProductResponseDTO@618843e1, com.codeblue.montreISTA.DTO.ProductResponseDTO@1edca203]
+2022-08-19 00:16:46,548 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] ====================Logger End Get productname ====================
+2022-08-19 00:16:53,756 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-7] ====================Logger Start Get productname ====================
+2022-08-19 00:16:53,756 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-7] [com.codeblue.montreISTA.DTO.ProductResponseDTO@4506fcde, com.codeblue.montreISTA.DTO.ProductResponseDTO@6e58a02e, com.codeblue.montreISTA.DTO.ProductResponseDTO@96bafa6]
+2022-08-19 00:16:53,757 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-7] ====================Logger End Get productname ====================
+2022-08-19 00:17:05,224 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-8] ====================Logger Start Get productname ====================
+2022-08-19 00:17:05,224 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-8] [com.codeblue.montreISTA.DTO.ProductResponseDTO@4479bb86, com.codeblue.montreISTA.DTO.ProductResponseDTO@5a06bf38, com.codeblue.montreISTA.DTO.ProductResponseDTO@6609e5bf]
+2022-08-19 00:17:05,224 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-8] ====================Logger End Get productname ====================
+2022-08-19 00:17:11,778 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] ====================Logger Start Get productname ====================
+2022-08-19 00:17:11,779 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] [com.codeblue.montreISTA.DTO.ProductResponseDTO@7b6f2779, com.codeblue.montreISTA.DTO.ProductResponseDTO@45738d9f, com.codeblue.montreISTA.DTO.ProductResponseDTO@64c318d1]
+2022-08-19 00:17:11,779 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] ====================Logger End Get productname ====================
+2022-08-19 00:17:21,167 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] ====================Logger Start Get productname ====================
+2022-08-19 00:17:21,168 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] [com.codeblue.montreISTA.DTO.ProductResponseDTO@83c6415, com.codeblue.montreISTA.DTO.ProductResponseDTO@6ca3b472, com.codeblue.montreISTA.DTO.ProductResponseDTO@a6667de, com.codeblue.montreISTA.DTO.ProductResponseDTO@44eae8cb, com.codeblue.montreISTA.DTO.ProductResponseDTO@2f1d308f, com.codeblue.montreISTA.DTO.ProductResponseDTO@5e6c013a, com.codeblue.montreISTA.DTO.ProductResponseDTO@678dd5be, com.codeblue.montreISTA.DTO.ProductResponseDTO@7432c534, com.codeblue.montreISTA.DTO.ProductResponseDTO@32ed1a75, com.codeblue.montreISTA.DTO.ProductResponseDTO@c36a8c3]
+2022-08-19 00:17:21,168 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] ====================Logger End Get productname ====================
+2022-08-19 00:17:25,086 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-2] ====================Logger Start Get productname ====================
+2022-08-19 00:17:25,086 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-2] [com.codeblue.montreISTA.DTO.ProductResponseDTO@15dc0df4, com.codeblue.montreISTA.DTO.ProductResponseDTO@119d510a, com.codeblue.montreISTA.DTO.ProductResponseDTO@7f2530ea, com.codeblue.montreISTA.DTO.ProductResponseDTO@56540f75, com.codeblue.montreISTA.DTO.ProductResponseDTO@23120be6, com.codeblue.montreISTA.DTO.ProductResponseDTO@58fc1b8f, com.codeblue.montreISTA.DTO.ProductResponseDTO@e08c21a, com.codeblue.montreISTA.DTO.ProductResponseDTO@78515b09, com.codeblue.montreISTA.DTO.ProductResponseDTO@4baf32de, com.codeblue.montreISTA.DTO.ProductResponseDTO@73b77847]
+2022-08-19 00:17:25,087 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-2] ====================Logger End Get productname ====================
+2022-08-19 00:18:19,178 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] ==================== Logger Start Get All Products     ====================
+2022-08-19 00:18:19,178 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:18:19,178 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 15
+2022-08-19 00:18:19,178 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : DESAIN KLASIK BERPADU DENGAN MINIMALISME MODERN
+Petite Bondi, dengan strap kulit warna putih dan arloji putih telur, menampilkan kesederhanaan dan keanggunan. Jam ultra-tipis ini duduk dengan manis di tangan Anda dan menyoroti semangat Anda yang membara dalam gaya. Tersedia dengan warna rose gold atau silver.
+2022-08-19 00:18:19,179 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:18:19,179 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE BONDI
+2022-08-19 00:18:19,179 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6dc1be3d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:19,179 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:18:19,179 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 2
+2022-08-19 00:18:19,179 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : The Iconic Link Unitone is our first unicolor timepiece that features a seamlessly matching luxurious metal link bracelet and watch dial. Available in polished stainless steel with a vibrant silver finish, refined rose gold or gold plating. This unique addition to the Iconic Link collection makes the Unitone stand out as an undeniably eye-catching timepiece that sets the tone for any occasion.
+2022-08-19 00:18:19,179 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:18:19,180 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE MELROSE QUEEN
+2022-08-19 00:18:19,180 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6dc1be3d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:19,180 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:18:19,180 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 3
+2022-08-19 00:18:19,181 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : Petite Melrose mengunggulkan arloji putih telur dan strap mesh rose gold yang tak tertandingi keanggunannya. Jam ini memperindah busana harian, suasana hati, dan semangat Anda.
+2022-08-19 00:18:19,181 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:18:19,181 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE MELROSE
+2022-08-19 00:18:19,182 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6dc1be3d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:19,182 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:18:19,182 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 4
+2022-08-19 00:18:19,182 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : Petite dengan arloji putih telur dan strap kulit Sheffield klasik warna hitam memperindah busana Anda dalam setiap kesempatan. Ikon desain sejati.
+2022-08-19 00:18:19,182 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:18:19,182 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE SHEFFIELD
+2022-08-19 00:18:19,182 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6dc1be3d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:19,182 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:18:19,182 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 5
+2022-08-19 00:18:19,183 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : The Petite Pressed Sterling is our most delicate timepiece to date. Designed to be worn every day, this watch reflects the beauty in the small things. Crafted with polished stainless steel and available with a vibrant silver finish. Elevate your look with a graceful touch.
+2022-08-19 00:18:19,183 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:18:19,183 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE PRESSED STERLING
+2022-08-19 00:18:19,183 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6dc1be3d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:19,183 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:18:19,183 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 6
+2022-08-19 00:18:19,183 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : The Petite Pressed Ashfield is our most delicate timepiece to date. Designed to be worn every day, this watch reflects the beauty in the small things. Crafted with polished stainless steel and plated with refined rose gold. Elevate your look with a graceful touch.
+2022-08-19 00:18:19,183 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:18:19,183 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE PRESSED ASHFIELD
+2022-08-19 00:18:19,184 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6dc1be3d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:19,184 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:18:19,184 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 7
+2022-08-19 00:18:19,184 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : The Petite Evergold 28 is our latest addition to the Petite Collection. Featuring an eggshell white dial and our classic mesh strap in a light shade of gold. Elevate your look with a delicate pop of gold that seamlessly matches any outfit.
+2022-08-19 00:18:19,184 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:18:19,184 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE EVERGOLD
+2022-08-19 00:18:19,184 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6dc1be3d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:19,184 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:18:19,185 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 8
+2022-08-19 00:18:19,185 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : The Petite Rosewater features an eggshell white dial and a charming pink NATO strap. This watch gives your look a subtle, yet eye-catching, pop of color that is ideal for the spring season. The delicate pink strap, coupled with chic rose gold details, makes the Rosewater your go-to accessory for when you need to brighten up an outfit.
+2022-08-19 00:18:19,185 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:18:19,185 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE ROSEWATER
+2022-08-19 00:18:19,185 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6dc1be3d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:19,185 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:18:19,185 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 9
+2022-08-19 00:18:19,185 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : Classic Dover, dengan tombol berwarna putih cangkang telur dan detail dalam emas merah muda, jam elegan ini akan dengan mudah menjadi teman penampilan sehari-hari kamu. Menghadirkan tali NATO serba putih, jam ini memiliki desain klasik modern yang dibuat agar cocok untuk segala kesempatan.
+2022-08-19 00:18:19,185 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:18:19,185 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : CLASSIC DOVER
+2022-08-19 00:18:19,186 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6dc1be3d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:19,186 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] -------------------------
+2022-08-19 00:18:19,186 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product ID    : 10
+2022-08-19 00:18:19,186 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Description   : Masuki musim mode abadi yang baru dengan Petite Ashfield. Jam tangan ultra tipis ini melingkar dengan manis di pergelangan tangan Anda dan dipercantik dengan strap jala warna hitam matte dan arloji hitam yang mewah. Tersedia dengan rincian warna rose gold atau silver.
+2022-08-19 00:18:19,186 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Price         : 2817000
+2022-08-19 00:18:19,186 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Product name  : PETITE ASHFIELD
+2022-08-19 00:18:19,186 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6dc1be3d]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:19,186 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1] ==================== Logger End Get All Products    ====================
+2022-08-19 00:18:19,186 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-1]  
+2022-08-19 00:18:23,684 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] ==================== Logger Start Get All Products     ====================
+2022-08-19 00:18:23,684 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] -------------------------
+2022-08-19 00:18:23,684 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product ID    : 1
+2022-08-19 00:18:23,685 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Description   : A modern take on a classic design, the Iconic Link is the revelation behind years of meticulous craftsmanship. The Iconic Link features a luxurious metal bracelet with three-piece links; each segment is comprised of solid steel, individually crafted pieces in an elegantly tapered form, ensuring a seamless transition from case to clasp.
 The distinctive and sculptural lines of the raised midpiece blend effortlessly with the watch case, as our signature twelve index dial takes on a renewed, modern silhouette.
 The Iconic Link is available in polished stainless steel (316L) with a vibrant silver finish or with refined rose gold plating.
 The link bracelet can be adjusted for a perfect fit at your local watchmaker or Daniel Wellington store.
-2022-08-17 01:19:55,452 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 3420000
-2022-08-17 01:19:55,452 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : ICONIC LINK
-2022-08-17 01:19:55,460 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,461 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,461 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 2
-2022-08-17 01:19:55,461 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : The Iconic Link Unitone is our first unicolor timepiece that features a seamlessly matching luxurious metal link bracelet and watch dial. Available in polished stainless steel with a vibrant silver finish, refined rose gold or gold plating. This unique addition to the Iconic Link collection makes the Unitone stand out as an undeniably eye-catching timepiece that sets the tone for any occasion.
-2022-08-17 01:19:55,462 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,462 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : PETITE MELROSE QUEEN
-2022-08-17 01:19:55,462 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,462 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,462 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 3
-2022-08-17 01:19:55,463 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : Petite Melrose mengunggulkan arloji putih telur dan strap mesh rose gold yang tak tertandingi keanggunannya. Jam ini memperindah busana harian, suasana hati, dan semangat Anda.
-2022-08-17 01:19:55,463 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,463 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : PETITE MELROSE
-2022-08-17 01:19:55,463 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,463 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,464 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 4
-2022-08-17 01:19:55,464 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : Petite dengan arloji putih telur dan strap kulit Sheffield klasik warna hitam memperindah busana Anda dalam setiap kesempatan. Ikon desain sejati.
-2022-08-17 01:19:55,464 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,464 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : PETITE SHEFFIELD
-2022-08-17 01:19:55,464 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,464 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,465 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 5
-2022-08-17 01:19:55,465 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : The Petite Pressed Sterling is our most delicate timepiece to date. Designed to be worn every day, this watch reflects the beauty in the small things. Crafted with polished stainless steel and available with a vibrant silver finish. Elevate your look with a graceful touch.
-2022-08-17 01:19:55,465 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,465 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : PETITE PRESSED STERLING
-2022-08-17 01:19:55,465 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,465 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,466 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 6
-2022-08-17 01:19:55,466 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : The Petite Pressed Ashfield is our most delicate timepiece to date. Designed to be worn every day, this watch reflects the beauty in the small things. Crafted with polished stainless steel and plated with refined rose gold. Elevate your look with a graceful touch.
-2022-08-17 01:19:55,466 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,466 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : PETITE PRESSED ASHFIELD
-2022-08-17 01:19:55,466 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,466 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,466 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 7
-2022-08-17 01:19:55,467 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : The Petite Evergold 28 is our latest addition to the Petite Collection. Featuring an eggshell white dial and our classic mesh strap in a light shade of gold. Elevate your look with a delicate pop of gold that seamlessly matches any outfit.
-2022-08-17 01:19:55,467 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,467 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : PETITE EVERGOLD
-2022-08-17 01:19:55,467 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,467 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,467 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 8
-2022-08-17 01:19:55,467 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : The Petite Rosewater features an eggshell white dial and a charming pink NATO strap. This watch gives your look a subtle, yet eye-catching, pop of color that is ideal for the spring season. The delicate pink strap, coupled with chic rose gold details, makes the Rosewater your go-to accessory for when you need to brighten up an outfit.
-2022-08-17 01:19:55,468 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,468 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : PETITE ROSEWATER
-2022-08-17 01:19:55,468 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,468 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,468 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 9
-2022-08-17 01:19:55,468 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : Classic Dover, dengan tombol berwarna putih cangkang telur dan detail dalam emas merah muda, jam elegan ini akan dengan mudah menjadi teman penampilan sehari-hari kamu. Menghadirkan tali NATO serba putih, jam ini memiliki desain klasik modern yang dibuat agar cocok untuk segala kesempatan.
-2022-08-17 01:19:55,468 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,469 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : CLASSIC DOVER
-2022-08-17 01:19:55,469 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,469 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,469 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 10
-2022-08-17 01:19:55,469 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : Masuki musim mode abadi yang baru dengan Petite Ashfield. Jam tangan ultra tipis ini melingkar dengan manis di pergelangan tangan Anda dan dipercantik dengan strap jala warna hitam matte dan arloji hitam yang mewah. Tersedia dengan rincian warna rose gold atau silver.
-2022-08-17 01:19:55,470 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,470 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : PETITE ASHFIELD
-2022-08-17 01:19:55,470 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,470 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,470 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 11
-2022-08-17 01:19:55,470 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : With classic features such as the slim case, details in rose gold or silver, and our heritage NATO strap in midnight blue, Classic Bayswater is an effortless day-to-evening timepiece.
-2022-08-17 01:19:55,470 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,470 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : CLASSIC BAYSWATER
-2022-08-17 01:19:55,470 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,471 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,471 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 12
-2022-08-17 01:19:55,471 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : Classic Cornwall menampilkan esensi dari kesederhanaan dan gaya. Dengan tali NATO hitam dan permukaan putih, jam tangan simpel dan elegan ini dapat dengan mudah menjadi ciri khas penampilan Anda sehari-hari.
-2022-08-17 01:19:55,471 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,471 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : CLASSIC CORNWALL
-2022-08-17 01:19:55,471 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,471 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,471 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 13
-2022-08-17 01:19:55,471 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : Warna putih berpadu dengan hitam pada perpaduan manis antara gaya minimalisme dan kulit buaya bermotif timbul klasik warna hitam. Padukan atau pasangkan dengan jins dan kaos untuk penampilan santai.
-2022-08-17 01:19:55,472 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,472 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : PETITE READING
-2022-08-17 01:19:55,472 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,472 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,472 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 14
-2022-08-17 01:19:55,480 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : SERASI DENGAN SETIAP GAYA ANDA. SETIAP HARI.
-Petite Cornwall menangkap esensi kesederhanaan dan gaya sejati. Mengunggulkan strap NATO serba hitam dan arloji hitam, jam ramping dan elegan ini dengan mudah menjadi sahabat dalam gaya sehari-hari Anda.
-2022-08-17 01:19:55,480 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,480 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : PETITE CORNWALL
-2022-08-17 01:19:55,481 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,481 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] -------------------------
-2022-08-17 01:19:55,481 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product ID    : 15
-2022-08-17 01:19:55,481 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Description   : DESAIN KLASIK BERPADU DENGAN MINIMALISME MODERN
-Petite Bondi, dengan strap kulit warna putih dan arloji putih telur, menampilkan kesederhanaan dan keanggunan. Jam ultra-tipis ini duduk dengan manis di tangan Anda dan menyoroti semangat Anda yang membara dalam gaya. Tersedia dengan warna rose gold atau silver.
-2022-08-17 01:19:55,481 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Price         : 2817000
-2022-08-17 01:19:55,481 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Product name  : PETITE BONDI
-2022-08-17 01:19:55,482 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@6062588]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:19:55,482 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9] ==================== Logger End Get All Products    ====================
-2022-08-17 01:19:55,482 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-9]  
-2022-08-17 01:20:03,649 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] ==================== Logger Start Get All Products     ====================
-2022-08-17 01:20:03,649 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,649 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 1
-2022-08-17 01:20:03,649 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : A modern take on a classic design, the Iconic Link is the revelation behind years of meticulous craftsmanship. The Iconic Link features a luxurious metal bracelet with three-piece links; each segment is comprised of solid steel, individually crafted pieces in an elegantly tapered form, ensuring a seamless transition from case to clasp.
-The distinctive and sculptural lines of the raised midpiece blend effortlessly with the watch case, as our signature twelve index dial takes on a renewed, modern silhouette.
-The Iconic Link is available in polished stainless steel (316L) with a vibrant silver finish or with refined rose gold plating.
-The link bracelet can be adjusted for a perfect fit at your local watchmaker or Daniel Wellington store.
-2022-08-17 01:20:03,649 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 3420000
-2022-08-17 01:20:03,650 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : ICONIC LINK
-2022-08-17 01:20:03,650 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,650 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,650 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 2
-2022-08-17 01:20:03,650 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : The Iconic Link Unitone is our first unicolor timepiece that features a seamlessly matching luxurious metal link bracelet and watch dial. Available in polished stainless steel with a vibrant silver finish, refined rose gold or gold plating. This unique addition to the Iconic Link collection makes the Unitone stand out as an undeniably eye-catching timepiece that sets the tone for any occasion.
-2022-08-17 01:20:03,650 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,651 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : PETITE MELROSE QUEEN
-2022-08-17 01:20:03,651 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,651 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,651 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 3
-2022-08-17 01:20:03,651 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : Petite Melrose mengunggulkan arloji putih telur dan strap mesh rose gold yang tak tertandingi keanggunannya. Jam ini memperindah busana harian, suasana hati, dan semangat Anda.
-2022-08-17 01:20:03,651 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,652 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : PETITE MELROSE
-2022-08-17 01:20:03,652 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,652 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,652 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 4
-2022-08-17 01:20:03,652 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : Petite dengan arloji putih telur dan strap kulit Sheffield klasik warna hitam memperindah busana Anda dalam setiap kesempatan. Ikon desain sejati.
-2022-08-17 01:20:03,652 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,652 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : PETITE SHEFFIELD
-2022-08-17 01:20:03,652 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,652 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,652 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 5
-2022-08-17 01:20:03,653 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : The Petite Pressed Sterling is our most delicate timepiece to date. Designed to be worn every day, this watch reflects the beauty in the small things. Crafted with polished stainless steel and available with a vibrant silver finish. Elevate your look with a graceful touch.
-2022-08-17 01:20:03,653 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,653 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : PETITE PRESSED STERLING
-2022-08-17 01:20:03,653 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,653 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,653 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 6
-2022-08-17 01:20:03,653 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : The Petite Pressed Ashfield is our most delicate timepiece to date. Designed to be worn every day, this watch reflects the beauty in the small things. Crafted with polished stainless steel and plated with refined rose gold. Elevate your look with a graceful touch.
-2022-08-17 01:20:03,653 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,654 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : PETITE PRESSED ASHFIELD
-2022-08-17 01:20:03,654 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,654 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,654 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 7
-2022-08-17 01:20:03,654 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : The Petite Evergold 28 is our latest addition to the Petite Collection. Featuring an eggshell white dial and our classic mesh strap in a light shade of gold. Elevate your look with a delicate pop of gold that seamlessly matches any outfit.
-2022-08-17 01:20:03,654 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,654 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : PETITE EVERGOLD
-2022-08-17 01:20:03,654 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,654 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,654 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 8
-2022-08-17 01:20:03,655 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : The Petite Rosewater features an eggshell white dial and a charming pink NATO strap. This watch gives your look a subtle, yet eye-catching, pop of color that is ideal for the spring season. The delicate pink strap, coupled with chic rose gold details, makes the Rosewater your go-to accessory for when you need to brighten up an outfit.
-2022-08-17 01:20:03,655 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,655 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : PETITE ROSEWATER
-2022-08-17 01:20:03,655 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,655 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,655 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 9
-2022-08-17 01:20:03,655 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : Classic Dover, dengan tombol berwarna putih cangkang telur dan detail dalam emas merah muda, jam elegan ini akan dengan mudah menjadi teman penampilan sehari-hari kamu. Menghadirkan tali NATO serba putih, jam ini memiliki desain klasik modern yang dibuat agar cocok untuk segala kesempatan.
-2022-08-17 01:20:03,655 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,655 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : CLASSIC DOVER
-2022-08-17 01:20:03,655 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,656 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,656 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 10
-2022-08-17 01:20:03,656 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : Masuki musim mode abadi yang baru dengan Petite Ashfield. Jam tangan ultra tipis ini melingkar dengan manis di pergelangan tangan Anda dan dipercantik dengan strap jala warna hitam matte dan arloji hitam yang mewah. Tersedia dengan rincian warna rose gold atau silver.
-2022-08-17 01:20:03,656 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,656 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : PETITE ASHFIELD
-2022-08-17 01:20:03,656 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,656 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,656 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 11
-2022-08-17 01:20:03,657 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : With classic features such as the slim case, details in rose gold or silver, and our heritage NATO strap in midnight blue, Classic Bayswater is an effortless day-to-evening timepiece.
-2022-08-17 01:20:03,657 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,657 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : CLASSIC BAYSWATER
-2022-08-17 01:20:03,657 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,658 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,658 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 12
-2022-08-17 01:20:03,658 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : Classic Cornwall menampilkan esensi dari kesederhanaan dan gaya. Dengan tali NATO hitam dan permukaan putih, jam tangan simpel dan elegan ini dapat dengan mudah menjadi ciri khas penampilan Anda sehari-hari.
-2022-08-17 01:20:03,658 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,658 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : CLASSIC CORNWALL
-2022-08-17 01:20:03,658 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,658 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,658 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 13
-2022-08-17 01:20:03,659 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : Warna putih berpadu dengan hitam pada perpaduan manis antara gaya minimalisme dan kulit buaya bermotif timbul klasik warna hitam. Padukan atau pasangkan dengan jins dan kaos untuk penampilan santai.
-2022-08-17 01:20:03,659 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,659 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : PETITE READING
-2022-08-17 01:20:03,659 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,659 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,659 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 14
-2022-08-17 01:20:03,659 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : SERASI DENGAN SETIAP GAYA ANDA. SETIAP HARI.
-Petite Cornwall menangkap esensi kesederhanaan dan gaya sejati. Mengunggulkan strap NATO serba hitam dan arloji hitam, jam ramping dan elegan ini dengan mudah menjadi sahabat dalam gaya sehari-hari Anda.
-2022-08-17 01:20:03,659 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,659 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : PETITE CORNWALL
-2022-08-17 01:20:03,660 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,660 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] -------------------------
-2022-08-17 01:20:03,660 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product ID    : 15
-2022-08-17 01:20:03,660 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Description   : DESAIN KLASIK BERPADU DENGAN MINIMALISME MODERN
-Petite Bondi, dengan strap kulit warna putih dan arloji putih telur, menampilkan kesederhanaan dan keanggunan. Jam ultra-tipis ini duduk dengan manis di tangan Anda dan menyoroti semangat Anda yang membara dalam gaya. Tersedia dengan warna rose gold atau silver.
-2022-08-17 01:20:03,660 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Price         : 2817000
-2022-08-17 01:20:03,660 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Product name  : PETITE BONDI
-2022-08-17 01:20:03,660 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@64c42294]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
-2022-08-17 01:20:03,660 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10] ==================== Logger End Get All Products    ====================
-2022-08-17 01:20:03,660 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-10]  
+2022-08-19 00:18:23,685 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Price         : 3420000
+2022-08-19 00:18:23,685 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product name  : ICONIC LINK
+2022-08-19 00:18:23,685 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@31670559]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:23,686 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] -------------------------
+2022-08-19 00:18:23,686 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product ID    : 2
+2022-08-19 00:18:23,686 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Description   : The Iconic Link Unitone is our first unicolor timepiece that features a seamlessly matching luxurious metal link bracelet and watch dial. Available in polished stainless steel with a vibrant silver finish, refined rose gold or gold plating. This unique addition to the Iconic Link collection makes the Unitone stand out as an undeniably eye-catching timepiece that sets the tone for any occasion.
+2022-08-19 00:18:23,686 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Price         : 2817000
+2022-08-19 00:18:23,686 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product name  : PETITE MELROSE QUEEN
+2022-08-19 00:18:23,687 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@31670559]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:23,687 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] -------------------------
+2022-08-19 00:18:23,687 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product ID    : 3
+2022-08-19 00:18:23,688 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Description   : Petite Melrose mengunggulkan arloji putih telur dan strap mesh rose gold yang tak tertandingi keanggunannya. Jam ini memperindah busana harian, suasana hati, dan semangat Anda.
+2022-08-19 00:18:23,688 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Price         : 2817000
+2022-08-19 00:18:23,688 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product name  : PETITE MELROSE
+2022-08-19 00:18:23,688 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@31670559]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:23,688 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] -------------------------
+2022-08-19 00:18:23,689 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product ID    : 4
+2022-08-19 00:18:23,689 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Description   : Petite dengan arloji putih telur dan strap kulit Sheffield klasik warna hitam memperindah busana Anda dalam setiap kesempatan. Ikon desain sejati.
+2022-08-19 00:18:23,689 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Price         : 2817000
+2022-08-19 00:18:23,689 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product name  : PETITE SHEFFIELD
+2022-08-19 00:18:23,690 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@31670559]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:23,690 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] -------------------------
+2022-08-19 00:18:23,690 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product ID    : 5
+2022-08-19 00:18:23,690 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Description   : The Petite Pressed Sterling is our most delicate timepiece to date. Designed to be worn every day, this watch reflects the beauty in the small things. Crafted with polished stainless steel and available with a vibrant silver finish. Elevate your look with a graceful touch.
+2022-08-19 00:18:23,690 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Price         : 2817000
+2022-08-19 00:18:23,690 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product name  : PETITE PRESSED STERLING
+2022-08-19 00:18:23,690 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@31670559]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:23,691 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] -------------------------
+2022-08-19 00:18:23,691 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product ID    : 6
+2022-08-19 00:18:23,691 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Description   : The Petite Pressed Ashfield is our most delicate timepiece to date. Designed to be worn every day, this watch reflects the beauty in the small things. Crafted with polished stainless steel and plated with refined rose gold. Elevate your look with a graceful touch.
+2022-08-19 00:18:23,691 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Price         : 2817000
+2022-08-19 00:18:23,691 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product name  : PETITE PRESSED ASHFIELD
+2022-08-19 00:18:23,691 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@31670559]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:23,691 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] -------------------------
+2022-08-19 00:18:23,691 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product ID    : 7
+2022-08-19 00:18:23,692 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Description   : The Petite Evergold 28 is our latest addition to the Petite Collection. Featuring an eggshell white dial and our classic mesh strap in a light shade of gold. Elevate your look with a delicate pop of gold that seamlessly matches any outfit.
+2022-08-19 00:18:23,692 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Price         : 2817000
+2022-08-19 00:18:23,692 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product name  : PETITE EVERGOLD
+2022-08-19 00:18:23,692 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@31670559]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:23,695 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] -------------------------
+2022-08-19 00:18:23,695 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product ID    : 8
+2022-08-19 00:18:23,695 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Description   : The Petite Rosewater features an eggshell white dial and a charming pink NATO strap. This watch gives your look a subtle, yet eye-catching, pop of color that is ideal for the spring season. The delicate pink strap, coupled with chic rose gold details, makes the Rosewater your go-to accessory for when you need to brighten up an outfit.
+2022-08-19 00:18:23,696 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Price         : 2817000
+2022-08-19 00:18:23,696 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product name  : PETITE ROSEWATER
+2022-08-19 00:18:23,696 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@31670559]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:23,696 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] -------------------------
+2022-08-19 00:18:23,696 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product ID    : 9
+2022-08-19 00:18:23,696 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Description   : Classic Dover, dengan tombol berwarna putih cangkang telur dan detail dalam emas merah muda, jam elegan ini akan dengan mudah menjadi teman penampilan sehari-hari kamu. Menghadirkan tali NATO serba putih, jam ini memiliki desain klasik modern yang dibuat agar cocok untuk segala kesempatan.
+2022-08-19 00:18:23,696 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Price         : 2817000
+2022-08-19 00:18:23,696 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product name  : CLASSIC DOVER
+2022-08-19 00:18:23,696 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@31670559]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:23,697 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] -------------------------
+2022-08-19 00:18:23,697 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product ID    : 10
+2022-08-19 00:18:23,697 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Description   : Masuki musim mode abadi yang baru dengan Petite Ashfield. Jam tangan ultra tipis ini melingkar dengan manis di pergelangan tangan Anda dan dipercantik dengan strap jala warna hitam matte dan arloji hitam yang mewah. Tersedia dengan rincian warna rose gold atau silver.
+2022-08-19 00:18:23,697 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Price         : 2817000
+2022-08-19 00:18:23,697 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Product name  : PETITE ASHFIELD
+2022-08-19 00:18:23,697 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] Seller ID     : Seller{sellerId=1, userId=User{userId=1, name='junaidi', username='junaidii', email='jalan@gmail.com', password='junaidiiii', phone='0813131313', photo='fotto', address='jalanjalan', roles=[com.codeblue.montreISTA.entity.UserRole@31670559]}, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-19 00:18:23,697 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3] ==================== Logger End Get All Products    ====================
+2022-08-19 00:18:23,697 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-3]  
+2022-08-19 00:18:38,243 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-4] ====================Logger Start Get productname ====================
+2022-08-19 00:18:38,244 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-4] [com.codeblue.montreISTA.DTO.ProductResponseDTO@48f76ec]
+2022-08-19 00:18:38,244 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-4] ====================Logger End Get productname ====================
+2022-08-19 02:31:23,932 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-19 02:31:23,936 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on DESKTOP-VVKE1SS with PID 2704 (C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa\target\classes started by Win 10 in C:\Users\Win 10\IdeaProjects\Final Project\monstreISTa)
+2022-08-19 02:31:23,937 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-19 02:31:23,980 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-19 02:31:23,980 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-19 02:31:24,815 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-19 02:31:24,913 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 91 ms. Found 16 JPA repository interfaces.
+2022-08-19 02:31:25,524 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-19 02:31:25,534 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-19 02:31:25,535 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-19 02:31:25,535 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-19 02:31:25,603 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-19 02:31:25,603 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1622 ms
+2022-08-19 02:31:25,737 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-19 02:31:25,795 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-19 02:31:25,930 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-19 02:31:26,018 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-19 02:31:26,164 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-19 02:31:26,179 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-19 02:31:27,230 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-19 02:31:27,237 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-19 02:31:28,635 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-19 02:31:29,476 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@377dc843, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@239304d3, org.springframework.security.web.context.SecurityContextPersistenceFilter@1055d1d5, org.springframework.security.web.header.HeaderWriterFilter@6cda1fe, org.springframework.web.filter.CorsFilter@4d7d6934, org.springframework.security.web.authentication.logout.LogoutFilter@7ba73e1b, com.codeblue.montreISTA.security.AuthTokenFilter@16726d4f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7647e7bb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@430914a9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e7398b4, org.springframework.security.web.session.SessionManagementFilter@50a39379, org.springframework.security.web.access.ExceptionTranslationFilter@6c955840, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@bf4e601]
+2022-08-19 02:31:29,683 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2022-08-19 02:31:29,808 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-19 02:31:29,821 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-19 02:31:29,843 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-19 02:31:29,854 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 6.295 seconds (JVM running for 6.706)
+2022-08-19 02:34:28,890 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-19 02:34:28,890 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-19 02:34:28,891 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 1 ms
+2022-08-19 02:34:46,079 INFO com.codeblue.montreISTA.controller.AuthenticationController [http-nio-8090-exec-3] ====================Logger Start Login ====================
+2022-08-19 02:34:46,080 INFO com.codeblue.montreISTA.controller.AuthenticationController [http-nio-8090-exec-3] com.codeblue.montreISTA.DTO.JwtResponse@3e0ba734
+2022-08-19 02:34:46,080 INFO com.codeblue.montreISTA.controller.AuthenticationController [http-nio-8090-exec-3] ====================Logger End Login ====================
+2022-08-19 02:35:02,519 ERROR com.codeblue.montreISTA.controller.TransactionController [http-nio-8090-exec-4] ==================== Logger Start Error ====================
+2022-08-19 02:35:02,521 ERROR com.codeblue.montreISTA.controller.TransactionController [http-nio-8090-exec-4] No property 'price' found for type 'HistoryTransactionDetail'
+2022-08-19 02:35:02,522 ERROR com.codeblue.montreISTA.controller.TransactionController [http-nio-8090-exec-4] ==================== Logger End Error ====================

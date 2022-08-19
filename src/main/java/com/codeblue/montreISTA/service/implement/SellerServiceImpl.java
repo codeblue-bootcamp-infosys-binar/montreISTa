@@ -6,11 +6,13 @@ import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.entity.User;
 import com.codeblue.montreISTA.helper.DTOConverter;
+import com.codeblue.montreISTA.helper.Pagination;
 import com.codeblue.montreISTA.repository.ProductRepository;
 import com.codeblue.montreISTA.repository.SellerRepository;
 import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.service.SellerService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -55,7 +57,8 @@ public class SellerServiceImpl implements SellerService {
         Seller seller = sellerRequestDTO.convertToEntity(user);
         seller.setStorePhoto("https://www.shutterstock.com/image-vector/shop-icon-store-230619400");
         if(sellerOptional.isPresent()){
-            List<Product> products = productRepository.findBySellerSellerId(sellerOptional.get().getSellerId());
+            Pageable pageable = Pagination.paginate(0, "price", false);
+            List<Product> products = productRepository.findBySellerSellerId(sellerOptional.get().getSellerId(), pageable);
             return DTOConverter.convertProducts(products);
         }else {
             Seller sellerDTO = sellerRepository.save(seller);

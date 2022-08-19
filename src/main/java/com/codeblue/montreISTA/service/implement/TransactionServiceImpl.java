@@ -3,10 +3,12 @@ package com.codeblue.montreISTA.service.implement;
 import com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO;
 import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
 import com.codeblue.montreISTA.entity.*;
+import com.codeblue.montreISTA.helper.Pagination;
 import com.codeblue.montreISTA.repository.*;
 import com.codeblue.montreISTA.service.CategoryService;
 import com.codeblue.montreISTA.service.TransactionService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -35,8 +37,11 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<TransactionDetailResponseDTO> findAllTransactionDetail() {
-        return transactionDetailsRepository.findAllByOrderByTransactionDetailIdAsc().stream()
+    public List<TransactionDetailResponseDTO> findAllTransactionDetail(Integer page, String sort, boolean descending) {
+
+        Pageable pageable = Pagination.paginate(page, sort, descending);
+
+        return transactionDetailsRepository.findAllByOrderByTransactionDetailIdAsc(pageable).stream()
                 .map(HistoryTransactionDetail::convertToResponse)
                 .collect(Collectors.toList());
     }
@@ -66,21 +71,27 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<TransactionDetailResponseDTO> findByTransactionDetailBuyerId(Authentication authentication) throws Exception {
+    public List<TransactionDetailResponseDTO> findByTransactionDetailBuyerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception {
         Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please order first"));
-        List<HistoryTransactionDetail> transactionDetail = transactionDetailsRepository.findByHistoryTransactionBuyerBuyerIdOrderByTransactionDetailIdAsc(buyer.getBuyerId());
+
+        Pageable pageable = Pagination.paginate(page, sort, descending);
+
+        List<HistoryTransactionDetail> transactionDetail = transactionDetailsRepository.findByHistoryTransactionBuyerBuyerIdOrderByTransactionDetailIdAsc(buyer.getBuyerId(), pageable);
         if(transactionDetail.isEmpty()){
             throw new Exception("You don't have order");
         }
-        return transactionDetailsRepository.findByHistoryTransactionBuyerBuyerIdOrderByTransactionDetailIdAsc(buyer.getBuyerId()).stream()
+        return transactionDetailsRepository.findByHistoryTransactionBuyerBuyerIdOrderByTransactionDetailIdAsc(buyer.getBuyerId(), pageable).stream()
                 .map(HistoryTransactionDetail::convertToResponse)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<TransactionDetailResponseDTO> findByTransactionDetailSellerId(Authentication authentication) throws Exception {
+    public List<TransactionDetailResponseDTO> findByTransactionDetailSellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception {
         Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
-        List<HistoryTransactionDetail> transactionDetail = transactionDetailsRepository.findByHistoryTransactionSellerSellerIdOrderByTransactionDetailIdAsc(seller.getSellerId());
+
+        Pageable pageable = Pagination.paginate(page, sort, descending);
+
+        List<HistoryTransactionDetail> transactionDetail = transactionDetailsRepository.findByHistoryTransactionSellerSellerIdOrderByTransactionDetailIdAsc(seller.getSellerId(),pageable);
         if(transactionDetail.isEmpty()){
             throw new Exception("You don't have product");
         }

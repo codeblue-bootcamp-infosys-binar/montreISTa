@@ -8,12 +8,12 @@ import java.util.List;
 
 public interface TransactionService {
     List<TransactionResponseDTO> findAllTransaction();
-    List<TransactionDetailResponseDTO> findAllTransactionDetail();
+    List<TransactionDetailResponseDTO> findAllTransactionDetail(Integer page, String sort, boolean descending);
 
     List<TransactionResponseDTO> findByTransactionBuyerId(Authentication authentication) throws Exception;
     List<TransactionResponseDTO> findByTransactionSellerId(Authentication authentication) throws Exception;
-    List<TransactionDetailResponseDTO> findByTransactionDetailBuyerId(Authentication authentication) throws Exception;
-    List<TransactionDetailResponseDTO> findByTransactionDetailSellerId(Authentication authentication) throws Exception;
+    List<TransactionDetailResponseDTO> findByTransactionDetailBuyerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
+    List<TransactionDetailResponseDTO> findByTransactionDetailSellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
 
     TransactionResponseDTO findByTransactionId(Long id) throws Exception;
     TransactionDetailResponseDTO findByTransactionDetailId(Long id) throws Exception;
