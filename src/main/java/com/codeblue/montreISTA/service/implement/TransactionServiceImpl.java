@@ -55,7 +55,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionResponseDTO> findByTransactionSellerId(Authentication authentication) throws Exception {
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
         List<HistoryTransaction> transaction = transactionRepository.findBySellerSellerIdOrderByHistoryTransactionIdAsc(seller.getSellerId());
         if(transaction.isEmpty()){
             throw new Exception("You don't have product");
@@ -79,7 +79,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionDetailResponseDTO> findByTransactionDetailSellerId(Authentication authentication) throws Exception {
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
         List<HistoryTransactionDetail> transactionDetail = transactionDetailsRepository.findByHistoryTransactionSellerSellerIdOrderByTransactionDetailIdAsc(seller.getSellerId());
         if(transactionDetail.isEmpty()){
             throw new Exception("You don't have product");

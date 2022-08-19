@@ -31,7 +31,6 @@ public class Order extends AuditEntity{
     @ManyToOne
     @JoinColumn(name = "shipping_id")
     private Shipping shipping;
-
     private Integer totalprice;
 
     private String destinationName;

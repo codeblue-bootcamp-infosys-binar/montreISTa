@@ -36,7 +36,7 @@ public class PhotoServiceImp implements PhotoService {
 
     @Override
     public List<PhotoResponseDTO> findBySellerName(Authentication authentication) throws Exception {
-        List<Photo> photos = photoRepository.findByProductSellerUserIdNameIgnoreCaseContainingOrderByPhotoIdAsc(authentication.getName());
+        List<Photo> photos = photoRepository.findByProductSellerUserNameIgnoreCaseContainingOrderByPhotoIdAsc(authentication.getName());
         if (photos.isEmpty()) {
             throw new Exception("photo not found");
         }
@@ -69,7 +69,7 @@ public class PhotoServiceImp implements PhotoService {
     @Override
     public List<PhotoResponseDTO> createPhoto(Long productId,List<MultipartFile> files, Authentication authentication) throws Exception {
         Product product = productRepository.findById(productId).orElseThrow(()->new Exception("Product not found"));
-        if(!product.getSeller().getUserId().getName().equals(authentication.getName()))
+        if(!product.getSeller().getUser().getName().equals(authentication.getName()))
         {
             throw new Exception("You only can add photo for your product");
         }
@@ -95,7 +95,7 @@ public class PhotoServiceImp implements PhotoService {
     @Override
     public PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO, Long id,Authentication authentication) throws Exception {
         Product product = productRepository.findById(photoRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not found"));
-        if(!product.getSeller().getUserId().getName().equals(authentication.getName()))
+        if(!product.getSeller().getUser().getName().equals(authentication.getName()))
         {
             throw new Exception("You only can update photo for your product");
         }
@@ -109,7 +109,7 @@ public class PhotoServiceImp implements PhotoService {
     @Override
     public void deleteById(Long id, Authentication authentication)throws Exception {
         Photo photo = photoRepository.findById(id).orElseThrow(() -> new Exception("Photo not found"));
-        if(!photo.getProduct().getSeller().getUserId().getUsername().equals(authentication.getName()))
+        if(!photo.getProduct().getSeller().getUser().getUsername().equals(authentication.getName()))
         {
             throw new Exception("You only can delete photo for your product");
         }

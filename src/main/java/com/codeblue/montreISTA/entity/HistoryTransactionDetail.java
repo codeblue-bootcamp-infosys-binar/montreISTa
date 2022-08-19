@@ -19,7 +19,7 @@ public class HistoryTransactionDetail extends AuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionDetailId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "history_transaction_id")
     private HistoryTransaction historyTransaction;
 

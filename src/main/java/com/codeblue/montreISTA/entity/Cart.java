@@ -42,10 +42,6 @@ public class Cart extends AuditEntity{
     @JoinColumn(name = "order_id")
     private Order order;
 
-/*
-    @Column(columnDefinition = "TEXT")
-    private String jwttoken; //pas uda ada security, coba
-*/
 
     public OrderCartDTO convertToOrder(String photo){
         return OrderCartDTO.builder()
@@ -65,8 +61,8 @@ public class Cart extends AuditEntity{
                 .cart_id(this.getCartId())
                 .buyer_name(this.getBuyer().getUser().getName())
                 .buyer_username(this.getBuyer().getUser().getUsername())
-                .seller_name(this.getProduct().getSeller().getUserId().getName())
-                .seller_username(this.getProduct().getSeller().getUserId().getUsername())
+                .seller_name(this.getProduct().getSeller().getUser().getName())
+                .seller_username(this.getProduct().getSeller().getUser().getUsername())
                 .product_name(this.getProduct().getProductName())
                 .product_price(this.getProduct().getPrice())
                 .store_name(this.getProduct().getSeller().getStoreName())

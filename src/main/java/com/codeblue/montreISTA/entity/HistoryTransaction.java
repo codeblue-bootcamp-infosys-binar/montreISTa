@@ -1,14 +1,10 @@
 package com.codeblue.montreISTA.entity;
 
-
-import com.codeblue.montreISTA.DTO.PhotoProductDTO;
 import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Getter
@@ -42,6 +38,11 @@ public class HistoryTransaction{
 
     @NotNull
     private Integer totalPrice;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "historyTransaction",
+            fetch = FetchType.LAZY)
+    private List<HistoryTransactionDetail> transactionDetails;
 
     public TransactionResponseDTO convertToResponse(){
         return TransactionResponseDTO.builder()
