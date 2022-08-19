@@ -34,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findBySellerUsername(String keyword) throws Exception{
-        return productRepository.findFirstBySellerUserIdUsernameOrderByProductIdDesc(keyword)
+        return productRepository.findFirstBySellerUserUsernameOrderByProductIdDesc(keyword)
                 .orElseThrow(()->new Exception("Product not found"));
     }
 
@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findBySellerName(String name) {
-        return productRepository.findBySellerUserIdNameIgnoreCaseContaining(name);
+        return productRepository.findBySellerUserNameIgnoreCaseContaining(name);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findProductBySellerId(Authentication authentication) throws Exception{
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller"));
         List<Product> product = productRepository.findBySellerSellerId(seller.getSellerId());
         if(product.isEmpty()){
             throw new Exception("You don't have a product");
@@ -80,7 +80,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product createProduct(ProductRequestDTO productRequestDTO,Authentication authentication) throws Exception{
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
         List<Product> products = productRepository.findBySellerSellerId(seller.getSellerId());
         if(productRequestDTO.getCategory().size()>=4){
             throw new Exception("Product can only have 4 category");
@@ -105,7 +105,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product updateProduct(ProductRequestDTO productRequestDTO, Long id, Authentication authentication) throws Exception{
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
         //GET SELLER FROM DATABASE BY ID
         Product product = productRequestDTO.convertToEntity(seller);
         Product updateProduct = findProductById(id).orElseThrow(()->new Exception("Product Not Found"));
@@ -138,7 +138,7 @@ public class ProductServiceImpl implements ProductService {
     }
     @Override
     public void deleteProduct(Long id, Authentication authentication)throws Exception {
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
         Product productById = findProductById(id).orElseThrow(()->new Exception("Product Not Found"));
         if(seller!=productById.getSeller()){
             throw new Exception("You only can delete your product");

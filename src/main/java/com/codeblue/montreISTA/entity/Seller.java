@@ -2,10 +2,9 @@ package com.codeblue.montreISTA.entity;
 
 import com.codeblue.montreISTA.DTO.SellerResponseDTO;
 import lombok.*;
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,9 +19,9 @@ public class Seller extends AuditEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sellerId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+   @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
     @Column(nullable = false)
     private String storeName;
 
@@ -32,13 +31,23 @@ public class Seller extends AuditEntity{
     @NotNull
     private String storeAddress;
 
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "seller",
+            fetch = FetchType.LAZY)
+    private List<Product> products;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "seller",
+            fetch = FetchType.LAZY)
+    private List<HistoryTransaction> transactions;
+
     public SellerResponseDTO convertToResponse(){
         return SellerResponseDTO.builder()
                 .sellerId(this.getSellerId())
-                .user_id(this.getUserId().getUserId())
-                .name(this.getUserId().getName())
-                .username(this.getUserId().getUsername())
-                .email(this.getUserId().getEmail())
+                .user_id(this.getUser().getUserId())
+                .name(this.getUser().getName())
+                .username(this.getUser().getUsername())
+                .email(this.getUser().getEmail())
                 .store_address(this.getStoreAddress())
                 .store_name(this.getStoreName())
                 .store_photo(this.getStorePhoto())
@@ -51,7 +60,7 @@ public class Seller extends AuditEntity{
     public String toString() {
         return "Seller{" +
                 "sellerId=" + sellerId +
-                ", userId=" + userId +
+                ", user=" + user +
                 ", storeName='" + storeName + '\'' +
                 ", storePhoto='" + storePhoto + '\'' +
                 ", storeAddress='" + storeAddress + '\'' +

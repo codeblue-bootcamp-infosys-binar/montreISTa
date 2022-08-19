@@ -109,7 +109,7 @@ public class UserServiceImpl implements UserService {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Get All Users");
         }
     }
 
@@ -129,7 +129,7 @@ public class UserServiceImpl implements UserService {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Find by Id");
         }
     }
 
@@ -152,7 +152,7 @@ public class UserServiceImpl implements UserService {
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
 
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, "User not found");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed find My Profile");
         }
     }
 
@@ -213,7 +213,7 @@ public class UserServiceImpl implements UserService {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"failed update photo");
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"failed upload photo");
         }
     }
 
@@ -242,9 +242,9 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<Object> deleteUser(Long id) throws Exception {
         try{
         userRepository.deleteById(id);
-        return ResponseHandler.generateResponse("successfully deleted User", HttpStatus.MULTI_STATUS, null);
+        return ResponseHandler.generateResponse("successfully deleted User", HttpStatus.MULTI_STATUS, "Success Delete");
     } catch (Exception e) {
-        return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Delete User");
     }
     }
     public void checkRole(List<String> requestRole){

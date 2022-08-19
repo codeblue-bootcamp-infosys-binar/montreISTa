@@ -12,11 +12,11 @@ import java.util.Optional;
 @Repository
 public interface SellerRepository extends JpaRepository<Seller,Long> {
 
-    @Query(value = "SELECT * FROM sellers s WHERE seller_id=?1", nativeQuery = true)
-    List<Seller> findBySellerId(Long id);
-    Optional<Seller> findByUserIdUsername(String keyword);
+//    @Query(value = "SELECT * FROM sellers s WHERE seller_id=?1", nativeQuery = true)
+//    List<Seller> findBySellerId(Long id);
+    Optional<Seller> findByUserUsername(String keyword);
     Optional<Seller> findByStoreName(String keyword);
-    Optional<Seller> findByUserIdUserId(Long id);
+    Optional<Seller> findByUserUserId(Long id);
     List<Seller> findByOrderBySellerIdAsc();
 
 }
