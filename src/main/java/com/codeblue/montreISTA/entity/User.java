@@ -3,11 +3,10 @@ package com.codeblue.montreISTA.entity;
 import com.codeblue.montreISTA.DTO.UserResponseDTO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.sun.istack.NotNull;
 import lombok.*;
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Getter
@@ -20,6 +19,7 @@ import java.util.List;
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "userId")
+@Transactional
 public class User extends AuditEntity{
 
     @Id
@@ -47,8 +47,18 @@ public class User extends AuditEntity{
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "user",
-            fetch = FetchType.EAGER)
+            fetch = FetchType.LAZY)
     private List<UserRole> roles;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "user",
+            fetch = FetchType.LAZY)
+    private List<Buyer> buyers;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "user",
+            fetch = FetchType.LAZY)
+    private List<Seller> sellers;
 
     public UserResponseDTO convertToResponse(List<String> roles){
         return UserResponseDTO.builder()
@@ -62,18 +72,5 @@ public class User extends AuditEntity{
                 .roles(roles)
                 .build();
     }
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", name='" + name + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                ", photo='" + photo + '\'' +
-                ", address='" + address + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
+
 }

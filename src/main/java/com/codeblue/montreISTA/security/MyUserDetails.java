@@ -5,18 +5,20 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Transactional
 public class MyUserDetails implements UserDetails {
 
-    private Long userId;
-    private String userName;
-    private String password;
-    private String email;
-    private Collection<? extends GrantedAuthority> authorities;
+    private final Long userId;
+    private final String userName;
+    private final String password;
+    private final String email;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     public MyUserDetails(Long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities){
         this.userId = id;

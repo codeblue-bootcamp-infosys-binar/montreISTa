@@ -24,7 +24,7 @@ public class UserController {
     }
 
     //UPDATE
-    @PutMapping("/user/editProfile")
+    @PutMapping("/user/edit-profile")
     public ResponseEntity<Object> updateUser(@RequestBody RegistrationDTO user,Authentication authentication) throws Exception {
           return userService.updateUser(user,authentication);
     }
