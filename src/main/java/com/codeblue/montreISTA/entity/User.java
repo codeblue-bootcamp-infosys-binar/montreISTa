@@ -54,7 +54,7 @@ public class User extends AuditEntity{
         return UserResponseDTO.builder()
                 .user_id(this.getUserId())
                 .username(this.getUsername())
-                .email_id(this.getEmail())
+                .email(this.getEmail())
                 .address(this.getAddress())
                 .name(this.getName())
                 .photo(this.getPhoto())
