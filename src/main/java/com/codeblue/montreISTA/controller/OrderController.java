@@ -34,7 +34,7 @@ public class OrderController {
      * Update Order
      * @return
      */
-    @PutMapping("/user/orderNow/buyer")
+    @PutMapping("/user/order-now")
     public ResponseEntity<Object> updateOrder(@RequestBody OrderRequestDTO orderRequestDTO, Authentication authentication){
         try {
             OrderResponseDTO results = orderService.updateOrder(orderRequestDTO,authentication.getName());

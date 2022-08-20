@@ -15,6 +15,6 @@ public interface BuyerService {
 
     void deleteBuyer(Long id);
 
-    List<BuyerResponseDTO> findByUsername(String keywoard);
+    List<BuyerResponseDTO> findByUsername(String keywoard)throws Exception;
 
 }
