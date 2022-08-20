@@ -51,7 +51,7 @@ public class SellerServiceImpl implements SellerService {
             throw new Exception("Please login");
         }
         User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Please sign up"));
-        Optional<Seller> sellerOptional = sellerRepository.findByUserIdUserId(user.getUserId());
+        Optional<Seller> sellerOptional = sellerRepository.findByUserUserId(user.getUserId());
         Seller seller = sellerRequestDTO.convertToEntity(user);
         seller.setStorePhoto("https://www.shutterstock.com/image-vector/shop-icon-store-230619400");
         if(sellerOptional.isPresent()){
@@ -64,7 +64,7 @@ public class SellerServiceImpl implements SellerService {
     }
     @Override
     public SellerResponseDTO updateSeller(SellerRequestDTO seller, Authentication authentication)throws Exception {
-        Seller sellerUpdate = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller before update seller info"));
+        Seller sellerUpdate = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller before update seller info"));
         sellerUpdate.setStoreAddress(seller.getStoreAddress());
         sellerUpdate.setStoreName(seller.getStoreName());
         return sellerRepository.save(sellerUpdate).convertToResponse();
@@ -72,7 +72,7 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public SellerResponseDTO uploadPhotoStore(Authentication authentication, MultipartFile file) throws Exception {
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller"));
         String url = cloudinaryService.uploadFile(file);
         seller.setStorePhoto(url);
         Seller sellerSave = sellerRepository.save(seller);
@@ -87,7 +87,7 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public SellerResponseDTO findByUsername(String keyword)throws Exception {
-        Seller seller = sellerRepository.findByUserIdUsername(keyword).orElseThrow(()->new Exception("Seller not found"));
+        Seller seller = sellerRepository.findByUserUsername(keyword).orElseThrow(()->new Exception("Seller not found"));
         return seller.convertToResponse();
     }
 

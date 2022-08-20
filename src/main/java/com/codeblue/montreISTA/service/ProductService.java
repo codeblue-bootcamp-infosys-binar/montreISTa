@@ -9,20 +9,20 @@ import java.util.Optional;
 
 public interface ProductService {
 
-    List<Product> findAllProduct();
+    List<Product> findAllProduct() throws Exception;
 
     Product findBySellerUsername(String keyword) throws Exception;
 
-    Optional<Product> findProductById(Long id);
+    Product findProductById(Long id)throws Exception;
 
-    List<Product> findByProductName(String name);
+    List<Product> findByProductName(String name)throws Exception;
 
-    List<Product> findBySellerName(String name);
+    List<Product> findBySellerName(String name)throws Exception;
 
-    List<Product> findByStoreName(String name);
+    List<Product> findByStoreName(String name)throws Exception;
 
-    List<Product> findByCategoryId(Long id);
-    List<Product> findByCategoryName(String name);
+    List<Product> findByCategoryId(Long id)throws Exception;
+    List<Product> findByCategoryName(String name)throws Exception;
 
     List<Product> findProductBySellerId(Authentication authentication) throws Exception;
 

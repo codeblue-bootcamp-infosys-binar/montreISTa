@@ -45,7 +45,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<CartResponseDTO> findBySeller(String keyword) throws Exception {
-        List<Cart> results = this.cartRepository.findByProductSellerUserIdUsernameIgnoreCaseContainingOrderByCartIdAsc(keyword);
+        List<Cart> results = this.cartRepository.findByProductSellerUserUsernameIgnoreCaseContainingOrderByCartIdAsc(keyword);
         if(results.isEmpty()){
             throw new Exception("Carts not found");
         }
@@ -75,7 +75,7 @@ public class CartServiceImpl implements CartService {
         Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName());
         Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(()->new Exception("Product not Found"));
         Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Buyer not Found"));
-        if(buyer.getUser().equals(productId.getSeller().getUserId())){
+        if(buyer.getUser().equals(productId.getSeller().getUser())){
             throw new Exception("You can't order your own product honey");
         }
         Long orderId;
@@ -129,7 +129,7 @@ public class CartServiceImpl implements CartService {
         if(!buyer.equals(cart.getBuyer())){
             throw new Exception("You can't update other cart");
         }
-        if(buyer.getUser().equals(cart.getProduct().getSeller().getUserId())){
+        if(buyer.getUser().equals(cart.getProduct().getSeller().getUser())){
             throw new Exception("You can't order your own product honey");
         }
         Cart saveCart = this.requestToEntity(cartRequestDTO,orderId,buyer);

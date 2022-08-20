@@ -26,7 +26,6 @@ import java.util.Optional;
 public class CategoryController {
 
     private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
-
     private static final String Line = "====================";
     @Autowired
     CategoryService categoryService;
@@ -49,7 +48,7 @@ public class CategoryController {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, "no data");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "no data");
         }
     }
 
@@ -94,16 +93,15 @@ public class CategoryController {
     }
 
     //CREATE
-    @PostMapping("/dashboard/categories/create")
+    @PostMapping("/dashboard/categories/post")
     public ResponseEntity<Object> createCategory(@RequestBody CategoryRequestDTO categoryRequestDTO){
         try{
-            Category category = categoryRequestDTO.convertToEntity();
-            Category result = categoryService.createCategory(category);
-            CategoryResponseDTO categoryResponseDTO = result.convertToResponse();
+
+            CategoryResponseDTO result = categoryService.createCategory(categoryRequestDTO);
             logger.info(Line + "Logger Start Create " + Line);
-            logger.info(String.valueOf(categoryResponseDTO));
+            logger.info(String.valueOf(result));
             logger.info(Line + "Logger End Create " + Line);
-            return ResponseHandler.generateResponse("successfully created category", HttpStatus.OK, categoryResponseDTO);
+            return ResponseHandler.generateResponse("successfully created category", HttpStatus.OK, result);
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -114,19 +112,14 @@ public class CategoryController {
 
 
     //UPDATE
-    @PutMapping("/dashboard/categories/update/{id}")
+    @PutMapping("/dashboard/categories/edit/{id}")
     public ResponseEntity<Object> updateCategory(@PathVariable("id") Long id, @RequestBody CategoryRequestDTO categoryRequestDTO){
         try{
-            Optional<Category> targetCategory = categoryService.findById(id);
-            Category updateCategory = targetCategory.get();
-            updateCategory.setCategoriesId(id);
-            updateCategory.setName(categoryRequestDTO.getName());
-            categoryService.updateCategory(updateCategory);
-            CategoryResponseDTO categoryResponseDTO = updateCategory.convertToResponse();
+            CategoryResponseDTO results = categoryService.updateCategory(categoryRequestDTO,id);
             logger.info(Line + "Logger Start Update By Id " + Line);
-            logger.info(String.valueOf(categoryResponseDTO));
+            logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Update By Id " + Line);
-            return ResponseHandler.generateResponse("successfully updated category", HttpStatus.OK, categoryResponseDTO);
+            return ResponseHandler.generateResponse("successfully updated category", HttpStatus.OK, results);
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -143,7 +136,7 @@ public class CategoryController {
             logger.info(Line + "Logger Start Delete By Id " + Line);
             logger.info("Delete Success");
             logger.info(Line + "Logger End Delete By Id " + Line);
-            return ResponseHandler.generateResponse("Success Delete", HttpStatus.OK, null);
+            return ResponseHandler.generateResponse("Success Delete", HttpStatus.OK, "success delete category");
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
