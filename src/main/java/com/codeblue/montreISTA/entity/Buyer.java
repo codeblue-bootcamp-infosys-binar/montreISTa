@@ -15,6 +15,9 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "buyerId")
 public class Buyer extends AuditEntity {
 
     @Id

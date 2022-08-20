@@ -29,8 +29,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> findByProductId(Long id)throws ResourceNotFoundException {
-        List<Category> categories =categoryRepository.findByProductsProductProductId(id);
+    public List<Category> findByProductId(Long id){
+        List<Category> categories = categoryRepository.findByProductsProductProductId(id);
         if (categories.isEmpty()){
             throw new ResourceNotFoundException("Category does not exist");
         }
