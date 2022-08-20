@@ -28,6 +28,9 @@ public class WishlistServiceImpl implements WishlistService {
     @Override
     public List<WishlistResponseDTO> findAllWishlist() throws Exception{
         List<Wishlist> wishlists = wishlistRepository.findAllByOrderByWishlistIdAsc();
+        if(wishlists.isEmpty()){
+            throw new Exception("wishlist not found");
+        }
         return wishlists.stream().map(DTOConverter::convertWishlist)
                 .collect(Collectors.toList());
     }

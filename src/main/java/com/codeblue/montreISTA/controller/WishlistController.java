@@ -73,7 +73,7 @@ public class WishlistController {
             List<WishlistResponseDTO> wishlists = wishlistService.findAllWishlist();
             return ResponseHandler.generateResponse("successfully retrieved wishlist", HttpStatus.OK, wishlists);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "wishlist not found");
         }
     }
 
