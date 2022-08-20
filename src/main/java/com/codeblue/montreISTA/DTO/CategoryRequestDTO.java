@@ -10,12 +10,11 @@ import lombok.*;
 @Builder
 public class CategoryRequestDTO {
 
-    private Long categoryId;
+
     private String name;
 
     public Category convertToEntity(){
         return Category.builder()
-                .categoriesId(this.categoryId)
                 .name(this.name)
                 .build();
     }

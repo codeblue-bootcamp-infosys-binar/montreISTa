@@ -1,5 +1,7 @@
 package com.codeblue.montreISTA.service;
 
+import com.codeblue.montreISTA.DTO.CategoryRequestDTO;
+import com.codeblue.montreISTA.DTO.CategoryResponseDTO;
 import com.codeblue.montreISTA.entity.Category;
 import com.codeblue.montreISTA.entity.Product;
 
@@ -14,9 +16,9 @@ public interface CategoryService {
 
     Optional<Category> findById(Long id);
 
-    Category createCategory(Category category);
+    CategoryResponseDTO createCategory(CategoryRequestDTO categoryRequestDTO)throws Exception;
 
-    Category updateCategory(Category category);
+    CategoryResponseDTO updateCategory(CategoryRequestDTO categoryRequestDTO)throws Exception;
 
     void deleteCategory(Long id);
 }
