@@ -23,8 +23,11 @@ public class PhotoServiceImp implements PhotoService {
     private final CloudinaryService cloudinaryService;
 
     @Override
-    public List<PhotoResponseDTO> findAll() {
+    public List<PhotoResponseDTO> findAll() throws Exception{
         List<Photo> photos = photoRepository.findAllByOrderByPhotoIdAsc();
+        if(photos.isEmpty()){
+            throw new Exception("Photo not found");
+        }
         List<PhotoResponseDTO> results = new ArrayList<>();
         for (Photo data : photos) {
             PhotoResponseDTO photosDTO = data.convertToResponse();
@@ -38,7 +41,7 @@ public class PhotoServiceImp implements PhotoService {
     public List<PhotoResponseDTO> findBySellerName(Authentication authentication) throws Exception {
         List<Photo> photos = photoRepository.findByProductSellerUserNameIgnoreCaseContainingOrderByPhotoIdAsc(authentication.getName());
         if (photos.isEmpty()) {
-            throw new Exception("photo not found");
+            throw new Exception("Photo not found");
         }
         return photos.stream()
                 .map(Photo::convertToResponse)
@@ -52,18 +55,26 @@ public class PhotoServiceImp implements PhotoService {
 
     @Override
     public List<PhotoResponseDTO> findBySellerId(Long id) throws Exception {
-        return photoRepository.findByProductSellerSellerIdOrderByPhotoIdAsc(id)
+        List<PhotoResponseDTO> photos = photoRepository.findByProductSellerSellerIdOrderByPhotoIdAsc(id)
                 .stream()
                 .map(Photo::convertToResponse)
                 .collect(Collectors.toList());
+        if (photos.isEmpty()) {
+            throw new Exception("Photo not found");
+        }
+        return photos;
     }
 
     @Override
     public List<PhotoResponseDTO> findByProductId(Long id) throws Exception {
-        return photoRepository.findByProductProductIdOrderByPhotoIdAsc(id)
+        List<PhotoResponseDTO> photos = photoRepository.findByProductProductIdOrderByPhotoIdAsc(id)
                 .stream()
                 .map(Photo::convertToResponse)
                 .collect(Collectors.toList());
+        if (photos.isEmpty()) {
+            throw new Exception("Photo not found");
+        }
+        return photos;
     }
 
     @Override

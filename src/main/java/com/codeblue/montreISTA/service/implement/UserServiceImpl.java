@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -272,17 +273,20 @@ public class UserServiceImpl implements UserService {
             addRole.setUser(user);
             userRoleRepository.save(addRole);
         }else {
-            boolean check = requestRole.stream().anyMatch(r->r.contains("ROLE_ADMIN"));
+            boolean check = requestRole.stream().anyMatch(role->role.contains("ROLE_ADMIN"));
             if(check){
                 throw new Exception("User need admin for ROLE_ADMIN");
             }
             requestRole.forEach(role->{
                 try{
-                    Role roleGet = roleRepository.findByRoleNameIgnoreCase(role).orElseThrow(()->new Exception("Role not found"));
-                    UserRole addRole = new UserRole();
-                    addRole.setRole(roleGet);
-                    addRole.setUser(user);
-                    userRoleRepository.save(addRole);
+                    List<UserRole> userRoles = userRoleRepository.findByRoleRoleNameIgnoreCase(role);
+                    boolean checkUser = userRoles.stream().anyMatch(userRole -> Objects.equals(userRole.getUser().getUserId(), user.getUserId()));
+                    if(!checkUser){
+                        Role roleGet = roleRepository.findByRoleNameIgnoreCase(role).orElseThrow(()->new Exception("Role not found"));
+                        UserRole addRole = new UserRole();
+                        addRole.setRole(roleGet);
+                        addRole.setUser(user);
+                        userRoleRepository.save(addRole);}
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }});

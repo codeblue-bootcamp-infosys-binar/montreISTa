@@ -56,8 +56,12 @@ public class BuyerServiceImpl implements BuyerService {
     public void deleteBuyer(Long id) { buyerRepository.deleteById(id); }
 
     @Override
-    public List<BuyerResponseDTO> findByUsername(String keyword) {
-        return buyerRepository.findByUserUsername(keyword).stream().map(Buyer::convertToResponse)
+    public List<BuyerResponseDTO> findByUsername(String keyword) throws Exception{
+        List<BuyerResponseDTO> results = buyerRepository.findByUserUsername(keyword).stream().map(Buyer::convertToResponse)
                 .collect(Collectors.toList());
+        if(results.isEmpty()){
+            throw new Exception("Buyer not found");
+        }
+        return results;
     }
 }
