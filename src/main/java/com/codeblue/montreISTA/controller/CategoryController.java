@@ -26,7 +26,6 @@ import java.util.Optional;
 public class CategoryController {
 
     private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
-
     private static final String Line = "====================";
     @Autowired
     CategoryService categoryService;
