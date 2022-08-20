@@ -10,9 +10,7 @@ import lombok.*;
 @Builder
 public class CategoryRequestDTO {
 
-
     private String name;
-
     public Category convertToEntity(){
         return Category.builder()
                 .name(this.name)

@@ -93,7 +93,7 @@ public class CategoryController {
     }
 
     //CREATE
-    @PostMapping("/dashboard/categories/create")
+    @PostMapping("/dashboard/categories/post")
     public ResponseEntity<Object> createCategory(@RequestBody CategoryRequestDTO categoryRequestDTO){
         try{
 
@@ -112,19 +112,14 @@ public class CategoryController {
 
 
     //UPDATE
-    @PutMapping("/dashboard/categories/update/{id}")
+    @PutMapping("/dashboard/categories/edit/{id}")
     public ResponseEntity<Object> updateCategory(@PathVariable("id") Long id, @RequestBody CategoryRequestDTO categoryRequestDTO){
         try{
-            Optional<Category> targetCategory = categoryService.findById(id);
-            Category updateCategory = targetCategory.get();
-            updateCategory.setCategoriesId(id);
-            updateCategory.setName(categoryRequestDTO.getName());
-            Category category = categoryService.updateCategory(updateCategory);
-            CategoryResponseDTO categoryResponseDTO = category.convertToResponse();
+            CategoryResponseDTO results = categoryService.updateCategory(categoryRequestDTO,id);
             logger.info(Line + "Logger Start Update By Id " + Line);
-            logger.info(String.valueOf(categoryResponseDTO));
+            logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Update By Id " + Line);
-            return ResponseHandler.generateResponse("successfully updated category", HttpStatus.OK, categoryResponseDTO);
+            return ResponseHandler.generateResponse("successfully updated category", HttpStatus.OK, results);
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -141,7 +136,7 @@ public class CategoryController {
             logger.info(Line + "Logger Start Delete By Id " + Line);
             logger.info("Delete Success");
             logger.info(Line + "Logger End Delete By Id " + Line);
-            return ResponseHandler.generateResponse("Success Delete", HttpStatus.OK, null);
+            return ResponseHandler.generateResponse("Success Delete", HttpStatus.OK, "success delete category");
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());

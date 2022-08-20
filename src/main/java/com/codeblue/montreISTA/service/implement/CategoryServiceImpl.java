@@ -57,9 +57,9 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryResponseDTO updateCategory(CategoryRequestDTO categoryRequestDTO)throws Exception {
+    public CategoryResponseDTO updateCategory(CategoryRequestDTO categoryRequestDTO,Long id)throws Exception {
         Category category = categoryRequestDTO.convertToEntity();
-        categoryRepository.findById(category.getCategoriesId()).orElseThrow(()->new ResourceNotFoundException("Category does not exist"));
+        categoryRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Category does not exist"));
         Optional<Category> categoryCheck = categoryRepository.findByNameIgnoreCase(category.getName());
         if (categoryCheck.isPresent()){
             throw new Exception("Category has been exist");
@@ -68,12 +68,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void deleteCategory(Long id) throws RuntimeException{
+    public void deleteCategory(Long id){
         Optional<Category> optionalCategory = categoryRepository.findById(id);
         if(optionalCategory.isEmpty()){
             throw new RuntimeException("Category does not exist with id " + id);
         }
-
         categoryRepository.deleteById(id);
     }
 }

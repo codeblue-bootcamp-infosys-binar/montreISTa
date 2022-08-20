@@ -18,7 +18,7 @@ public interface CategoryService {
 
     CategoryResponseDTO createCategory(CategoryRequestDTO categoryRequestDTO)throws Exception;
 
-    CategoryResponseDTO updateCategory(CategoryRequestDTO categoryRequestDTO)throws Exception;
+    CategoryResponseDTO updateCategory(CategoryRequestDTO categoryRequestDTO,Long id)throws Exception;
 
     void deleteCategory(Long id);
 }
