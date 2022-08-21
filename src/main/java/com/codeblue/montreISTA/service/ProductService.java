@@ -5,17 +5,16 @@ import com.codeblue.montreISTA.entity.Product;
 import org.springframework.security.core.Authentication;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ProductService {
 
-    List<Product> findAllProduct(Integer page, String sort, boolean descending);
+    List<Product> findAllProduct(Integer page, String sort, boolean descending)throws Exception;
 
     Product findBySellerUsername(String keyword) throws Exception;
 
     Product findProductById(Long id)throws Exception;
 
-    List<Product> findByProductName(String name, Integer page, String sort, boolean descending);
+    List<Product> findByProductName(String name, Integer page, String sort, boolean descending)throws Exception;
 
     List<Product> findBySellerName(String name, Integer page, String sort, boolean descending);
 
@@ -23,9 +22,7 @@ public interface ProductService {
 
     List<Product> findByCategoryId(Long id, Integer page, String sort, boolean descending);
     
-     List<Product> findByCategoryName(String name)throws Exception;
-
-    List<Product> findByCategoryName(String name, Integer page, String sort, boolean descending);
+     List<Product> findByCategoryName(String name, Integer page, String sort, boolean descending);
 
     List<Product> findProductBySellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
 
