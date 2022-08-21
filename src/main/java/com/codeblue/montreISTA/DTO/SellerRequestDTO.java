@@ -16,7 +16,7 @@ public class SellerRequestDTO {
 
 public Seller convertToEntity(User user){
     return Seller.builder()
-            .userId(user)
+            .user(user)
             .storeName(this.storeName)
             .storeAddress(this.storeAddress)
             .build();

@@ -9,9 +9,10 @@ import java.util.List;
 @Repository
 public interface CartRepository extends JpaRepository<Cart,Long> {
     List<Cart> findAllByOrderByCartIdAsc();
+    List<Cart> findByOrderOrderId(long id);
     List<Cart> findByBuyerUserUsernameIgnoreCaseContainingOrderByCartIdAsc(String keyword);
     List<Cart> findByBuyerBuyerIdOrderByCartIdDesc(long id);
-    List<Cart> findByProductSellerUserIdUsernameIgnoreCaseContainingOrderByCartIdAsc(String keyword);
+    List<Cart> findByProductSellerUserUsernameIgnoreCaseContainingOrderByCartIdAsc(String keyword);
     List<Cart> findByProductProductNameIgnoreCaseContainingOrderByCartIdAsc(String keyword);
     List<Cart> findByProductCategoriesCategoryNameIgnoreCaseContainingOrderByCartIdAsc(String keyword);
 }

@@ -19,7 +19,7 @@ public class HistoryTransactionDetail extends AuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionDetailId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "history_transaction_id")
     private HistoryTransaction historyTransaction;
 
@@ -41,7 +41,7 @@ public class HistoryTransactionDetail extends AuditEntity {
         return TransactionDetailResponseDTO.builder()
                 .transaction_detail_id(this.getTransactionDetailId())
                 .seller_id(this.getHistoryTransaction().getSeller().getSellerId())
-                .seller_name(this.getHistoryTransaction().getSeller().getStoreName())
+                .seller_name(this.getHistoryTransaction().getSeller().getUser().getName())
                 .store_name(this.getHistoryTransaction().getSeller().getStoreName())
                 .store_address(this.getHistoryTransaction().getSeller().getStoreAddress())
                 .buyer_id(this.getHistoryTransaction().getBuyer().getBuyerId())

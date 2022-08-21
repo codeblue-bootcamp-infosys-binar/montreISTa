@@ -1,7 +1,5 @@
 package com.codeblue.montreISTA.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,9 +11,6 @@ import javax.persistence.*;
 @Entity
 @Builder
 @Table(name = "user_role")
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "userRoleId")
 public class UserRole extends AuditEntity{
 
     @Id

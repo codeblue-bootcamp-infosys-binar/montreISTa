@@ -11,14 +11,14 @@ import java.util.Optional;
 @Repository
 public interface OrderRepository extends JpaRepository<Order,Long> {
 
-    List<Order> findByListCartProductProductNameContaining(String keyword);
+    List<Order> findByListCartProductProductNameIgnoreCaseContaining(String keyword);
     List<Order> findByListCartBuyerUserUsernameContaining(String keyword);
-    List<Order> findByListCartProductSellerStoreNameContaining(String keyword);
+    List<Order> findByListCartProductSellerStoreNameIgnoreCaseContaining(String keyword);
     List<Order> findByListCartBuyerBuyerIdOrderByOrderIdAsc(Long id);
     Order findFirstByOrderByOrderIdDesc();
     Optional<Order> findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(String keyword);
     Optional<Order> findFirstByListCartBuyerBuyerIdOrderByOrderIdDesc(Long id);
     Optional<Order> findFirstByListCartProductSellerSellerIdOrderByOrderIdDesc(Long id);
-    Optional<Order> findFirstByListCartProductSellerUserIdUsernameOrderByOrderIdDesc(String keyword);
+    Optional<Order> findFirstByListCartProductSellerUserUsernameOrderByOrderIdDesc(String keyword);
     List<Order> findAllByOrderByOrderIdAsc();
 }

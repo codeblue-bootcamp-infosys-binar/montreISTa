@@ -12,7 +12,7 @@ import java.util.List;
 public class UserResponseDTO {
     private Long user_id;
     private String username;
-    private String email_id;
+    private String email;
     private String address;
     private String name;
     private String phone;
@@ -24,7 +24,7 @@ public class UserResponseDTO {
         return "UserResponseDTO{" +
                 "user_id=" + user_id +
                 ", username='" + username + '\'' +
-                ", email_id='" + email_id + '\'' +
+                ", email_id='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", name='" + name + '\'' +
                 ", photo='" + photo + '\'' +

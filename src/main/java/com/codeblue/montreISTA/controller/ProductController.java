@@ -25,9 +25,7 @@ import java.util.*;
 public class ProductController {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
-
     private static final String Line = "====================";
-
     private final ProductService productService;
 
     //GET ALL PRODUCTS
@@ -61,13 +59,13 @@ public class ProductController {
         }
     }
 
-
     //GET ALL PRODUCTS BY SELLER ID
     @GetMapping("user/products/my-product")
     public ResponseEntity<Object> getProductBySellerId(Authentication authentication,
                                                        @RequestParam(required = false) String sort,
                                                        @RequestParam(required = false) Integer page,
                                                        @RequestParam(required = false) boolean descending){
+
         try{
             List<Product> products = productService.findProductBySellerId(authentication, page, sort, descending);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
@@ -87,8 +85,8 @@ public class ProductController {
     @GetMapping("/products/{id}")
     public ResponseEntity<Object> getProductById(@PathVariable("id") Long id){
         try{
-            Optional<Product> product = productService.findProductById(id);
-            ProductResponseDTO productResponseDTO = DTOConverter.convertOneProducts(product.get());
+            Product product = productService.findProductById(id);
+            ProductResponseDTO productResponseDTO = DTOConverter.convertOneProducts(product);
             logger.info(Line + "Logger Start Get product id " + Line);
             logger.info(String.valueOf(productResponseDTO));
             logger.info(Line + "Logger End Get product id " + Line);
@@ -205,7 +203,7 @@ public class ProductController {
     }
 
     //CREATE PRODUCT
-    @PostMapping("/user/products/create")
+    @PostMapping("/user/products/post-product")
     public ResponseEntity<Object> createProduct(@RequestBody ProductRequestDTO productRequestDTO, Authentication authentication){
         try {
             Product newProduct = productService.createProduct(productRequestDTO,authentication);
@@ -223,7 +221,7 @@ public class ProductController {
     }
 
     //UPDATE PRODUCT
-    @PutMapping("/user/products/update/{id}")
+    @PutMapping("/user/products/edit-product/{id}")
     public ResponseEntity<Object> updateProduct(@RequestBody ProductRequestDTO productRequestDTO, @PathVariable("id") Long id,Authentication authentication){
         try{
             Product updateProduct = productService.updateProduct(productRequestDTO, id,authentication);

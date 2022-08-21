@@ -34,19 +34,19 @@ public class OrderController {
      * Update Order
      * @return
      */
-    @PutMapping("/user/orderNow/buyer")
+    @PutMapping("/user/order-now")
     public ResponseEntity<Object> updateOrder(@RequestBody OrderRequestDTO orderRequestDTO, Authentication authentication){
         try {
             OrderResponseDTO results = orderService.updateOrder(orderRequestDTO,authentication.getName());
             logger.info(Line + "Logger Start Update By Id " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Update By Id " + Line);
-            return ResponseHandler.generateResponse("successfully retrieved order", HttpStatus.CREATED, results);
+            return ResponseHandler.generateResponse("successfully make order", HttpStatus.CREATED, results);
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,"Failed Order");
         }
     }
     
@@ -76,12 +76,12 @@ public class OrderController {
             logger.info(Line + "Logger Start Delete By Id " + Line);
             logger.info("Delete Success");
             logger.info(Line + "Logger End Delete By Id " + Line);
-            return ResponseHandler.generateResponse("successfully deleted Order", HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse("successfully deleted Order", HttpStatus.MULTI_STATUS, "Success delete");
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Order no value!");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Failed delete order!");
         }
 
     }
@@ -143,21 +143,21 @@ public class OrderController {
      * @param
      * @return
      */
-    @GetMapping("/dashboard/order/buyer/{id}")
-    public ResponseEntity<Object> findByBuyerUserName(@PathVariable("id") Long id){
-        try{
-            List<OrderResponseDTO> results = orderService.findByBuyerId(id);
-            logger.info(Line + "Logger Start Get Order By Username  " + Line);
-            logger.info(String.valueOf(results));
-            logger.info(Line + "Logger End Get Order By Username " + Line);
-            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
-        } catch (Exception e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-        }
-    }
+//    @GetMapping("/dashboard/order/buyer/{id}")
+//    public ResponseEntity<Object> findByBuyerUserName(@PathVariable("id") Long id){
+//        try{
+//            List<OrderResponseDTO> results = orderService.findByBuyerId(id);
+//            logger.info(Line + "Logger Start Get Order By Username  " + Line);
+//            logger.info(String.valueOf(results));
+//            logger.info(Line + "Logger End Get Order By Username " + Line);
+//            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
+//        } catch (Exception e){
+//            logger.error(Line + " Logger Start Error " + Line);
+//            logger.error(e.getMessage());
+//            logger.error(Line + " Logger End Error " + Line);
+//            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed found order");
+//        }
+//    }
 
     /**
      * find By Product.ProductName
@@ -176,7 +176,7 @@ public class OrderController {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Delete Order!");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Found Order!");
         }
     }
 

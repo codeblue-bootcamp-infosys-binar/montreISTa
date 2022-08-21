@@ -28,6 +28,9 @@ public class WishlistServiceImpl implements WishlistService {
     @Override
     public List<WishlistResponseDTO> findAllWishlist() throws Exception{
         List<Wishlist> wishlists = wishlistRepository.findAllByOrderByWishlistIdAsc();
+        if(wishlists.isEmpty()){
+            throw new Exception("wishlist not found");
+        }
         return wishlists.stream().map(DTOConverter::convertWishlist)
                 .collect(Collectors.toList());
     }
@@ -42,7 +45,7 @@ public class WishlistServiceImpl implements WishlistService {
     public WishlistResponseDTO createWishlist(WishlistRequestDTO wishlist, Authentication authentication) throws Exception{
         Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as buyer"));
         Product product = productRepository.findById(wishlist.getProductId()).orElseThrow(()->new Exception("Product not found"));
-        if(buyer.getUser().getUserId().equals(product.getSeller().getUserId().getUserId())){
+        if(buyer.getUser().getUserId().equals(product.getSeller().getUser().getUserId())){
             throw new Exception("You can't order your own product honey");
         }
         Wishlist wishlistSave = wishlist.convertToEntity(buyer,product);

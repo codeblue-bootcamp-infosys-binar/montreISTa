@@ -101,6 +101,7 @@ public class TransactionServiceImpl implements TransactionService {
         Pageable pageable = Pagination.paginate(page, sort, descending);
 
         List<HistoryTransactionDetail> transactionDetail = transactionDetailsRepository.findByHistoryTransactionSellerSellerIdOrderByTransactionDetailIdAsc(seller.getSellerId(),pageable);
+
         if(transactionDetail.isEmpty()){
             throw new Exception("You don't have product");
         }
@@ -175,10 +176,8 @@ public class TransactionServiceImpl implements TransactionService {
             HistoryTransactionDetail transactionDetailSave = transactionDetailsRepository.save(transactionDetail);
             results.add(transactionDetailSave.convertToResponse());
         }
-        Order orderDelete = orderRepository.findFirstByListCartBuyerBuyerIdOrderByOrderIdDesc(buyer.getBuyerId()).orElseThrow(Exception::new);
+        Order orderDelete = orderRepository.findFirstByListCartBuyerBuyerIdOrderByOrderIdDesc(buyer.getBuyerId()).orElseThrow(()->new Exception("Order not found"));
         orderRepository.deleteById(orderDelete.getOrderId());
-        List<Cart> Carts = cartRepository.findByBuyerBuyerIdOrderByCartIdDesc(buyer.getBuyerId());
-        cartRepository.deleteAll(Carts);
         return results;
     }
 
