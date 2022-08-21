@@ -7,11 +7,15 @@ import org.springframework.security.core.Authentication;
 import java.util.List;
 
 public interface TransactionService {
-    List<TransactionResponseDTO> findAllTransaction();
+
+    List<TransactionResponseDTO> findAllTransaction(Integer page, String sort, boolean descending);
+
     List<TransactionDetailResponseDTO> findAllTransactionDetail(Integer page, String sort, boolean descending);
 
-    List<TransactionResponseDTO> findByTransactionBuyerId(Authentication authentication) throws Exception;
-    List<TransactionResponseDTO> findByTransactionSellerId(Authentication authentication) throws Exception;
+    List<TransactionResponseDTO> findByTransactionBuyerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
+
+    List<TransactionResponseDTO> findByTransactionSellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
+
     List<TransactionDetailResponseDTO> findByTransactionDetailBuyerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
     List<TransactionDetailResponseDTO> findByTransactionDetailSellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
 

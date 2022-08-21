@@ -30,8 +30,11 @@ public class TransactionServiceImpl implements TransactionService {
     private final SellerRepository sellerRepository;
 
     @Override
-    public List<TransactionResponseDTO> findAllTransaction() {
-        return transactionRepository.findAllByOrderByHistoryTransactionIdAsc().stream()
+    public List<TransactionResponseDTO> findAllTransaction(Integer page, String sort, boolean descending) {
+
+        Pageable pageable = Pagination.paginate(page, sort, descending);
+
+        return transactionRepository.findAllByOrderByHistoryTransactionIdAsc(pageable).stream()
                 .map(HistoryTransaction::convertToResponse)
                 .collect(Collectors.toList());
     }
@@ -47,9 +50,12 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<TransactionResponseDTO> findByTransactionBuyerId(Authentication authentication) throws Exception {
+    public List<TransactionResponseDTO> findByTransactionBuyerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception {
         Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please order first"));
-        List<HistoryTransaction> transaction = transactionRepository.findByBuyerBuyerIdOrderByHistoryTransactionIdAsc(buyer.getBuyerId());
+
+        Pageable pageable = Pagination.paginate(page, sort, descending);
+
+        List<HistoryTransaction> transaction = transactionRepository.findByBuyerBuyerIdOrderByHistoryTransactionIdAsc(buyer.getBuyerId(), pageable);
         if(transaction.isEmpty()){
             throw new Exception("You don't have order");
         }
@@ -59,9 +65,12 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<TransactionResponseDTO> findByTransactionSellerId(Authentication authentication) throws Exception {
+    public List<TransactionResponseDTO> findByTransactionSellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception {
         Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
-        List<HistoryTransaction> transaction = transactionRepository.findBySellerSellerIdOrderByHistoryTransactionIdAsc(seller.getSellerId());
+
+        Pageable pageable = Pagination.paginate(page, sort, descending);
+
+        List<HistoryTransaction> transaction = transactionRepository.findBySellerSellerIdOrderByHistoryTransactionIdAsc(seller.getSellerId(), pageable);
         if(transaction.isEmpty()){
             throw new Exception("You don't have product");
         }
