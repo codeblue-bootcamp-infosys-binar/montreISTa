@@ -6,7 +6,6 @@ import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.helper.DTOConverter;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.*;
-import com.codeblue.montreISTA.service.implement.SellerServiceImpl;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -31,9 +30,12 @@ public class ProductController {
 
     //GET ALL PRODUCTS
     @GetMapping("/products")
-    public ResponseEntity<Object> getAllProduct(){
+    public ResponseEntity<Object> getAllProduct(@RequestParam(required = false) String sort,
+                                                @RequestParam(required = false) Integer page,
+                                                @RequestParam(required = false) boolean descending
+    ){
         try{
-            List<Product> products = productService.findAllProduct();
+            List<Product> products = productService.findAllProduct(page, sort, descending);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
             logger.info("==================== Logger Start Get All Products     ====================");
             for(Product productData : products){
@@ -58,10 +60,14 @@ public class ProductController {
     }
 
     //GET ALL PRODUCTS BY SELLER ID
-    @GetMapping("/user/products/my-product")
-    public ResponseEntity<Object> getProductBySellerId(Authentication authentication){
+    @GetMapping("user/products/my-product")
+    public ResponseEntity<Object> getProductBySellerId(Authentication authentication,
+                                                       @RequestParam(required = false) String sort,
+                                                       @RequestParam(required = false) Integer page,
+                                                       @RequestParam(required = false) boolean descending){
+
         try{
-            List<Product> products = productService.findProductBySellerId(authentication);
+            List<Product> products = productService.findProductBySellerId(authentication, page, sort, descending);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
             logger.info(Line + "Logger Start Get seller id " + Line);
             logger.info(String.valueOf(productResponseDTOS));
@@ -95,9 +101,12 @@ public class ProductController {
 
     //GET BY PRODUCT NAME
     @GetMapping("/products/product-name")
-    public ResponseEntity<Object> getProductByProductName(@RequestParam String productName){
+    public ResponseEntity<Object> getProductByProductName(@RequestParam String productName,
+                                                          @RequestParam(required = false) String sort,
+                                                          @RequestParam(required = false) Integer page,
+                                                          @RequestParam(required = false) boolean descending){
         try{
-            List<Product> products = productService.findByProductName(productName);
+            List<Product> products = productService.findByProductName(productName, page, sort, descending);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
             logger.info(Line + "Logger Start Get productname " + Line);
             logger.info(String.valueOf(productResponseDTOS));
@@ -113,9 +122,12 @@ public class ProductController {
 
     //GET BY SELLER USERNAME
     @GetMapping("/products/seller-name")
-    public ResponseEntity<Object> getProductBySellerName(@RequestParam String sellerName){
+    public ResponseEntity<Object> getProductBySellerName(@RequestParam String sellername,
+                                                         @RequestParam(required = false) String sort,
+                                                         @RequestParam(required = false) Integer page,
+                                                         @RequestParam(required = false) boolean descending){
         try{
-            List<Product> products = productService.findBySellerName(sellerName);
+            List<Product> products = productService.findBySellerName(sellername, page, sort, descending);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
             logger.info(Line + "Logger Start Get sellername " + Line);
             logger.info(String.valueOf(productResponseDTOS));
@@ -131,9 +143,12 @@ public class ProductController {
 
     //GET BY STORE NAME
     @GetMapping("/products/store-name")
-    public ResponseEntity<Object> getProductByStoreName(@RequestParam String storeName){
+    public ResponseEntity<Object> getProductByStoreName(@RequestParam String storeName,
+                                                        @RequestParam(required = false) String sort,
+                                                        @RequestParam(required = false) Integer page,
+                                                        @RequestParam(required = false) boolean descending){
         try{
-            List<Product> products = productService.findByStoreName(storeName);
+            List<Product> products = productService.findByStoreName(storeName, page, sort, descending);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
             logger.info(Line + "Logger Start Get store name " + Line);
             logger.info(String.valueOf(productResponseDTOS));
@@ -147,9 +162,12 @@ public class ProductController {
         }
     }
     @GetMapping("/products/category-name")
-    public ResponseEntity<Object> getProductByCategoryName(@RequestParam String categoryName){
+    public ResponseEntity<Object> getProductByCategoryName(@RequestParam String categoryName,
+                                                           @RequestParam(required = false) String sort,
+                                                           @RequestParam(required = false) Integer page,
+                                                           @RequestParam(required = false) boolean descending){
         try{
-            List<Product> products = productService.findByCategoryName(categoryName);
+            List<Product> products = productService.findByCategoryName(categoryName, page, sort, descending);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
             logger.info(Line + "Logger Start Get store name " + Line);
             logger.info(String.valueOf(productResponseDTOS));
@@ -165,9 +183,12 @@ public class ProductController {
 
     //GET BY CATEGORY ID
     @GetMapping("/products/category/{id}")
-    public ResponseEntity<Object> getProductsByCategoryId(@PathVariable("id") Long id){
+    public ResponseEntity<Object> getProductsByCategoryId(@PathVariable("id") Long id,
+                                                          @RequestParam(required = false) String sort,
+                                                          @RequestParam(required = false) Integer page,
+                                                          @RequestParam(required = false) boolean descending){
         try{
-            List<Product> products = productService.findByCategoryId(id);
+            List<Product> products = productService.findByCategoryId(id, page, sort, descending);
             List<ProductResponseDTO> productResponseDTOS = DTOConverter.convertProducts(products);
             logger.info(Line + "Logger Start Get By Id " + Line);
             logger.info(String.valueOf(productResponseDTOS));
