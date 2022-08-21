@@ -36,7 +36,7 @@ public class CartController {
      * @param
      * @return
      */
-    @GetMapping("/user/cart/buyer")
+    @GetMapping("/user/my-cart/buyer")
     public ResponseEntity<Object> findByBuyer(Authentication authentication){
         try{
             List<CartResponseDTO> results = cartService.findByBuyer(authentication.getName());
@@ -57,7 +57,7 @@ public class CartController {
      * @param
      * @return
      */
-    @GetMapping("/user/cart/seller")
+    @GetMapping("/user/my-cart/seller")
     public ResponseEntity<Object> findBySeller(Authentication authentication){
         try{
             List<CartResponseDTO> results = cartService.findBySeller(authentication.getName());
@@ -85,12 +85,12 @@ public class CartController {
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Create " + Line);
-            return ResponseHandler.generateResponse("successfully create product category", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully create cart", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed create product category!");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed create cart!");
         }
     }
 
@@ -101,12 +101,12 @@ public class CartController {
             logger.info(Line + "Logger Start Get By Id " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get By Id " + Line);
-            return ResponseHandler.generateResponse("successfully create product category", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully create cart", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed create product category! ");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed create cart from wishlist! ");
         }
     }
 
@@ -123,12 +123,12 @@ public class CartController {
             logger.info(Line + "Logger Start Update By Id " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Update By Id " + Line);
-            return ResponseHandler.generateResponse("successfully update product category", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully update cart", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed update product category!");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed update cart!");
         }
     }
 
@@ -214,7 +214,7 @@ public class CartController {
      * @param keyword
      * @return
      */
-    @GetMapping("/dashboard/cart/productname")
+    @GetMapping("/dashboard/cart/product-name")
     public ResponseEntity<Object> findByProductName(@Param("keyword") String keyword){
         try{
             List<CartResponseDTO> results = cartService.findByProductName(keyword);
