@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -30,18 +29,17 @@ public class ProductServiceImpl implements ProductService {
     private final ProductCategoryRepository productCategoryRepository;
 
     public List<Product> findAllProduct(Integer page, String sort, boolean descending)throws Exception {
-        List<Product> products = productRepository.findAll(pageable).getContent();
-        if(products.isEmpty()){
-            throw new Exception("Product not found");
-        }
         Pageable pageable = Pagination.paginate(page, sort, descending);
-
+        List<Product> products = productRepository.findAll(pageable).getContent();
+//        if(products.isEmpty()){
+//            throw new Exception("Product not found");
+//        }
         return products;
     }
 
     @Override
     public Product findBySellerUsername(String keyword) throws Exception{
-        return productRepository.findFirstBySellerUserIdUsernameOrderByProductIdDesc(keyword)
+        return productRepository.findFirstBySellerUserUsernameOrderByProductIdDesc(keyword)
                 .orElseThrow(()->new Exception("Product not found"));
     }
 
@@ -63,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
 
         Pageable pageable = Pagination.paginate(page, sort, descending);
 
-        return productRepository.findBySellerUserIdNameIgnoreCaseContaining(name, pageable);
+        return productRepository.findBySellerUserNameIgnoreCaseContaining(name, pageable);
     }
 
     @Override
@@ -82,6 +80,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findByCategoriesCategoryCategoriesId(id, pageable);
     }
 
+
     @Override
     public List<Product> findByCategoryName(String name, Integer page, String sort, boolean descending) {
 
@@ -95,7 +94,7 @@ public class ProductServiceImpl implements ProductService {
 
         Pageable pageable = Pagination.paginate(page, sort, descending);
 
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller"));
         List<Product> product = productRepository.findBySellerSellerId(seller.getSellerId(), pageable);
         if(product.isEmpty()){
             throw new Exception("You don't have a product");
@@ -105,7 +104,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product createProduct(ProductRequestDTO productRequestDTO,Authentication authentication) throws Exception{
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
 
         Pageable pageable = Pagination.paginate(0,"price", false);
         List<Product> products = productRepository.findBySellerSellerId(seller.getSellerId(), pageable);
@@ -173,7 +172,7 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteById(id);
     }
 
-    public void addCategory(List<String> categories, Product newProduct)throws Exception{
+    public void addCategory(List<String> categories, Product newProduct) {
         categories.forEach(category->{
             try {
                 List<ProductCategory> productCategories = productCategoryRepository.findByCategoryNameIgnoreCase(category);

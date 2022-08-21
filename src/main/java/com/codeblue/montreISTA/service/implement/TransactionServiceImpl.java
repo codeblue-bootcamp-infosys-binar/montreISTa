@@ -23,7 +23,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionRepository transactionRepository;
     private final TransactionDetailsRepository transactionDetailsRepository;
-    private final CartRepository cartRepository;
+
     private final OrderRepository orderRepository;
     private final CategoryService categoryService;
     private final BuyerRepository buyerRepository;
@@ -66,7 +66,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionResponseDTO> findByTransactionSellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception {
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
 
         Pageable pageable = Pagination.paginate(page, sort, descending);
 
@@ -96,7 +96,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionDetailResponseDTO> findByTransactionDetailSellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception {
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
 
         Pageable pageable = Pagination.paginate(page, sort, descending);
 
