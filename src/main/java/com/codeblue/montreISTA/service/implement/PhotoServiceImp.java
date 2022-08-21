@@ -23,8 +23,11 @@ public class PhotoServiceImp implements PhotoService {
     private final CloudinaryService cloudinaryService;
 
     @Override
-    public List<PhotoResponseDTO> findAll() {
+    public List<PhotoResponseDTO> findAll() throws Exception{
         List<Photo> photos = photoRepository.findAllByOrderByPhotoIdAsc();
+        if(photos.isEmpty()){
+            throw new Exception("Photo not found");
+        }
         List<PhotoResponseDTO> results = new ArrayList<>();
         for (Photo data : photos) {
             PhotoResponseDTO photosDTO = data.convertToResponse();
@@ -36,9 +39,9 @@ public class PhotoServiceImp implements PhotoService {
 
     @Override
     public List<PhotoResponseDTO> findBySellerName(Authentication authentication) throws Exception {
-        List<Photo> photos = photoRepository.findByProductSellerUserIdNameIgnoreCaseContainingOrderByPhotoIdAsc(authentication.getName());
+        List<Photo> photos = photoRepository.findByProductSellerUserNameIgnoreCaseContainingOrderByPhotoIdAsc(authentication.getName());
         if (photos.isEmpty()) {
-            throw new Exception("photo not found");
+            throw new Exception("Photo not found");
         }
         return photos.stream()
                 .map(Photo::convertToResponse)
@@ -52,24 +55,32 @@ public class PhotoServiceImp implements PhotoService {
 
     @Override
     public List<PhotoResponseDTO> findBySellerId(Long id) throws Exception {
-        return photoRepository.findByProductSellerSellerIdOrderByPhotoIdAsc(id)
+        List<PhotoResponseDTO> photos = photoRepository.findByProductSellerSellerIdOrderByPhotoIdAsc(id)
                 .stream()
                 .map(Photo::convertToResponse)
                 .collect(Collectors.toList());
+        if (photos.isEmpty()) {
+            throw new Exception("Photo not found");
+        }
+        return photos;
     }
 
     @Override
     public List<PhotoResponseDTO> findByProductId(Long id) throws Exception {
-        return photoRepository.findByProductProductIdOrderByPhotoIdAsc(id)
+        List<PhotoResponseDTO> photos = photoRepository.findByProductProductIdOrderByPhotoIdAsc(id)
                 .stream()
                 .map(Photo::convertToResponse)
                 .collect(Collectors.toList());
+        if (photos.isEmpty()) {
+            throw new Exception("Photo not found");
+        }
+        return photos;
     }
 
     @Override
     public List<PhotoResponseDTO> createPhoto(Long productId,List<MultipartFile> files, Authentication authentication) throws Exception {
         Product product = productRepository.findById(productId).orElseThrow(()->new Exception("Product not found"));
-        if(!product.getSeller().getUserId().getName().equals(authentication.getName()))
+        if(!product.getSeller().getUser().getName().equals(authentication.getName()))
         {
             throw new Exception("You only can add photo for your product");
         }
@@ -95,7 +106,7 @@ public class PhotoServiceImp implements PhotoService {
     @Override
     public PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO, Long id,Authentication authentication) throws Exception {
         Product product = productRepository.findById(photoRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not found"));
-        if(!product.getSeller().getUserId().getName().equals(authentication.getName()))
+        if(!product.getSeller().getUser().getName().equals(authentication.getName()))
         {
             throw new Exception("You only can update photo for your product");
         }
@@ -109,7 +120,7 @@ public class PhotoServiceImp implements PhotoService {
     @Override
     public void deleteById(Long id, Authentication authentication)throws Exception {
         Photo photo = photoRepository.findById(id).orElseThrow(() -> new Exception("Photo not found"));
-        if(!photo.getProduct().getSeller().getUserId().getUsername().equals(authentication.getName()))
+        if(!photo.getProduct().getSeller().getUser().getUsername().equals(authentication.getName()))
         {
             throw new Exception("You only can delete photo for your product");
         }

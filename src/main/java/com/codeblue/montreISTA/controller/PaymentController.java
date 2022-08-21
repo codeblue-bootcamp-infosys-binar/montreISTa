@@ -70,7 +70,7 @@ public class PaymentController {
                 logger.info("Payment Code  : " + paymentData.getPaymentCode());
                 payment.put("Payment ID      ", paymentData.getPaymentId());
                 payment.put("Name            ", paymentData.getName());
-                payment.put("Payment Co      ", paymentData.getPaymentCode());
+                payment.put("Payment Code      ", paymentData.getPaymentCode());
                 maps.add(payment);
             }
             logger.info("==================== Logger End Get All Payments     ====================");

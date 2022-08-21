@@ -17,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -28,49 +29,73 @@ public class ProductServiceImpl implements ProductService {
     private final CategoryRepository categoryRepository;
     private final ProductCategoryRepository productCategoryRepository;
 
-    public List<Product> findAllProduct() {
-        return productRepository.findAllByOrderByCreatedAtAsc();
+    public List<Product> findAllProduct() throws Exception {
+        List<Product> products = productRepository.findAllByOrderByCreatedAtAsc();
+        if(products.isEmpty()){
+            throw new Exception("Product not found");
+        }
+        return products;
     }
 
     @Override
     public Product findBySellerUsername(String keyword) throws Exception{
-        return productRepository.findFirstBySellerUserIdUsernameOrderByProductIdDesc(keyword)
+        return productRepository.findFirstBySellerUserUsernameOrderByProductIdDesc(keyword)
                 .orElseThrow(()->new Exception("Product not found"));
     }
 
-    public Optional<Product> findProductById(Long id) {
+    public Product findProductById(Long id) throws Exception{
 
-        return productRepository.findById(id);
+        return productRepository.findById(id).orElseThrow(()->new Exception("Product not found"));
     }
 
     @Override
-    public List<Product> findByProductName(String name) {
-        return productRepository.findByProductNameIgnoreCaseContaining(name);
+    public List<Product> findByProductName(String name) throws Exception{
+        List<Product> products = productRepository.findByProductNameIgnoreCaseContaining(name);
+        if(products.isEmpty()){
+            throw new Exception("Product not found");
+        }
+        return products;
     }
 
     @Override
-    public List<Product> findBySellerName(String name) {
-        return productRepository.findBySellerUserIdNameIgnoreCaseContaining(name);
+    public List<Product> findBySellerName(String name) throws Exception{
+        List<Product> products = productRepository.findBySellerUserNameIgnoreCaseContaining(name);
+        if(products.isEmpty()){
+            throw new Exception("Product not found");
+        }
+        return products;
     }
 
     @Override
-    public List<Product> findByStoreName(String name) {
-        return productRepository.findBySellerStoreNameIgnoreCaseContaining(name);
+    public List<Product> findByStoreName(String name) throws Exception{
+        List<Product> products = productRepository.findBySellerStoreNameIgnoreCaseContaining(name);
+        if(products.isEmpty()){
+            throw new Exception("Product not found");
+        }
+        return products;
     }
 
     @Override
-    public List<Product> findByCategoryId(Long id) {
-        return productRepository.findByCategoriesCategoryCategoriesId(id);
+    public List<Product> findByCategoryId(Long id) throws Exception{
+        List<Product> products = productRepository.findByCategoriesCategoryCategoriesId(id);
+        if(products.isEmpty()){
+            throw new Exception("Product not found");
+        }
+        return products;
     }
 
     @Override
-    public List<Product> findByCategoryName(String name) {
-        return productRepository.findByCategoriesCategoryNameIgnoreCaseContaining(name);
+    public List<Product> findByCategoryName(String name) throws Exception{
+        List<Product> products = productRepository.findByCategoriesCategoryNameIgnoreCaseContaining(name);
+        if(products.isEmpty()){
+            throw new Exception("Product not found");
+        }
+        return products;
     }
 
     @Override
     public List<Product> findProductBySellerId(Authentication authentication) throws Exception{
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller"));
         List<Product> product = productRepository.findBySellerSellerId(seller.getSellerId());
         if(product.isEmpty()){
             throw new Exception("You don't have a product");
@@ -80,7 +105,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product createProduct(ProductRequestDTO productRequestDTO,Authentication authentication) throws Exception{
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
         List<Product> products = productRepository.findBySellerSellerId(seller.getSellerId());
         if(productRequestDTO.getCategory().size()>=4){
             throw new Exception("Product can only have 4 category");
@@ -105,10 +130,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product updateProduct(ProductRequestDTO productRequestDTO, Long id, Authentication authentication) throws Exception{
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
         //GET SELLER FROM DATABASE BY ID
         Product product = productRequestDTO.convertToEntity(seller);
-        Product updateProduct = findProductById(id).orElseThrow(()->new Exception("Product Not Found"));
+        Product updateProduct = productRepository.findById(id).orElseThrow(()->new Exception("Product Not Found"));
         if(seller!=updateProduct.getSeller()){
             throw new Exception("You only can edit your product");
         }
@@ -138,8 +163,8 @@ public class ProductServiceImpl implements ProductService {
     }
     @Override
     public void deleteProduct(Long id, Authentication authentication)throws Exception {
-        Seller seller = sellerRepository.findByUserIdUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
-        Product productById = findProductById(id).orElseThrow(()->new Exception("Product Not Found"));
+        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
+        Product productById = productRepository.findById(id).orElseThrow(()->new Exception("Product Not Found"));
         if(seller!=productById.getSeller()){
             throw new Exception("You only can delete your product");
         }
@@ -149,11 +174,15 @@ public class ProductServiceImpl implements ProductService {
     public void addCategory(List<String> categories, Product newProduct)throws Exception{
         categories.forEach(category->{
             try {
+                List<ProductCategory> productCategories = productCategoryRepository.findByCategoryNameIgnoreCase(category);
+                boolean checkCategory = productCategories.stream().anyMatch(productCategory -> Objects.equals(productCategory.getProduct().getProductId(), newProduct.getProductId()));
                 Category categoryGet = categoryRepository.findByNameIgnoreCase(category).orElseThrow(()->new Exception("Category not found"));
-                ProductCategory addCategory = new ProductCategory();
-                addCategory.setCategory(categoryGet);
-                addCategory.setProduct(newProduct);
-                productCategoryRepository.save(addCategory);
+                if(!checkCategory) {
+                    ProductCategory addCategory = new ProductCategory();
+                    addCategory.setCategory(categoryGet);
+                    addCategory.setProduct(newProduct);
+                    productCategoryRepository.save(addCategory);
+                }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

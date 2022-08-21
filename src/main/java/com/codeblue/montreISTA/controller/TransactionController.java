@@ -89,7 +89,7 @@ public class TransactionController {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Transactions doesn't exist!");
         }
     }
 
@@ -105,18 +105,18 @@ public class TransactionController {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Transactions detail doesn't exist!");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Transactions doesn't exist!");
         }
     }
 
-    @GetMapping("/dashboard/transaction-details")
+    @GetMapping("/dashboard/transactions-detail")
     public ResponseEntity<Object> findAllTransactionDetails(){
         try{
             List<TransactionDetailResponseDTO> results = transactionService.findAllTransactionDetail();
             logger.info(Line + "Logger Start Get Transaction Detail" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transaction Detail" + Line);
-            return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully retrieved history transactions details", HttpStatus.OK, results);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -125,14 +125,14 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/dashboard/transaction-details/{id}")
+    @GetMapping("/dashboard/transactions-detail/{id}")
     public ResponseEntity<Object> findTransactionDetailsId(@PathVariable Long id){
         try{
             TransactionDetailResponseDTO results = transactionService.findByTransactionDetailId(id);
             logger.info(Line + "Logger Start Get By ID" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get By ID" + Line);
-            return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully retrieved history transactions details", HttpStatus.OK, results);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -148,7 +148,7 @@ public class TransactionController {
             logger.info(Line + "Logger Start Get Transactions Detail Buyer" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transactions Detail Buyer" + Line);
-            return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully retrieved history transactions details", HttpStatus.OK, results);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -164,7 +164,7 @@ public class TransactionController {
             logger.info(Line + "Logger Start Get Transactions Detail Seller" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transactions Detail Seller" + Line);
-            return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully retrieved history transactions details", HttpStatus.OK, results);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());

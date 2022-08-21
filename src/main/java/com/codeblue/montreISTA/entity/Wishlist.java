@@ -3,6 +3,8 @@ package com.codeblue.montreISTA.entity;
 
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.DTO.WishlistResponseDTO;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
@@ -15,6 +17,9 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "wishlistId")
 public class Wishlist extends AuditEntity {
 
     @Id

@@ -1,9 +1,12 @@
 package com.codeblue.montreISTA.entity;
 
 import com.codeblue.montreISTA.DTO.BuyerResponseDTO;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,15 +15,33 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "buyerId")
 public class Buyer extends AuditEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long buyerId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "buyer",
+            fetch = FetchType.LAZY)
+    private List<Wishlist> wishlists;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "buyer",
+            fetch = FetchType.LAZY)
+    private List<HistoryTransaction> transactions;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "buyer",
+            fetch = FetchType.LAZY)
+    private List<Cart> carts;
 
     @Override
     public String toString() {
