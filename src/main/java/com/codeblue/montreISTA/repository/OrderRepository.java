@@ -11,9 +11,9 @@ import java.util.Optional;
 @Repository
 public interface OrderRepository extends JpaRepository<Order,Long> {
 
-    List<Order> findByListCartProductProductNameContaining(String keyword);
+    List<Order> findByListCartProductProductNameIgnoreCaseContaining(String keyword);
     List<Order> findByListCartBuyerUserUsernameContaining(String keyword);
-    List<Order> findByListCartProductSellerStoreNameContaining(String keyword);
+    List<Order> findByListCartProductSellerStoreNameIgnoreCaseContaining(String keyword);
     List<Order> findByListCartBuyerBuyerIdOrderByOrderIdAsc(Long id);
     Order findFirstByOrderByOrderIdDesc();
     Optional<Order> findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(String keyword);

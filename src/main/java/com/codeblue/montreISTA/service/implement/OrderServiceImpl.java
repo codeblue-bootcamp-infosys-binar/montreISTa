@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderResponseDTO> findByProductName(String keyword) throws Exception {
-        List<Order> results = orderRepository.findByListCartProductProductNameContaining(keyword);
+        List<Order> results = orderRepository.findByListCartProductProductNameIgnoreCaseContaining(keyword);
         if(results.isEmpty()){
             throw new Exception("Orders not found");
         }
@@ -56,7 +56,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderResponseDTO> findByStoreName(String keyword) throws Exception {
-        List<Order> results = orderRepository.findByListCartProductSellerStoreNameContaining(keyword);
+        List<Order> results = orderRepository.findByListCartProductSellerStoreNameIgnoreCaseContaining(keyword);
         if(results.isEmpty()){
             throw new Exception("Orders not found");
         }

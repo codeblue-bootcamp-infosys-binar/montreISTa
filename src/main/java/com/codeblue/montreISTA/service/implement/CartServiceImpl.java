@@ -145,13 +145,18 @@ public class CartServiceImpl implements CartService {
     public void deleteById(Long id,Authentication authentication) throws Exception {
         Optional<Cart> cartId = this.cartRepository.findById(id);
         Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Buyer not Found"));
-         if(cartId.isEmpty()){
+        if(cartId.isEmpty()){
             throw new Exception("Cart not found");
         }
+        long orderId = cartId.get().getOrder().getOrderId();
         if(!buyer.equals(cartId.get().getBuyer())){
             throw new Exception("You can't delete other cart");
         }
-        this.cartRepository.deleteById(id);
+        cartRepository.deleteById(id);
+        List<Cart> checkOrder = cartRepository.findByOrderOrderId(orderId);
+        if(checkOrder.isEmpty()){
+            orderRepository.deleteById(cartId.get().getOrder().getOrderId());
+        }
     }
 
     public List<CartResponseDTO> convertListDTO(List<Cart> carts) {
