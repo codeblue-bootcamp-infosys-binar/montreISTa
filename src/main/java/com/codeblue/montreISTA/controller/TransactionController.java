@@ -31,9 +31,11 @@ public class TransactionController {
     private final TransactionService transactionService;
 
     @GetMapping("/dashboard/transactions")
-    public ResponseEntity<Object> findAllHistoryTransaction(){
+    public ResponseEntity<Object> findAllHistoryTransaction(@RequestParam(required = false) String sort,
+                                                            @RequestParam(required = false) Integer page,
+                                                            @RequestParam(required = false) boolean descending){
         try{
-            List<TransactionResponseDTO> transactions = transactionService.findAllTransaction();
+            List<TransactionResponseDTO> transactions = transactionService.findAllTransaction(page, sort, descending);
             logger.info("==================== Logger Start Get All Transactions     ====================");
             for(TransactionResponseDTO transactionData : transactions){
                 Map<String, Object> transaction = new HashMap<>();
@@ -60,7 +62,10 @@ public class TransactionController {
     }
 
     @GetMapping("/dashboard/transactions/{id}")
-    public ResponseEntity<Object> findByHistoryTransactionId(@PathVariable Long id)throws Exception{
+    public ResponseEntity<Object> findByHistoryTransactionId(@PathVariable Long id,
+                                                             @RequestParam(required = false) String sort,
+                                                             @RequestParam(required = false) Integer page,
+                                                             @RequestParam(required = false) boolean descending)throws Exception{
         try{
             TransactionResponseDTO results = transactionService.findByTransactionId(id);
             logger.info(Line + "Logger Start Get History Transactions " + Line);
@@ -78,9 +83,12 @@ public class TransactionController {
 
 
     @GetMapping("/user/my-transactions/buyer")
-    public ResponseEntity<Object> findTransactionByBuyer(Authentication authentication)throws Exception{
+    public ResponseEntity<Object> findTransactionByBuyer(Authentication authentication,
+                                                         @RequestParam(required = false) String sort,
+                                                         @RequestParam(required = false) Integer page,
+                                                         @RequestParam(required = false) boolean descending)throws Exception{
         try{
-            List<TransactionResponseDTO> results = transactionService.findByTransactionBuyerId(authentication);
+            List<TransactionResponseDTO> results = transactionService.findByTransactionBuyerId(authentication, page, sort, descending);
             logger.info(Line + "Logger Start Get Transactions Buyer" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transactions Buyer" + Line);
@@ -94,9 +102,12 @@ public class TransactionController {
     }
 
     @GetMapping("/user/my-transactions/seller")
-    public ResponseEntity<Object> findTransactionBySeller(Authentication authentication)throws Exception{
+    public ResponseEntity<Object> findTransactionBySeller(Authentication authentication,
+                                                          @RequestParam(required = false) String sort,
+                                                          @RequestParam(required = false) Integer page,
+                                                          @RequestParam(required = false) boolean descending) throws Exception{
         try{
-            List<TransactionResponseDTO> results = transactionService.findByTransactionSellerId(authentication);
+            List<TransactionResponseDTO> results = transactionService.findByTransactionSellerId(authentication, page, sort, descending);
             logger.info(Line + "Logger Start Get Transaction By Seller" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transaction By Seller" + Line);
@@ -109,10 +120,13 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/dashboard/transactions-detail")
-    public ResponseEntity<Object> findAllTransactionDetails(){
+
+    @GetMapping("/dashboard/transaction-details")
+    public ResponseEntity<Object> findAllTransactionDetails(@RequestParam(required = false) String sort,
+                                                            @RequestParam(required = false) Integer page,
+                                                            @RequestParam(required = false) boolean descending){
         try{
-            List<TransactionDetailResponseDTO> results = transactionService.findAllTransactionDetail();
+            List<TransactionDetailResponseDTO> results = transactionService.findAllTransactionDetail(page, sort, descending);
             logger.info(Line + "Logger Start Get Transaction Detail" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transaction Detail" + Line);
@@ -142,9 +156,12 @@ public class TransactionController {
     }
 
     @GetMapping("/user/my-transactions-detail/buyer")
-    public ResponseEntity<Object> findTransactionDetailsByBuyer(Authentication authentication)throws Exception{
+    public ResponseEntity<Object> findTransactionDetailsByBuyer(Authentication authentication,
+                                                                @RequestParam(required = false) String sort,
+                                                                @RequestParam(required = false) Integer page,
+                                                                @RequestParam(required = false) boolean descending)throws Exception{
         try{
-            List<TransactionDetailResponseDTO> results = transactionService.findByTransactionDetailBuyerId(authentication);
+            List<TransactionDetailResponseDTO> results = transactionService.findByTransactionDetailBuyerId(authentication, page, sort, descending);
             logger.info(Line + "Logger Start Get Transactions Detail Buyer" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transactions Detail Buyer" + Line);
@@ -158,9 +175,12 @@ public class TransactionController {
     }
 
     @GetMapping("/user/my-transactions-detail/seller")
-    public ResponseEntity<Object> findTransactionDetailBySeller(Authentication authentication)throws Exception{
+    public ResponseEntity<Object> findTransactionDetailBySeller(Authentication authentication,
+                                                                @RequestParam(required = false) String sort,
+                                                                @RequestParam(required = false) Integer page,
+                                                                @RequestParam(required = false) boolean descending)throws Exception{
         try{
-            List<TransactionDetailResponseDTO> results = transactionService.findByTransactionDetailSellerId(authentication);
+            List<TransactionDetailResponseDTO> results = transactionService.findByTransactionDetailSellerId(authentication, page, sort, descending);
             logger.info(Line + "Logger Start Get Transactions Detail Seller" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transactions Detail Seller" + Line);
