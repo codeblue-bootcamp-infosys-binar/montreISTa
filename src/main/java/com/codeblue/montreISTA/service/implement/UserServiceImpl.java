@@ -47,8 +47,6 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    PasswordEncoder encoder;
 
     @Autowired
     JwtUtils jwtUtils;
@@ -59,11 +57,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<Object> authenticationUser(LoginUserRequest userRequest)throws Exception  {
         try {
-            Optional<User> username= userRepository.findByUsername(userRequest.getUsername());
-            Optional<User> password= userRepository.findByUsername(userRequest.getPassword());
-            if(username.isEmpty() || password.isEmpty()){
-                throw new Exception("Username or Password is incorrect");
-            }
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtUtils.generateJwtToken(authentication);
@@ -85,7 +78,7 @@ public class UserServiceImpl implements UserService {
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
 
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Login!");
+            return ResponseHandler.generateResponse("Username or Password is incorrect", HttpStatus.BAD_REQUEST, "Failed Login!");
         }
     }
 
@@ -201,21 +194,21 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<Object> updateUser(RegistrationDTO registrationDTO, Authentication authentication)  {
         try {
             User userByUsername = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("User not found"));
-        User user = registrationDTO.convertToEntity();
-        user.setUserId(userByUsername.getUserId());
-        user.setPhoto(userByUsername.getPhoto());
-        List<String> requestRole = registrationDTO.getRoles();
+            User user = registrationDTO.convertToEntity();
+            user.setUserId(userByUsername.getUserId());
+            user.setPhoto(userByUsername.getPhoto());
+            List<String> requestRole = registrationDTO.getRoles();
 
-        this.checkRole(requestRole);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        User userSave = userRepository.save(user);
+            this.checkRole(requestRole);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            User userSave = userRepository.save(user);
                 //addRole
-        this.addRole(requestRole,userSave);
+            this.addRole(requestRole,userSave);
+            UserResponseDTO results = convertResponse(userSave);
 
-        UserResponseDTO results = convertResponse(userSave);
-        logger.info(Line + "Logger Start Update Profile" + Line);
-        logger.info(String.valueOf(results));
-        logger.info(Line + "Logger End Update Profile" + Line);
+            logger.info(Line + "Logger Start Update Profile" + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Update Profile" + Line);
             return ResponseHandler.generateResponse("Success upload photo profile",HttpStatus.OK,results);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);

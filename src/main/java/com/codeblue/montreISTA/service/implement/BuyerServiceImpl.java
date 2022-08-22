@@ -2,12 +2,11 @@ package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.BuyerResponseDTO;
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
-import com.codeblue.montreISTA.entity.Buyer;
-import com.codeblue.montreISTA.entity.Product;
-import com.codeblue.montreISTA.entity.User;
+import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.helper.DTOConverter;
 import com.codeblue.montreISTA.repository.BuyerRepository;
 import com.codeblue.montreISTA.repository.ProductRepository;
+import com.codeblue.montreISTA.repository.RoleRepository;
 import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.service.BuyerService;
 import lombok.AllArgsConstructor;
@@ -24,6 +23,7 @@ public class BuyerServiceImpl implements BuyerService {
     private final BuyerRepository buyerRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
+    private final RoleRepository roleRepository;
 
     @Override
     public List<BuyerResponseDTO> findAllBuyer() {
@@ -37,7 +37,7 @@ public class BuyerServiceImpl implements BuyerService {
 
     @Override
     public List<ProductResponseDTO> createBuyer(Authentication authentication) throws Exception {
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Buyer not found"));
+        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("User not found"));
         Optional<Buyer> buyerUser = buyerRepository.findByUserUsername(authentication.getName());
         if (buyerUser.isEmpty()) {
             Buyer buyer = new Buyer();
@@ -50,7 +50,19 @@ public class BuyerServiceImpl implements BuyerService {
 
 
     @Override
-    public void deleteBuyer(Long id) { buyerRepository.deleteById(id); }
+    public void deleteBuyer(Long id,Authentication authentication) throws Exception {
+        Buyer buyer = buyerRepository.findById(id).orElseThrow(()->new Exception("Buyer not found"));
+        List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
+        boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
+        boolean checkUser = buyer.getUser().getUsername().equals(authentication.getName());
+        if (checkRoles || checkUser){
+            buyerRepository.deleteById(id);
+        } else {
+            throw new Exception("You can't delete other buyer");
+        }
+
+        buyerRepository.deleteById(id);
+    }
 
     @Override
     public List<BuyerResponseDTO> findByUsername(String keyword) throws Exception{

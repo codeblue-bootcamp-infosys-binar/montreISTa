@@ -13,7 +13,7 @@ public interface BuyerService {
 
     List<ProductResponseDTO> createBuyer(Authentication authentication)throws Exception ;
 
-    void deleteBuyer(Long id);
+    void deleteBuyer(Long id, Authentication authentication)throws Exception;
 
     List<BuyerResponseDTO> findByUsername(String keywoard)throws Exception;
 

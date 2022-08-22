@@ -100,19 +100,22 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product createProduct(ProductRequestDTO productRequestDTO,Authentication authentication) throws Exception{
         Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
-
         Pageable pageable = Pagination.paginate(0,"price", false);
         List<Product> products = productRepository.findBySellerSellerId(seller.getSellerId(), pageable);
+
         if(productRequestDTO.getCategory().size()>4){
             throw new Exception("Product can only have 4 category");
         }
+
         if(products.size() >=4 ){
             throw new Exception("User can only have 4 Products");
         }
+
         List<String> categories = productRequestDTO.getCategory();
         if(categories.isEmpty()){
             throw new Exception("Product must have 1 category");
         }
+
         //check categories
         this.checkCategories(categories);
 
@@ -127,43 +130,53 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product updateProduct(ProductRequestDTO productRequestDTO, Long id, Authentication authentication) throws Exception{
         Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
-        //GET SELLER FROM DATABASE BY ID
-        Product product = productRequestDTO.convertToEntity(seller);
-        Product updateProduct = productRepository.findById(id).orElseThrow(()->new Exception("Product Not Found"));
+        Product product = productRepository.findById(id).orElseThrow(()->new Exception("Product Not Found"));
+        List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
+        boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
+        boolean checkUser = product.getSeller().getUser().getUsername().equals(authentication.getName());
 
+        Product productRequest = productRequestDTO.convertToEntity(seller);
+        if (checkRoles || checkUser){
 
-        //UPDATING PRODUCT DATA
-        updateProduct.setId(id);
-        updateProduct.setProductName(product.getProductName());
-        updateProduct.setDescription(product.getDescription());
-        updateProduct.setPrice(product.getPrice());
+            //UPDATING PRODUCT DATA
+            product.setId(id);
+            product.setProductName(productRequest.getProductName());
+            product.setDescription(productRequest.getDescription());
+            product.setPrice(productRequest.getPrice());
 
-        List<String> categories = productRequestDTO.getCategory();
-        if(categories.isEmpty()){
-            throw new Exception("Product must have 1 category");
+            List<String> categories = productRequestDTO.getCategory();
+            if(categories.isEmpty()){
+                throw new Exception("Product must have 1 category");
+            }
+            List<Category> categoryProduct = categoryRepository.findByProductsProductId(id);
+            if(categories.size()+categoryProduct.size()>=4){
+                throw new Exception("Product can only have 4 category");
+            }
+            //check categories
+            this.checkCategories(categories);
+
+            //SAVING THE UPDATES TO DATABASE
+            Product saveProduct = productRepository.save(product);
+            this.addCategory(categories,saveProduct);
+
+            return saveProduct;
+        } else {
+            throw new Exception("You can't update other product");
         }
-        List<Category> categoryProduct = categoryRepository.findByProductsProductId(id);
-        if(categories.size()+categoryProduct.size()>=4){
-            throw new Exception("Product can only have 4 category");
-        }
-        //check categories
-        this.checkCategories(categories);
-
-        //SAVING THE UPDATES TO DATABASE
-        Product saveProduct = productRepository.save(updateProduct);
-
-        this.addCategory(categories,saveProduct);
-
-        return saveProduct;
     }
     @Override
     public void deleteProduct(Long id, Authentication authentication)throws Exception {
         Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
         Product productById = productRepository.findById(id).orElseThrow(()->new Exception("Product Not Found"));
-        if(seller!=productById.getSeller()){
-            throw new Exception("You only can delete your product");
+        List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
+        boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
+        boolean checkUser = productById.getSeller().getUser().getUsername().equals(authentication.getName());
+
+        if (checkRoles || checkUser){
+            productRepository.deleteById(id);
+        } else {
+            throw new Exception("You can't delete other product");
         }
-        productRepository.deleteById(id);
     }
 
     public void addCategory(List<String> categories, Product newProduct) {
