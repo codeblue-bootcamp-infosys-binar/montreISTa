@@ -1,8 +1,8 @@
 package com.codeblue.montreISTA.entity;
 
+import com.codeblue.montreISTA.DTO.PaymentResponseDTO;
 import lombok.*;
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
@@ -22,4 +22,23 @@ public class Payment extends AuditEntity {
 
     @Column(nullable = false)
     private String paymentCode;
+
+    public PaymentResponseDTO convertToResponse(){
+        return PaymentResponseDTO.builder()
+                .Payment_id(this.paymentId)
+                .Name(this.name)
+                .Payment_Code(this.paymentCode)
+//                .createdAt(this.getCreatedAt())
+//                .modifiedAt(this.getModifiedAt())
+                .build();
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "paymentId=" + paymentId +
+                ", name='" + name + '\'' +
+                ", paymentCode='" + paymentCode + '\'' +
+                '}';
+    }
 }

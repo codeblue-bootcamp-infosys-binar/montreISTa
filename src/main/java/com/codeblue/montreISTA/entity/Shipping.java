@@ -1,5 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
+import com.codeblue.montreISTA.DTO.PaymentResponseDTO;
+import com.codeblue.montreISTA.DTO.ShippingResponseDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,5 +25,13 @@ public class Shipping extends AuditEntity{
 
     @Column(nullable = false)
     private Integer price;
-
+    public ShippingResponseDTO convertToResponse(){
+        return ShippingResponseDTO.builder()
+                .shipping_id(this.getShippingId())
+                .Name(this.getName())
+                .Price(this.getPrice())
+//                .createdAt(this.getCreatedAt())
+//                .modifiedAt(this.getModifiedAt())
+                .build();
+    }
 }
