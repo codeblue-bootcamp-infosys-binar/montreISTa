@@ -2,6 +2,7 @@ package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.SellerRequestDTO;
 import com.codeblue.montreISTA.DTO.SellerResponseDTO;
+import com.codeblue.montreISTA.controller.AuthenticationController;
 import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.entity.User;
@@ -9,8 +10,12 @@ import com.codeblue.montreISTA.helper.DTOConverter;
 import com.codeblue.montreISTA.repository.ProductRepository;
 import com.codeblue.montreISTA.repository.SellerRepository;
 import com.codeblue.montreISTA.repository.UserRepository;
+import com.codeblue.montreISTA.security.JwtUtils;
 import com.codeblue.montreISTA.service.SellerService;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +32,12 @@ public class SellerServiceImpl implements SellerService {
     private final SellerRepository sellerRepository;
     private final ProductRepository productRepository;
     private final CloudinaryService cloudinaryService;
+
+
+    @Autowired
+    JwtUtils jwtUtils;
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
+    private static final String Line = "====================";
 
 
     @Override
