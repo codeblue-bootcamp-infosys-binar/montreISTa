@@ -1,8 +1,6 @@
 package com.codeblue.montreISTA.DTO;
 
-
 import lombok.*;
-
 import java.time.ZonedDateTime;
 
 @Getter
@@ -10,25 +8,21 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ShippingResponseDTO {
-
-    private Long shipping_id;
+public class PaymentResponseDTO {
+    private Long Payment_id;
     private String Name;
-    private Integer Price;
+    private String Payment_Code;
 //    private ZonedDateTime createdAt;
 //    private ZonedDateTime modifiedAt;
 
-
     @Override
     public String toString() {
-        return "ShippingResponseDTO{" +
-                "shipping_id=" + shipping_id +
-                ", Name=" + Name +
-                ", Price='" + Price + '\'' +
+        return "PaymentResponseDTO{" +
+                "Payment_id=" + Payment_id +
+                ", Name='" + Name + '\'' +
+                ", Payment_Code=" + Payment_Code +
 //                ", createdAt=" + createdAt +
 //                ", modifiedAt=" + modifiedAt +
                 '}';
     }
-
-
 }

@@ -34,7 +34,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         Pageable pageable = Pagination.paginate(page, sort, descending);
 
-        return transactionRepository.findAllByOrderByHistoryTransactionIdAsc(pageable).stream()
+        return transactionRepository.findAll(pageable).stream()
                 .map(HistoryTransaction::convertToResponse)
                 .collect(Collectors.toList());
     }
@@ -44,7 +44,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         Pageable pageable = Pagination.paginate(page, sort, descending);
 
-        return transactionDetailsRepository.findAllByOrderByTransactionDetailIdAsc(pageable).stream()
+        return transactionDetailsRepository.findAll(pageable).stream()
                 .map(HistoryTransactionDetail::convertToResponse)
                 .collect(Collectors.toList());
     }
@@ -55,7 +55,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         Pageable pageable = Pagination.paginate(page, sort, descending);
 
-        List<HistoryTransaction> transaction = transactionRepository.findByBuyerBuyerIdOrderByHistoryTransactionIdAsc(buyer.getBuyerId(), pageable);
+        List<HistoryTransaction> transaction = transactionRepository.findByBuyerBuyerId(buyer.getBuyerId(), pageable);
         if(transaction.isEmpty()){
             throw new Exception("You don't have order");
         }
@@ -70,7 +70,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         Pageable pageable = Pagination.paginate(page, sort, descending);
 
-        List<HistoryTransaction> transaction = transactionRepository.findBySellerSellerIdOrderByHistoryTransactionIdAsc(seller.getSellerId(), pageable);
+        List<HistoryTransaction> transaction = transactionRepository.findBySellerSellerId(seller.getSellerId(), pageable);
         if(transaction.isEmpty()){
             throw new Exception("You don't have product");
         }
@@ -85,11 +85,11 @@ public class TransactionServiceImpl implements TransactionService {
 
         Pageable pageable = Pagination.paginate(page, sort, descending);
 
-        List<HistoryTransactionDetail> transactionDetail = transactionDetailsRepository.findByHistoryTransactionBuyerBuyerIdOrderByTransactionDetailIdAsc(buyer.getBuyerId(), pageable);
+        List<HistoryTransactionDetail> transactionDetail = transactionDetailsRepository.findByHistoryTransactionBuyerBuyerId(buyer.getBuyerId(), pageable);
         if(transactionDetail.isEmpty()){
             throw new Exception("You don't have order");
         }
-        return transactionDetailsRepository.findByHistoryTransactionBuyerBuyerIdOrderByTransactionDetailIdAsc(buyer.getBuyerId(), pageable).stream()
+        return transactionDetailsRepository.findByHistoryTransactionBuyerBuyerId(buyer.getBuyerId(), pageable).stream()
                 .map(HistoryTransactionDetail::convertToResponse)
                 .collect(Collectors.toList());
     }
@@ -100,7 +100,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         Pageable pageable = Pagination.paginate(page, sort, descending);
 
-        List<HistoryTransactionDetail> transactionDetail = transactionDetailsRepository.findByHistoryTransactionSellerSellerIdOrderByTransactionDetailIdAsc(seller.getSellerId(),pageable);
+        List<HistoryTransactionDetail> transactionDetail = transactionDetailsRepository.findByHistoryTransactionSellerSellerId(seller.getSellerId(),pageable);
 
         if(transactionDetail.isEmpty()){
             throw new Exception("You don't have product");
@@ -136,6 +136,9 @@ public class TransactionServiceImpl implements TransactionService {
             throw new Exception("Please order first");
         }
         Order order = orderOptional.get();
+        if(!order.getIsPay()){
+            throw new Exception("Please pay first !");
+        }
         List<TransactionDetailResponseDTO> results = new ArrayList<>();
         for(Cart cart:order.getListCart()){
             HistoryTransaction transaction = new HistoryTransaction();
@@ -149,14 +152,14 @@ public class TransactionServiceImpl implements TransactionService {
             }else {
                 photoURL = photo.get(0).getPhotoURL();
             }
-            List<Category> categories = categoryService.findByProductId(cart.getProduct().getProductId());
+            List<Category> categories = categoryService.findByProductId(cart.getProduct().getId());
             String category = categories.stream()
                     .map(Category::getName)
                     .collect(Collectors.joining(","));
             transaction.setBuyer(cart.getBuyer());
             transaction.setSeller(cart.getProduct().getSeller());
             transaction.setPhotoUrl(photoURL);
-            transaction.setProduct_id(cart.getProduct().getProductId());
+            transaction.setProduct_id(cart.getProduct().getId());
             transaction.setProduct_name(cart.getProduct().getProductName());
             transaction.setProduct_price(cart.getProduct().getPrice());
             transaction.setQuantity(cart.getQuantity());

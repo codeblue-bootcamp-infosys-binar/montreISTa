@@ -17,7 +17,7 @@ public class HistoryTransactionDetail extends AuditEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long transactionDetailId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "history_transaction_id")
@@ -39,7 +39,7 @@ public class HistoryTransactionDetail extends AuditEntity {
 
     public TransactionDetailResponseDTO convertToResponse(){
         return TransactionDetailResponseDTO.builder()
-                .transaction_detail_id(this.getTransactionDetailId())
+                .transaction_detail_id(this.getId())
                 .seller_id(this.getHistoryTransaction().getSeller().getSellerId())
                 .seller_name(this.getHistoryTransaction().getSeller().getUser().getName())
                 .store_name(this.getHistoryTransaction().getSeller().getStoreName())
@@ -67,11 +67,10 @@ public class HistoryTransactionDetail extends AuditEntity {
                 .build();
     }
 
-
     @Override
     public String toString() {
         return "HistoryTransactionDetail{" +
-                "transactionDetailId=" + transactionDetailId +
+                "id=" + id +
                 ", historyTransaction=" + historyTransaction +
                 ", destinationName='" + destinationName + '\'' +
                 ", destinationAddress='" + destinationAddress + '\'' +

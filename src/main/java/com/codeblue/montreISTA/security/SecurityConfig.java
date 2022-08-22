@@ -54,10 +54,10 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers("/login/**","/sign-up/**","/swagger-ui/**","/v3/api-docs").permitAll()
-                .antMatchers(GET, "/dashboard/**").hasRole("ADMIN")
-                .antMatchers(GET, "/user/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers(GET,"/**").permitAll()
-                .antMatchers(POST, "/**").permitAll()
+                .antMatchers("/dashboard/**").hasRole("ADMIN")
+                .antMatchers( "/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/**").permitAll()
+                .antMatchers( "/**").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 

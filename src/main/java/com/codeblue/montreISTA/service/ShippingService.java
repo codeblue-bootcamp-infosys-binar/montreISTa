@@ -1,5 +1,7 @@
 package com.codeblue.montreISTA.service;
 
+import com.codeblue.montreISTA.DTO.ShippingRequestDTO;
+import com.codeblue.montreISTA.DTO.ShippingResponseDTO;
 import com.codeblue.montreISTA.entity.Shipping;
 
 import java.util.List;
@@ -7,17 +9,15 @@ import java.util.Optional;
 
 public interface ShippingService {
 
-    List<Shipping> findAllShipping();
+    List<ShippingResponseDTO> findAllShipping()throws Exception;
 
-    Optional<Shipping> findShippingById(Long id);
+    ShippingResponseDTO findShippingById(Long id) throws Exception;
 
-    Shipping createShipping(Shipping shipping);
+    ShippingResponseDTO createShipping(ShippingRequestDTO shippingRequestDTO)throws Exception;
 
-    Shipping updateShipping(Shipping updateShipping);
+    ShippingResponseDTO updateShipping(ShippingRequestDTO shippingRequestDTO,Long id)throws Exception;
 
-    void deleteShipping(Long id);
+    void deleteShipping(Long id)throws Exception;
 
-    List<Shipping> findShippingByShippingId(Long id);
-
-    List<Shipping> findByName(String keyword);
+    List<ShippingResponseDTO> findByName(String keyword)throws Exception;
 }

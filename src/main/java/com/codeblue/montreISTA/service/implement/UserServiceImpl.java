@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,8 +47,6 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    PasswordEncoder encoder;
 
     @Autowired
     JwtUtils jwtUtils;
@@ -56,7 +55,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ResponseEntity<Object> authenticationUser(LoginUserRequest userRequest) throws Exception {
+    public ResponseEntity<Object> authenticationUser(LoginUserRequest userRequest)throws Exception  {
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -65,6 +64,7 @@ public class UserServiceImpl implements UserService {
             List<String> roles = userDetails.getAuthorities().stream()
                     .map(GrantedAuthority::getAuthority)
                     .collect(Collectors.toList());
+
             JwtResponse jwtResponse = new JwtResponse(jwt, userDetails.getUserId(), userDetails.getUsername(), userDetails.getEmail(), roles);
 
             logger.info(Line + "Logger Start Login " + Line);
@@ -78,12 +78,12 @@ public class UserServiceImpl implements UserService {
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
 
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Login!");
+            return ResponseHandler.generateResponse("Username or Password is incorrect", HttpStatus.BAD_REQUEST, "Failed Login!");
         }
     }
 
     @Override
-    public ResponseEntity<Object> findAllUser() throws Exception{
+    public ResponseEntity<Object> findAllUser() {
         try {
         List<User> users = userRepository.findAllByOrderByUserIdAsc();
         List<UserResponseDTO> usersDTO = new ArrayList<>();
@@ -115,7 +115,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> findByUserId(Long id) throws Exception {
+    public ResponseEntity<Object> findByUserId(Long id)  {
         try{
         List<Role> roles = roleRepository.findByUsersUserUserId(id);
         List<String> role = roles.stream().map(Role::getRoleName).collect(Collectors.toList());
@@ -160,7 +160,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ResponseEntity<Object> registrationUser(RegistrationDTO registrationDTO) throws Exception {
+    public ResponseEntity<Object> registrationUser(RegistrationDTO registrationDTO)  {
         try {
             if (userRepository.existsByUsername(registrationDTO.getUsername())) {
                 throw new Exception("Username is already in use");
@@ -191,24 +191,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> updateUser(RegistrationDTO registrationDTO, Authentication authentication) throws Exception {
+    public ResponseEntity<Object> updateUser(RegistrationDTO registrationDTO, Authentication authentication)  {
         try {
             User userByUsername = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("User not found"));
-        User user = registrationDTO.convertToEntity();
-        user.setUserId(userByUsername.getUserId());
-        user.setPhoto(userByUsername.getPhoto());
-        List<String> requestRole = registrationDTO.getRoles();
+            User user = registrationDTO.convertToEntity();
+            user.setUserId(userByUsername.getUserId());
+            user.setPhoto(userByUsername.getPhoto());
+            List<String> requestRole = registrationDTO.getRoles();
 
-        this.checkRole(requestRole);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        User userSave = userRepository.save(user);
+            this.checkRole(requestRole);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            User userSave = userRepository.save(user);
                 //addRole
-        this.addRole(requestRole,userSave);
+            this.addRole(requestRole,userSave);
+            UserResponseDTO results = convertResponse(userSave);
 
-        UserResponseDTO results = convertResponse(userSave);
-        logger.info(Line + "Logger Start Update Profile" + Line);
-        logger.info(String.valueOf(results));
-        logger.info(Line + "Logger End Update Profile" + Line);
+            logger.info(Line + "Logger Start Update Profile" + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Update Profile" + Line);
             return ResponseHandler.generateResponse("Success upload photo profile",HttpStatus.OK,results);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
@@ -219,7 +219,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> uploadPhotoProfile(Authentication authentication, MultipartFile file) throws Exception {
+    public ResponseEntity<Object> uploadPhotoProfile(Authentication authentication, MultipartFile file)  {
         try{
         User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Please sign up"));
         String url = cloudinaryService.uploadFile(file);
@@ -240,13 +240,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> deleteUser(Long id) throws Exception {
+    public ResponseEntity<Object> deleteUser(Long id,Authentication authentication)  {
         try{
-        userRepository.deleteById(id);
+            User user = userRepository.findById(id).orElseThrow(()->new Exception("User not found"));
+            List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
+            boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
+            boolean checkUser = user.getUsername().equals(authentication.getName());
+            if (checkRoles || checkUser){
+                userRepository.deleteById(id);
+            } else {
+                throw new Exception("You can't delete other user");
+            }
         return ResponseHandler.generateResponse("successfully deleted User", HttpStatus.MULTI_STATUS, "Success Delete");
     } catch (Exception e) {
         return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Delete User");
-    }
+        }
     }
     public void checkRole(List<String> requestRole){
         requestRole.forEach(role-> {
@@ -258,7 +266,7 @@ public class UserServiceImpl implements UserService {
         );
     }
 
-    public UserResponseDTO convertResponse(User userSave)throws Exception{
+    public UserResponseDTO convertResponse(User userSave){
         List<Role> rolesUser = roleRepository.findByUsersUserUserId(userSave.getUserId());
         List<String> roleDTO = rolesUser.stream().map(Role::getRoleName).collect(Collectors.toList());
         return userSave.convertToResponse(roleDTO);

@@ -1,5 +1,7 @@
 package com.codeblue.montreISTA.entity;
 
+import com.codeblue.montreISTA.DTO.LoginSellerResponseDTO;
+import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.DTO.SellerResponseDTO;
 import lombok.*;
 import javax.persistence.*;
@@ -53,6 +55,12 @@ public class Seller extends AuditEntity{
                 .store_photo(this.getStorePhoto())
                 .createdAt(this.getCreatedAt())
                 .modifiedAt(this.getModifiedAt())
+                .build();
+    }
+    public LoginSellerResponseDTO convertToLoginSeller(SellerResponseDTO my_store,List<ProductResponseDTO> my_product){
+        return LoginSellerResponseDTO.builder()
+                .my_store(my_store)
+                .my_product(my_product)
                 .build();
     }
 
