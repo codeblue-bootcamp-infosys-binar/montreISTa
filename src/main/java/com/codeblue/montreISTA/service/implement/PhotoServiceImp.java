@@ -5,6 +5,7 @@ import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.repository.PhotoRepository;
 import com.codeblue.montreISTA.repository.ProductRepository;
+import com.codeblue.montreISTA.repository.RoleRepository;
 import com.codeblue.montreISTA.service.PhotoService;
 import lombok.*;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,7 @@ public class PhotoServiceImp implements PhotoService {
     private final PhotoRepository photoRepository;
     private final ProductRepository productRepository;
     private final CloudinaryService cloudinaryService;
+    private final RoleRepository roleRepository;
 
     @Override
     public List<PhotoResponseDTO> findAll() throws Exception{
@@ -106,25 +108,33 @@ public class PhotoServiceImp implements PhotoService {
     @Override
     public PhotoResponseDTO updatePhoto(PhotoRequestDTO photoRequestDTO, Long id,Authentication authentication) throws Exception {
         Product product = productRepository.findById(photoRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not found"));
-        if(!product.getSeller().getUser().getName().equals(authentication.getName()))
-        {
-            throw new Exception("You only can update photo for your product");
-        }
         Photo photo = photoRepository.findById(id).orElseThrow(() -> new Exception("Photo not found"));
-        photo.setProduct(product);
-        photo.setPhotoURL(photoRequestDTO.getPhoto_url());
-        Photo savePhoto = photoRepository.save(photo);
-        return savePhoto.convertToResponse();
+        List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
+        boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
+        boolean checkPhoto = photo.getProduct().getSeller().getUser().getUsername().equals(authentication.getName());
+        boolean checkProduct = product.getSeller().getUser().getUsername().equals(authentication.getName());
+        boolean checkUser = checkPhoto && checkProduct;
+        if (checkRoles || checkUser) {
+            photo.setProduct(product);
+            photo.setPhotoURL(photoRequestDTO.getPhoto_url());
+            Photo savePhoto = photoRepository.save(photo);
+            return savePhoto.convertToResponse();
+        }else{
+            throw new Exception("You can't update photo for other photo/product");
+        }
     }
 
     @Override
     public void deleteById(Long id, Authentication authentication)throws Exception {
         Photo photo = photoRepository.findById(id).orElseThrow(() -> new Exception("Photo not found"));
-        if(!photo.getProduct().getSeller().getUser().getUsername().equals(authentication.getName()))
-        {
+        List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
+        boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
+        boolean checkPhoto = photo.getProduct().getSeller().getUser().getUsername().equals(authentication.getName());
+        if (checkRoles || checkPhoto) {
+            photoRepository.deleteById(id);
+        }else{
             throw new Exception("You only can delete photo for your product");
         }
-        photoRepository.deleteById(id);
     }
 
 

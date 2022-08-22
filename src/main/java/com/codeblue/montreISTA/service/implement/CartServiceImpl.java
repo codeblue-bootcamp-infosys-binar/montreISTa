@@ -24,6 +24,7 @@ public class CartServiceImpl implements CartService {
     private final PaymentRepository paymentRepository;
     private final ShippingRepository shippingRepository;
     private final WishlistRepository wishlistRepository;
+    private final RoleRepository roleRepository;
 
     @Override
     public List<CartResponseDTO> findAll() throws Exception {
@@ -126,39 +127,43 @@ public class CartServiceImpl implements CartService {
     @Override
     public CartResponseDTO updateCart(CartRequestDTO cartRequestDTO, Long id,Authentication authentication) throws Exception {
         Cart cart = cartRepository.findById(id).orElseThrow(()->new Exception("Cart not found"));
-        Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(()->new Exception("Product not Found"));
         Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Buyer not Found"));
+        Product product = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(()->new Exception("Product not Found"));
+        List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
+        boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
+        boolean checkProduct = !product.getSeller().getUser().getUsername().equals(authentication.getName());
+        boolean checkCart = cart.getBuyer().getUser().getUsername().equals(authentication.getName());
+        boolean checkUser = checkProduct && checkCart;
+
         Long orderId = cart.getOrder().getOrderId();
-        if(!buyer.equals(cart.getBuyer())){
-            throw new Exception("You can't update other cart");
+        if (checkRoles || checkUser) {
+            Cart saveCart = this.requestToEntity(cartRequestDTO,orderId,buyer);
+            saveCart.setCartId(id);
+            saveCart.setQuantity(cartRequestDTO.getQuantity());
+            //update Price
+            this.updatePrice(orderId);
+            Cart cartResponse = cartRepository.save(saveCart);
+            return convertDTO(cartResponse);
+        }else{
+            throw new Exception("You can't edit other cart or order your own product");
         }
-        if(buyer.getUser().equals(productId.getSeller().getUser())){
-            throw new Exception("You can't order your own product");
-        }
-        Cart saveCart = this.requestToEntity(cartRequestDTO,orderId,buyer);
-        saveCart.setCartId(id);
-        saveCart.setQuantity(cartRequestDTO.getQuantity());
-        //update Price
-        this.updatePrice(orderId);
-        Cart cartResponse = cartRepository.save(saveCart);
-        return convertDTO(cartResponse);
     }
 
     @Override
     public void deleteById(Long id,Authentication authentication) throws Exception {
-        Optional<Cart> cartId = this.cartRepository.findById(id);
-        Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Buyer not Found"));
-        if(cartId.isEmpty()){
-            throw new Exception("Cart not found");
-        }
-        long orderId = cartId.get().getOrder().getOrderId();
-        if(!buyer.equals(cartId.get().getBuyer())){
+        Cart cart = cartRepository.findById(id).orElseThrow(()->new Exception("Cart not found"));
+        List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
+        boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
+        boolean checkCart = cart.getBuyer().getUser().getUsername().equals(authentication.getName());
+        long orderId = cart.getOrder().getOrderId();
+        if (checkRoles || checkCart) {
+            cartRepository.deleteById(id);
+            List<Cart> checkOrder = cartRepository.findByOrderOrderId(orderId);
+            if(checkOrder.isEmpty()){
+                orderRepository.deleteById(cart.getOrder().getOrderId());
+            }
+        }else {
             throw new Exception("You can't delete other cart");
-        }
-        cartRepository.deleteById(id);
-        List<Cart> checkOrder = cartRepository.findByOrderOrderId(orderId);
-        if(checkOrder.isEmpty()){
-            orderRepository.deleteById(cartId.get().getOrder().getOrderId());
         }
     }
 

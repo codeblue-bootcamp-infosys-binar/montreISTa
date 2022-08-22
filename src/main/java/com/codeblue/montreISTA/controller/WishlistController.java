@@ -82,8 +82,6 @@ public class WishlistController {
     public ResponseEntity<Object> getWishlistById(@PathVariable("id") Long id){
         try{
             WishlistResponseDTO wishlist = wishlistService.findWishlistById(id);
-
-
             return ResponseHandler.generateResponse("successfully retrieved wishlist", HttpStatus.OK, wishlist);
         } catch (Exception e){
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "wishlish not found");

@@ -21,7 +21,5 @@ public interface WishlistService {
 
     void deleteWishlist(Long id,Authentication authentication) throws Exception;
 
-    List<Wishlist> findByBuyerUserName(String keyword);
-
-    List<WishlistResponseDTO> findByBuyerUserUsername(Authentication authentication) throws Exception;
+      List<WishlistResponseDTO> findByBuyerUserUsername(Authentication authentication) throws Exception;
 }
