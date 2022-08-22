@@ -67,7 +67,7 @@ public class PhotoServiceImp implements PhotoService {
 
     @Override
     public List<PhotoResponseDTO> findByProductId(Long id) throws Exception {
-        List<PhotoResponseDTO> photos = photoRepository.findByProductProductIdOrderByPhotoIdAsc(id)
+        List<PhotoResponseDTO> photos = photoRepository.findByProductIdOrderByPhotoIdAsc(id)
                 .stream()
                 .map(Photo::convertToResponse)
                 .collect(Collectors.toList());
@@ -84,7 +84,7 @@ public class PhotoServiceImp implements PhotoService {
         {
             throw new Exception("You only can add photo for your product");
         }
-        List<Photo> photos = photoRepository.findByProductProductIdOrderByPhotoIdAsc(productId);
+        List<Photo> photos = photoRepository.findByProductIdOrderByPhotoIdAsc(productId);
         int count = photos.size()+files.size();
         if(count>=4){
             throw new Exception("Product can only have 4 photos");

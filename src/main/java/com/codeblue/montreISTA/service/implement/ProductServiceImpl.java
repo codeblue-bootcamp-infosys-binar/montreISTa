@@ -31,15 +31,15 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findAllProduct(Integer page, String sort, boolean descending)throws Exception {
         Pageable pageable = Pagination.paginate(page, sort, descending);
         List<Product> products = productRepository.findAll(pageable).getContent();
-//        if(products.isEmpty()){
-//            throw new Exception("Product not found");
-//        }
+        if(products.isEmpty()){
+            throw new Exception("Product not found");
+        }
         return products;
     }
 
     @Override
     public Product findBySellerUsername(String keyword) throws Exception{
-        return productRepository.findFirstBySellerUserUsernameOrderByProductIdDesc(keyword)
+        return productRepository.findFirstBySellerUserUsernameOrderByIdDesc(keyword)
                 .orElseThrow(()->new Exception("Product not found"));
     }
 
@@ -139,7 +139,7 @@ public class ProductServiceImpl implements ProductService {
             throw new Exception("You only can edit your product");
         }
         //UPDATING PRODUCT DATA
-        updateProduct.setProductId(id);
+        updateProduct.setId(id);
         updateProduct.setProductName(product.getProductName());
         updateProduct.setDescription(product.getDescription());
         updateProduct.setPrice(product.getPrice());
@@ -148,7 +148,7 @@ public class ProductServiceImpl implements ProductService {
         if(categories.isEmpty()){
             throw new Exception("Product must have 1 category");
         }
-        List<Category> categoryProduct = categoryRepository.findByProductsProductProductId(id);
+        List<Category> categoryProduct = categoryRepository.findByProductsProductId(id);
         if(categories.size()+categoryProduct.size()>=4){
             throw new Exception("Product can only have 4 category");
         }
@@ -176,7 +176,7 @@ public class ProductServiceImpl implements ProductService {
         categories.forEach(category->{
             try {
                 List<ProductCategory> productCategories = productCategoryRepository.findByCategoryNameIgnoreCase(category);
-                boolean checkCategory = productCategories.stream().anyMatch(productCategory -> Objects.equals(productCategory.getProduct().getProductId(), newProduct.getProductId()));
+                boolean checkCategory = productCategories.stream().anyMatch(productCategory -> Objects.equals(productCategory.getProduct().getId(), newProduct.getId()));
                 Category categoryGet = categoryRepository.findByNameIgnoreCase(category).orElseThrow(()->new Exception("Category not found"));
                 if(!checkCategory) {
                     ProductCategory addCategory = new ProductCategory();

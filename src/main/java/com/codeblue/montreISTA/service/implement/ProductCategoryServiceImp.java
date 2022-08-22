@@ -2,7 +2,6 @@ package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.entity.Category;
-import com.codeblue.montreISTA.entity.Photo;
 import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.entity.ProductCategory;
 import com.codeblue.montreISTA.repository.CategoryRepository;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -42,7 +40,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
 
     @Override
     public List<ProductCategoryResponseDTO> findByProductId(Long id) throws Exception {
-        List<ProductCategory> results = productCategoryRepository.findByProductProductId(id);
+        List<ProductCategory> results = productCategoryRepository.findByProductId(id);
         if(results.isEmpty()){
             throw new Exception("Product Category not found");
         }
@@ -70,8 +68,8 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
 
     @Override
     public ProductCategoryResponseDTO createProductCategory(ProductCategoryRequestDTO productCategory) throws Exception {
-        List<ProductCategory> productCategories = productCategoryRepository.findByProductProductId(productCategory.getProduct_id());
-        Integer count = productCategories.size();
+        List<ProductCategory> productCategories = productCategoryRepository.findByProductId(productCategory.getProduct_id());
+        int count = productCategories.size();
         if(count>=4){
             throw new Exception("Product can only have 4 categories");
         }
@@ -100,7 +98,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
         List<ProductCategoryResponseDTO> productCategoryResponseDTO = new ArrayList<>();
 
         for(ProductCategory productCategory : productCategories) {
-            Optional<Product> productId = productRepository.findById(productCategory.getProduct().getProductId());
+            Optional<Product> productId = productRepository.findById(productCategory.getProduct().getId());
             Product product = productId.get();
             Optional<Category> categoryId = categoryRepository.findById(productCategory.getCategory().getCategoriesId());
             Category category= categoryId.get();

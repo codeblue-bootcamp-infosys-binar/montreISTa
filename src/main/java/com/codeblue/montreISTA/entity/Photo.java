@@ -46,7 +46,7 @@ public class Photo extends AuditEntity{
         return PhotoResponseDTO.builder()
                 .photo_id(this.photoId)
                 .photo_url(this.photoURL)
-                .product_id(this.getProduct().getProductId())
+                .product_id(this.getProduct().getId())
                 .product_name(this.getProduct().getProductName())
                 .description(this.getProduct().getDescription())
                 .price(this.getProduct().getPrice())
@@ -60,7 +60,7 @@ public class Photo extends AuditEntity{
         return PhotoPostDTO.builder()
                 .photo_id(this.photoId)
                 .photo_url(this.photoURL)
-                .product_id(this.getProduct().getProductId())
+                .product_id(this.getProduct().getId())
                 .build();
     }
 

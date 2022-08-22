@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category,Long> {
-    List<Category> findByProductsProductProductId(Long id);
+    List<Category> findByProductsProductId(Long id);
     Optional<Category> findByNameIgnoreCase(String name);
 }

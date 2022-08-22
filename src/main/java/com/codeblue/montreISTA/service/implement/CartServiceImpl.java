@@ -112,7 +112,7 @@ public class CartServiceImpl implements CartService {
         List<CartResponseDTO> carts = new ArrayList<>();
         for(Wishlist wishlist:wishlists){
            CartRequestDTO cartRequestDTO = new CartRequestDTO();
-           cartRequestDTO.setProduct_id(wishlist.getProduct().getProductId());
+           cartRequestDTO.setProduct_id(wishlist.getProduct().getId());
            cartRequestDTO.setQuantity(wishlist.getQuantity());
            CartResponseDTO cartResponseDTO = this.createCart(cartRequestDTO,authentication);
            carts.add(cartResponseDTO);
@@ -169,7 +169,7 @@ public class CartServiceImpl implements CartService {
         List<PhotoProductDTO> photosDTO = cart.getProduct().getPhotos().stream()
                 .map(Photo::convertToProduct)
                 .collect(Collectors.toList());
-        List<Category> categories = this.categoryRepository.findByProductsProductProductId(cart.getProduct().getProductId());
+        List<Category> categories = this.categoryRepository.findByProductsProductId(cart.getProduct().getId());
         List<String> categoriesDTO = categories.stream()
                 .map(Category::getName)
                 .collect(Collectors.toList());
