@@ -247,10 +247,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> deleteUser(Long id)  {
+    public ResponseEntity<Object> deleteUser(Long id,Authentication authentication)  {
         try{
-            userRepository.findById(id).orElseThrow(()->new Exception("User not found"));
-            userRepository.deleteById(id);
+            User user = userRepository.findById(id).orElseThrow(()->new Exception("User not found"));
+            List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
+            boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
+            boolean checkUser = user.getUsername().equals(authentication.getName());
+            if (checkRoles || checkUser){
+                userRepository.deleteById(id);
+            } else {
+                throw new Exception("You can't delete other user");
+            }
         return ResponseHandler.generateResponse("successfully deleted User", HttpStatus.MULTI_STATUS, "Success Delete");
     } catch (Exception e) {
         return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Delete User");

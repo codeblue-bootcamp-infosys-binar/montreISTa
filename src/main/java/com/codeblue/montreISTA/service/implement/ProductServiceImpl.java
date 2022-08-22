@@ -1,15 +1,9 @@
 package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.ProductRequestDTO;
-import com.codeblue.montreISTA.entity.Category;
-import com.codeblue.montreISTA.entity.Product;
-import com.codeblue.montreISTA.entity.ProductCategory;
-import com.codeblue.montreISTA.entity.Seller;
+import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.helper.Pagination;
-import com.codeblue.montreISTA.repository.CategoryRepository;
-import com.codeblue.montreISTA.repository.ProductCategoryRepository;
-import com.codeblue.montreISTA.repository.ProductRepository;
-import com.codeblue.montreISTA.repository.SellerRepository;
+import com.codeblue.montreISTA.repository.*;
 import com.codeblue.montreISTA.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +21,7 @@ public class ProductServiceImpl implements ProductService {
     private final SellerRepository sellerRepository;
     private final CategoryRepository categoryRepository;
     private final ProductCategoryRepository productCategoryRepository;
+    private final RoleRepository roleRepository;
 
     public List<Product> findAllProduct(Integer page, String sort, boolean descending)throws Exception {
         Pageable pageable = Pagination.paginate(page, sort, descending);
@@ -135,9 +130,8 @@ public class ProductServiceImpl implements ProductService {
         //GET SELLER FROM DATABASE BY ID
         Product product = productRequestDTO.convertToEntity(seller);
         Product updateProduct = productRepository.findById(id).orElseThrow(()->new Exception("Product Not Found"));
-        if(seller!=updateProduct.getSeller()){
-            throw new Exception("You only can edit your product");
-        }
+
+
         //UPDATING PRODUCT DATA
         updateProduct.setId(id);
         updateProduct.setProductName(product.getProductName());

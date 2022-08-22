@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment,Long> {
 
-    List<Payment> findByNameContaining(String keyword);
+    List<Payment> findByNameIgnoreCaseContaining(String keyword);
     Optional<Payment> findByNameIgnoreCase(String keyword);
 
 }
