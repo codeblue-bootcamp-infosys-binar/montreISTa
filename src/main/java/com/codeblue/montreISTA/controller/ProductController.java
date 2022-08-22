@@ -41,7 +41,7 @@ public class ProductController {
             for(Product productData : products){
                 Map<String, Object> product = new HashMap<>();
                 logger.info("-------------------------");
-                logger.info("Product ID    : " + productData.getProductId());
+                logger.info("Product ID    : " + productData.getId());
                 logger.info("Description   : " + productData.getDescription());
                 logger.info("Price         : " + productData.getPrice());
                 logger.info("Product name  : " + productData.getProductName());

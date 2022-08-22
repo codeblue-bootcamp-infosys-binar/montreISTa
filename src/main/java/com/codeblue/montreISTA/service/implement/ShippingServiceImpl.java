@@ -6,7 +6,7 @@ import com.codeblue.montreISTA.entity.Shipping;
 import com.codeblue.montreISTA.repository.ShippingRepository;
 import com.codeblue.montreISTA.service.ShippingService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

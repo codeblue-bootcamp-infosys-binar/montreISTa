@@ -10,12 +10,9 @@ import com.codeblue.montreISTA.repository.BuyerRepository;
 import com.codeblue.montreISTA.repository.ProductRepository;
 import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.service.BuyerService;
-import com.codeblue.montreISTA.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-
-import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
