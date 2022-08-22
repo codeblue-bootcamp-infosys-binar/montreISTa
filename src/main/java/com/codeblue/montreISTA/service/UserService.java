@@ -15,5 +15,5 @@ public interface UserService {
     ResponseEntity<Object> registrationUser(RegistrationDTO user)throws Exception;
     ResponseEntity<Object> updateUser(RegistrationDTO user, Authentication authentication)throws Exception;
     ResponseEntity<Object> uploadPhotoProfile(Authentication authentication, MultipartFile file)throws Exception;
-    ResponseEntity<Object> deleteUser(Long id)throws Exception;
+    ResponseEntity<Object> deleteUser(Long id,Authentication authentication)throws Exception;
 }

@@ -36,7 +36,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public List<PaymentResponseDTO> findByPaymentName(String keyword)throws Exception {
-        List<Payment> payments = paymentRepository.findByNameContaining(keyword);
+        List<Payment> payments = paymentRepository.findByNameIgnoreCaseContaining(keyword);
         if(payments.isEmpty()){
             throw new Exception("Payment not found");
         }
@@ -48,7 +48,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentResponseDTO addPayment(PaymentRequestDTO paymentRequestDTO) throws Exception {
         Payment payment = paymentRequestDTO.convertToEntity();
-        List<Payment> payments = paymentRepository.findByNameContaining(paymentRequestDTO.getName());
+        List<Payment> payments = paymentRepository.findByNameIgnoreCaseContaining(paymentRequestDTO.getName());
         if(!payments.isEmpty()){
             throw new Exception("Can't update with same name");
         }
@@ -58,7 +58,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentResponseDTO updatePayment(PaymentRequestDTO paymentRequestDTO, Long id) throws Exception {
         Payment payment = paymentRepository.findById(id).orElseThrow(()->new Exception("Payment not found"));
-        List<Payment> payments = paymentRepository.findByNameContaining(paymentRequestDTO.getName());
+        List<Payment> payments = paymentRepository.findByNameIgnoreCaseContaining(paymentRequestDTO.getName());
         if(!payments.isEmpty()){
             throw new Exception("Can't update with same name");
         }

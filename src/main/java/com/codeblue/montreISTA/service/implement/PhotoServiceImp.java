@@ -86,7 +86,7 @@ public class PhotoServiceImp implements PhotoService {
         }
         List<Photo> photos = photoRepository.findByProductIdOrderByPhotoIdAsc(productId);
         int count = photos.size()+files.size();
-        if(count>=4){
+        if(count>4){
             throw new Exception("Product can only have 4 photos");
         }
         List<PhotoResponseDTO> photoDTO = new ArrayList<>();

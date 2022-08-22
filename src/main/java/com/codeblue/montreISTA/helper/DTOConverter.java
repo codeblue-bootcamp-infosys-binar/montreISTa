@@ -1,12 +1,7 @@
 package com.codeblue.montreISTA.helper;
 
-import com.codeblue.montreISTA.DTO.PhotoProductDTO;
-import com.codeblue.montreISTA.DTO.ProductResponseDTO;
-import com.codeblue.montreISTA.DTO.WishlistResponseDTO;
-import com.codeblue.montreISTA.entity.Category;
-import com.codeblue.montreISTA.entity.Photo;
-import com.codeblue.montreISTA.entity.Product;
-import com.codeblue.montreISTA.entity.Wishlist;
+import com.codeblue.montreISTA.DTO.*;
+import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -88,5 +83,11 @@ public class DTOConverter {
 
         return wishlist.convertToResponse(productDTO);
 
+    }
+
+    public static LoginSellerResponseDTO convertLoginSeller(Seller seller,List<Product> products){
+        SellerResponseDTO my_store = seller.convertToResponse();
+        List<ProductResponseDTO> my_products = DTOConverter.convertProducts(products);
+        return seller.convertToLoginSeller(my_store,my_products);
     }
 }

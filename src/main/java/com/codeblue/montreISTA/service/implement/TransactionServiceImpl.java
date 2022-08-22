@@ -136,6 +136,9 @@ public class TransactionServiceImpl implements TransactionService {
             throw new Exception("Please order first");
         }
         Order order = orderOptional.get();
+        if(!order.getIsPay()){
+            throw new Exception("Please pay first !");
+        }
         List<TransactionDetailResponseDTO> results = new ArrayList<>();
         for(Cart cart:order.getListCart()){
             HistoryTransaction transaction = new HistoryTransaction();

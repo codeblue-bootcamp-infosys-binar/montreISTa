@@ -42,7 +42,7 @@ public class ShippingServiceImpl implements ShippingService {
     @Override
     public ShippingResponseDTO createShipping(ShippingRequestDTO shippingRequestDTO) throws Exception {
         Shipping shipping = shippingRequestDTO.convertToEntity();
-        Optional<Shipping> check = shippingRepository.findByNameIgnoreCase(shipping.getName());
+        Optional<Shipping> check = shippingRepository.findByNameIgnoreCase(shippingRequestDTO.getName());
         if(check.isPresent()){
             throw new Exception("this name not unique");
         }
@@ -52,7 +52,7 @@ public class ShippingServiceImpl implements ShippingService {
     @Override
     public ShippingResponseDTO updateShipping(ShippingRequestDTO shippingRequestDTO, Long id) throws Exception {
         Shipping shipping = shippingRepository.findById(id).orElseThrow(()->new Exception("Shipping not found"));
-        Optional<Shipping> check = shippingRepository.findByNameIgnoreCase(shipping.getName());
+        Optional<Shipping> check = shippingRepository.findByNameIgnoreCase(shippingRequestDTO.getName());
         if(check.isPresent()) {
             throw new Exception("this name not unique");
         }

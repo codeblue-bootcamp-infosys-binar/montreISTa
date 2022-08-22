@@ -76,7 +76,7 @@ public class OrderController {
             logger.info(Line + "Logger Start Delete By Id " + Line);
             logger.info("Delete Success");
             logger.info(Line + "Logger End Delete By Id " + Line);
-            return ResponseHandler.generateResponse("successfully deleted Order", HttpStatus.MULTI_STATUS, "Success delete");
+            return ResponseHandler.generateResponse("successfully deleted Order", HttpStatus.OK, "Success delete");
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -106,7 +106,22 @@ public class OrderController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Order no value!");
         }
     }
-    
+
+    @GetMapping("/user/pay-my-order")
+    public ResponseEntity<Object> payOrder(Authentication authentication){
+        try{
+            OrderResponseCartDTO results = orderService.payOrder(authentication.getName());
+            logger.info(Line + "Logger Start Get By Buyer " + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Get By Buyer " + Line);
+            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
+        } catch (Exception e){
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Order had no value!");
+        }
+    }
     /**
      * FindAll
      * @return
@@ -199,4 +214,5 @@ public class OrderController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Order had no value!");
         }
     }
+
 }

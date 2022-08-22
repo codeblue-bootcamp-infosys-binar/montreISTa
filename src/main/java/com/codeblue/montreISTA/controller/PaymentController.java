@@ -154,7 +154,7 @@ public class PaymentController {
         logger.info(Line + "Logger Start Delete By Id " + Line);
         logger.info("Delete Success");
         logger.info(Line + "Logger End Delete By Id " + Line);
-        return ResponseHandler.generateResponse("successfully deleted payment", HttpStatus.OK, null);
+        return ResponseHandler.generateResponse("successfully deleted payment", HttpStatus.OK, "deleted");
     } catch(Exception e){
         logger.error(Line + " Logger Start Error " + Line);
         logger.error(e.getMessage());

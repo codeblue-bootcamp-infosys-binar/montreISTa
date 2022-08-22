@@ -39,6 +39,8 @@ public class Order extends AuditEntity{
     private String destinationPhone;
     private String zipCode;
 
+    private Boolean isPay;
+
     //list cart
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "order",
@@ -46,9 +48,16 @@ public class Order extends AuditEntity{
     private List<Cart> listCart;
 
     public OrderResponseCartDTO convertCart(List<OrderCartDTO> carts){
+        String print = null;
+        if(this.getIsPay()){
+            print = "Paid";
+        }else {
+            print="Unpaid";
+        }
         return OrderResponseCartDTO.builder()
                 .orderId(this.getOrderId())
                 .total_price(this.getTotalprice())
+                .is_payment(print)
                 .cart(carts)
                 .build();
     }
