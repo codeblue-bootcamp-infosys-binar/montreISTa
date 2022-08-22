@@ -1,9 +1,10 @@
 package com.codeblue.montreISTA.controller;
 
 
+import com.codeblue.montreISTA.DTO.PaymentRequestDTO;
+import com.codeblue.montreISTA.DTO.PaymentResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.PaymentService;
-import com.codeblue.montreISTA.entity.Payment;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -32,13 +33,12 @@ public class PaymentController {
 
     /**
      * Create Payment
-     * @param newPayment
-     * @return
+     *
      */
     @PostMapping("/dashboard/payment/create")
-    public ResponseEntity<Object> addPayment(@RequestBody Payment newPayment) {
+    public ResponseEntity<Object> addPayment(@RequestBody PaymentRequestDTO paymentRequestDTO) {
         try {
-            Payment payment = paymentService.addPayment(newPayment);
+            PaymentResponseDTO payment = paymentService.addPayment(paymentRequestDTO);
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(payment));
             logger.info(Line + "Logger End Create " + Line);
@@ -58,20 +58,13 @@ public class PaymentController {
     @GetMapping("/payment")
     public ResponseEntity<Object> getAllPayment(){
         try{
-            List<Payment> payments = paymentService.findAllPayment();
-            List<Map<String, Object>> maps = new ArrayList<>();
-            logger.info("==================== Logger Start Get All Payments     ====================");
-            for(Payment paymentData : payments){
-                Map<String, Object> payment = new HashMap<>();
-
+            List<PaymentResponseDTO> payments = paymentService.findAllPayment();
+                logger.info("==================== Logger Start Get All Payments     ====================");
+            for(PaymentResponseDTO paymentData : payments){
                 logger.info("-------------------------");
-                logger.info("Payment ID    : " + paymentData.getPaymentId());
+                logger.info("Payment ID    : " + paymentData.getPayment_id());
                 logger.info("Name          : "      + paymentData.getName());
-                logger.info("Payment Code  : " + paymentData.getPaymentCode());
-                payment.put("Payment ID      ", paymentData.getPaymentId());
-                payment.put("Name            ", paymentData.getName());
-                payment.put("Payment Code      ", paymentData.getPaymentCode());
-                maps.add(payment);
+                logger.info("Payment Code  : " + paymentData.getPayment_Code());
             }
             logger.info("==================== Logger End Get All Payments     ====================");
             logger.info(" ");
@@ -93,7 +86,7 @@ public class PaymentController {
     @GetMapping("/payment/paymentName")
     public ResponseEntity<Object> findByPaymentName(@Param("keyword") String keyword){
         try{
-            List<Payment> payments = paymentService.findByPaymentName(keyword);
+            List<PaymentResponseDTO> payments = paymentService.findByPaymentName(keyword);
             logger.info(Line + "Logger Start Get By Id " + Line);
             logger.info(String.valueOf(payments));
             logger.info(Line + "Logger End Get By Id " + Line);
@@ -113,7 +106,7 @@ public class PaymentController {
     @GetMapping("/payment/{id}")
     public ResponseEntity<Object> getPaymentById(@PathVariable("id") Long id) {
         try{
-            Optional<Payment> payment = paymentService.findPaymentById(id);
+            PaymentResponseDTO payment = paymentService.findPaymentById(id);
             logger.info(Line + "Logger Start Get By Id " + Line);
             logger.info(String.valueOf(payment));
             logger.info(Line + "Logger End Get By Id " + Line);
@@ -129,13 +122,13 @@ public class PaymentController {
     /**
      * Update Payment
      * @param id
-     * @param payment
+     * @param
      * @return
      */
     @PutMapping("/dashboard/payment/update/{id}")
-    public ResponseEntity<Object> updatePayment(@RequestBody Payment payment, @PathVariable("id") Long id) {
+    public ResponseEntity<Object> updatePayment(@RequestBody PaymentRequestDTO PaymentResponseDTO, @PathVariable("id") Long id) {
         try {
-            Payment results = paymentService.updatePayment(payment,id);
+            PaymentResponseDTO results = paymentService.updatePayment(PaymentResponseDTO,id);
             logger.info(Line + "Logger Start Update By Id " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Update By Id " + Line);

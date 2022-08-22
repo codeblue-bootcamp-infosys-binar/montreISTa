@@ -1,6 +1,7 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.entity.Shipping;
+import com.codeblue.montreISTA.DTO.ShippingRequestDTO;
+import com.codeblue.montreISTA.DTO.ShippingResponseDTO;
 import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.ShippingService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -31,19 +32,13 @@ public class ShippingController {
     @GetMapping("/shipping")
     public ResponseEntity<Object> getAllShipping(){
         try{
-            List<Shipping> shippings = shippingService.findAllShipping();
-            List<Map<String, Object>> maps = new ArrayList<>();
+            List<ShippingResponseDTO> shippings = shippingService.findAllShipping();
             logger.info("==================== Logger Start Get All Shipping    ====================");
-            for(Shipping shippingData : shippings){
-                Map<String, Object> shipping = new HashMap<>();
+            for(ShippingResponseDTO shippingData : shippings){
                 logger.info("-------------------------");
-                logger.info("Shipping ID  : " + shippingData.getShippingId());
+                logger.info("Shipping ID  : " + shippingData.getShipping_id());
                 logger.info("Name         : " + shippingData.getName());
                 logger.info("Price        : " + shippingData.getPrice());
-                shipping.put("Shipping ID   ", shippingData.getShippingId());
-                shipping.put("Name          ", shippingData.getName());
-                shipping.put("Price         ", shippingData.getPrice());
-                maps.add(shipping);
             }
             logger.info("==================== Logger End Get All Shipping    ====================");
             logger.info(" ");
@@ -61,7 +56,7 @@ public class ShippingController {
     @GetMapping("/shipping/name")
     public ResponseEntity<Object> findByName(@Param("keyword") String keyword){
         try{
-            List<Shipping> shippings = shippingService.findByName(keyword);
+            List<ShippingResponseDTO> shippings = shippingService.findByName(keyword);
             logger.info(Line + " Logger Start Get by Shipping Name " + Line);
             logger.info("Update Shipping : " + shippings);
             logger.info(Line + " Logger End Get  by Shipping Name " + Line);
@@ -74,30 +69,11 @@ public class ShippingController {
         }
     }
 
-
-
-    //GET ALL BY Shipping ID
-    @GetMapping("/shipping/store/{shipping_id}")
-    public ResponseEntity<Object> getAllShippingByShippingId(@PathVariable("shipping_id") Long shippingId){
-        try{
-            List<Shipping> shipping = shippingService.findShippingByShippingId(shippingId);
-            logger.info(Line + " Logger Start Get All by Shipping id " + Line);
-            logger.info("Update Shipping : " + shipping);
-            logger.info(Line + " Logger End Get All by Shipping id " + Line);
-            return ResponseHandler.generateResponse("success get all by shipping id", HttpStatus.OK, shipping);
-        } catch (Exception e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND, "Data not Found!");
-        }
-    }
-
     //GET ONE BY ID
     @GetMapping("/shipping/{id}")
     public ResponseEntity<Object> getShippingById(@PathVariable("id") Long id){
         try{
-            Optional<Shipping> shipping = shippingService.findShippingById(id);
+            ShippingResponseDTO shipping = shippingService.findShippingById(id);
             logger.info(Line + " Logger Start Get By id Shipping " + Line);
             logger.info("Update Shipping : " + shipping);
             logger.info(Line + " Logger End Get By id Shipping " + Line);
@@ -112,9 +88,9 @@ public class ShippingController {
 
     //CREATE
     @PostMapping("/dashboard/shipping/create")
-    public ResponseEntity<Object> createShipping(@RequestBody Shipping shippingRequestDTO){
+    public ResponseEntity<Object> createShipping(@RequestBody ShippingRequestDTO shippingRequestDTO){
         try {
-            Shipping shipping = shippingService.createShipping(shippingRequestDTO);
+            ShippingResponseDTO shipping = shippingService.createShipping(shippingRequestDTO);
             logger.info(Line + " Logger Start Create Shipping " + Line);
             logger.info("Create Shipping : " + shipping);
             logger.info(Line + " Logger End Create Shipping " + Line);
@@ -129,18 +105,13 @@ public class ShippingController {
 
     //UPDATE
     @PutMapping("/dashboard/shipping/update/{id}")
-    public ResponseEntity<Object> updateShipping(@RequestBody Shipping shipping, @PathVariable("id") Long id){
+    public ResponseEntity<Object> updateShipping(@RequestBody ShippingRequestDTO shippingRequestDTO, @PathVariable("id") Long id){
         try{
-            Optional<Shipping> targetShipping = shippingService.findShippingById(id);
-            Shipping updateShipping = targetShipping.get();
-            updateShipping.setShippingId(id);
-            updateShipping.setName(shipping.getName());
-            updateShipping.setPrice(shipping.getPrice());
-            shippingService.updateShipping(updateShipping);
+            ShippingResponseDTO result = shippingService.updateShipping(shippingRequestDTO, id);
             logger.info(Line + " Logger Start Update Shipping " + Line);
-            logger.info("Update Shipping : " + updateShipping);
+            logger.info("Update Shipping : " + result);
             logger.info(Line + " Logger End Update Shipping " + Line);
-            return ResponseHandler.generateResponse("successfully updated Shipping", HttpStatus.CREATED, updateShipping);
+            return ResponseHandler.generateResponse("successfully updated Shipping", HttpStatus.CREATED, result);
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -154,11 +125,10 @@ public class ShippingController {
     public ResponseEntity<Object> deleteShipping(@PathVariable("id") Long id){
         try{
             shippingService.deleteShipping(id);
-            Boolean result = Boolean.TRUE;
             logger.info(Line + " Logger Start Delete Shipping " + Line);
-            logger.info("Success Delete Shipping by ID :"+result);
+            logger.info("Success Delete Shipping by ID");
             logger.info(Line + " Logger End Delete Shipping " + Line);
-            return ResponseHandler.generateResponse("successfully deleted shipping by id", HttpStatus.OK, result);
+            return ResponseHandler.generateResponse("successfully deleted shipping by id", HttpStatus.OK, "success delete");
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());

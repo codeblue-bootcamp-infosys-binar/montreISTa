@@ -1,9 +1,7 @@
 package com.codeblue.montreISTA.DTO;
 
-import com.codeblue.montreISTA.entity.Cart;
 import lombok.*;
 
-import javax.persistence.Column;
 import java.time.ZonedDateTime;
 import java.util.List;
 
