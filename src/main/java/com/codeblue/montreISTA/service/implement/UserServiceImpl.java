@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ResponseEntity<Object> authenticationUser(LoginUserRequest userRequest) throws Exception {
+    public ResponseEntity<Object> authenticationUser(LoginUserRequest userRequest)  {
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -82,7 +83,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> findAllUser() throws Exception{
+    public ResponseEntity<Object> findAllUser() {
         try {
         List<User> users = userRepository.findAllByOrderByUserIdAsc();
         List<UserResponseDTO> usersDTO = new ArrayList<>();
@@ -109,12 +110,12 @@ public class UserServiceImpl implements UserService {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Get All Users");
         }
     }
 
     @Override
-    public ResponseEntity<Object> findByUserId(Long id) throws Exception {
+    public ResponseEntity<Object> findByUserId(Long id)  {
         try{
         List<Role> roles = roleRepository.findByUsersUserUserId(id);
         List<String> role = roles.stream().map(Role::getRoleName).collect(Collectors.toList());
@@ -129,7 +130,7 @@ public class UserServiceImpl implements UserService {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Find by Id");
         }
     }
 
@@ -152,14 +153,14 @@ public class UserServiceImpl implements UserService {
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
 
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, "User not found");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed find My Profile");
         }
     }
 
 
 
     @Override
-    public ResponseEntity<Object> registrationUser(RegistrationDTO registrationDTO) throws Exception {
+    public ResponseEntity<Object> registrationUser(RegistrationDTO registrationDTO)  {
         try {
             if (userRepository.existsByUsername(registrationDTO.getUsername())) {
                 throw new Exception("Username is already in use");
@@ -190,7 +191,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> updateUser(RegistrationDTO registrationDTO, Authentication authentication) throws Exception {
+    public ResponseEntity<Object> updateUser(RegistrationDTO registrationDTO, Authentication authentication)  {
         try {
             User userByUsername = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("User not found"));
         User user = registrationDTO.convertToEntity();
@@ -213,12 +214,12 @@ public class UserServiceImpl implements UserService {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"failed update photo");
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"failed upload photo");
         }
     }
 
     @Override
-    public ResponseEntity<Object> uploadPhotoProfile(Authentication authentication, MultipartFile file) throws Exception {
+    public ResponseEntity<Object> uploadPhotoProfile(Authentication authentication, MultipartFile file)  {
         try{
         User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Please sign up"));
         String url = cloudinaryService.uploadFile(file);
@@ -239,13 +240,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> deleteUser(Long id) throws Exception {
+    public ResponseEntity<Object> deleteUser(Long id)  {
         try{
-        userRepository.deleteById(id);
-        return ResponseHandler.generateResponse("successfully deleted User", HttpStatus.MULTI_STATUS, null);
+            userRepository.findById(id).orElseThrow(()->new Exception("User not found"));
+            userRepository.deleteById(id);
+        return ResponseHandler.generateResponse("successfully deleted User", HttpStatus.MULTI_STATUS, "Success Delete");
     } catch (Exception e) {
-        return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
-    }
+        return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Delete User");
+        }
     }
     public void checkRole(List<String> requestRole){
         requestRole.forEach(role-> {
@@ -257,7 +259,7 @@ public class UserServiceImpl implements UserService {
         );
     }
 
-    public UserResponseDTO convertResponse(User userSave)throws Exception{
+    public UserResponseDTO convertResponse(User userSave){
         List<Role> rolesUser = roleRepository.findByUsersUserUserId(userSave.getUserId());
         List<String> roleDTO = rolesUser.stream().map(Role::getRoleName).collect(Collectors.toList());
         return userSave.convertToResponse(roleDTO);
@@ -272,17 +274,20 @@ public class UserServiceImpl implements UserService {
             addRole.setUser(user);
             userRoleRepository.save(addRole);
         }else {
-            boolean check = requestRole.stream().anyMatch(r->r.contains("ROLE_ADMIN"));
+            boolean check = requestRole.stream().anyMatch(role->role.contains("ROLE_ADMIN"));
             if(check){
                 throw new Exception("User need admin for ROLE_ADMIN");
             }
             requestRole.forEach(role->{
                 try{
-                    Role roleGet = roleRepository.findByRoleNameIgnoreCase(role).orElseThrow(()->new Exception("Role not found"));
-                    UserRole addRole = new UserRole();
-                    addRole.setRole(roleGet);
-                    addRole.setUser(user);
-                    userRoleRepository.save(addRole);
+                    List<UserRole> userRoles = userRoleRepository.findByRoleRoleNameIgnoreCase(role);
+                    boolean checkUser = userRoles.stream().anyMatch(userRole -> Objects.equals(userRole.getUser().getUserId(), user.getUserId()));
+                    if(!checkUser){
+                        Role roleGet = roleRepository.findByRoleNameIgnoreCase(role).orElseThrow(()->new Exception("Role not found"));
+                        UserRole addRole = new UserRole();
+                        addRole.setRole(roleGet);
+                        addRole.setUser(user);
+                        userRoleRepository.save(addRole);}
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }});

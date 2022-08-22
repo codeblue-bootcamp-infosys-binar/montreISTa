@@ -30,7 +30,7 @@ public class BuyerController {
     private final BuyerService buyerService;
 
     //CREATE
-    @GetMapping("/user/buyers/loginAsBuyer")
+    @GetMapping("/user/buyers/login-as-buyer")
     public ResponseEntity<Object> createBuyer(Authentication authentication){
         try {
             List<ProductResponseDTO> results = buyerService.createBuyer(authentication);
@@ -74,7 +74,7 @@ public class BuyerController {
         }
     }
 
-    @GetMapping("/dashboard/buyer/findByUsername")
+    @GetMapping("/dashboard/buyer/find-by-username")
     public ResponseEntity<Object> findByUsername(@Param ("keyword")String keyword){
         try{
             List<BuyerResponseDTO> buyers = buyerService.findByUsername(keyword);
@@ -98,7 +98,7 @@ public class BuyerController {
             logger.info(Line + "Logger Start Delete By Id " + Line);
             logger.info("Delete Success");
             logger.info(Line + "Logger End Delete By Id " + Line);
-            return ResponseHandler.generateResponse("successfully deleted buyer", HttpStatus.OK, null);
+            return ResponseHandler.generateResponse("successfully deleted buyer", HttpStatus.OK, "Success delete buyer");
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());

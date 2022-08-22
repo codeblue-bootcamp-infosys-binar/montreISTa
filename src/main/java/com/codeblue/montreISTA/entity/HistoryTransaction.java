@@ -1,14 +1,10 @@
 package com.codeblue.montreISTA.entity;
 
-
-import com.codeblue.montreISTA.DTO.PhotoProductDTO;
 import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,7 +16,7 @@ import javax.validation.constraints.NotNull;
 public class HistoryTransaction{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long historyTransactionId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "buyer_id")
@@ -43,9 +39,14 @@ public class HistoryTransaction{
     @NotNull
     private Integer totalPrice;
 
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "historyTransaction",
+            fetch = FetchType.LAZY)
+    private List<HistoryTransactionDetail> transactionDetails;
+
     public TransactionResponseDTO convertToResponse(){
         return TransactionResponseDTO.builder()
-                .transaction_id(this.getHistoryTransactionId())
+                .transaction_id(this.getId())
                 .buyer_id(this.getBuyer().getBuyerId())
                 .store_name(this.getSeller().getStoreName())
                 .seller_id(this.getSeller().getSellerId())
@@ -60,11 +61,16 @@ public class HistoryTransaction{
     @Override
     public String toString() {
         return "HistoryTransaction{" +
-                "historyTransactionId=" + historyTransactionId +
+                "id=" + id +
                 ", buyer=" + buyer +
                 ", seller=" + seller +
                 ", photoUrl='" + photoUrl + '\'' +
+                ", product_id=" + product_id +
+                ", product_name='" + product_name + '\'' +
+                ", product_price=" + product_price +
+                ", quantity=" + quantity +
                 ", totalPrice=" + totalPrice +
+                ", transactionDetails=" + transactionDetails +
                 '}';
     }
 }

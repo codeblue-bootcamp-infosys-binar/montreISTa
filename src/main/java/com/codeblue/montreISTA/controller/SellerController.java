@@ -37,7 +37,7 @@ public class SellerController {
     private final UserRepository userRepository;
 
     //CREATE
-    @PostMapping("/user/sellers/loginAsSeller")
+    @PostMapping("/user/sellers/login-as-seller")
     public ResponseEntity<Object> createSeller(@RequestBody SellerRequestDTO sellerRequestDTO, Authentication authentication){
         try {
             Object results = sellerService.createSeller(sellerRequestDTO,authentication);
@@ -68,11 +68,11 @@ public class SellerController {
             SellerResponseDTO result = sellerService.findByUsername(authentication.getName());
             return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, result);
         } catch (Exception e) {
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Seller not Found");
         }
     }
     //UPDATE
-    @PutMapping("/user/sellers/EditStoreProfile")
+    @PutMapping("/user/sellers/edit-store-profile")
     public ResponseEntity<Object> updateSeller(@RequestBody SellerRequestDTO sellerRequestDTO, Authentication authentication){
         try{
             SellerResponseDTO updateSeller = sellerService.updateSeller(sellerRequestDTO,authentication);

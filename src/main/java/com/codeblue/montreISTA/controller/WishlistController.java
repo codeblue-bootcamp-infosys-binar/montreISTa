@@ -26,20 +26,20 @@ public class WishlistController {
     public ResponseEntity<Object> findByBuyerUserUsername(Authentication authentication) {
         try{
             List<WishlistResponseDTO> wishlists = wishlistService.findByBuyerUserUsername(authentication);
-            return ResponseHandler.generateResponse("successfully retrieved buyer username", HttpStatus.OK, wishlists);
+            return ResponseHandler.generateResponse("successfully retrieved buyer wishlist", HttpStatus.OK, wishlists);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "find wishlist failed");
         }
     }
 
     //CREATE
-    @PostMapping("/user/addToWishlist")
+    @PostMapping("/user/add-to-wishlist")
     public ResponseEntity<Object> createWishlist(@RequestBody WishlistRequestDTO wishlistRequestDTO,Authentication authentication)throws Exception{
         try {
             WishlistResponseDTO wishlist = wishlistService.createWishlist(wishlistRequestDTO,authentication);
             return ResponseHandler.generateResponse("successfully retrieved wishlist", HttpStatus.CREATED, wishlist);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,"add wishlist failed");
         }
     }
 
@@ -50,7 +50,7 @@ public class WishlistController {
             WishlistResponseDTO wishlist = wishlistService.updateWishlist(wishlistRequestDTO, id, authentication);
             return ResponseHandler.generateResponse("successfully updated Wishlist", HttpStatus.CREATED,wishlist );
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "edit wishlist failed");
         }
     }
 
@@ -59,9 +59,9 @@ public class WishlistController {
     public ResponseEntity<Object> deleteWishlist(@PathVariable("id") Long id, Authentication authentication){
         try{
             wishlistService.deleteWishlist(id, authentication);
-            return ResponseHandler.generateResponse("successfully deleted wishlist", HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse("successfully deleted wishlist", HttpStatus.OK, "success delete wishlist");
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "delete wishlist failed");
         }
 
     }
@@ -73,7 +73,7 @@ public class WishlistController {
             List<WishlistResponseDTO> wishlists = wishlistService.findAllWishlist();
             return ResponseHandler.generateResponse("successfully retrieved wishlist", HttpStatus.OK, wishlists);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "wishlist not found");
         }
     }
 
@@ -86,7 +86,7 @@ public class WishlistController {
 
             return ResponseHandler.generateResponse("successfully retrieved wishlist", HttpStatus.OK, wishlist);
         } catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "wishlish not found");
         }
     }
 

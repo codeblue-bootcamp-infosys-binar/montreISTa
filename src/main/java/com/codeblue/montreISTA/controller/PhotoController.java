@@ -81,7 +81,7 @@ public class PhotoController {
                                             Authentication authentication) throws IOException {
         try {
             Product product = productService.findBySellerUsername(authentication.getName());
-            List<PhotoResponseDTO> results = photoService.createPhoto(product.getProductId(),files, authentication);
+            List<PhotoResponseDTO> results = photoService.createPhoto(product.getId(),files, authentication);
             logger.info(Line + "Logger Start Query " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Query " + Line);
@@ -145,7 +145,7 @@ public class PhotoController {
             List<PhotoResponseDTO> results = photoService.findByProductId(id);
             return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, results);
         }catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Failed find photo");
         }
     }
 
@@ -155,7 +155,7 @@ public class PhotoController {
             List<PhotoResponseDTO> results = photoService.findBySellerId(id);
             return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, results);
         }catch (Exception e){
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, null);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Failed find photo");
         }
     }
     /**
@@ -169,7 +169,6 @@ public class PhotoController {
             for (PhotoResponseDTO photoData : results) {
                 logger.info("-------------------------");
                 logger.info("Photo ID      : " + photoData.getPhoto_id());
-
                 logger.info("Photo Url     : " + photoData.getPhoto_url());
                 logger.info("Product ID    : " + photoData.getProduct_id());
             }
@@ -178,10 +177,10 @@ public class PhotoController {
             return ResponseHandler.generateResponse("successfully retrieved products", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.info("==================== Logger Start Get All Photo     ====================");
-            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!")));
+            logger.error(String.valueOf(e.getMessage()));
             logger.info("==================== Logger End Get All Photo     ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Photo had no value!");
         }
     }
 

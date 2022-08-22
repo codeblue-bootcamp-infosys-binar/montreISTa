@@ -13,13 +13,13 @@ import java.util.List;
 @Repository
 public interface PhotoRepository extends JpaRepository<Photo,Long> {
     List<Photo> findAllByOrderByPhotoIdAsc();
-    List<Photo> findByProductSellerUserIdNameIgnoreCaseContainingOrderByPhotoIdAsc(String productName);
+    List<Photo> findByProductSellerUserNameIgnoreCaseContainingOrderByPhotoIdAsc(String productName);
     List<Photo> findByProductSellerSellerIdOrderByPhotoIdAsc(long id);
-    List<Photo> findByProductProductIdOrderByPhotoIdAsc(Long id);
+    List<Photo> findByProductIdOrderByPhotoIdAsc(Long id);
     @Query("Select p from Photo p where p.product.productName like %:name% ORDER BY p.product.productName ASC")
     List<Photo> findByProductName(@Param("name")String name);
 
-    @Query("Select p from Photo p where concat(p.product.seller.userId.name, ' ', p.product.seller.userId.username, ' ') like %:name% ORDER BY p.product.seller.userId.name ASC")
+    @Query("Select p from Photo p where concat(p.product.seller.user.name, ' ', p.product.seller.user.username, ' ') like %:name% ORDER BY p.product.seller.user.name ASC")
     List<Photo> findByUsername(@Param("name")String name);
 
 

@@ -62,7 +62,7 @@ public class DTOConverter {
         for(Product product : products){
 
             List<PhotoProductDTO> photosDTO = convertPhoto(product.getPhotos());
-            List<Category> categoryList = categoryService.findByProductId(product.getProductId());
+            List<Category> categoryList = categoryService.findByProductId(product.getId());
             List<String> categoriesDTO = convertCategories(categoryList);
 
             ProductResponseDTO productDTO = product.convertToResponse(photosDTO, categoriesDTO);
@@ -75,7 +75,7 @@ public class DTOConverter {
     public static ProductResponseDTO convertOneProducts(Product product){
 
         List<PhotoProductDTO> photosDTO = convertPhoto(product.getPhotos());
-        List<Category> categoryList = categoryService.findByProductId(product.getProductId());
+        List<Category> categoryList = categoryService.findByProductId(product.getId());
         List<String> categoriesDTO = convertCategories(categoryList);
 
         return product.convertToResponse(photosDTO, categoriesDTO);

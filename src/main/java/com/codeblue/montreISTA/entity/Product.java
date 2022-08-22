@@ -25,7 +25,7 @@ public class Product extends AuditEntity {
     //product id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
+    private Long id;
 
     //seller id
     @ManyToOne
@@ -56,16 +56,20 @@ public class Product extends AuditEntity {
             fetch = FetchType.LAZY)
     private List<Photo> photos;
 
-
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "product",
             fetch = FetchType.LAZY)
     private List<ProductCategory> categories;
 
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "product",
+            fetch = FetchType.LAZY)
+    private List<Cart> carts;
+
     public ProductResponseDTO convertToResponse(List<PhotoProductDTO> photoDTO, List<String> categories){
 
         return ProductResponseDTO.builder()
-                .productId(this.productId)
+                .productId(this.getId())
                 .sellerId(this.seller.getSellerId())
                 .storeName(this.seller.getStoreName())
                 .storePhoto(this.seller.getStorePhoto())
@@ -80,7 +84,7 @@ public class Product extends AuditEntity {
     }
     public ProductToProductCategoryDTO convertToProductCategory(){
         return ProductToProductCategoryDTO.builder()
-                .productId(this.getProductId())
+                .productId(this.getId())
                 .sellerId(this.getSeller().getSellerId())
                 .productName(this.getProductName())
                 .storeName(this.getSeller().getStoreName())
@@ -93,12 +97,14 @@ public class Product extends AuditEntity {
     @Override
     public String toString() {
         return "Product{" +
-                "productId=" + productId +
+                "id=" + id +
                 ", seller=" + seller +
                 ", productName='" + productName + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", photos=" + photos +
+                ", categories=" + categories +
+                ", carts=" + carts +
                 '}';
     }
 
