@@ -49,9 +49,9 @@ public class UserController {
     }
 
     //DELETE
-    @DeleteMapping("/dashboard/delete/{id}")
-    public ResponseEntity<Object> deleteUser(@PathVariable("id") Long id) throws Exception {
-            return userService.deleteUser(id);
+    @DeleteMapping("/user/delete/{id}")
+    public ResponseEntity<Object> deleteUser(@PathVariable("id") Long id,Authentication authentication) throws Exception {
+            return userService.deleteUser(id,authentication);
     }
 
 }

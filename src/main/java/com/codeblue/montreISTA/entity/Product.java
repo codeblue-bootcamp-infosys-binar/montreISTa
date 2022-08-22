@@ -20,7 +20,7 @@ import java.util.List;
 @Table(name = "products")
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "productId")
+        property = "id")
 public class Product extends AuditEntity {
     //product id
     @Id
