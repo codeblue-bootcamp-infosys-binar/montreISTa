@@ -1,241 +1,64 @@
-2022-08-21 08:58:10,220 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-21 08:58:10,345 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on DESKTOP-7EVDTHM with PID 14272 (D:\PT. Infosys Solusi Terpadu\montreISTa\target\classes started by Andri in D:\PT. Infosys Solusi Terpadu\montreISTa)
-2022-08-21 08:58:10,369 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-21 08:58:10,677 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-21 08:58:10,682 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-21 08:58:14,226 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-21 08:58:14,649 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 397 ms. Found 16 JPA repository interfaces.
-2022-08-21 08:58:17,088 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-21 08:58:17,119 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-21 08:58:17,122 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-21 08:58:17,123 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-21 08:58:17,465 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-21 08:58:17,466 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 6780 ms
-2022-08-21 08:58:18,000 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-21 08:58:18,172 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-21 08:58:18,681 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-21 08:58:19,015 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-21 08:58:19,419 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-21 08:58:19,470 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-21 08:58:23,653 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-21 08:58:23,681 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-21 08:58:28,466 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-08-21 08:58:31,235 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5daa6784, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6a430b24, org.springframework.security.web.context.SecurityContextPersistenceFilter@20302f83, org.springframework.security.web.header.HeaderWriterFilter@4685b709, org.springframework.web.filter.CorsFilter@6cc81490, org.springframework.security.web.authentication.logout.LogoutFilter@718925fc, com.codeblue.montreISTA.security.AuthTokenFilter@de9237c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@74e1b917, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4636ea7c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@b6802de, org.springframework.security.web.session.SessionManagementFilter@20bdf3b3, org.springframework.security.web.access.ExceptionTranslationFilter@596eb57c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@48143593]
-2022-08-21 08:58:31,761 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2022-08-21 08:58:32,292 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
-2022-08-21 08:58:32,351 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
-2022-08-21 08:58:32,411 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
-2022-08-21 08:58:32,467 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 23.745 seconds (JVM running for 25.288)
-2022-08-21 15:44:55,537 INFO org.springframework.boot.StartupInfoLogger [main] Starting MontreIstaApplicationTests using Java 17.0.3 on DESKTOP-7EVDTHM with PID 12512 (started by Andri in D:\PT. Infosys Solusi Terpadu\montreISTa)
-2022-08-21 15:44:55,542 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2022-08-21 15:44:55,675 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-21 15:45:01,329 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-21 15:45:02,143 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 747 ms. Found 16 JPA repository interfaces.
-2022-08-21 15:45:06,795 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-21 15:45:07,058 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-21 15:45:07,904 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-21 15:45:09,242 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2022-08-21 15:45:09,810 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2022-08-21 15:45:09,979 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-21 15:45:15,981 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-21 15:45:16,037 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-21 15:45:23,687 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-08-21 15:45:31,457 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5ce7ab6f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@28f7cca4, org.springframework.security.web.context.SecurityContextPersistenceFilter@40ed4674, org.springframework.security.web.header.HeaderWriterFilter@55849272, org.springframework.web.filter.CorsFilter@6015c745, org.springframework.security.web.authentication.logout.LogoutFilter@42d96745, com.codeblue.montreISTA.security.AuthTokenFilter@6491006, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@25c98637, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@fbdba1c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2d541e01, org.springframework.security.web.session.SessionManagementFilter@3093161a, org.springframework.security.web.access.ExceptionTranslationFilter@c76762, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4c5379f5]
-2022-08-21 15:45:33,326 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [main] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2022-08-21 15:45:34,559 INFO org.springframework.boot.StartupInfoLogger [main] Started MontreIstaApplicationTests in 40.887 seconds (JVM running for 46.175)
-2022-08-21 15:45:35,776 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-08-21 15:45:35,781 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2022-08-21 15:45:35,967 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2022-08-21 15:46:18,440 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-21 15:46:18,616 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on DESKTOP-7EVDTHM with PID 2160 (D:\PT. Infosys Solusi Terpadu\montreISTa\target\classes started by Andri in D:\PT. Infosys Solusi Terpadu\montreISTa)
-2022-08-21 15:46:18,624 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-21 15:46:18,917 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-21 15:46:18,922 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-21 15:46:22,708 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-21 15:46:23,149 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 408 ms. Found 16 JPA repository interfaces.
-2022-08-21 15:46:26,117 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-21 15:46:26,169 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-21 15:46:26,172 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-21 15:46:26,173 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-21 15:46:26,527 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-21 15:46:26,528 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 7603 ms
-2022-08-21 15:46:27,023 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-21 15:46:27,212 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-21 15:46:27,742 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-21 15:46:28,100 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-21 15:46:28,418 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-21 15:46:28,469 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-21 15:46:32,548 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-21 15:46:32,573 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-21 15:46:37,336 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-08-21 15:46:40,709 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2a0a2295, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@453df4ed, org.springframework.security.web.context.SecurityContextPersistenceFilter@60a78b0a, org.springframework.security.web.header.HeaderWriterFilter@127a169d, org.springframework.web.filter.CorsFilter@788a1e78, org.springframework.security.web.authentication.logout.LogoutFilter@5a2c2cd9, com.codeblue.montreISTA.security.AuthTokenFilter@6ea4768e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3e22a692, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2e1a49cc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6a032031, org.springframework.security.web.session.SessionManagementFilter@2bf1e670, org.springframework.security.web.access.ExceptionTranslationFilter@52f3bf27, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7b5e9aa3]
-2022-08-21 15:46:41,259 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2022-08-21 15:46:41,710 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
-2022-08-21 15:46:41,773 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
-2022-08-21 15:46:41,846 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
-2022-08-21 15:46:41,882 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 24.911 seconds (JVM running for 26.557)
-2022-08-21 15:47:50,169 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-08-21 15:47:50,171 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
-2022-08-21 15:47:50,176 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 4 ms
-2022-08-21 15:47:55,740 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-8] Init duration for springdoc-openapi is: 2979 ms
-2022-08-21 15:49:48,360 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-21 15:49:48,499 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on DESKTOP-7EVDTHM with PID 13156 (D:\PT. Infosys Solusi Terpadu\montreISTa\target\classes started by Andri in D:\PT. Infosys Solusi Terpadu\montreISTa)
-2022-08-21 15:49:48,503 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-21 15:49:48,758 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-21 15:49:48,762 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-21 15:49:51,820 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-21 15:49:52,189 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 345 ms. Found 16 JPA repository interfaces.
-2022-08-21 15:49:54,986 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-21 15:49:55,016 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-21 15:49:55,018 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-21 15:49:55,020 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-21 15:49:55,343 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-21 15:49:55,345 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 6580 ms
-2022-08-21 15:49:55,849 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-21 15:49:56,005 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-21 15:49:56,491 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-21 15:49:56,891 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-21 15:49:57,207 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-21 15:49:57,261 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-21 15:50:01,215 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-21 15:50:01,243 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-21 15:50:06,260 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-08-21 15:50:09,638 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@12ee8917, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7fdfa102, org.springframework.security.web.context.SecurityContextPersistenceFilter@52f3bf27, org.springframework.security.web.header.HeaderWriterFilter@a526208, org.springframework.web.filter.CorsFilter@ae446fa, org.springframework.security.web.authentication.logout.LogoutFilter@bb0e03a, com.codeblue.montreISTA.security.AuthTokenFilter@6a998140, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@127a169d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@289d7c52, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5dc4f977, org.springframework.security.web.session.SessionManagementFilter@405ee589, org.springframework.security.web.access.ExceptionTranslationFilter@555e10fe, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3406409a]
-2022-08-21 15:50:10,169 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2022-08-21 15:50:10,621 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
-2022-08-21 15:50:10,687 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
-2022-08-21 15:50:10,743 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
-2022-08-21 15:50:10,776 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 23.933 seconds (JVM running for 25.682)
-2022-08-21 15:51:51,729 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-08-21 15:51:51,740 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
-2022-08-21 15:51:51,753 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 5 ms
-2022-08-21 15:51:55,978 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-4] Init duration for springdoc-openapi is: 2676 ms
-2022-08-21 15:52:12,556 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8090-exec-5] Resolved [java.io.FileNotFoundException: class path resource [reports/Transaction.jasper] cannot be opened because it does not exist]
-2022-08-21 16:20:32,347 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-21 16:20:32,426 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on DESKTOP-7EVDTHM with PID 6732 (D:\PT. Infosys Solusi Terpadu\montreISTa\target\classes started by Andri in D:\PT. Infosys Solusi Terpadu\montreISTa)
-2022-08-21 16:20:32,430 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-21 16:20:32,687 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-21 16:20:32,689 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-21 16:20:35,868 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-21 16:20:36,286 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 392 ms. Found 16 JPA repository interfaces.
-2022-08-21 16:20:39,067 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-21 16:20:39,096 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-21 16:20:39,099 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-21 16:20:39,100 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-21 16:20:39,411 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-21 16:20:39,412 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 6718 ms
-2022-08-21 16:20:39,926 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-21 16:20:40,089 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-21 16:20:40,601 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-21 16:20:40,961 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-21 16:20:41,274 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-21 16:20:41,329 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-21 16:20:45,362 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-21 16:20:45,389 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-21 16:20:51,495 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-08-21 16:20:54,650 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@9e4c980, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@44eac295, org.springframework.security.web.context.SecurityContextPersistenceFilter@3318c4f8, org.springframework.security.web.header.HeaderWriterFilter@2a8acc00, org.springframework.web.filter.CorsFilter@6d28763d, org.springframework.security.web.authentication.logout.LogoutFilter@73d53b27, com.codeblue.montreISTA.security.AuthTokenFilter@4abbcae4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6f331ae9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5e3bc64b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5459f161, org.springframework.security.web.session.SessionManagementFilter@30daa559, org.springframework.security.web.access.ExceptionTranslationFilter@7c33dad2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@176dbb48]
-2022-08-21 16:20:55,250 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2022-08-21 16:20:55,720 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
-2022-08-21 16:20:55,805 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
-2022-08-21 16:20:55,872 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
-2022-08-21 16:20:55,908 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 25.088 seconds (JVM running for 26.79)
-2022-08-21 16:21:28,452 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-08-21 16:21:28,453 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
-2022-08-21 16:21:28,458 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 4 ms
-2022-08-21 16:21:31,970 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-3] Init duration for springdoc-openapi is: 2377 ms
-2022-08-21 16:25:36,312 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-21 16:25:36,346 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on DESKTOP-7EVDTHM with PID 10084 (D:\PT. Infosys Solusi Terpadu\montreISTa\target\classes started by Andri in D:\PT. Infosys Solusi Terpadu\montreISTa)
-2022-08-21 16:25:36,349 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-21 16:25:36,631 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-21 16:25:36,634 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-21 16:25:40,137 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-21 16:25:40,771 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 607 ms. Found 16 JPA repository interfaces.
-2022-08-21 16:25:44,203 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-21 16:25:44,236 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-21 16:25:44,239 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-21 16:25:44,240 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-21 16:25:44,605 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-21 16:25:44,607 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 7971 ms
-2022-08-21 16:25:45,152 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-21 16:25:45,322 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-21 16:25:45,905 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-21 16:25:46,372 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-21 16:25:46,752 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-21 16:25:46,810 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-21 16:25:51,179 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-21 16:25:51,208 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-21 16:25:56,186 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-08-21 16:25:59,678 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1998363, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2ec5d320, org.springframework.security.web.context.SecurityContextPersistenceFilter@405ee589, org.springframework.security.web.header.HeaderWriterFilter@259edba, org.springframework.web.filter.CorsFilter@176dbb48, org.springframework.security.web.authentication.logout.LogoutFilter@1da1afed, com.codeblue.montreISTA.security.AuthTokenFilter@4abbcae4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3a300da5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@52f3bf27, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4647c840, org.springframework.security.web.session.SessionManagementFilter@306a40c3, org.springframework.security.web.access.ExceptionTranslationFilter@45c9d667, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6bdf0a7f]
-2022-08-21 16:26:00,266 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2022-08-21 16:26:00,731 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
-2022-08-21 16:26:00,794 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
-2022-08-21 16:26:00,857 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
-2022-08-21 16:26:00,891 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 26.208 seconds (JVM running for 28.062)
-2022-08-21 16:26:17,443 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-08-21 16:26:17,444 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
-2022-08-21 16:26:17,454 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 8 ms
-2022-08-21 16:26:21,561 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-3] Init duration for springdoc-openapi is: 2518 ms
-2022-08-21 16:39:26,117 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-21 16:39:26,292 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on DESKTOP-7EVDTHM with PID 3496 (D:\PT. Infosys Solusi Terpadu\montreISTa\target\classes started by Andri in D:\PT. Infosys Solusi Terpadu\montreISTa)
-2022-08-21 16:39:26,296 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-21 16:39:26,611 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-21 16:39:26,615 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-21 16:39:29,758 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-21 16:39:30,145 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 360 ms. Found 16 JPA repository interfaces.
-2022-08-21 16:39:33,116 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-21 16:39:33,152 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-21 16:39:33,155 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-21 16:39:33,156 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-21 16:39:33,498 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-21 16:39:33,500 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 6883 ms
-2022-08-21 16:39:34,005 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-21 16:39:34,204 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-21 16:39:34,806 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-21 16:39:35,200 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-21 16:39:35,520 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-21 16:39:35,583 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-21 16:39:39,669 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-21 16:39:39,699 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-21 16:39:44,417 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-08-21 16:39:47,710 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3cd877e9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3c787ed0, org.springframework.security.web.context.SecurityContextPersistenceFilter@5c18ed6f, org.springframework.security.web.header.HeaderWriterFilter@2eb88b3d, org.springframework.web.filter.CorsFilter@15f7c982, org.springframework.security.web.authentication.logout.LogoutFilter@194f97e7, com.codeblue.montreISTA.security.AuthTokenFilter@275734f2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@28113945, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@69d48a7f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@54a2baa6, org.springframework.security.web.session.SessionManagementFilter@5133e7c6, org.springframework.security.web.access.ExceptionTranslationFilter@2c65d61d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@39017315]
-2022-08-21 16:39:48,254 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2022-08-21 16:39:48,754 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
-2022-08-21 16:39:48,812 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
-2022-08-21 16:39:48,883 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
-2022-08-21 16:39:48,918 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 24.405 seconds (JVM running for 26.404)
-2022-08-21 16:43:06,290 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-08-21 16:43:06,291 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
-2022-08-21 16:43:06,295 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 3 ms
-2022-08-21 16:43:10,194 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-3] Init duration for springdoc-openapi is: 2304 ms
-2022-08-21 22:24:59,388 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-08-21 22:24:59,555 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on DESKTOP-7EVDTHM with PID 10336 (D:\PT. Infosys Solusi Terpadu\montreISTa\target\classes started by Andri in D:\PT. Infosys Solusi Terpadu\montreISTa)
-2022-08-21 22:24:59,560 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-08-21 22:25:00,002 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-08-21 22:25:00,008 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-08-21 22:25:04,287 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-08-21 22:25:04,798 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 439 ms. Found 16 JPA repository interfaces.
-2022-08-21 22:25:07,912 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
-2022-08-21 22:25:07,946 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
-2022-08-21 22:25:07,948 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2022-08-21 22:25:07,950 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-08-21 22:25:08,296 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2022-08-21 22:25:08,298 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 8256 ms
-2022-08-21 22:25:08,853 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-08-21 22:25:09,052 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-08-21 22:25:09,691 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-08-21 22:25:10,110 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2022-08-21 22:25:10,520 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2022-08-21 22:25:10,579 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
-2022-08-21 22:25:14,834 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-08-21 22:25:14,862 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-08-21 22:25:20,652 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-08-21 22:25:24,245 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3951142a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@112a566c, org.springframework.security.web.context.SecurityContextPersistenceFilter@5e3bc64b, org.springframework.security.web.header.HeaderWriterFilter@46a623bd, org.springframework.web.filter.CorsFilter@6bdf0a7f, org.springframework.security.web.authentication.logout.LogoutFilter@4e38c05a, com.codeblue.montreISTA.security.AuthTokenFilter@266c1fb1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@14906ba3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@683814d4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@73ec11d0, org.springframework.security.web.session.SessionManagementFilter@3318c4f8, org.springframework.security.web.access.ExceptionTranslationFilter@22594e5a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@12ee8917]
-2022-08-21 22:25:24,877 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2022-08-21 22:25:25,432 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
-2022-08-21 22:25:25,508 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
-2022-08-21 22:25:25,576 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
-2022-08-21 22:25:25,610 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 28.029 seconds (JVM running for 29.78)
-2022-08-21 22:31:23,397 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-08-21 22:31:23,401 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
-2022-08-21 22:31:23,405 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 4 ms
-2022-08-21 22:31:26,527 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-2] Init duration for springdoc-openapi is: 2561 ms
+2022-08-22 09:38:58,732 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on DESKTOP-7EVDTHM with PID 940 (D:\PT. Infosys Solusi Terpadu\montreISTa\target\classes started by Andri in D:\PT. Infosys Solusi Terpadu\montreISTa)
+2022-08-22 09:38:58,827 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-22 09:38:58,693 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-22 09:38:59,453 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-22 09:38:59,458 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-22 09:39:04,300 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-22 09:39:04,824 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 492 ms. Found 16 JPA repository interfaces.
+2022-08-22 09:39:08,248 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-22 09:39:08,285 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-22 09:39:08,286 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-22 09:39:08,287 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-22 09:39:08,715 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-22 09:39:08,716 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 9253 ms
+2022-08-22 09:39:09,376 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-22 09:39:09,627 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-22 09:39:10,316 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-22 09:39:10,814 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-22 09:39:11,295 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-22 09:39:11,385 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-22 09:39:16,847 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-22 09:39:16,886 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-22 09:39:22,638 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-22 09:39:26,544 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@69a87cb5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@74057299, org.springframework.security.web.context.SecurityContextPersistenceFilter@127a169d, org.springframework.security.web.header.HeaderWriterFilter@15966fd0, org.springframework.web.filter.CorsFilter@505be255, org.springframework.security.web.authentication.logout.LogoutFilter@75332fe1, com.codeblue.montreISTA.security.AuthTokenFilter@96b2787, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67d8f4e1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31ea0ed5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@41afe784, org.springframework.security.web.session.SessionManagementFilter@3a300da5, org.springframework.security.web.access.ExceptionTranslationFilter@a526208, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1d8a4556]
+2022-08-22 09:39:27,337 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2022-08-22 09:39:27,904 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-22 09:39:27,976 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-22 09:39:28,052 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-22 09:39:28,091 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 31.742 seconds (JVM running for 34.747)
+2022-08-22 09:43:21,634 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-22 09:43:21,635 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-22 09:43:21,641 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 6 ms
+2022-08-22 09:43:30,962 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-3] Init duration for springdoc-openapi is: 5151 ms
+2022-08-22 11:03:34,661 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-22 11:03:34,692 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on DESKTOP-7EVDTHM with PID 7912 (D:\PT. Infosys Solusi Terpadu\montreISTa\target\classes started by Andri in D:\PT. Infosys Solusi Terpadu\montreISTa)
+2022-08-22 11:03:34,700 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-22 11:03:35,052 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-22 11:03:35,061 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-22 11:03:39,403 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-22 11:03:39,920 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 486 ms. Found 16 JPA repository interfaces.
+2022-08-22 11:03:43,392 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-22 11:03:43,424 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-22 11:03:43,429 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-22 11:03:43,430 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-22 11:03:43,860 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-22 11:03:43,861 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 8798 ms
+2022-08-22 11:03:44,801 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-22 11:03:45,155 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-22 11:03:45,819 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-22 11:03:46,570 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-22 11:03:46,961 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-22 11:03:47,037 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-22 11:03:52,229 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-22 11:03:52,258 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-22 11:04:00,056 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-22 11:04:07,454 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@67899556, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@780e4fec, org.springframework.security.web.context.SecurityContextPersistenceFilter@28a80cc6, org.springframework.security.web.header.HeaderWriterFilter@3f839784, org.springframework.web.filter.CorsFilter@405161fb, org.springframework.security.web.authentication.logout.LogoutFilter@71f8082c, com.codeblue.montreISTA.security.AuthTokenFilter@8500081, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@11f46265, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6293ad3a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@77ece516, org.springframework.security.web.session.SessionManagementFilter@259edba, org.springframework.security.web.access.ExceptionTranslationFilter@3cafca65, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@391a9b60]
+2022-08-22 11:04:09,704 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2022-08-22 11:04:10,814 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-22 11:04:11,253 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-22 11:04:11,454 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-22 11:04:11,560 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 38.83 seconds (JVM running for 40.978)
+2022-08-22 11:04:19,308 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-22 11:04:19,309 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-22 11:04:19,329 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 20 ms
+2022-08-22 11:04:30,529 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-3] Init duration for springdoc-openapi is: 7717 ms

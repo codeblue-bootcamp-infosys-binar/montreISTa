@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,10 +35,11 @@ public class ReportController {
     }
 
     @GetMapping("/print/HistoryDetailBuyer/{id}")
-    public void getProductUReportTransactionBuyerById(Long transactionId) throws Exception{
+    public void getProductUReportTransactionBuyerById(@PathVariable("id") Long id
+    ) throws Exception{
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=\"History Detail Transaction Buyer.pdf\"");
-        JasperPrint jasperPrint = reportService.generateJasperPrintTransactionById(transactionId);
+        JasperPrint jasperPrint = reportService.generateJasperPrintTransactionById(id);
         JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
         response.getOutputStream().flush();
         response.getOutputStream().close();
