@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -56,8 +57,13 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ResponseEntity<Object> authenticationUser(LoginUserRequest userRequest)  {
+    public ResponseEntity<Object> authenticationUser(LoginUserRequest userRequest)throws Exception  {
         try {
+            Optional<User> username= userRepository.findByUsername(userRequest.getUsername());
+            Optional<User> password= userRepository.findByUsername(userRequest.getPassword());
+            if(username.isEmpty() || password.isEmpty()){
+                throw new Exception("Username or Password is incorrect");
+            }
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtUtils.generateJwtToken(authentication);
@@ -65,6 +71,7 @@ public class UserServiceImpl implements UserService {
             List<String> roles = userDetails.getAuthorities().stream()
                     .map(GrantedAuthority::getAuthority)
                     .collect(Collectors.toList());
+
             JwtResponse jwtResponse = new JwtResponse(jwt, userDetails.getUserId(), userDetails.getUsername(), userDetails.getEmail(), roles);
 
             logger.info(Line + "Logger Start Login " + Line);

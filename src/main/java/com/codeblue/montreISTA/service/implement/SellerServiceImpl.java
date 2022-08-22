@@ -45,6 +45,8 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public Object createSeller(SellerRequestDTO sellerRequestDTO, Authentication authentication) throws Exception  {
+        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Please sign up"));
+        Optional<Seller> sellerOptional = sellerRepository.findByUserUserId(user.getUserId());
         Optional<Seller> sellerValidation = sellerRepository.findByStoreName(sellerRequestDTO.getStoreName());
         if(sellerValidation.isPresent()){
             throw new Exception("Your Store Name has been used");
@@ -52,8 +54,7 @@ public class SellerServiceImpl implements SellerService {
         if(authentication==null){
             throw new Exception("Please login");
         }
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Please sign up"));
-        Optional<Seller> sellerOptional = sellerRepository.findByUserUserId(user.getUserId());
+
         Seller seller = sellerRequestDTO.convertToEntity(user);
         seller.setStorePhoto("https://www.shutterstock.com/image-vector/shop-icon-store-230619400");
         if(sellerOptional.isPresent()){

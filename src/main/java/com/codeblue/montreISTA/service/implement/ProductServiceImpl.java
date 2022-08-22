@@ -108,7 +108,7 @@ public class ProductServiceImpl implements ProductService {
 
         Pageable pageable = Pagination.paginate(0,"price", false);
         List<Product> products = productRepository.findBySellerSellerId(seller.getSellerId(), pageable);
-        if(productRequestDTO.getCategory().size()>=4){
+        if(productRequestDTO.getCategory().size()>4){
             throw new Exception("Product can only have 4 category");
         }
         if(products.size() >=4 ){

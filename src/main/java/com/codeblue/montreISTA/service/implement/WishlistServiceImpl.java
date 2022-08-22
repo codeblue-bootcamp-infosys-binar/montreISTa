@@ -46,7 +46,7 @@ public class WishlistServiceImpl implements WishlistService {
         Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as buyer"));
         Product product = productRepository.findById(wishlist.getProductId()).orElseThrow(()->new Exception("Product not found"));
         if(buyer.getUser().getUserId().equals(product.getSeller().getUser().getUserId())){
-            throw new Exception("You can't order your own product honey");
+            throw new Exception("You can't order your own product");
         }
         Wishlist wishlistSave = wishlist.convertToEntity(buyer,product);
         Wishlist wishlistDTO = wishlistRepository.save(wishlistSave);
@@ -60,6 +60,9 @@ public class WishlistServiceImpl implements WishlistService {
         Product product = productRepository.findById(wishlist.getProductId()).orElseThrow(()->new Exception("Product not found"));
         if(buyer!=updateWishlist.getBuyer()){
             throw new Exception("You only can edit your wishlist");
+        }
+        if(buyer.getUser().getUserId().equals(product.getSeller().getUser().getUserId())){
+            throw new Exception("You can't order your own product");
         }
         updateWishlist.setWishlistId(id);
         updateWishlist.setBuyer(buyer);
