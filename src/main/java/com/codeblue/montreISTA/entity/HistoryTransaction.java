@@ -16,7 +16,7 @@ import java.util.List;
 public class HistoryTransaction{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long historyTransactionId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "buyer_id")
@@ -46,7 +46,7 @@ public class HistoryTransaction{
 
     public TransactionResponseDTO convertToResponse(){
         return TransactionResponseDTO.builder()
-                .transaction_id(this.getHistoryTransactionId())
+                .transaction_id(this.getId())
                 .buyer_id(this.getBuyer().getBuyerId())
                 .store_name(this.getSeller().getStoreName())
                 .seller_id(this.getSeller().getSellerId())
@@ -61,11 +61,16 @@ public class HistoryTransaction{
     @Override
     public String toString() {
         return "HistoryTransaction{" +
-                "historyTransactionId=" + historyTransactionId +
+                "id=" + id +
                 ", buyer=" + buyer +
                 ", seller=" + seller +
                 ", photoUrl='" + photoUrl + '\'' +
+                ", product_id=" + product_id +
+                ", product_name='" + product_name + '\'' +
+                ", product_price=" + product_price +
+                ", quantity=" + quantity +
                 ", totalPrice=" + totalPrice +
+                ", transactionDetails=" + transactionDetails +
                 '}';
     }
 }

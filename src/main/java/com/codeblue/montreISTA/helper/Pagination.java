@@ -11,7 +11,7 @@ public class Pagination {
 
         int size = 10;
 
-        if (sort == null){sort = "price";}
+        if (sort == null){sort = "id";}
         if (page == null || page < 0){page = 0;}
         page = page == 0 ? 0 : --page;
 

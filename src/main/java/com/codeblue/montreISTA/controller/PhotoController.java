@@ -81,7 +81,7 @@ public class PhotoController {
                                             Authentication authentication) throws IOException {
         try {
             Product product = productService.findBySellerUsername(authentication.getName());
-            List<PhotoResponseDTO> results = photoService.createPhoto(product.getProductId(),files, authentication);
+            List<PhotoResponseDTO> results = photoService.createPhoto(product.getId(),files, authentication);
             logger.info(Line + "Logger Start Query " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Query " + Line);

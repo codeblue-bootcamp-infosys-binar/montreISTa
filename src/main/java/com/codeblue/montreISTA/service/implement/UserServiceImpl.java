@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ResponseEntity<Object> authenticationUser(LoginUserRequest userRequest) throws Exception {
+    public ResponseEntity<Object> authenticationUser(LoginUserRequest userRequest)  {
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> findAllUser() throws Exception{
+    public ResponseEntity<Object> findAllUser() {
         try {
         List<User> users = userRepository.findAllByOrderByUserIdAsc();
         List<UserResponseDTO> usersDTO = new ArrayList<>();
@@ -115,7 +115,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> findByUserId(Long id) throws Exception {
+    public ResponseEntity<Object> findByUserId(Long id)  {
         try{
         List<Role> roles = roleRepository.findByUsersUserUserId(id);
         List<String> role = roles.stream().map(Role::getRoleName).collect(Collectors.toList());
@@ -160,7 +160,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ResponseEntity<Object> registrationUser(RegistrationDTO registrationDTO) throws Exception {
+    public ResponseEntity<Object> registrationUser(RegistrationDTO registrationDTO)  {
         try {
             if (userRepository.existsByUsername(registrationDTO.getUsername())) {
                 throw new Exception("Username is already in use");
@@ -191,7 +191,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> updateUser(RegistrationDTO registrationDTO, Authentication authentication) throws Exception {
+    public ResponseEntity<Object> updateUser(RegistrationDTO registrationDTO, Authentication authentication)  {
         try {
             User userByUsername = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("User not found"));
         User user = registrationDTO.convertToEntity();
@@ -219,7 +219,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> uploadPhotoProfile(Authentication authentication, MultipartFile file) throws Exception {
+    public ResponseEntity<Object> uploadPhotoProfile(Authentication authentication, MultipartFile file)  {
         try{
         User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Please sign up"));
         String url = cloudinaryService.uploadFile(file);
@@ -240,13 +240,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> deleteUser(Long id) throws Exception {
+    public ResponseEntity<Object> deleteUser(Long id)  {
         try{
-        userRepository.deleteById(id);
+            userRepository.findById(id).orElseThrow(()->new Exception("User not found"));
+            userRepository.deleteById(id);
         return ResponseHandler.generateResponse("successfully deleted User", HttpStatus.MULTI_STATUS, "Success Delete");
     } catch (Exception e) {
         return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Delete User");
-    }
+        }
     }
     public void checkRole(List<String> requestRole){
         requestRole.forEach(role-> {
@@ -258,7 +259,7 @@ public class UserServiceImpl implements UserService {
         );
     }
 
-    public UserResponseDTO convertResponse(User userSave)throws Exception{
+    public UserResponseDTO convertResponse(User userSave){
         List<Role> rolesUser = roleRepository.findByUsersUserUserId(userSave.getUserId());
         List<String> roleDTO = rolesUser.stream().map(Role::getRoleName).collect(Collectors.toList());
         return userSave.convertToResponse(roleDTO);

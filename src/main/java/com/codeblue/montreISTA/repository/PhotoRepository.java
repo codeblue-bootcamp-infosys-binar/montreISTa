@@ -15,7 +15,7 @@ public interface PhotoRepository extends JpaRepository<Photo,Long> {
     List<Photo> findAllByOrderByPhotoIdAsc();
     List<Photo> findByProductSellerUserNameIgnoreCaseContainingOrderByPhotoIdAsc(String productName);
     List<Photo> findByProductSellerSellerIdOrderByPhotoIdAsc(long id);
-    List<Photo> findByProductProductIdOrderByPhotoIdAsc(Long id);
+    List<Photo> findByProductIdOrderByPhotoIdAsc(Long id);
     @Query("Select p from Photo p where p.product.productName like %:name% ORDER BY p.product.productName ASC")
     List<Photo> findByProductName(@Param("name")String name);
 
