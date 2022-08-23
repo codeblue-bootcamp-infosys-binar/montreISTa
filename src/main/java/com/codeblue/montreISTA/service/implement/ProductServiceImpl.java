@@ -1,15 +1,22 @@
 package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.ProductRequestDTO;
+import com.codeblue.montreISTA.DTO.ProductResponseDTO;
+import com.codeblue.montreISTA.controller.ProductController;
 import com.codeblue.montreISTA.entity.*;
+import com.codeblue.montreISTA.helper.DTOConverter;
 import com.codeblue.montreISTA.helper.Pagination;
 import com.codeblue.montreISTA.repository.*;
+import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.ProductService;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -22,170 +29,309 @@ public class ProductServiceImpl implements ProductService {
     private final CategoryRepository categoryRepository;
     private final ProductCategoryRepository productCategoryRepository;
     private final RoleRepository roleRepository;
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+    private static final String Line = "====================";
 
-    public List<Product> findAllProduct(Integer page, String sort, boolean descending)throws Exception {
-        Pageable pageable = Pagination.paginate(page, sort, descending);
-        List<Product> products = productRepository.findAll(pageable).getContent();
-        if(products.isEmpty()){
-            throw new Exception("Product not found");
-        }
-        return products;
-    }
-
-    @Override
-    public Product findBySellerUsername(String keyword) throws Exception{
-        return productRepository.findFirstBySellerUserUsernameOrderByIdDesc(keyword)
-                .orElseThrow(()->new Exception("Product not found"));
-    }
-
-    public Product findProductById(Long id) throws Exception{
-
-        return productRepository.findById(id).orElseThrow(()->new Exception("Product not found"));
-    }
-
-    @Override
-    public List<Product> findByProductName(String name, Integer page, String sort, boolean descending)  throws Exception{
-        
-        Pageable pageable = Pagination.paginate(page, sort, descending);
-
-        return productRepository.findByProductNameIgnoreCaseContaining(name, pageable);
-    }
-
-    @Override
-    public List<Product> findBySellerName(String name, Integer page, String sort, boolean descending) {
-
-        Pageable pageable = Pagination.paginate(page, sort, descending);
-
-        return productRepository.findBySellerUserNameIgnoreCaseContaining(name, pageable);
-    }
-
-    @Override
-    public List<Product> findByStoreName(String name, Integer page, String sort, boolean descending) {
-
-        Pageable pageable = Pagination.paginate(page, sort, descending);
-
-        return productRepository.findBySellerStoreNameIgnoreCaseContaining(name, pageable);
-    }
-
-    @Override
-    public List<Product> findByCategoryId(Long id, Integer page, String sort, boolean descending) {
-    
-        Pageable pageable = Pagination.paginate(page, sort, descending);
-
-        return productRepository.findByCategoriesCategoryCategoriesId(id, pageable);
-    }
-
-
-    @Override
-    public List<Product> findByCategoryName(String name, Integer page, String sort, boolean descending) {
-
-        Pageable pageable = Pagination.paginate(page, sort, descending);
-
-        return productRepository.findByCategoriesCategoryNameIgnoreCaseContaining(name, pageable);
-    }
-
-    @Override
-    public List<Product> findProductBySellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception{
-
-        Pageable pageable = Pagination.paginate(page, sort, descending);
-
-        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Please login as seller"));
-        List<Product> product = productRepository.findBySellerSellerId(seller.getSellerId(), pageable);
-        if(product.isEmpty()){
-            throw new Exception("You don't have a product");
-        }
-        return product;
-    }
-
-    @Override
-    public Product createProduct(ProductRequestDTO productRequestDTO,Authentication authentication) throws Exception{
-        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
-        Pageable pageable = Pagination.paginate(0,"price", false);
-        List<Product> products = productRepository.findBySellerSellerId(seller.getSellerId(), pageable);
-
-        if(productRequestDTO.getCategory().size()>4){
-            throw new Exception("Product can only have 4 category");
-        }
-
-        if(products.size() >=4 ){
-            throw new Exception("User can only have 4 Products");
-        }
-
-        List<String> categories = productRequestDTO.getCategory();
-        if(categories.isEmpty()){
-            throw new Exception("Product must have 1 category");
-        }
-
-        //check categories
-        this.checkCategories(categories);
-
-        Product newProduct = productRequestDTO.convertToEntity(seller);
-        Product saveProduct = productRepository.save(newProduct);
-
-        this.addCategory(categories,saveProduct);
-
-        return saveProduct;
-    }
-
-    @Override
-    public Product updateProduct(ProductRequestDTO productRequestDTO, Long id, Authentication authentication) throws Exception{
-        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
-        Product product = productRepository.findById(id).orElseThrow(()->new Exception("Product Not Found"));
-        List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
-        boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
-        boolean checkUser = product.getSeller().getUser().getUsername().equals(authentication.getName());
-
-        Product productRequest = productRequestDTO.convertToEntity(seller);
-        if (checkRoles || checkUser){
-
-            //UPDATING PRODUCT DATA
-            product.setId(id);
-            product.setProductName(productRequest.getProductName());
-            product.setDescription(productRequest.getDescription());
-            product.setPrice(productRequest.getPrice());
-
-            List<String> categories = productRequestDTO.getCategory();
-            if(categories.isEmpty()){
-                throw new Exception("Product must have 1 category");
+    public ResponseEntity<Object> findAllProduct(Integer page, String sort, boolean descending) {
+        try {
+            Pageable pageable = Pagination.paginate(page, sort, descending);
+            List<Product> products = productRepository.findAll(pageable).getContent();
+            if (products.isEmpty()) {
+                throw new Exception("Product not found");
             }
-            List<Category> categoryProduct = categoryRepository.findByProductsProductId(id);
-            if(categories.size()+categoryProduct.size()>=4){
+            logger.info("==================== Logger Start Get All Products     ====================");
+            for (Product productData : products) {
+                logger.info("-------------------------");
+                logger.info("Product ID    : " + productData.getId());
+                logger.info("Description   : " + productData.getDescription());
+                logger.info("Price         : " + productData.getPrice());
+                logger.info("Product name  : " + productData.getProductName());
+                logger.info("Seller ID     : " + productData.getSeller());
+            }
+            logger.info("==================== Logger End Get All Products    ====================");
+            logger.info(" ");
+
+            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            return ResponseHandler.generateResponse("successfully get all products", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.info("==================== Logger Start Get All Products     ====================");
+            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!")));
+            logger.info("==================== Logger End Get All Products     ====================");
+            logger.info(" ");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!");
+        }
+    }
+
+    @Override
+    public Product findBySellerUsername(String keyword) throws Exception {
+        return productRepository.findFirstBySellerUserUsernameOrderByIdDesc(keyword)
+                .orElseThrow(() -> new Exception("Product not found"));
+    }
+
+    public ResponseEntity<Object> findProductById(Long id) {
+        try {
+            Product product = productRepository.findById(id).orElseThrow(() -> new Exception("Product not found"));
+            ProductResponseDTO result = DTOConverter.convertOneProducts(product);
+            logger.info(Line + "Logger Start Get product id " + Line);
+            logger.info(String.valueOf(result));
+            logger.info(Line + "Logger End Get product id " + Line);
+            return ResponseHandler.generateResponse("successfully get product", HttpStatus.OK, result);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!");
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> findByProductName(String name, Integer page, String sort, boolean descending) throws Exception {
+        try {
+            Pageable pageable = Pagination.paginate(page, sort, descending);
+            List<Product> products = productRepository.findByProductNameIgnoreCaseContaining(name, pageable);
+            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            logger.info(Line + "Logger Start Get product name " + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Get product name " + Line);
+            return ResponseHandler.generateResponse("successfully get product", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!");
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> findBySellerName(String name, Integer page, String sort, boolean descending) {
+        try {
+            Pageable pageable = Pagination.paginate(page, sort, descending);
+            List<Product> products = productRepository.findBySellerUserNameIgnoreCaseContaining(name, pageable);
+            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            logger.info(Line + "Logger Start Get seller name " + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Get seller name " + Line);
+            return ResponseHandler.generateResponse("successfully get products", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!");
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> findByStoreName(String name, Integer page, String sort, boolean descending) {
+        try {
+            Pageable pageable = Pagination.paginate(page, sort, descending);
+
+            List<Product> products = productRepository.findBySellerStoreNameIgnoreCaseContaining(name, pageable);
+            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+
+            logger.info(Line + "Logger Start Get store name " + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Get store name " + Line);
+            return ResponseHandler.generateResponse("successfully get products", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!");
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> findByCategoryId(Long id, Integer page, String sort, boolean descending) {
+        try {
+            Pageable pageable = Pagination.paginate(page, sort, descending);
+
+            List<Product> products = productRepository.findByCategoriesCategoryCategoriesId(id, pageable);
+            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+
+            logger.info(Line + "Logger Start Get By Category Id " + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Get By Category Id " + Line);
+            return ResponseHandler.generateResponse("successfully get products", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!");
+        }
+    }
+
+
+    @Override
+    public ResponseEntity<Object> findByCategoryName(String name, Integer page, String sort, boolean descending) {
+        try {
+            Pageable pageable = Pagination.paginate(page, sort, descending);
+
+            List<Product> products = productRepository.findByCategoriesCategoryNameIgnoreCaseContaining(name, pageable);
+            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+
+            logger.info(Line + "Logger Start Get category name " + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Get category name " + Line);
+            return ResponseHandler.generateResponse("successfully get products", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!");
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> findProductBySellerId(Authentication authentication, Integer page, String sort, boolean descending) {
+        try {
+            Pageable pageable = Pagination.paginate(page, sort, descending);
+            Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please login as seller"));
+            List<Product> product = productRepository.findBySellerSellerId(seller.getSellerId(), pageable);
+            if (product.isEmpty()) {
+                throw new Exception("You don't have a product");
+            }
+
+            List<ProductResponseDTO> results = DTOConverter.convertProducts(product);
+
+            logger.info(Line + "Logger Start Get seller id " + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Get seller id " + Line);
+            return ResponseHandler.generateResponse("successfully get products", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!");
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> createProduct(ProductRequestDTO productRequestDTO, Authentication authentication) {
+        try {
+            Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("You don't have store"));
+            Pageable pageable = Pagination.paginate(0, "price", false);
+            List<Product> products = productRepository.findBySellerSellerId(seller.getSellerId(), pageable);
+
+            if (productRequestDTO.getCategory().size() > 4) {
                 throw new Exception("Product can only have 4 category");
             }
+
+            if (products.size() >= 4) {
+                throw new Exception("User can only have 4 Products");
+            }
+
+            List<String> categories = productRequestDTO.getCategory();
+            if (categories.isEmpty()) {
+                throw new Exception("Product must have 1 category");
+            }
+
             //check categories
             this.checkCategories(categories);
 
-            //SAVING THE UPDATES TO DATABASE
-            Product saveProduct = productRepository.save(product);
-            this.addCategory(categories,saveProduct);
+            Product newProduct = productRequestDTO.convertToEntity(seller);
+            Product saveProduct = productRepository.save(newProduct);
 
-            return saveProduct;
-        } else {
-            throw new Exception("You can't update other product");
+            this.addCategory(categories, saveProduct);
+
+            ProductResponseDTO result = DTOConverter.convertOneProducts(saveProduct);
+
+            logger.info(Line + "Logger Start Create " + Line);
+            logger.info(String.valueOf(result));
+            logger.info(Line + "Logger End Create " + Line);
+
+            return ResponseHandler.generateResponse("successfully create product", HttpStatus.CREATED, result);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed create product!");
         }
     }
-    @Override
-    public void deleteProduct(Long id, Authentication authentication)throws Exception {
-        Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("You don't have store"));
-        Product productById = productRepository.findById(id).orElseThrow(()->new Exception("Product Not Found"));
-        List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
-        boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
-        boolean checkUser = productById.getSeller().getUser().getUsername().equals(authentication.getName());
 
-        if (checkRoles || checkUser){
-            productRepository.deleteById(id);
-        } else {
-            throw new Exception("You can't delete other product");
+    @Override
+    public ResponseEntity<Object> updateProduct(ProductRequestDTO productRequestDTO, Long id, Authentication authentication) {
+        try {
+
+            Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("You don't have store"));
+            Product product = productRepository.findById(id).orElseThrow(() -> new Exception("Product Not Found"));
+            List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
+            boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
+            boolean checkUser = product.getSeller().getUser().getUsername().equals(authentication.getName());
+
+            Product productRequest = productRequestDTO.convertToEntity(seller);
+            if (checkRoles || checkUser) {
+
+                //UPDATING PRODUCT DATA
+                product.setId(id);
+                product.setProductName(productRequest.getProductName());
+                product.setDescription(productRequest.getDescription());
+                product.setPrice(productRequest.getPrice());
+
+                List<String> categories = productRequestDTO.getCategory();
+                if (categories.isEmpty()) {
+                    throw new Exception("Product must have 1 category");
+                }
+                List<Category> categoryProduct = categoryRepository.findByProductsProductId(id);
+                if (categories.size() + categoryProduct.size() >= 4) {
+                    throw new Exception("Product can only have 4 category");
+                }
+                //check categories
+                this.checkCategories(categories);
+
+                //SAVING THE UPDATES TO DATABASE
+                Product saveProduct = productRepository.save(product);
+                this.addCategory(categories, saveProduct);
+
+                ProductResponseDTO results = DTOConverter.convertOneProducts(saveProduct);
+                logger.info(Line + "Logger Start Update By Id " + Line);
+                logger.info(String.valueOf(results));
+                logger.info(Line + "Logger End Update By Id " + Line);
+                return ResponseHandler.generateResponse("successfully updated product", HttpStatus.CREATED, results);
+
+            } else {
+                throw new Exception("You can't update other product");
+            }
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed update product!");
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> deleteProduct(Long id, Authentication authentication) {
+        try {
+            Product product = productRepository.findById(id).orElseThrow(() -> new Exception("Product Not Found"));
+            List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
+            boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
+            boolean checkUser = product.getSeller().getUser().getUsername().equals(authentication.getName());
+
+            if (checkRoles || checkUser) {
+                productRepository.deleteById(id);
+                logger.info(Line + "Logger Start Delete By Id " + Line);
+                logger.info("Delete Success");
+                logger.info(Line + "Logger End Delete By Id " + Line);
+                return ResponseHandler.generateResponse("successfully deleted product", HttpStatus.OK, null);
+            } else {
+                throw new Exception("You can't delete other product");
+            }
+
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed delete product!");
         }
     }
 
     public void addCategory(List<String> categories, Product newProduct) {
-        categories.forEach(category->{
+        categories.forEach(category -> {
             try {
                 List<ProductCategory> productCategories = productCategoryRepository.findByCategoryNameIgnoreCase(category);
                 boolean checkCategory = productCategories.stream().anyMatch(productCategory -> Objects.equals(productCategory.getProduct().getId(), newProduct.getId()));
-                Category categoryGet = categoryRepository.findByNameIgnoreCase(category).orElseThrow(()->new Exception("Category not found"));
-                if(!checkCategory) {
+                Category categoryGet = categoryRepository.findByNameIgnoreCase(category).orElseThrow(() -> new Exception("Category not found"));
+                if (!checkCategory) {
                     ProductCategory addCategory = new ProductCategory();
                     addCategory.setCategory(categoryGet);
                     addCategory.setProduct(newProduct);
@@ -196,10 +342,11 @@ public class ProductServiceImpl implements ProductService {
             }
         });
     }
-    public void checkCategories(List<String> categories){
-        categories.forEach(category->{
+
+    public void checkCategories(List<String> categories) {
+        categories.forEach(category -> {
             try {
-                categoryRepository.findByNameIgnoreCase(category).orElseThrow(()->new Exception("Category not found"));
+                categoryRepository.findByNameIgnoreCase(category).orElseThrow(() -> new Exception("Category not found"));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

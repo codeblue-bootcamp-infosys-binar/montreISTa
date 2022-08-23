@@ -11,7 +11,7 @@ public interface BuyerService {
 
     BuyerResponseDTO findBuyerById(Long id) throws Exception;
 
-    List<ProductResponseDTO> createBuyer(Authentication authentication)throws Exception ;
+    List<ProductResponseDTO> createBuyer(Authentication authentication,Integer page, String sort, boolean descending)throws Exception ;
 
     void deleteBuyer(Long id, Authentication authentication)throws Exception;
 
