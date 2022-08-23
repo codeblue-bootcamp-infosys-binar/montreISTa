@@ -2,6 +2,8 @@ package com.codeblue.montreISTA.service;
 
 import com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO;
 import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
+import com.codeblue.montreISTA.entity.HistoryTransactionDetail;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 
 import java.util.List;
@@ -23,5 +25,6 @@ public interface TransactionService {
     TransactionDetailResponseDTO findByTransactionDetailId(Long id) throws Exception;
 
     List<TransactionDetailResponseDTO> createTransaction(Authentication authentication) throws Exception;
+
 
 }

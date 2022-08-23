@@ -60,7 +60,7 @@ public class ShippingController {
             logger.info(Line + " Logger Start Get by Shipping Name " + Line);
             logger.info("Update Shipping : " + shippings);
             logger.info(Line + " Logger End Get  by Shipping Name " + Line);
-            return ResponseHandler.generateResponse("successfully retrieved name", HttpStatus.OK, shippings);
+            return ResponseHandler.generateResponse("successfully get name", HttpStatus.OK, shippings);
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -99,7 +99,7 @@ public class ShippingController {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,"Failed create database!");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,"Failed create shipping!");
         }
     }
 
@@ -116,7 +116,7 @@ public class ShippingController {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Bad Request!");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data not Found!");
         }
     }
 

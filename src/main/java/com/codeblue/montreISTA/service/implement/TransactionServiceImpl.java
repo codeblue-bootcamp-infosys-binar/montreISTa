@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class TransactionServiceImpl implements TransactionService {
 
+    public static Integer currentPage;
+
     private final TransactionRepository transactionRepository;
     private final TransactionDetailsRepository transactionDetailsRepository;
 
@@ -183,5 +185,7 @@ public class TransactionServiceImpl implements TransactionService {
         orderRepository.deleteById(orderDelete.getOrderId());
         return results;
     }
+
+
 
 }
