@@ -4,12 +4,14 @@ import com.codeblue.montreISTA.DTO.BuyerResponseDTO;
 import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.helper.DTOConverter;
+import com.codeblue.montreISTA.helper.Pagination;
 import com.codeblue.montreISTA.repository.BuyerRepository;
 import com.codeblue.montreISTA.repository.ProductRepository;
 import com.codeblue.montreISTA.repository.RoleRepository;
 import com.codeblue.montreISTA.repository.UserRepository;
 import com.codeblue.montreISTA.service.BuyerService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -36,7 +38,7 @@ public class BuyerServiceImpl implements BuyerService {
         return buyerRepository.findById(id).orElseThrow(()->new Exception("Buyer not found")).convertToResponse(); }
 
     @Override
-    public List<ProductResponseDTO> createBuyer(Authentication authentication) throws Exception {
+    public List<ProductResponseDTO> createBuyer(Authentication authentication,Integer page, String sort, boolean descending) throws Exception {
         User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("User not found"));
         Optional<Buyer> buyerUser = buyerRepository.findByUserUsername(authentication.getName());
         if (buyerUser.isEmpty()) {
@@ -44,7 +46,8 @@ public class BuyerServiceImpl implements BuyerService {
             buyer.setUser(user);
             buyerRepository.save(buyer);
         }
-        List<Product> products = productRepository.findAllByOrderByCreatedAtAsc();
+        Pageable pageable = Pagination.paginate(page, sort, descending);
+        List<Product> products = productRepository.findAll(pageable).getContent();
         return DTOConverter.convertProducts(products);
     }
 

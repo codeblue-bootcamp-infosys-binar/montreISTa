@@ -29,9 +29,12 @@ public class BuyerController {
 
     //CREATE
     @GetMapping("/user/buyers/login-as-buyer")
-    public ResponseEntity<Object> createBuyer(Authentication authentication){
+    public ResponseEntity<Object> createBuyer(Authentication authentication,
+                                              @RequestParam(required = false) String sort,
+                                              @RequestParam(required = false) Integer page,
+                                              @RequestParam(required = false) boolean descending) throws Exception {
         try {
-            List<ProductResponseDTO> results = buyerService.createBuyer(authentication);
+            List<ProductResponseDTO> results = buyerService.createBuyer(authentication,page,sort,descending);
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Create " + Line);
