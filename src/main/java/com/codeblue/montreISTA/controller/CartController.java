@@ -25,8 +25,7 @@ import java.util.Map;
 @SecurityRequirement(name = "bearer-key")
 public class CartController {
 
-    private static final Logger logger = LoggerFactory.getLogger(CartController.class);
-    private static final String Line = "====================";
+
     private final CartService cartService;
 
 
