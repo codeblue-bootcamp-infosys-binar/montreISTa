@@ -137,3 +137,326 @@
 2022-08-23 00:24:36,579 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-08-23 00:24:36,585 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2022-08-23 00:24:36,589 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-23 00:42:30,716 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-23 00:42:30,727 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 15236 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-23 00:42:30,728 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-23 00:42:30,782 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-23 00:42:30,782 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-23 00:42:32,067 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-23 00:42:32,231 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 155 ms. Found 16 JPA repository interfaces.
+2022-08-23 00:42:33,355 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-23 00:42:33,373 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-23 00:42:33,375 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-23 00:42:33,375 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-23 00:42:33,544 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-23 00:42:33,545 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 2762 ms
+2022-08-23 00:42:33,799 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-23 00:42:33,897 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-23 00:42:34,246 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-23 00:42:34,392 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-23 00:42:34,569 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-23 00:42:34,601 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-23 00:42:36,073 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-23 00:42:36,081 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-23 00:42:37,798 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-23 00:42:38,605 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2e8c66f4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1915a5ef, org.springframework.security.web.context.SecurityContextPersistenceFilter@167bcf24, org.springframework.security.web.header.HeaderWriterFilter@2e481af2, org.springframework.web.filter.CorsFilter@3a425311, org.springframework.security.web.authentication.logout.LogoutFilter@4d385319, com.codeblue.montreISTA.security.AuthTokenFilter@4018f86c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1840be55, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4ffa3d1c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4df68e07, org.springframework.security.web.session.SessionManagementFilter@1091573c, org.springframework.security.web.access.ExceptionTranslationFilter@7cd4e4da, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@55c77bc6]
+2022-08-23 00:42:38,812 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2022-08-23 00:42:39,004 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-23 00:42:39,026 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-23 00:42:39,067 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-23 00:42:39,085 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 8.953 seconds (JVM running for 9.822)
+2022-08-23 00:43:11,595 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-23 00:43:11,596 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-23 00:43:11,597 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 1 ms
+2022-08-23 00:43:13,013 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-9] Init duration for springdoc-openapi is: 948 ms
+2022-08-23 00:43:22,266 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] ==================== Logger Start Get All Products     ====================
+2022-08-23 00:43:22,268 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] -------------------------
+2022-08-23 00:43:22,269 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product ID    : 1
+2022-08-23 00:43:22,269 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Description   : A modern take on a classic design, the Iconic Link is the revelation behind years of meticulous craftsmanship. The Iconic Link features a luxurious metal bracelet with three-piece links; each segment is comprised of solid steel, individually crafted pieces in an elegantly tapered form, ensuring a seamless transition from case to clasp.
+The distinctive and sculptural lines of the raised midpiece blend effortlessly with the watch case, as our signature twelve index dial takes on a renewed, modern silhouette.
+The Iconic Link is available in polished stainless steel (316L) with a vibrant silver finish or with refined rose gold plating.
+The link bracelet can be adjusted for a perfect fit at your local watchmaker or Daniel Wellington store.
+2022-08-23 00:43:22,269 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Price         : 3420000
+2022-08-23 00:43:22,269 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product name  : ICONIC LINK
+2022-08-23 00:43:22,276 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Seller ID     : Seller{sellerId=1, user=com.codeblue.montreISTA.entity.User@4c1d2d62, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-23 00:43:22,276 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] -------------------------
+2022-08-23 00:43:22,277 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product ID    : 2
+2022-08-23 00:43:22,277 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Description   : The Iconic Link Unitone is our first unicolor timepiece that features a seamlessly matching luxurious metal link bracelet and watch dial. Available in polished stainless steel with a vibrant silver finish, refined rose gold or gold plating. This unique addition to the Iconic Link collection makes the Unitone stand out as an undeniably eye-catching timepiece that sets the tone for any occasion.
+2022-08-23 00:43:22,277 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Price         : 2817000
+2022-08-23 00:43:22,277 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product name  : PETITE MELROSE QUEEN
+2022-08-23 00:43:22,278 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Seller ID     : Seller{sellerId=1, user=com.codeblue.montreISTA.entity.User@4c1d2d62, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-23 00:43:22,278 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] -------------------------
+2022-08-23 00:43:22,278 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product ID    : 3
+2022-08-23 00:43:22,278 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Description   : Petite Melrose mengunggulkan arloji putih telur dan strap mesh rose gold yang tak tertandingi keanggunannya. Jam ini memperindah busana harian, suasana hati, dan semangat Anda.
+2022-08-23 00:43:22,279 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Price         : 2817000
+2022-08-23 00:43:22,279 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product name  : PETITE MELROSE
+2022-08-23 00:43:22,279 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Seller ID     : Seller{sellerId=3, user=com.codeblue.montreISTA.entity.User@e11dcf8, storeName='Ratih Arloji', storePhoto='https://cdn-image.hipwee.com/wp-content/uploads/2018/11/hipwee-wa2-750x500.jpg', storeAddress='Jl. Dasa Darma Blok II '}
+2022-08-23 00:43:22,279 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] -------------------------
+2022-08-23 00:43:22,279 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product ID    : 4
+2022-08-23 00:43:22,279 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Description   : Petite dengan arloji putih telur dan strap kulit Sheffield klasik warna hitam memperindah busana Anda dalam setiap kesempatan. Ikon desain sejati.
+2022-08-23 00:43:22,280 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Price         : 2817000
+2022-08-23 00:43:22,280 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product name  : PETITE SHEFFIELD
+2022-08-23 00:43:22,280 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Seller ID     : Seller{sellerId=6, user=com.codeblue.montreISTA.entity.User@78a710d6, storeName='Toko Gaya Trendy', storePhoto='https://www.solomediabisnis.com/wp-content/uploads/2021/01/3-2.jpeg', storeAddress='Jl. Raya Dukuh Zamrud Selatan 3'}
+2022-08-23 00:43:22,280 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] -------------------------
+2022-08-23 00:43:22,281 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product ID    : 5
+2022-08-23 00:43:22,282 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Description   : The Petite Pressed Sterling is our most delicate timepiece to date. Designed to be worn every day, this watch reflects the beauty in the small things. Crafted with polished stainless steel and available with a vibrant silver finish. Elevate your look with a graceful touch.
+2022-08-23 00:43:22,283 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Price         : 2817000
+2022-08-23 00:43:22,283 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product name  : PETITE PRESSED STERLING
+2022-08-23 00:43:22,283 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Seller ID     : Seller{sellerId=8, user=com.codeblue.montreISTA.entity.User@22e071c6, storeName='Terus Jaya', storePhoto='https://alamatbagus.com/wp-content/uploads/2022/03/toko-jam-tangan-surabaya-cahaya-arloji.jpg', storeAddress='Jl. Ir. Hj Juanda. Ps. Baru Bekasi'}
+2022-08-23 00:43:22,283 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] -------------------------
+2022-08-23 00:43:22,284 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product ID    : 6
+2022-08-23 00:43:22,284 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Description   : The Petite Pressed Ashfield is our most delicate timepiece to date. Designed to be worn every day, this watch reflects the beauty in the small things. Crafted with polished stainless steel and plated with refined rose gold. Elevate your look with a graceful touch.
+2022-08-23 00:43:22,285 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Price         : 2817000
+2022-08-23 00:43:22,285 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product name  : PETITE PRESSED ASHFIELD
+2022-08-23 00:43:22,285 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Seller ID     : Seller{sellerId=7, user=com.codeblue.montreISTA.entity.User@532e84be, storeName='Berlian Arloji', storePhoto='https://hinyong.com/wp-content/uploads/2019/05/siapkan-perlengkapan-dan-barang-dagangan-usaha-toko-jam.jpg', storeAddress='Mal Metropolitan, lantai dasar'}
+2022-08-23 00:43:22,285 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] -------------------------
+2022-08-23 00:43:22,285 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product ID    : 7
+2022-08-23 00:43:22,285 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Description   : The Petite Evergold 28 is our latest addition to the Petite Collection. Featuring an eggshell white dial and our classic mesh strap in a light shade of gold. Elevate your look with a delicate pop of gold that seamlessly matches any outfit.
+2022-08-23 00:43:22,285 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Price         : 2817000
+2022-08-23 00:43:22,285 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product name  : PETITE EVERGOLD
+2022-08-23 00:43:22,285 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Seller ID     : Seller{sellerId=6, user=com.codeblue.montreISTA.entity.User@78a710d6, storeName='Toko Gaya Trendy', storePhoto='https://www.solomediabisnis.com/wp-content/uploads/2021/01/3-2.jpeg', storeAddress='Jl. Raya Dukuh Zamrud Selatan 3'}
+2022-08-23 00:43:22,286 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] -------------------------
+2022-08-23 00:43:22,286 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product ID    : 8
+2022-08-23 00:43:22,286 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Description   : The Petite Rosewater features an eggshell white dial and a charming pink NATO strap. This watch gives your look a subtle, yet eye-catching, pop of color that is ideal for the spring season. The delicate pink strap, coupled with chic rose gold details, makes the Rosewater your go-to accessory for when you need to brighten up an outfit.
+2022-08-23 00:43:22,286 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Price         : 2817000
+2022-08-23 00:43:22,286 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product name  : PETITE ROSEWATER
+2022-08-23 00:43:22,286 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Seller ID     : Seller{sellerId=1, user=com.codeblue.montreISTA.entity.User@4c1d2d62, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-23 00:43:22,286 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] -------------------------
+2022-08-23 00:43:22,286 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product ID    : 9
+2022-08-23 00:43:22,287 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Description   : Classic Dover, dengan tombol berwarna putih cangkang telur dan detail dalam emas merah muda, jam elegan ini akan dengan mudah menjadi teman penampilan sehari-hari kamu. Menghadirkan tali NATO serba putih, jam ini memiliki desain klasik modern yang dibuat agar cocok untuk segala kesempatan.
+2022-08-23 00:43:22,287 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Price         : 2817000
+2022-08-23 00:43:22,287 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product name  : CLASSIC DOVER
+2022-08-23 00:43:22,287 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Seller ID     : Seller{sellerId=5, user=com.codeblue.montreISTA.entity.User@2aa89101, storeName='Matchwatch Mega Bekasi Hypermall', storePhoto='https://blog.jamtangan.com/wp-content/uploads/2018/12/A7S0008.jpg', storeAddress='Mega Bekasi Hypermall UG'}
+2022-08-23 00:43:22,287 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] -------------------------
+2022-08-23 00:43:22,287 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product ID    : 10
+2022-08-23 00:43:22,287 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Description   : Masuki musim mode abadi yang baru dengan Petite Ashfield. Jam tangan ultra tipis ini melingkar dengan manis di pergelangan tangan Anda dan dipercantik dengan strap jala warna hitam matte dan arloji hitam yang mewah. Tersedia dengan rincian warna rose gold atau silver.
+2022-08-23 00:43:22,287 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Price         : 2817000
+2022-08-23 00:43:22,288 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Product name  : PETITE ASHFIELD
+2022-08-23 00:43:22,288 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] Seller ID     : Seller{sellerId=14, user=com.codeblue.montreISTA.entity.User@25649ac9, storeName='Sunaku Watch', storePhoto='https://rimage.gnst.jp/livejapan.com/public/img/spot/lj/00/06/lj0006967/lj0006967_5eaa9c9ad823d_main.jpg?20210621040011&q=80', storeAddress='Jl. Letnan Arsyad Raya No.5'}
+2022-08-23 00:43:22,289 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5] ==================== Logger End Get All Products    ====================
+2022-08-23 00:43:22,289 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-5]  
+2022-08-23 00:43:38,117 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] ==================== Logger Start Get All Products     ====================
+2022-08-23 00:43:38,118 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] -------------------------
+2022-08-23 00:43:38,118 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Product ID    : 11
+2022-08-23 00:43:38,119 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Description   : With classic features such as the slim case, details in rose gold or silver, and our heritage NATO strap in midnight blue, Classic Bayswater is an effortless day-to-evening timepiece.
+2022-08-23 00:43:38,119 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Price         : 2817000
+2022-08-23 00:43:38,119 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Product name  : CLASSIC BAYSWATER
+2022-08-23 00:43:38,119 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Seller ID     : Seller{sellerId=9, user=com.codeblue.montreISTA.entity.User@693512ea, storeName='Toko Jam Rizky Jaya', storePhoto='https://images.homify.com/c_fill,f_auto,q_0,w_740/v1516689893/p/photo/image/2402137/IMG_20171126_083613_858.jpg', storeAddress='Jl. Ir. H. Juanda No.51'}
+2022-08-23 00:43:38,119 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] -------------------------
+2022-08-23 00:43:38,119 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Product ID    : 12
+2022-08-23 00:43:38,119 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Description   : Classic Cornwall menampilkan esensi dari kesederhanaan dan gaya. Dengan tali NATO hitam dan permukaan putih, jam tangan simpel dan elegan ini dapat dengan mudah menjadi ciri khas penampilan Anda sehari-hari.
+2022-08-23 00:43:38,120 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Price         : 2817000
+2022-08-23 00:43:38,120 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Product name  : CLASSIC CORNWALL
+2022-08-23 00:43:38,121 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Seller ID     : Seller{sellerId=3, user=com.codeblue.montreISTA.entity.User@5ae72bc2, storeName='Ratih Arloji', storePhoto='https://cdn-image.hipwee.com/wp-content/uploads/2018/11/hipwee-wa2-750x500.jpg', storeAddress='Jl. Dasa Darma Blok II '}
+2022-08-23 00:43:38,121 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] -------------------------
+2022-08-23 00:43:38,121 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Product ID    : 13
+2022-08-23 00:43:38,121 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Description   : Warna putih berpadu dengan hitam pada perpaduan manis antara gaya minimalisme dan kulit buaya bermotif timbul klasik warna hitam. Padukan atau pasangkan dengan jins dan kaos untuk penampilan santai.
+2022-08-23 00:43:38,121 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Price         : 2817000
+2022-08-23 00:43:38,121 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Product name  : PETITE READING
+2022-08-23 00:43:38,122 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Seller ID     : Seller{sellerId=2, user=com.codeblue.montreISTA.entity.User@5af8bba9, storeName='Toko Jam Ahdmad Naufal', storePhoto='https://tangselmedia.com/wp-content/uploads/2020/01/6-Daftar-Toko-Jam-Terbaik-di-Tangerang-Selatan-aslie.png', storeAddress='Komplek PU Sapta Taruna 3'}
+2022-08-23 00:43:38,122 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] -------------------------
+2022-08-23 00:43:38,122 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Product ID    : 14
+2022-08-23 00:43:38,122 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Description   : SERASI DENGAN SETIAP GAYA ANDA. SETIAP HARI.
+Petite Cornwall menangkap esensi kesederhanaan dan gaya sejati. Mengunggulkan strap NATO serba hitam dan arloji hitam, jam ramping dan elegan ini dengan mudah menjadi sahabat dalam gaya sehari-hari Anda.
+2022-08-23 00:43:38,122 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Price         : 2817000
+2022-08-23 00:43:38,123 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Product name  : PETITE CORNWALL
+2022-08-23 00:43:38,123 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Seller ID     : Seller{sellerId=3, user=com.codeblue.montreISTA.entity.User@5ae72bc2, storeName='Ratih Arloji', storePhoto='https://cdn-image.hipwee.com/wp-content/uploads/2018/11/hipwee-wa2-750x500.jpg', storeAddress='Jl. Dasa Darma Blok II '}
+2022-08-23 00:43:38,123 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] -------------------------
+2022-08-23 00:43:38,123 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Product ID    : 15
+2022-08-23 00:43:38,123 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Description   : DESAIN KLASIK BERPADU DENGAN MINIMALISME MODERN
+Petite Bondi, dengan strap kulit warna putih dan arloji putih telur, menampilkan kesederhanaan dan keanggunan. Jam ultra-tipis ini duduk dengan manis di tangan Anda dan menyoroti semangat Anda yang membara dalam gaya. Tersedia dengan warna rose gold atau silver.
+2022-08-23 00:43:38,123 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Price         : 2817000
+2022-08-23 00:43:38,124 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Product name  : PETITE BONDI
+2022-08-23 00:43:38,124 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] Seller ID     : Seller{sellerId=11, user=com.codeblue.montreISTA.entity.User@7eebdbb8, storeName='Toko Arloji Mitra Jaya', storePhoto='https://feldmarwatch.com/wp-content/themes/NewFeldmarWatch/images/watch-store-2x.jpg', storeAddress='Jl. Ir. H. Juanda'}
+2022-08-23 00:43:38,124 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6] ==================== Logger End Get All Products    ====================
+2022-08-23 00:43:38,124 INFO com.codeblue.montreISTA.controller.ProductController [http-nio-8090-exec-6]  
+2022-08-23 00:44:31,694 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-23 00:44:31,700 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-23 00:44:31,703 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-23 09:19:35,221 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-23 09:19:35,236 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 4476 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-23 09:19:35,238 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-23 09:19:35,343 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-23 09:19:35,344 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-23 09:19:37,035 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-23 09:19:37,233 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 188 ms. Found 16 JPA repository interfaces.
+2022-08-23 09:19:38,616 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-23 09:19:38,638 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-23 09:19:38,639 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-23 09:19:38,639 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-23 09:19:38,812 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-23 09:19:38,813 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3467 ms
+2022-08-23 09:19:39,127 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-23 09:19:39,243 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-23 09:19:39,568 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-23 09:19:39,734 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-23 09:19:39,935 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-23 09:19:39,966 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-23 09:19:41,746 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-23 09:19:41,758 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-23 09:19:43,991 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-23 09:19:45,117 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5aa04cc5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@26914304, org.springframework.security.web.context.SecurityContextPersistenceFilter@7b0c928, org.springframework.security.web.header.HeaderWriterFilter@58453f0b, org.springframework.web.filter.CorsFilter@423f6668, org.springframework.security.web.authentication.logout.LogoutFilter@3a8b628c, com.codeblue.montreISTA.security.AuthTokenFilter@27a8cab5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5c036d9a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@420fb9db, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5b1a23ad, org.springframework.security.web.session.SessionManagementFilter@c494260, org.springframework.security.web.access.ExceptionTranslationFilter@6b7bb3c0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@340e1db9]
+2022-08-23 09:19:45,340 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2022-08-23 09:19:45,630 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-23 09:19:45,658 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-23 09:19:45,704 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-23 09:19:45,721 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 11.274 seconds (JVM running for 12.222)
+2022-08-23 09:19:48,799 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-23 09:19:48,800 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-23 09:19:48,801 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 1 ms
+2022-08-23 09:19:50,318 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-9] Init duration for springdoc-openapi is: 1052 ms
+2022-08-23 09:20:01,050 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-5] ====================Logger Start Login ====================
+2022-08-23 09:20:01,050 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-5] com.codeblue.montreISTA.DTO.JwtResponse@324d4072
+2022-08-23 09:20:01,051 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-5] ====================Logger End Login ====================
+2022-08-23 09:20:18,723 INFO com.codeblue.montreISTA.controller.BuyerController [http-nio-8090-exec-8] ====================Logger Start Create ====================
+2022-08-23 09:20:18,724 INFO com.codeblue.montreISTA.controller.BuyerController [http-nio-8090-exec-8] [com.codeblue.montreISTA.DTO.ProductResponseDTO@46be6647, com.codeblue.montreISTA.DTO.ProductResponseDTO@435b2c31, com.codeblue.montreISTA.DTO.ProductResponseDTO@fb81ead, com.codeblue.montreISTA.DTO.ProductResponseDTO@15003296, com.codeblue.montreISTA.DTO.ProductResponseDTO@20b9f22f, com.codeblue.montreISTA.DTO.ProductResponseDTO@3a1978ad, com.codeblue.montreISTA.DTO.ProductResponseDTO@759b4435, com.codeblue.montreISTA.DTO.ProductResponseDTO@619b4c92, com.codeblue.montreISTA.DTO.ProductResponseDTO@edce204, com.codeblue.montreISTA.DTO.ProductResponseDTO@7ff12f62, com.codeblue.montreISTA.DTO.ProductResponseDTO@50646645, com.codeblue.montreISTA.DTO.ProductResponseDTO@6b205f07, com.codeblue.montreISTA.DTO.ProductResponseDTO@2055ca5, com.codeblue.montreISTA.DTO.ProductResponseDTO@74f9f9b8, com.codeblue.montreISTA.DTO.ProductResponseDTO@75cff2c]
+2022-08-23 09:20:18,724 INFO com.codeblue.montreISTA.controller.BuyerController [http-nio-8090-exec-8] ====================Logger End Create ====================
+2022-08-23 09:20:28,353 ERROR com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-2] ==================== Logger Start Error ====================
+2022-08-23 09:20:28,354 ERROR com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-2] Carts not found
+2022-08-23 09:20:28,355 ERROR com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-2] ==================== Logger End Error ====================
+2022-08-23 09:20:39,528 ERROR com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-10] ==================== Logger Start Error ====================
+2022-08-23 09:20:39,529 ERROR com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-10] You can't order your own product
+2022-08-23 09:20:39,529 ERROR com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-10] ==================== Logger End Error ====================
+2022-08-23 09:20:40,618 ERROR com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-1] ==================== Logger Start Error ====================
+2022-08-23 09:20:40,620 ERROR com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-1] You can't order your own product
+2022-08-23 09:20:40,620 ERROR com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-1] ==================== Logger End Error ====================
+2022-08-23 09:20:46,995 INFO com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-9] ====================Logger Start Create ====================
+2022-08-23 09:20:46,996 INFO com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-9] com.codeblue.montreISTA.DTO.CartResponseDTO@27539fe1
+2022-08-23 09:20:46,997 INFO com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-9] ====================Logger End Create ====================
+2022-08-23 09:20:49,360 INFO com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-4] ====================Logger Start Create ====================
+2022-08-23 09:20:49,361 INFO com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-4] com.codeblue.montreISTA.DTO.CartResponseDTO@3c34f42c
+2022-08-23 09:20:49,362 INFO com.codeblue.montreISTA.controller.CartController [http-nio-8090-exec-4] ====================Logger End Create ====================
+2022-08-23 09:20:57,893 INFO com.codeblue.montreISTA.controller.OrderController [http-nio-8090-exec-6] ====================Logger Start Get By Buyer ====================
+2022-08-23 09:20:57,903 INFO com.codeblue.montreISTA.controller.OrderController [http-nio-8090-exec-6] OrderResponseCartDTO{orderId=1, total_price=5654000, cart=[com.codeblue.montreISTA.DTO.OrderCartDTO@4557769, com.codeblue.montreISTA.DTO.OrderCartDTO@78f89287], is_payment=Unpaid}
+2022-08-23 09:20:57,904 INFO com.codeblue.montreISTA.controller.OrderController [http-nio-8090-exec-6] ====================Logger End Get By Buyer ====================
+2022-08-23 09:21:16,186 INFO com.codeblue.montreISTA.controller.OrderController [http-nio-8090-exec-7] ====================Logger Start Update By Id ====================
+2022-08-23 09:21:16,204 INFO com.codeblue.montreISTA.controller.OrderController [http-nio-8090-exec-7] OrderResponseDTO{orderId=1, listCart=[com.codeblue.montreISTA.DTO.CartResponseDTO@70729d44, com.codeblue.montreISTA.DTO.CartResponseDTO@278fd0d0], payment_id=5, payment_name='OVO', shipping_id=1, shipping_name='JNE', total_price=11308000, destination_name='bayu aji infosys', destination_address='Jalan pegangsaan 23, RT/RW 01/03, kel.cawang, kec. kramatjati, jakarta timur', destination_phone='080799900', zip_code='23092', createdAt=2022-08-23T09:20:46.936743+07:00[Asia/Bangkok], modifiedAt=2022-08-23T09:21:16.167202400+07:00[Asia/Bangkok]}
+2022-08-23 09:21:16,205 INFO com.codeblue.montreISTA.controller.OrderController [http-nio-8090-exec-7] ====================Logger End Update By Id ====================
+2022-08-23 09:21:25,993 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-3] ==================== Logger Start Error ====================
+2022-08-23 09:21:25,994 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-3] Please pay first !
+2022-08-23 09:21:25,996 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-3] ==================== Logger End Error ====================
+2022-08-23 09:21:31,110 INFO com.codeblue.montreISTA.controller.OrderController [http-nio-8090-exec-10] ====================Logger Start Get By Buyer ====================
+2022-08-23 09:21:31,111 INFO com.codeblue.montreISTA.controller.OrderController [http-nio-8090-exec-10] OrderResponseCartDTO{orderId=1, total_price=11308000, cart=[com.codeblue.montreISTA.DTO.OrderCartDTO@5e1388cb, com.codeblue.montreISTA.DTO.OrderCartDTO@33a2b83e], is_payment=Paid}
+2022-08-23 09:21:31,112 INFO com.codeblue.montreISTA.controller.OrderController [http-nio-8090-exec-10] ====================Logger End Get By Buyer ====================
+2022-08-23 09:21:43,437 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-9] ====================Logger Start Get Checkout Order====================
+2022-08-23 09:21:43,438 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-9] [com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@2ac0abe5, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@620b2087]
+2022-08-23 09:21:43,439 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-9] ====================Logger End Get Checkout Order ====================
+2022-08-23 09:21:58,544 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] ====================Logger Start Get Transactions Buyer====================
+2022-08-23 09:21:58,545 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] [com.codeblue.montreISTA.DTO.TransactionResponseDTO@1b960a82, com.codeblue.montreISTA.DTO.TransactionResponseDTO@12ddbc54]
+2022-08-23 09:21:58,546 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] ====================Logger End Get Transactions Buyer====================
+2022-08-23 09:22:07,289 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] ====================Logger Start Get Transactions Buyer====================
+2022-08-23 09:22:07,290 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] [com.codeblue.montreISTA.DTO.TransactionResponseDTO@45429ea1, com.codeblue.montreISTA.DTO.TransactionResponseDTO@7b4f8b55]
+2022-08-23 09:22:07,290 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] ====================Logger End Get Transactions Buyer====================
+2022-08-23 09:22:35,226 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-2] ====================Logger Start Get Transactions Detail Buyer====================
+2022-08-23 09:22:35,227 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-2] [com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@7c3c21e1, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@5d37e547]
+2022-08-23 09:22:35,228 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-2] ====================Logger End Get Transactions Detail Buyer====================
+2022-08-23 09:22:45,427 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-10] ====================Logger Start Get Transactions Detail Buyer====================
+2022-08-23 09:22:45,428 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-10] [com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@25818d24, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@5f302b40]
+2022-08-23 09:22:45,429 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-10] ====================Logger End Get Transactions Detail Buyer====================
+2022-08-23 09:22:50,618 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-9] ====================Logger Start Get Transactions Detail Buyer====================
+2022-08-23 09:22:50,619 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-9] [com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@1ddf38df, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@2837ab09]
+2022-08-23 09:22:50,620 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-9] ====================Logger End Get Transactions Detail Buyer====================
+2022-08-23 09:22:53,856 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-4] ==================== Logger Start Error ====================
+2022-08-23 09:22:53,858 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-4] You don't have order
+2022-08-23 09:22:53,858 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-4] ==================== Logger End Error ====================
+2022-08-23 09:22:57,365 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] ====================Logger Start Get Transactions Detail Buyer====================
+2022-08-23 09:22:57,366 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] [com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@204f7c60, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@21c48184]
+2022-08-23 09:22:57,368 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] ====================Logger End Get Transactions Detail Buyer====================
+2022-08-23 09:23:17,992 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] ==================== Logger Start Get All Product Category     ====================
+2022-08-23 09:23:17,993 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:17,994 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 1
+2022-08-23 09:23:17,995 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@6fc6c0b1
+2022-08-23 09:23:17,996 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@5710d6b1
+2022-08-23 09:23:17,996 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:17,996 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 2
+2022-08-23 09:23:17,997 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@532b4926
+2022-08-23 09:23:17,997 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@6d38cf32
+2022-08-23 09:23:17,998 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:17,998 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 3
+2022-08-23 09:23:17,998 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@34a2596c
+2022-08-23 09:23:17,998 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@6556b417
+2022-08-23 09:23:17,999 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:17,999 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 4
+2022-08-23 09:23:18,000 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@6cbdb3e2
+2022-08-23 09:23:18,000 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@47d7a018
+2022-08-23 09:23:18,000 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,001 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 5
+2022-08-23 09:23:18,001 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@6118f8b7
+2022-08-23 09:23:18,001 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@31be1e8f
+2022-08-23 09:23:18,001 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,001 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 6
+2022-08-23 09:23:18,002 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@301d89f9
+2022-08-23 09:23:18,002 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@4a303882
+2022-08-23 09:23:18,002 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,002 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 7
+2022-08-23 09:23:18,002 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@6ccbbc33
+2022-08-23 09:23:18,002 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@2dc08d43
+2022-08-23 09:23:18,003 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,003 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 8
+2022-08-23 09:23:18,003 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@714e8b43
+2022-08-23 09:23:18,003 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@3af159c0
+2022-08-23 09:23:18,003 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,004 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 9
+2022-08-23 09:23:18,004 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@b6a5089
+2022-08-23 09:23:18,004 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@22697e32
+2022-08-23 09:23:18,004 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,004 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 10
+2022-08-23 09:23:18,005 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@2778fdaf
+2022-08-23 09:23:18,005 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@17f79fd9
+2022-08-23 09:23:18,006 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,006 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 11
+2022-08-23 09:23:18,006 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@4ec07bb6
+2022-08-23 09:23:18,006 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@273104b2
+2022-08-23 09:23:18,007 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,007 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 12
+2022-08-23 09:23:18,007 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@4744107e
+2022-08-23 09:23:18,007 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@6c665618
+2022-08-23 09:23:18,008 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,008 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 13
+2022-08-23 09:23:18,008 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@21369de9
+2022-08-23 09:23:18,008 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@e8d09e9
+2022-08-23 09:23:18,008 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,009 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 14
+2022-08-23 09:23:18,009 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@69ad2fa6
+2022-08-23 09:23:18,009 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@37a5721d
+2022-08-23 09:23:18,009 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,009 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 15
+2022-08-23 09:23:18,009 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@226978d5
+2022-08-23 09:23:18,010 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@44cdff30
+2022-08-23 09:23:18,010 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,010 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 16
+2022-08-23 09:23:18,010 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@449d3810
+2022-08-23 09:23:18,010 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@58b48f04
+2022-08-23 09:23:18,011 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,011 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 17
+2022-08-23 09:23:18,011 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@3172eb17
+2022-08-23 09:23:18,011 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@1a6db676
+2022-08-23 09:23:18,011 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,012 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 18
+2022-08-23 09:23:18,012 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@371d4093
+2022-08-23 09:23:18,012 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@4bad35db
+2022-08-23 09:23:18,012 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,012 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 19
+2022-08-23 09:23:18,013 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@6da155ea
+2022-08-23 09:23:18,013 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@1a88902e
+2022-08-23 09:23:18,013 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,013 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 20
+2022-08-23 09:23:18,013 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@47cc5234
+2022-08-23 09:23:18,014 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@656db4fb
+2022-08-23 09:23:18,014 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,014 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 21
+2022-08-23 09:23:18,014 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@284a3b9
+2022-08-23 09:23:18,014 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@5cd34a27
+2022-08-23 09:23:18,014 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,015 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 22
+2022-08-23 09:23:18,015 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@79abee7b
+2022-08-23 09:23:18,015 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@71e947d9
+2022-08-23 09:23:18,015 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] -------------------------
+2022-08-23 09:23:18,016 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product Category ID     : 23
+2022-08-23 09:23:18,016 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.DTO.CategoryResponseDTO@5657ab36
+2022-08-23 09:23:18,016 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] Product  ID             : com.codeblue.montreISTA.DTO.ProductToProductCategoryDTO@101341a9
+2022-08-23 09:23:18,016 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8] ==================== Logger End Get All Product Category   ====================
+2022-08-23 09:23:18,016 INFO com.codeblue.montreISTA.controller.ProductCategoryController [http-nio-8090-exec-8]  
+2022-08-23 09:23:42,313 INFO com.codeblue.montreISTA.controller.PhotoController [http-nio-8090-exec-2] ====================Logger Start Get By sellername ====================
+2022-08-23 09:23:42,330 INFO com.codeblue.montreISTA.controller.PhotoController [http-nio-8090-exec-2] [PhotoResponseDTO{photo_id=2, photo_url='https://www3.ntu.edu.sg/home/ehchua/programming/java/images/programming_steps.gif', product_id=9, product_name='CLASSIC DOVER', description='Classic Dover, dengan tombol berwarna putih cangkang telur dan detail dalam emas merah muda, jam elegan ini akan dengan mudah menjadi teman penampilan sehari-hari kamu. Menghadirkan tali NATO serba putih, jam ini memiliki desain klasik modern yang dibuat agar cocok untuk segala kesempatan.', price=2817000, seller_name='Alya', store_name='Matchwatch Mega Bekasi Hypermall', store_photo='https://blog.jamtangan.com/wp-content/uploads/2018/12/A7S0008.jpg', store_address='Mega Bekasi Hypermall UG'}]
+2022-08-23 09:23:42,331 INFO com.codeblue.montreISTA.controller.PhotoController [http-nio-8090-exec-2] ====================Logger End Get By sellername ====================
