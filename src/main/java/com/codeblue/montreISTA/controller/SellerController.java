@@ -34,7 +34,7 @@ public class SellerController {
     private static final Logger logger =  LoggerFactory.getLogger(SellerController.class);
     private static final String Line = "====================";
     private final SellerService sellerService;
-    private final UserRepository userRepository;
+
 
     //CREATE
     @PostMapping("/user/sellers/login-as-seller")
@@ -57,8 +57,14 @@ public class SellerController {
                                                    Authentication authentication) throws IOException {
         try{
             SellerResponseDTO results = sellerService.uploadPhotoStore(authentication,file);
+            logger.info(Line + "Logger Start Update Photo " + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Update Photo " + Line);
             return ResponseHandler.generateResponse("Success upload photo profile",HttpStatus.OK,results);
         }catch (Exception e){
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
             return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"failed update photo");
         }
     }
@@ -66,8 +72,14 @@ public class SellerController {
     public ResponseEntity<Object> getMyStore(Authentication authentication) {
         try {
             SellerResponseDTO result = sellerService.findByUsername(authentication.getName());
-            return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, result);
+            logger.info(Line + "Logger Start Get store id " + Line);
+            logger.info(String.valueOf(result));
+            logger.info(Line + "Logger End Get store id " + Line);
+            return ResponseHandler.generateResponse("successfully Get Seller", HttpStatus.OK, result);
         } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Seller not Found");
         }
     }
@@ -79,7 +91,7 @@ public class SellerController {
             logger.info(Line + "Logger Start Update By Id " + Line);
             logger.info(String.valueOf(updateSeller));
             logger.info(Line + "Logger End Update By Id " + Line);
-            return ResponseHandler.generateResponse("successfully updated Buyer", HttpStatus.OK, updateSeller);
+            return ResponseHandler.generateResponse("successfully updated Seller", HttpStatus.OK, updateSeller);
         } catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -125,7 +137,7 @@ public class SellerController {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND, "seller had no value!");
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND, "seller not found!");
         }
     }
 

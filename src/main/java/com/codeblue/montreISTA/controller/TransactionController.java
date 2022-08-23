@@ -49,6 +49,15 @@ public class TransactionController {
                 logger.info("Seller ID        : " + transactionData.getSeller_id());
                 logger.info("Quantity         : " + transactionData.getQuantity());
                 logger.info("Total Price      : " + transactionData.getTotal_price());
+                transaction.put("Transaction ID ", transactionData.getTransaction_id());
+                transaction.put("Store Name     ", transactionData.getStore_name());
+                transaction.put("Product Name   ", transactionData.getProduct_name());
+                transaction.put("Product Price  ", transactionData.getProduct_price());
+                transaction.put("Photo URL      ", transactionData.getPhoto_url());
+                transaction.put("Buyer ID       ", transactionData.getBuyer_id());
+                transaction.put("Seller ID      ", transactionData.getSeller_id());
+                transaction.put("Quantity       ", transactionData.getQuantity());
+                transaction.put("Total Price    ", transactionData.getTotal_price());
             }
             logger.info("==================== Logger End Get AlL Transactions   ====================");
             logger.info(" ");
@@ -71,7 +80,7 @@ public class TransactionController {
             logger.info(Line + "Logger Start Get History Transactions " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get History Transactions " + Line);
-            return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully get history transactions", HttpStatus.OK, results);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -92,7 +101,7 @@ public class TransactionController {
             logger.info(Line + "Logger Start Get Transactions Buyer" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transactions Buyer" + Line);
-            return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully get history transactions", HttpStatus.OK, results);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -111,7 +120,7 @@ public class TransactionController {
             logger.info(Line + "Logger Start Get Transaction By Seller" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transaction By Seller" + Line);
-            return ResponseHandler.generateResponse("successfully retrieved history transactions", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully get history transactions", HttpStatus.OK, results);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -130,7 +139,7 @@ public class TransactionController {
             logger.info(Line + "Logger Start Get Transaction Detail" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transaction Detail" + Line);
-            return ResponseHandler.generateResponse("successfully retrieved history transactions details", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully get history transactions details", HttpStatus.OK, results);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -146,7 +155,7 @@ public class TransactionController {
             logger.info(Line + "Logger Start Get By ID" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get By ID" + Line);
-            return ResponseHandler.generateResponse("successfully retrieved history transactions details", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully get history transactions details", HttpStatus.OK, results);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -165,7 +174,7 @@ public class TransactionController {
             logger.info(Line + "Logger Start Get Transactions Detail Buyer" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transactions Detail Buyer" + Line);
-            return ResponseHandler.generateResponse("successfully retrieved history transactions details", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully get history transactions details", HttpStatus.OK, results);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -184,7 +193,7 @@ public class TransactionController {
             logger.info(Line + "Logger Start Get Transactions Detail Seller" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transactions Detail Seller" + Line);
-            return ResponseHandler.generateResponse("successfully retrieved history transactions details", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("successfully get history transactions details", HttpStatus.OK, results);
         }catch (Exception e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -200,12 +209,12 @@ public class TransactionController {
             logger.info(Line + "Logger Start Get Checkout Order" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Checkout Order " + Line);
-            return ResponseHandler.generateResponse("Successfully Transaction", HttpStatus.OK, results);
+            return ResponseHandler.generateResponse("Transactions Successfull", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Doing Transactions");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Transactions Failed!");
         }
     }
 }
