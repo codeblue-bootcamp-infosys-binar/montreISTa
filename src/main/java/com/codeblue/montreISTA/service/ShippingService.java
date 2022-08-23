@@ -3,21 +3,22 @@ package com.codeblue.montreISTA.service;
 import com.codeblue.montreISTA.DTO.ShippingRequestDTO;
 import com.codeblue.montreISTA.DTO.ShippingResponseDTO;
 import com.codeblue.montreISTA.entity.Shipping;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ShippingService {
 
-    List<ShippingResponseDTO> findAllShipping()throws Exception;
+    ResponseEntity<Object> findAllShipping()throws Exception;
 
-    ShippingResponseDTO findShippingById(Long id) throws Exception;
+    ResponseEntity<Object> findShippingById(Long id) throws Exception;
 
-    ShippingResponseDTO createShipping(ShippingRequestDTO shippingRequestDTO)throws Exception;
+    ResponseEntity<Object> createShipping(ShippingRequestDTO shippingRequestDTO)throws Exception;
 
-    ShippingResponseDTO updateShipping(ShippingRequestDTO shippingRequestDTO,Long id)throws Exception;
+    ResponseEntity<Object> updateShipping(ShippingRequestDTO shippingRequestDTO,Long id)throws Exception;
 
-    void deleteShipping(Long id)throws Exception;
+    ResponseEntity<Object> deleteShipping(Long id)throws Exception;
 
-    List<ShippingResponseDTO> findByName(String keyword)throws Exception;
+    ResponseEntity<Object> findByName(String keyword)throws Exception;
 }
