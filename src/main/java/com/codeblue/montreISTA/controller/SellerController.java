@@ -1,10 +1,7 @@
 package com.codeblue.montreISTA.controller;
 
 
-import com.codeblue.montreISTA.DTO.ProductResponseDTO;
-import com.codeblue.montreISTA.DTO.SellerRequestDTO;
-import com.codeblue.montreISTA.DTO.SellerResponseDTO;
-import com.codeblue.montreISTA.DTO.UserResponseDTO;
+import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.entity.Buyer;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.repository.UserRepository;
@@ -37,10 +34,10 @@ public class SellerController {
 
 
     //CREATE
-    @PostMapping("/user/sellers/login-as-seller")
+    @PostMapping("/user/sellers/create-shop")
     public ResponseEntity<Object> createSeller(@RequestBody SellerRequestDTO sellerRequestDTO, Authentication authentication){
         try {
-            Object results = sellerService.createSeller(sellerRequestDTO,authentication);
+            SellerResponseDTO results = sellerService.createSeller(sellerRequestDTO,authentication);
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Create " + Line);
@@ -52,6 +49,7 @@ public class SellerController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,"Failed create seller!");
         }
     }
+
     @PostMapping(value="/user/upload-photo-store",consumes ="multipart/form-data" )
     public ResponseEntity<Object> postPhotoStore(@RequestParam ("file") MultipartFile file,
                                                    Authentication authentication) throws IOException {
@@ -80,6 +78,19 @@ public class SellerController {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Seller not Found");
+        }
+    }
+
+    @GetMapping("/user/login-as-seller")
+    public ResponseEntity<Object> loginAsSeller(Authentication authentication,
+                                                @RequestParam(required = false) String sort,
+                                                @RequestParam(required = false) Integer page,
+                                                @RequestParam(required = false) boolean descending) {
+        try {
+            LoginSellerResponseDTO result = sellerService.loginAsSeller(authentication.getName(),page,sort,descending);
+            return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, result);
+        } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Seller not Found");
         }
     }
@@ -142,10 +153,10 @@ public class SellerController {
     }
 
     //DELETE
-    @DeleteMapping("/dashboard/sellers/delete/{id}")
-    public ResponseEntity<Object> deleteSeller(@PathVariable("id") Long id){
+    @DeleteMapping("/user/sellers/delete/{id}")
+    public ResponseEntity<Object> deleteSeller(@PathVariable("id") Long id,Authentication authentication){
         try{
-            sellerService.deleteSeller(id);
+            sellerService.deleteSeller(id,authentication);
             Map<String, Boolean> response = new HashMap<>();
             response.put("deleted", Boolean.TRUE);
             logger.info("==================== Logger Start Delete Sellers ====================");

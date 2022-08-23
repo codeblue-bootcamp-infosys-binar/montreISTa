@@ -20,5 +20,5 @@ public interface OrderService {
 
     void deleteOrder(Authentication authentication) throws Exception;
 
-
+    OrderResponseCartDTO payOrder(String keyword)throws Exception;
 }

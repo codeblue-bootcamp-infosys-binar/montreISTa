@@ -24,9 +24,7 @@ import java.util.*;
 public class BuyerController {
 
     private static final Logger logger = LoggerFactory.getLogger(BuyerController.class);
-
     private static final String Line = "====================";
-
     private final BuyerService buyerService;
 
     //CREATE
@@ -51,16 +49,12 @@ public class BuyerController {
     public ResponseEntity<Object> getAllBuyer(){
         try{
             List<BuyerResponseDTO> buyers = buyerService.findAllBuyer();
-            List<Map<String, Object>> maps = new ArrayList<>();
             logger.info("==================== Logger Start Get All Buyers     ====================");
             for(BuyerResponseDTO buyerData : buyers){
                 Map<String, Object> buyer = new HashMap<>();
                 logger.info("-------------------------");
                 logger.info("Buyer ID    : " + buyerData.getBuyer_id());
                 logger.info("User ID     : " + buyerData.getUser_id());
-                buyer.put("Buyer ID        ", buyerData.getBuyer_id());
-                buyer.put("User ID         ", buyerData.getBuyer_id());
-                maps.add(buyer);
             }
             logger.info("==================== Logger End Get All Buyers     ====================");
             logger.info(" ");
@@ -91,10 +85,10 @@ public class BuyerController {
     }
 
     //DELETE
-    @DeleteMapping("/dashboard/buyers/delete/{id}")
-    public ResponseEntity<Object> deleteBuyer(@PathVariable("id") Long id){
+    @DeleteMapping("/user/buyers/delete/{id}")
+    public ResponseEntity<Object> deleteBuyer(@PathVariable("id") Long id, Authentication authentication){
         try{
-            buyerService.deleteBuyer(id);
+            buyerService.deleteBuyer(id,authentication);
             logger.info(Line + "Logger Start Delete By Id " + Line);
             logger.info("Delete Success");
             logger.info(Line + "Logger End Delete By Id " + Line);

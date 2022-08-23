@@ -115,6 +115,28 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.deleteAll(orders);
     }
 
+    @Override
+    public OrderResponseCartDTO payOrder(String keyword) throws Exception {
+        Order results = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(keyword).orElseThrow(()->new Exception("Order not found"));
+        boolean checkPay = true;
+        results.setIsPay(checkPay);
+        Order order = orderRepository.save(results);
+        List<OrderCartDTO> carts = new ArrayList<>();
+        for(Cart cart:results.getListCart()){
+            List<Photo> photos = cart.getProduct().getPhotos();
+            String photoURL;
+            boolean check = photos.stream().map(Photo::getPhotoURL).findAny().isEmpty();
+            if(check){
+                photoURL = "-";
+            }else {
+                photoURL = photos.get(0).getPhotoURL();
+            }
+            OrderCartDTO cartDTO = cart.convertToOrder(photoURL);
+            carts.add(cartDTO);
+        }
+        return order.convertCart(carts);
+    }
+
     public List<OrderResponseDTO> convertListDTO(List<Order> orders) {
         return orders.stream()
                 .map(this::convertDTO)
