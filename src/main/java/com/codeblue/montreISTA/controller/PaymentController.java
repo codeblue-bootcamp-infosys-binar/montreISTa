@@ -24,68 +24,34 @@ import java.util.*;
 @SecurityRequirement(name = "bearer-key")
 public class PaymentController {
 
-    private static final Logger logger = LoggerFactory.getLogger(PaymentController.class);
-
-    private static final String Line = "====================";
-
     private PaymentService paymentService;
 
-
-    /**
-     * Create Payment
-     *
-     */
     @PostMapping("/dashboard/payment/create")
     public ResponseEntity<Object> addPayment(@RequestBody PaymentRequestDTO paymentRequestDTO) throws Exception {
           return paymentService.addPayment(paymentRequestDTO);
     }
 
-    /**
-     * Find All Payment
-     * @return
-     */
     @GetMapping("/payment")
     public ResponseEntity<Object> getAllPayment() throws Exception {
             return paymentService.findAllPayment();
     }
 
-    /**
-     * find By paymentName
-     * @param keyword
-     * @return
-     */
     @GetMapping("/payment/paymentName")
     public ResponseEntity<Object> findByPaymentName(@Param("keyword") String keyword) throws Exception {
             return paymentService.findByPaymentName(keyword);
     }
 
-    /**
-     * Find By Id
-     * @return
-     */
     @GetMapping("/payment/{id}")
     public ResponseEntity<Object> getPaymentById(@PathVariable("id") Long id) throws Exception {
             return paymentService.findPaymentById(id);
 
     }
 
-    /**
-     * Update Payment
-     * @param id
-     * @param
-     * @return
-     */
     @PutMapping("/dashboard/payment/update/{id}")
     public ResponseEntity<Object> updatePayment(@RequestBody PaymentRequestDTO PaymentResponseDTO, @PathVariable("id") Long id) throws Exception {
             return paymentService.updatePayment(PaymentResponseDTO,id);
     }
 
-
-    /**
-     * Delete Payment
-     * @param id
-     * @return
-     */
     @DeleteMapping("/dashboard/payment/delete/{id}")
     public ResponseEntity<Object> deletePayment(@PathVariable("id") Long id) throws Exception {
        return paymentService.deletePayment(id);
