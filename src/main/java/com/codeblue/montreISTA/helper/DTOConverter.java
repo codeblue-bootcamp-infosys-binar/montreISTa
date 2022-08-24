@@ -2,7 +2,9 @@ package com.codeblue.montreISTA.helper;
 
 import com.codeblue.montreISTA.DTO.*;
 import com.codeblue.montreISTA.entity.*;
+import com.codeblue.montreISTA.repository.CategoryRepository;
 import com.codeblue.montreISTA.service.CategoryService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,16 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@AllArgsConstructor
 public class DTOConverter {
 
-    private static CategoryService categoryService;
+    private CategoryRepository categoryRepository;
 
-    @Autowired
-    private DTOConverter(CategoryService categoryService) {
-        DTOConverter.categoryService = categoryService;
-    }
+//    @Autowired
+//    private DTOConverter(CategoryService categoryService) {
+//        DTOConverter.categoryService = categoryService;
+//    }
 
-    public static List<PhotoProductDTO> convertPhoto(List<Photo> photos){
+    public List<PhotoProductDTO> convertPhoto(List<Photo> photos){
 
         if(photos != null){
             List<PhotoProductDTO> photosDTO = new ArrayList<>();
@@ -35,7 +38,7 @@ public class DTOConverter {
         }
     }
 
-    public static List<String> convertCategories(List<Category> categories){
+    public List<String> convertCategories(List<Category> categories){
 
         if(categories != null){
             List<String> categoriesDTO = new ArrayList<>();
@@ -51,13 +54,13 @@ public class DTOConverter {
         }
     }
 
-    public static List<ProductResponseDTO> convertProducts(List<Product> products){
+    public List<ProductResponseDTO> convertProducts(List<Product> products){
         List<ProductResponseDTO> productResponseDTOS = new ArrayList<>();
 
         for(Product product : products){
 
             List<PhotoProductDTO> photosDTO = convertPhoto(product.getPhotos());
-            List<Category> categoryList = categoryService.findByProductId(product.getId());
+            List<Category> categoryList = categoryRepository.findByProductsProductId(product.getId());
             List<String> categoriesDTO = convertCategories(categoryList);
 
             ProductResponseDTO productDTO = product.convertToResponse(photosDTO, categoriesDTO);
@@ -67,27 +70,27 @@ public class DTOConverter {
         return productResponseDTOS;
     }
 
-    public static ProductResponseDTO convertOneProducts(Product product){
+    public ProductResponseDTO convertOneProducts(Product product){
 
         List<PhotoProductDTO> photosDTO = convertPhoto(product.getPhotos());
-        List<Category> categoryList = categoryService.findByProductId(product.getId());
+        List<Category> categoryList = categoryRepository.findByProductsProductId(product.getId());
         List<String> categoriesDTO = convertCategories(categoryList);
 
         return product.convertToResponse(photosDTO, categoriesDTO);
     }
 
-    public static WishlistResponseDTO convertWishlist(Wishlist wishlist){
+    public WishlistResponseDTO convertWishlist(Wishlist wishlist){
         Product product = wishlist.getProduct();
 //                 products.add(product);
-        ProductResponseDTO productDTO = DTOConverter.convertOneProducts(product);
+        ProductResponseDTO productDTO = this.convertOneProducts(product);
 
         return wishlist.convertToResponse(productDTO);
 
     }
 
-    public static LoginSellerResponseDTO convertLoginSeller(Seller seller,List<Product> products){
+    public LoginSellerResponseDTO convertLoginSeller(Seller seller,List<Product> products){
         SellerResponseDTO my_store = seller.convertToResponse();
-        List<ProductResponseDTO> my_products = DTOConverter.convertProducts(products);
+        List<ProductResponseDTO> my_products = this.convertProducts(products);
         return seller.convertToLoginSeller(my_store,my_products);
     }
 }

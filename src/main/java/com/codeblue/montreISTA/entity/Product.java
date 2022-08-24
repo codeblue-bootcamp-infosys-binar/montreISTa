@@ -66,6 +66,11 @@ public class Product extends AuditEntity {
             fetch = FetchType.LAZY)
     private List<Cart> carts;
 
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "product",
+            fetch = FetchType.LAZY)
+    private List<Wishlist> wishlists;
+
     public ProductResponseDTO convertToResponse(List<PhotoProductDTO> photoDTO, List<String> categories){
 
         return ProductResponseDTO.builder()

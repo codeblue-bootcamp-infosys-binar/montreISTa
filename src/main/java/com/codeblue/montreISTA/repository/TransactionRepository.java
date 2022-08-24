@@ -10,7 +10,9 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<HistoryTransaction,Long> {
+
     Page<HistoryTransaction> findAll(Pageable pageable);
     List<HistoryTransaction> findByBuyerBuyerId(Long id, Pageable pageable);
     List<HistoryTransaction> findBySellerSellerId(Long id, Pageable pageable);
+
 }
