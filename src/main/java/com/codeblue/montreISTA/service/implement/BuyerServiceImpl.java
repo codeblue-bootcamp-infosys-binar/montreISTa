@@ -81,7 +81,7 @@ public class BuyerServiceImpl implements BuyerService {
     }
 
     @Override
-    public ResponseEntity<Object> createBuyer(Authentication authentication,Integer page, String sort, boolean descending) throws Exception {
+    public ResponseEntity<Object> createBuyer(Authentication authentication, Integer page, String sort, boolean descending) throws Exception {
         try {
             User user = userRepository.findByUsername(authentication.getName()).orElseThrow(() -> new Exception("User not found"));
             Optional<Buyer> buyerUser = buyerRepository.findByUserUsername(authentication.getName());

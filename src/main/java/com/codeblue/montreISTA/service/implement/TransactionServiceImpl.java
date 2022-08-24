@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 public class TransactionServiceImpl implements TransactionService {
 
     public static Integer currentPage;
-
     private final TransactionRepository transactionRepository;
     private final TransactionDetailsRepository transactionDetailsRepository;
     private final OrderRepository orderRepository;
@@ -287,7 +286,6 @@ public class TransactionServiceImpl implements TransactionService {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Doing Transactions");
         }
     }
-
 
 
 }

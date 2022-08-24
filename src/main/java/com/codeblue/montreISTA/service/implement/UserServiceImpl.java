@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ResponseEntity<Object> authenticationUser(LoginUserRequest userRequest)throws Exception  {
+    public ResponseEntity<Object> authenticationUser(LoginUserRequest userRequest) throws Exception {
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -85,28 +85,28 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<Object> findAllUser() {
         try {
-        List<User> users = userRepository.findAllByOrderByUserIdAsc();
-        List<UserResponseDTO> usersDTO = new ArrayList<>();
-        logger.info("==================== Logger Start Get All Users     ====================");
-        for (User user : users) {
-            List<Role> roles = roleRepository.findByUsersUserUserId(user.getUserId());
-            List<String> role = roles.stream().map(Role::getRoleName).collect(Collectors.toList());
-            UserResponseDTO userDTO = user.convertToResponse(role);
-            usersDTO.add(userDTO);
-            logger.info("-------------------------");
-            logger.info("User ID    : " + user.getUserId());
-            logger.info("Username   : " + user.getUsername());
-            logger.info("Name       : " + user.getName());
-            logger.info("Email      : " + user.getEmail());
-            logger.info("Address    : " + user.getAddress());
-            logger.info("Phone      : " + user.getPhone());
-            logger.info("Photo      : " + user.getPhoto());
-            logger.info("Role       : " + role);
-        }
-        logger.info("==================== Logger End Get All Users    ====================");
-        logger.info(" ");
-        return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, usersDTO);
-    } catch (Exception e) {
+            List<User> users = userRepository.findAllByOrderByUserIdAsc();
+            List<UserResponseDTO> usersDTO = new ArrayList<>();
+            logger.info("==================== Logger Start Get All Users     ====================");
+            for (User user : users) {
+                List<Role> roles = roleRepository.findByUsersUserUserId(user.getUserId());
+                List<String> role = roles.stream().map(Role::getRoleName).collect(Collectors.toList());
+                UserResponseDTO userDTO = user.convertToResponse(role);
+                usersDTO.add(userDTO);
+                logger.info("-------------------------");
+                logger.info("User ID    : " + user.getUserId());
+                logger.info("Username   : " + user.getUsername());
+                logger.info("Name       : " + user.getName());
+                logger.info("Email      : " + user.getEmail());
+                logger.info("Address    : " + user.getAddress());
+                logger.info("Phone      : " + user.getPhone());
+                logger.info("Photo      : " + user.getPhoto());
+                logger.info("Role       : " + role);
+            }
+            logger.info("==================== Logger End Get All Users    ====================");
+            logger.info(" ");
+            return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, usersDTO);
+        } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
@@ -115,17 +115,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> findByUserId(Long id)  {
-        try{
-        List<Role> roles = roleRepository.findByUsersUserUserId(id);
-        List<String> role = roles.stream().map(Role::getRoleName).collect(Collectors.toList());
-        UserResponseDTO user =  userRepository.findById(id)
-                .orElseThrow(() -> new Exception("User not found"))
-                .convertToResponse(role);
+    public ResponseEntity<Object> findByUserId(Long id) {
+        try {
+            List<Role> roles = roleRepository.findByUsersUserUserId(id);
+            List<String> role = roles.stream().map(Role::getRoleName).collect(Collectors.toList());
+            UserResponseDTO user = userRepository.findById(id)
+                    .orElseThrow(() -> new Exception("User not found"))
+                    .convertToResponse(role);
             logger.info(Line + "Logger Start find By Id " + Line);
             logger.info(String.valueOf(user));
             logger.info(Line + "Logger End find By Id " + Line);
-        return ResponseHandler.generateResponse("Successfully Retrieved User", HttpStatus.OK, user);
+            return ResponseHandler.generateResponse("Successfully Retrieved User", HttpStatus.OK, user);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -158,9 +158,8 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
     @Override
-    public ResponseEntity<Object> registrationUser(RegistrationDTO registrationDTO)  {
+    public ResponseEntity<Object> registrationUser(RegistrationDTO registrationDTO) {
         try {
             if (userRepository.existsByUsername(registrationDTO.getUsername())) {
                 throw new Exception("Username is already in use");
@@ -182,7 +181,7 @@ public class UserServiceImpl implements UserService {
             logger.info(String.valueOf(result));
             logger.info(Line + "Logger End Registration " + Line);
             return ResponseHandler.generateResponse("successfully registered! please login", HttpStatus.CREATED, result);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
@@ -191,9 +190,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<Object> updateUser(RegistrationDTO registrationDTO, Authentication authentication)  {
+    public ResponseEntity<Object> updateUser(RegistrationDTO registrationDTO, Authentication authentication) {
         try {
-            User userByUsername = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("User not found"));
+            User userByUsername = userRepository.findByUsername(authentication.getName()).orElseThrow(() -> new Exception("User not found"));
             User user = registrationDTO.convertToEntity();
             user.setUserId(userByUsername.getUserId());
             user.setPhoto(userByUsername.getPhoto());
@@ -202,102 +201,106 @@ public class UserServiceImpl implements UserService {
             this.checkRole(requestRole);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             User userSave = userRepository.save(user);
-                //addRole
-            this.addRole(requestRole,userSave);
+            //addRole
+            this.addRole(requestRole, userSave);
             UserResponseDTO results = convertResponse(userSave);
 
             logger.info(Line + "Logger Start Update Profile" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Update Profile" + Line);
-            return ResponseHandler.generateResponse("Success upload photo profile",HttpStatus.OK,results);
-        }catch (Exception e){
+            return ResponseHandler.generateResponse("Success upload photo profile", HttpStatus.OK, results);
+        } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"failed upload photo");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "failed upload photo");
         }
     }
 
     @Override
-    public ResponseEntity<Object> uploadPhotoProfile(Authentication authentication, MultipartFile file)  {
-        try{
-        User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Please sign up"));
-        String url = cloudinaryService.uploadFile(file);
-        user.setPhoto(url);
-        User userSave = userRepository.save(user);
-        UserResponseDTO results = this.convertResponse(userSave);
+    public ResponseEntity<Object> uploadPhotoProfile(Authentication authentication, MultipartFile file) {
+        try {
+            User user = userRepository.findByUsername(authentication.getName()).orElseThrow(() -> new Exception("Please sign up"));
+            String url = cloudinaryService.uploadFile(file);
+            user.setPhoto(url);
+            User userSave = userRepository.save(user);
+            UserResponseDTO results = this.convertResponse(userSave);
             logger.info(Line + "Logger Start Upload Photo Profile" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Upload Photo Profile" + Line);
-        return ResponseHandler.generateResponse("Success upload photo profile",HttpStatus.OK,results);
-        }catch (Exception e){
+            return ResponseHandler.generateResponse("Success upload photo profile", HttpStatus.OK, results);
+        } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"failed update photo");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "failed update photo");
         }
 
     }
 
     @Override
-    public ResponseEntity<Object> deleteUser(Long id,Authentication authentication)  {
-        try{
-            User user = userRepository.findById(id).orElseThrow(()->new Exception("User not found"));
+    public ResponseEntity<Object> deleteUser(Long id, Authentication authentication) {
+        try {
+            User user = userRepository.findById(id).orElseThrow(() -> new Exception("User not found"));
             List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
             boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
             boolean checkUser = user.getUsername().equals(authentication.getName());
-            if (checkRoles || checkUser){
+            if (checkRoles || checkUser) {
                 userRepository.deleteById(id);
             } else {
                 throw new Exception("You can't delete other user");
             }
-        return ResponseHandler.generateResponse("successfully deleted User", HttpStatus.MULTI_STATUS, "Success Delete");
-    } catch (Exception e) {
-        return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Delete User");
+            return ResponseHandler.generateResponse("successfully deleted User", HttpStatus.MULTI_STATUS, "Success Delete");
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Delete User");
         }
     }
-    public void checkRole(List<String> requestRole){
-        requestRole.forEach(role-> {
-            try {
-                roleRepository.findByRoleNameIgnoreCase(role).orElseThrow(() -> new Exception("Role not found"));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }}
+
+    public void checkRole(List<String> requestRole) {
+        requestRole.forEach(role -> {
+                    try {
+                        roleRepository.findByRoleNameIgnoreCase(role).orElseThrow(() -> new Exception("Role not found"));
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
         );
     }
 
-    public UserResponseDTO convertResponse(User userSave){
+    public UserResponseDTO convertResponse(User userSave) {
         List<Role> rolesUser = roleRepository.findByUsersUserUserId(userSave.getUserId());
         List<String> roleDTO = rolesUser.stream().map(Role::getRoleName).collect(Collectors.toList());
         return userSave.convertToResponse(roleDTO);
     }
 
 
-    public void addRole(List<String> requestRole, User user)throws Exception{
-        if(requestRole.isEmpty()) {
-            Role roleGet = roleRepository.findByRoleNameIgnoreCase("ROLE_USER").orElseThrow(()->new Exception("Role not found"));
+    public void addRole(List<String> requestRole, User user) throws Exception {
+        if (requestRole.isEmpty()) {
+            Role roleGet = roleRepository.findByRoleNameIgnoreCase("ROLE_USER").orElseThrow(() -> new Exception("Role not found"));
             UserRole addRole = new UserRole();
             addRole.setRole(roleGet);
             addRole.setUser(user);
             userRoleRepository.save(addRole);
-        }else {
-            boolean check = requestRole.stream().anyMatch(role->role.contains("ROLE_ADMIN"));
-            if(check){
+        } else {
+            boolean check = requestRole.stream().anyMatch(role -> role.contains("ROLE_ADMIN"));
+            if (check) {
                 throw new Exception("User need admin for ROLE_ADMIN");
             }
-            requestRole.forEach(role->{
-                try{
+            requestRole.forEach(role -> {
+                try {
                     List<UserRole> userRoles = userRoleRepository.findByRoleRoleNameIgnoreCase(role);
                     boolean checkUser = userRoles.stream().anyMatch(userRole -> Objects.equals(userRole.getUser().getUserId(), user.getUserId()));
-                    if(!checkUser){
-                        Role roleGet = roleRepository.findByRoleNameIgnoreCase(role).orElseThrow(()->new Exception("Role not found"));
+                    if (!checkUser) {
+                        Role roleGet = roleRepository.findByRoleNameIgnoreCase(role).orElseThrow(() -> new Exception("Role not found"));
                         UserRole addRole = new UserRole();
                         addRole.setRole(roleGet);
                         addRole.setUser(user);
-                        userRoleRepository.save(addRole);}
+                        userRoleRepository.save(addRole);
+                    }
                 } catch (Exception e) {
                     throw new RuntimeException(e);
-                }});
+                }
+            });
         }
     }
 }

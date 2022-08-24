@@ -33,13 +33,12 @@ import java.util.stream.Collectors;
 public class WishlistServiceImpl implements WishlistService {
 
     private static final Logger logger = LoggerFactory.getLogger(WishlistController.class);
-
     private static final String Line = "====================";
-
     private final WishlistRepository wishlistRepository;
     private final BuyerRepository buyerRepository;
     private final ProductRepository productRepository;
     private final RoleRepository roleRepository;
+    private final DTOConverter dtoConverter;
 
     @Override
     public ResponseEntity<Object> findAllWishlist() throws Exception {
@@ -50,20 +49,16 @@ public class WishlistServiceImpl implements WishlistService {
             }
             logger.info("==================== Logger Start Get All Transactions     ====================");
             for (Wishlist wishlistData : wishlists) {
-                Map<String, Object> wishlist = new HashMap<>();
                 logger.info("-------------------------");
                 logger.info("Wishlist ID    : " + wishlistData.getWishlistId());
                 logger.info("Buyer ID       : " + wishlistData.getBuyer());
                 logger.info("Quantity       : " + wishlistData.getQuantity());
                 logger.info("Product ID     : " + wishlistData.getProduct());
-                wishlist.put("Wishlist ID   ", wishlistData.getWishlistId());
-                wishlist.put("Buyer ID      ", wishlistData.getBuyer());
-                wishlist.put("Quantity      ", wishlistData.getQuantity());
-                wishlist.put("Product ID    ", wishlistData.getProduct());
             }
             logger.info("==================== Logger End Get AlL Transactions   ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse("successfully retrieved wishlist", HttpStatus.OK, wishlists);
+            List<WishlistResponseDTO> results = wishlists.stream().map(dtoConverter::convertWishlist).toList();
+            return ResponseHandler.generateResponse("successfully retrieved wishlist", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -76,10 +71,11 @@ public class WishlistServiceImpl implements WishlistService {
     public ResponseEntity<Object> findWishlistById(Long id) throws Exception {
         try {
             Wishlist wishlist = wishlistRepository.findById(id).orElseThrow(() -> new Exception("Wishlist not found"));
+            WishlistResponseDTO result = dtoConverter.convertWishlist(wishlist);
             logger.info(Line + "Logger Start Get By Id " + Line);
-            logger.info(String.valueOf(wishlist));
+            logger.info(String.valueOf(result));
             logger.info(Line + "Logger End Get By Id " + Line);
-            return ResponseHandler.generateResponse("successfully get wishlist by id", HttpStatus.OK, wishlist);
+            return ResponseHandler.generateResponse("successfully get wishlist by id", HttpStatus.OK, result);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -98,10 +94,11 @@ public class WishlistServiceImpl implements WishlistService {
             }
             Wishlist wishlistSave = wishlist.convertToEntity(buyer, product);
             Wishlist wishlistDTO = wishlistRepository.save(wishlistSave);
+            WishlistResponseDTO result = dtoConverter.convertWishlist(wishlistDTO);
             logger.info(Line + "Logger Start Create " + Line);
-            logger.info(String.valueOf(wishlist));
+            logger.info(String.valueOf(result));
             logger.info(Line + "Logger End Create " + Line);
-            return ResponseHandler.generateResponse("successfully create wishlist", HttpStatus.CREATED, wishlist);
+            return ResponseHandler.generateResponse("successfully create wishlist", HttpStatus.CREATED, result);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -127,13 +124,14 @@ public class WishlistServiceImpl implements WishlistService {
                 wishlist.setProduct(product);
                 wishlist.setQuantity(wishlistRequestDTO.getQuantity());
                 Wishlist wishlistDTO = wishlistRepository.save(wishlist);
+                WishlistResponseDTO result = dtoConverter.convertWishlist(wishlistDTO);
+                logger.info(Line + "Logger Start Update By Id " + Line);
+                logger.info(String.valueOf(result));
+                logger.info(Line + "Logger End Update By Id " + Line);
+                return ResponseHandler.generateResponse("successfully updated Wishlist", HttpStatus.CREATED, result);
             } else {
                 throw new Exception("You can't edit other wishlist or order your own product");
             }
-            logger.info(Line + "Logger Start Update By Id " + Line);
-            logger.info(String.valueOf(wishlist));
-            logger.info(Line + "Logger End Update By Id " + Line);
-            return ResponseHandler.generateResponse("successfully updated Wishlist", HttpStatus.CREATED, wishlist);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -151,13 +149,14 @@ public class WishlistServiceImpl implements WishlistService {
             boolean checkBuyer = wishlist.getBuyer().getUser().getUsername().equals(authentication.getName());
             if (checkRoles || checkBuyer) {
                 wishlistRepository.deleteById(id);
+                logger.info(Line + "Logger Start Delete By Id " + Line);
+                logger.info("Delete Success");
+                logger.info(Line + "Logger End Delete By Id " + Line);
+                return ResponseHandler.generateResponse("successfully deleted wishlist", HttpStatus.OK, "success delete wishlist");
+
             } else {
                 throw new Exception("You only can delete your wishlist");
             }
-            logger.info(Line + "Logger Start Delete By Id " + Line);
-            logger.info("Delete Success");
-            logger.info(Line + "Logger End Delete By Id " + Line);
-            return ResponseHandler.generateResponse("successfully deleted wishlist", HttpStatus.OK, "success delete wishlist");
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -173,10 +172,11 @@ public class WishlistServiceImpl implements WishlistService {
             if (wishlists.isEmpty()) {
                 throw new Exception("Please add Wishlist");
             }
+            List<WishlistResponseDTO> results = wishlists.stream().map(dtoConverter::convertWishlist).toList();
             logger.info(Line + "Logger Start Get Buyer By Username " + Line);
-            logger.info(String.valueOf(wishlists));
+            logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Buyer By Username " + Line);
-            return ResponseHandler.generateResponse("successfully get buyer wishlist", HttpStatus.OK, wishlists);
+            return ResponseHandler.generateResponse("successfully get buyer wishlist", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());

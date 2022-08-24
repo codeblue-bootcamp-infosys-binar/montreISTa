@@ -24,7 +24,6 @@ import java.util.*;
 public class ProductCategoryServiceImp implements ProductCategoryService {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductCategoryController.class);
-
     private static final String Line = "====================";
     private final ProductCategoryRepository productCategoryRepository;
     private final ProductRepository productRepository;
@@ -32,26 +31,18 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
 
 
     @Override
-    public ResponseEntity<Object> findAll() {
-        List<ProductCategory> photos = productCategoryRepository.findAll();
-        List<ProductCategory> results = productCategoryRepository.findAll();
+    public ResponseEntity<Object> findAll()throws Exception {
         try {
-            List<Map<String, Object>> maps = new ArrayList<>();
-            logger.info("==================== Logger Start Get All Product Category     ====================");
-            for (ProductCategory productcategoryData : photos) {
-                Map<String, Object> productcategory = new HashMap<>();
-                logger.info("-------------------------");
-                logger.info("Product Category ID     : " + productcategoryData.getProductCategoryId());
-                logger.info("Category ID             : " + productcategoryData.getCategory());
-                logger.info("Product  ID             : " + productcategoryData.getProduct());
-                productcategory.put("Product Category ID   ", productcategoryData.getProductCategoryId());
-                productcategory.put("Category ID           ", productcategoryData.getCategory());
-                productcategory.put("Product  ID           ", productcategoryData.getProduct());
-                maps.add(productcategory);
+            List<ProductCategory> productCategories = productCategoryRepository.findAll();
+            if (productCategories.isEmpty()) {
+                throw new Exception("Product Category not found");
             }
+            List<ProductCategoryResponseDTO> results = this.convertDTO(productCategories);
+            logger.info("==================== Logger Start Get All Product Category     ====================");
+            logger.info(String.valueOf(results));
             logger.info("==================== Logger End Get All Product Category   ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse("successfully get all product category", HttpStatus.OK, results);
+           return ResponseHandler.generateResponse("successfully get all product category", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.info("==================== Logger Start Get All Product Category     ====================");
             logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!")));
@@ -64,13 +55,14 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
     @Override
     public ResponseEntity<Object> findByProductName(String keyword) throws Exception {
         try {
-            List<ProductCategory> results = productCategoryRepository.findByProductProductNameIgnoreCaseContaining(keyword);
-            if (results.isEmpty()) {
+            List<ProductCategory> productCategories = productCategoryRepository.findByProductProductNameIgnoreCaseContaining(keyword);
+            if (productCategories.isEmpty()) {
                 throw new Exception("Product Category not found");
             }
-            logger.info(Line + "Logger Start Get productname " + Line);
+            List<ProductCategoryResponseDTO> results = this.convertDTO(productCategories);
+            logger.info(Line + "Logger Start Get product name " + Line);
             logger.info(String.valueOf(results));
-            logger.info(Line + "Logger End Get productname " + Line);
+            logger.info(Line + "Logger End Get product name " + Line);
             return ResponseHandler.generateResponse("successfully find product category", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
@@ -83,10 +75,11 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
     @Override
     public ResponseEntity<Object> findByProductId(Long id) throws Exception {
         try {
-            List<ProductCategory> results = productCategoryRepository.findByProductId(id);
-            if (results.isEmpty()) {
+            List<ProductCategory> productCategories = productCategoryRepository.findByProductId(id);
+            if (productCategories.isEmpty()) {
                 throw new Exception("Product Category not found");
             }
+            List<ProductCategoryResponseDTO> results = this.convertDTO(productCategories);
             logger.info(Line + "Logger Start Get product id " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get product id " + Line);
@@ -102,10 +95,11 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
     @Override
     public ResponseEntity<Object> findByCategoryId(Long id) throws Exception {
         try {
-            List<ProductCategory> results = productCategoryRepository.findByCategoryCategoriesId(id);
-            if (results.isEmpty()) {
+            List<ProductCategory> productCategories = productCategoryRepository.findByCategoryCategoriesId(id);
+            if (productCategories.isEmpty()) {
                 throw new Exception("Product Category not found");
             }
+            List<ProductCategoryResponseDTO> results = this.convertDTO(productCategories);
             logger.info(Line + "Logger Start Get By Id " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get By Id " + Line);
@@ -121,10 +115,11 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
     @Override
     public ResponseEntity<Object> findByCategoryName(String keyword) throws Exception {
         try {
-            List<ProductCategory> results = productCategoryRepository.findByCategoryNameIgnoreCaseContaining(keyword);
-            if (results.isEmpty()) {
+            List<ProductCategory> productCategories = productCategoryRepository.findByCategoryNameIgnoreCaseContaining(keyword);
+            if (productCategories.isEmpty()) {
                 throw new Exception("Product Category not found");
             }
+            List<ProductCategoryResponseDTO> results = this.convertDTO(productCategories);
             logger.info(Line + "Logger Start Get categoryname " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get categoryname " + Line);
@@ -146,10 +141,11 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
             if (count >= 4) {
                 throw new Exception("Product can only have 4 categories");
             }
+            ProductCategoryResponseDTO results = this.requestToEntity(productCategory,null);
             logger.info(Line + "Logger Start Create " + Line);
-            logger.info(String.valueOf(productCategories));
+            logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Create " + Line);
-            return ResponseHandler.generateResponse("successfully create product category", HttpStatus.OK, productCategories);
+            return ResponseHandler.generateResponse("successfully create product category", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -165,10 +161,11 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
             if (productCategoryId.isEmpty()) {
                 throw new Exception("Product Category not found");
             }
+            ProductCategoryResponseDTO results = this.requestToEntity(productCategory,id);
             logger.info(Line + "Logger Start Update By Id " + Line);
-            logger.info(String.valueOf(productCategoryId));
+            logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Update By Id " + Line);
-            return ResponseHandler.generateResponse("successfully update product category", HttpStatus.OK, productCategoryId);
+            return ResponseHandler.generateResponse("successfully update product category", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -197,20 +194,15 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
         }
     }
 
-    public List<ProductCategoryResponseDTO> convertDTO(List<ProductCategory> productCategories) {
+    public List<ProductCategoryResponseDTO> convertDTO(List<ProductCategory> productCategories) throws Exception {
         List<ProductCategoryResponseDTO> productCategoryResponseDTO = new ArrayList<>();
 
         for (ProductCategory productCategory : productCategories) {
-            Optional<Product> productId = productRepository.findById(productCategory.getProduct().getId());
-            Product product = productId.get();
-            Optional<Category> categoryId = categoryRepository.findById(productCategory.getCategory().getCategoriesId());
-            Category category = categoryId.get();
-            ProductToProductCategoryDTO productDTO = product.convertToProductCategory();
-            CategoryResponseDTO categoryDTO = category.convertToResponse();
+            ProductToProductCategoryDTO productDTO = productCategory.getProduct().convertToProductCategory();
+            CategoryResponseDTO categoryDTO = productCategory.getCategory().convertToResponse();
             ProductCategoryResponseDTO responseDTO = productCategory.convertToResponse(productDTO, categoryDTO);
             productCategoryResponseDTO.add(responseDTO);
         }
-
         return productCategoryResponseDTO;
     }
 

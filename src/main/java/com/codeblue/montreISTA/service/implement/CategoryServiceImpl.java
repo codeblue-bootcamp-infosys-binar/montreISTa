@@ -24,9 +24,7 @@ import java.util.Optional;
 public class CategoryServiceImpl implements CategoryService {
     private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
     private static final String Line = "====================";
-
     private final CategoryRepository categoryRepository;
-
     public ResponseEntity<Object> findAll() throws ResourceNotFoundException {
         try {
             List<Category> categories = categoryRepository.findAll();
