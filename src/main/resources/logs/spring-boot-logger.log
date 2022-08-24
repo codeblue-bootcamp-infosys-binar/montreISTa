@@ -950,3 +950,485 @@ Caused by: org.springframework.data.mapping.PropertyReferenceException: No prope
 2022-08-25 01:14:40,758 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-08-25 01:14:40,761 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2022-08-25 01:14:40,764 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-25 01:18:47,632 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-25 01:18:47,646 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 14636 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-25 01:18:47,648 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-25 01:18:47,776 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-25 01:18:47,777 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-25 01:18:50,027 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-25 01:18:50,290 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 251 ms. Found 16 JPA repository interfaces.
+2022-08-25 01:18:53,550 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-25 01:18:53,571 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-25 01:18:53,572 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-25 01:18:53,572 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-25 01:18:53,779 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-25 01:18:53,781 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 6001 ms
+2022-08-25 01:18:54,101 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-25 01:18:54,202 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-25 01:18:54,538 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-25 01:18:54,701 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-25 01:18:54,966 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-25 01:18:55,005 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-25 01:18:57,568 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-25 01:18:57,581 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-25 01:19:00,469 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-25 01:19:01,942 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1c9b74f9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7010ffa4, org.springframework.security.web.context.SecurityContextPersistenceFilter@19e637d5, org.springframework.security.web.header.HeaderWriterFilter@3d9d0145, org.springframework.web.filter.CorsFilter@fd7e7be, org.springframework.security.web.authentication.logout.LogoutFilter@a1e7e4b, com.codeblue.montreISTA.security.AuthTokenFilter@54f2dd4d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4fad48e8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@be6ea07, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e471cca, org.springframework.security.web.session.SessionManagementFilter@403d8d61, org.springframework.security.web.access.ExceptionTranslationFilter@4c19f70f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@125018e2]
+2022-08-25 01:19:02,935 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-25 01:19:03,160 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-25 01:19:03,415 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-25 01:19:03,629 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 16.77 seconds (JVM running for 18.548)
+2022-08-25 01:20:24,235 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-8] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-25 01:20:24,237 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-8] Initializing Servlet 'dispatcherServlet'
+2022-08-25 01:20:24,240 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-8] Completed initialization in 2 ms
+2022-08-25 01:20:24,688 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] ==================== Logger Start Get All Transactions     ====================
+2022-08-25 01:20:24,689 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-25 01:20:24,692 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Transactions ID  : 1
+2022-08-25 01:20:24,694 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Store Name       : Berlian Arloji
+2022-08-25 01:20:24,694 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Product Name     : PETITE PRESSED ASHFIELD
+2022-08-25 01:20:24,695 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Product Price    : 1891000
+2022-08-25 01:20:24,696 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Photo url        : https://www.quotemaster.org/images/fa/faafd5631151dcdec1d045b2659a5369.png
+2022-08-25 01:20:24,697 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Buyer ID         : 3
+2022-08-25 01:20:24,697 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Seller ID        : 7
+2022-08-25 01:20:24,698 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Quantity         : 2
+2022-08-25 01:20:24,699 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Total Price      : 3802000
+2022-08-25 01:20:24,700 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-25 01:20:24,700 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Transactions ID  : 2
+2022-08-25 01:20:24,701 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Store Name       : -Toko Jam Master Star
+2022-08-25 01:20:24,701 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Product Name     : ICONIC LINK
+2022-08-25 01:20:24,701 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Product Price    : 3420000
+2022-08-25 01:20:24,702 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Photo url        : https://introcs.cs.princeton.edu/java/11cheatsheet/images/hello.png
+2022-08-25 01:20:24,702 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Buyer ID         : 16
+2022-08-25 01:20:24,703 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Seller ID        : 1
+2022-08-25 01:20:24,704 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Quantity         : 1
+2022-08-25 01:20:24,704 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Total Price      : 3440000
+2022-08-25 01:20:24,705 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-25 01:20:24,706 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Transactions ID  : 3
+2022-08-25 01:20:24,707 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Store Name       : Ratih Arloji
+2022-08-25 01:20:24,707 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Product Name     : PETITE MELROSE
+2022-08-25 01:20:24,707 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Product Price    : 2817000
+2022-08-25 01:20:24,708 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Photo url        : https://i.pinimg.com/originals/6e/03/21/6e0321597039afa3bc11d02d52fdfa6e.jpg
+2022-08-25 01:20:24,708 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Buyer ID         : 16
+2022-08-25 01:20:24,708 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Seller ID        : 3
+2022-08-25 01:20:24,709 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Quantity         : 1
+2022-08-25 01:20:24,709 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Total Price      : 2837000
+2022-08-25 01:20:24,709 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-25 01:20:24,710 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Transactions ID  : 4
+2022-08-25 01:20:24,710 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Store Name       : Berlian Arloji
+2022-08-25 01:20:24,711 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Product Name     : PETITE PRESSED ASHFIELD
+2022-08-25 01:20:24,713 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Product Price    : 1891000
+2022-08-25 01:20:24,714 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Photo url        : https://www.quotemaster.org/images/fa/faafd5631151dcdec1d045b2659a5369.png
+2022-08-25 01:20:24,714 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Buyer ID         : 3
+2022-08-25 01:20:24,715 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Seller ID        : 7
+2022-08-25 01:20:24,715 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Quantity         : 2
+2022-08-25 01:20:24,715 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] Total Price      : 3802000
+2022-08-25 01:20:24,716 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] ==================== Logger End Get AlL Transactions   ====================
+2022-08-25 01:20:24,716 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8]  
+2022-08-25 01:20:30,624 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] ====================Logger Start Get Transaction Detail====================
+2022-08-25 01:20:30,625 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] [com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@68a1be0f, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@6bfe2f44, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@e89ee85, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@63d0afb4]
+2022-08-25 01:20:30,625 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] ====================Logger End Get Transaction Detail====================
+2022-08-25 01:20:36,258 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] ==================== Logger Start Error ====================
+2022-08-25 01:20:36,259 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Transactions Details Not Found
+2022-08-25 01:20:36,259 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] ==================== Logger End Error ====================
+2022-08-25 01:20:38,885 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-4] ====================Logger Start Get Transaction Detail====================
+2022-08-25 01:20:38,886 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-4] [com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@70caff9e, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@4cfedede, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@16408e0e, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@39ef7989]
+2022-08-25 01:20:38,886 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-4] ====================Logger End Get Transaction Detail====================
+2022-08-25 01:21:57,617 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] ==================== Logger Start Get All Products     ====================
+2022-08-25 01:21:57,619 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:21:57,621 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product ID    : 1
+2022-08-25 01:21:57,621 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Description   : A modern take on a classic design, the Iconic Link is the revelation behind years of meticulous craftsmanship. The Iconic Link features a luxurious metal bracelet with three-piece links; each segment is comprised of solid steel, individually crafted pieces in an elegantly tapered form, ensuring a seamless transition from case to clasp.
+The distinctive and sculptural lines of the raised midpiece blend effortlessly with the watch case, as our signature twelve index dial takes on a renewed, modern silhouette.
+The Iconic Link is available in polished stainless steel (316L) with a vibrant silver finish or with refined rose gold plating.
+The link bracelet can be adjusted for a perfect fit at your local watchmaker or Daniel Wellington store.
+2022-08-25 01:21:57,622 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Price         : 3420000
+2022-08-25 01:21:57,623 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product name  : ICONIC LINK
+2022-08-25 01:21:57,641 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Seller ID     : Seller{sellerId=1, user=com.codeblue.montreISTA.entity.User@7924a5ed, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-25 01:21:57,642 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:21:57,642 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product ID    : 2
+2022-08-25 01:21:57,642 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Description   : The Iconic Link Unitone is our first unicolor timepiece that features a seamlessly matching luxurious metal link bracelet and watch dial. Available in polished stainless steel with a vibrant silver finish, refined rose gold or gold plating. This unique addition to the Iconic Link collection makes the Unitone stand out as an undeniably eye-catching timepiece that sets the tone for any occasion.
+2022-08-25 01:21:57,642 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Price         : 2817000
+2022-08-25 01:21:57,642 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product name  : PETITE MELROSE QUEEN
+2022-08-25 01:21:57,642 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Seller ID     : Seller{sellerId=1, user=com.codeblue.montreISTA.entity.User@7924a5ed, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-25 01:21:57,643 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:21:57,644 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product ID    : 3
+2022-08-25 01:21:57,644 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Description   : Petite Melrose mengunggulkan arloji putih telur dan strap mesh rose gold yang tak tertandingi keanggunannya. Jam ini memperindah busana harian, suasana hati, dan semangat Anda.
+2022-08-25 01:21:57,644 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Price         : 2817000
+2022-08-25 01:21:57,644 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product name  : PETITE MELROSE
+2022-08-25 01:21:57,645 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Seller ID     : Seller{sellerId=3, user=com.codeblue.montreISTA.entity.User@79719fbf, storeName='Ratih Arloji', storePhoto='https://cdn-image.hipwee.com/wp-content/uploads/2018/11/hipwee-wa2-750x500.jpg', storeAddress='Jl. Dasa Darma Blok II '}
+2022-08-25 01:21:57,645 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:21:57,645 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product ID    : 4
+2022-08-25 01:21:57,646 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Description   : Petite dengan arloji putih telur dan strap kulit Sheffield klasik warna hitam memperindah busana Anda dalam setiap kesempatan. Ikon desain sejati.
+2022-08-25 01:21:57,646 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Price         : 1234000
+2022-08-25 01:21:57,646 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product name  : PETITE SHEFFIELD
+2022-08-25 01:21:57,647 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Seller ID     : Seller{sellerId=6, user=com.codeblue.montreISTA.entity.User@4ec1e0a9, storeName='Toko Gaya Trendy', storePhoto='https://www.solomediabisnis.com/wp-content/uploads/2021/01/3-2.jpeg', storeAddress='Jl. Raya Dukuh Zamrud Selatan 3'}
+2022-08-25 01:21:57,649 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:21:57,650 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product ID    : 5
+2022-08-25 01:21:57,650 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Description   : The Petite Pressed Sterling is our most delicate timepiece to date. Designed to be worn every day, this watch reflects the beauty in the small things. Crafted with polished stainless steel and available with a vibrant silver finish. Elevate your look with a graceful touch.
+2022-08-25 01:21:57,650 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Price         : 2712000
+2022-08-25 01:21:57,650 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product name  : PETITE PRESSED STERLING
+2022-08-25 01:21:57,651 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Seller ID     : Seller{sellerId=8, user=com.codeblue.montreISTA.entity.User@3dffd374, storeName='Terus Jaya', storePhoto='https://alamatbagus.com/wp-content/uploads/2022/03/toko-jam-tangan-surabaya-cahaya-arloji.jpg', storeAddress='Jl. Ir. Hj Juanda. Ps. Baru Bekasi'}
+2022-08-25 01:21:57,651 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:21:57,651 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product ID    : 6
+2022-08-25 01:21:57,652 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Description   : The Petite Pressed Ashfield is our most delicate timepiece to date. Designed to be worn every day, this watch reflects the beauty in the small things. Crafted with polished stainless steel and plated with refined rose gold. Elevate your look with a graceful touch.
+2022-08-25 01:21:57,652 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Price         : 1891000
+2022-08-25 01:21:57,652 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product name  : PETITE PRESSED ASHFIELD
+2022-08-25 01:21:57,652 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Seller ID     : Seller{sellerId=7, user=com.codeblue.montreISTA.entity.User@11a1b233, storeName='Berlian Arloji', storePhoto='https://hinyong.com/wp-content/uploads/2019/05/siapkan-perlengkapan-dan-barang-dagangan-usaha-toko-jam.jpg', storeAddress='Mal Metropolitan, lantai dasar'}
+2022-08-25 01:21:57,652 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:21:57,652 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product ID    : 7
+2022-08-25 01:21:57,652 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Description   : The Petite Evergold 28 is our latest addition to the Petite Collection. Featuring an eggshell white dial and our classic mesh strap in a light shade of gold. Elevate your look with a delicate pop of gold that seamlessly matches any outfit.
+2022-08-25 01:21:57,653 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Price         : 5117000
+2022-08-25 01:21:57,653 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product name  : PETITE EVERGOLD
+2022-08-25 01:21:57,653 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Seller ID     : Seller{sellerId=6, user=com.codeblue.montreISTA.entity.User@4ec1e0a9, storeName='Toko Gaya Trendy', storePhoto='https://www.solomediabisnis.com/wp-content/uploads/2021/01/3-2.jpeg', storeAddress='Jl. Raya Dukuh Zamrud Selatan 3'}
+2022-08-25 01:21:57,653 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:21:57,653 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product ID    : 8
+2022-08-25 01:21:57,654 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Description   : The Petite Rosewater features an eggshell white dial and a charming pink NATO strap. This watch gives your look a subtle, yet eye-catching, pop of color that is ideal for the spring season. The delicate pink strap, coupled with chic rose gold details, makes the Rosewater your go-to accessory for when you need to brighten up an outfit.
+2022-08-25 01:21:57,655 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Price         : 3050000
+2022-08-25 01:21:57,655 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product name  : PETITE ROSEWATER
+2022-08-25 01:21:57,656 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Seller ID     : Seller{sellerId=1, user=com.codeblue.montreISTA.entity.User@7924a5ed, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-25 01:21:57,656 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:21:57,656 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product ID    : 9
+2022-08-25 01:21:57,657 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Description   : Classic Dover, dengan tombol berwarna putih cangkang telur dan detail dalam emas merah muda, jam elegan ini akan dengan mudah menjadi teman penampilan sehari-hari kamu. Menghadirkan tali NATO serba putih, jam ini memiliki desain klasik modern yang dibuat agar cocok untuk segala kesempatan.
+2022-08-25 01:21:57,658 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Price         : 1040000
+2022-08-25 01:21:57,659 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product name  : CLASSIC DOVER
+2022-08-25 01:21:57,659 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Seller ID     : Seller{sellerId=5, user=com.codeblue.montreISTA.entity.User@778d9bca, storeName='Matchwatch Mega Bekasi Hypermall', storePhoto='https://blog.jamtangan.com/wp-content/uploads/2018/12/A7S0008.jpg', storeAddress='Mega Bekasi Hypermall UG'}
+2022-08-25 01:21:57,659 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:21:57,659 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product ID    : 10
+2022-08-25 01:21:57,659 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Description   : Masuki musim mode abadi yang baru dengan Petite Ashfield. Jam tangan ultra tipis ini melingkar dengan manis di pergelangan tangan Anda dan dipercantik dengan strap jala warna hitam matte dan arloji hitam yang mewah. Tersedia dengan rincian warna rose gold atau silver.
+2022-08-25 01:21:57,659 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Price         : 9000000
+2022-08-25 01:21:57,661 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Product name  : PETITE ASHFIELD
+2022-08-25 01:21:57,661 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] Seller ID     : Seller{sellerId=14, user=com.codeblue.montreISTA.entity.User@66922a93, storeName='Sunaku Watch', storePhoto='https://rimage.gnst.jp/livejapan.com/public/img/spot/lj/00/06/lj0006967/lj0006967_5eaa9c9ad823d_main.jpg?20210621040011&q=80', storeAddress='Jl. Letnan Arsyad Raya No.5'}
+2022-08-25 01:21:57,661 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7] ==================== Logger End Get All Products    ====================
+2022-08-25 01:21:57,661 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-7]  
+2022-08-25 01:22:03,225 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] ==================== Logger Start Get All Products     ====================
+2022-08-25 01:22:03,226 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] -------------------------
+2022-08-25 01:22:03,226 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Product ID    : 11
+2022-08-25 01:22:03,226 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Description   : With classic features such as the slim case, details in rose gold or silver, and our heritage NATO strap in midnight blue, Classic Bayswater is an effortless day-to-evening timepiece.
+2022-08-25 01:22:03,227 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Price         : 4521000
+2022-08-25 01:22:03,227 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Product name  : CLASSIC BAYSWATER
+2022-08-25 01:22:03,227 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=9, user=com.codeblue.montreISTA.entity.User@58acb9fc, storeName='Toko Jam Rizky Jaya', storePhoto='https://images.homify.com/c_fill,f_auto,q_0,w_740/v1516689893/p/photo/image/2402137/IMG_20171126_083613_858.jpg', storeAddress='Jl. Ir. H. Juanda No.51'}
+2022-08-25 01:22:03,227 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] -------------------------
+2022-08-25 01:22:03,228 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Product ID    : 12
+2022-08-25 01:22:03,228 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Description   : Classic Cornwall menampilkan esensi dari kesederhanaan dan gaya. Dengan tali NATO hitam dan permukaan putih, jam tangan simpel dan elegan ini dapat dengan mudah menjadi ciri khas penampilan Anda sehari-hari.
+2022-08-25 01:22:03,228 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Price         : 3131000
+2022-08-25 01:22:03,228 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Product name  : CLASSIC CORNWALL
+2022-08-25 01:22:03,228 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=3, user=com.codeblue.montreISTA.entity.User@469a33ba, storeName='Ratih Arloji', storePhoto='https://cdn-image.hipwee.com/wp-content/uploads/2018/11/hipwee-wa2-750x500.jpg', storeAddress='Jl. Dasa Darma Blok II '}
+2022-08-25 01:22:03,229 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] -------------------------
+2022-08-25 01:22:03,229 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Product ID    : 13
+2022-08-25 01:22:03,230 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Description   : Warna putih berpadu dengan hitam pada perpaduan manis antara gaya minimalisme dan kulit buaya bermotif timbul klasik warna hitam. Padukan atau pasangkan dengan jins dan kaos untuk penampilan santai.
+2022-08-25 01:22:03,230 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Price         : 4242000
+2022-08-25 01:22:03,230 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Product name  : PETITE READING
+2022-08-25 01:22:03,230 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=2, user=com.codeblue.montreISTA.entity.User@3f7b38a9, storeName='Toko Jam Ahdmad Naufal', storePhoto='https://tangselmedia.com/wp-content/uploads/2020/01/6-Daftar-Toko-Jam-Terbaik-di-Tangerang-Selatan-aslie.png', storeAddress='Komplek PU Sapta Taruna 3'}
+2022-08-25 01:22:03,231 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] -------------------------
+2022-08-25 01:22:03,231 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Product ID    : 14
+2022-08-25 01:22:03,231 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Description   : SERASI DENGAN SETIAP GAYA ANDA. SETIAP HARI.
+Petite Cornwall menangkap esensi kesederhanaan dan gaya sejati. Mengunggulkan strap NATO serba hitam dan arloji hitam, jam ramping dan elegan ini dengan mudah menjadi sahabat dalam gaya sehari-hari Anda.
+2022-08-25 01:22:03,231 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Price         : 7755000
+2022-08-25 01:22:03,231 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Product name  : PETITE CORNWALL
+2022-08-25 01:22:03,232 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=3, user=com.codeblue.montreISTA.entity.User@469a33ba, storeName='Ratih Arloji', storePhoto='https://cdn-image.hipwee.com/wp-content/uploads/2018/11/hipwee-wa2-750x500.jpg', storeAddress='Jl. Dasa Darma Blok II '}
+2022-08-25 01:22:03,232 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] -------------------------
+2022-08-25 01:22:03,232 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Product ID    : 15
+2022-08-25 01:22:03,233 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Description   : DESAIN KLASIK BERPADU DENGAN MINIMALISME MODERN
+Petite Bondi, dengan strap kulit warna putih dan arloji putih telur, menampilkan kesederhanaan dan keanggunan. Jam ultra-tipis ini duduk dengan manis di tangan Anda dan menyoroti semangat Anda yang membara dalam gaya. Tersedia dengan warna rose gold atau silver.
+2022-08-25 01:22:03,233 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Price         : 6699000
+2022-08-25 01:22:03,233 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Product name  : PETITE BONDI
+2022-08-25 01:22:03,233 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=11, user=com.codeblue.montreISTA.entity.User@15297d45, storeName='Toko Arloji Mitra Jaya', storePhoto='https://feldmarwatch.com/wp-content/themes/NewFeldmarWatch/images/watch-store-2x.jpg', storeAddress='Jl. Ir. H. Juanda'}
+2022-08-25 01:22:03,233 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] -------------------------
+2022-08-25 01:22:03,234 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Product ID    : 16
+2022-08-25 01:22:03,234 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Description   : jam tangan premium buatan swiss dilapisi emas dan berlian
+2022-08-25 01:22:03,234 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Price         : 200000000
+2022-08-25 01:22:03,235 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Product name  : jam rolex #40 series
+2022-08-25 01:22:03,235 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] Seller ID     : Seller{sellerId=16, user=com.codeblue.montreISTA.entity.User@143f0d4b, storeName='Nadine shop', storePhoto='https://www.shutterstock.com/image-vector/shop-icon-store-230619400', storeAddress='jalan peganggsaan'}
+2022-08-25 01:22:03,235 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9] ==================== Logger End Get All Products    ====================
+2022-08-25 01:22:03,236 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-9]  
+2022-08-25 01:22:40,804 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-2] ====================Logger Start Get seller name ====================
+2022-08-25 01:22:40,804 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-2] [com.codeblue.montreISTA.DTO.ProductResponseDTO@1ec378e1, com.codeblue.montreISTA.DTO.ProductResponseDTO@38844ad8, com.codeblue.montreISTA.DTO.ProductResponseDTO@567e36b4]
+2022-08-25 01:22:40,804 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-2] ====================Logger End Get seller name ====================
+2022-08-25 01:23:19,240 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-25 01:23:19,245 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-25 01:23:19,252 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-25 01:23:23,652 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-25 01:23:23,670 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 4200 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-25 01:23:23,672 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-25 01:23:23,771 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-25 01:23:23,772 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-25 01:23:25,737 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-25 01:23:25,941 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 194 ms. Found 16 JPA repository interfaces.
+2022-08-25 01:23:27,812 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-25 01:23:27,860 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-25 01:23:27,862 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-25 01:23:27,863 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-25 01:23:28,244 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-25 01:23:28,245 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 4472 ms
+2022-08-25 01:23:28,623 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-25 01:23:28,720 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-25 01:23:29,052 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-25 01:23:29,229 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-25 01:23:29,519 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-25 01:23:29,579 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-25 01:23:31,640 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-25 01:23:31,651 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-25 01:23:33,906 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-25 01:23:35,453 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4143afe2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6ee0a8c3, org.springframework.security.web.context.SecurityContextPersistenceFilter@787a4394, org.springframework.security.web.header.HeaderWriterFilter@73ca102, org.springframework.web.filter.CorsFilter@d9fc01f, org.springframework.security.web.authentication.logout.LogoutFilter@1e67d665, com.codeblue.montreISTA.security.AuthTokenFilter@7761c23f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@df4c891, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@37cacbaf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ce5348c, org.springframework.security.web.session.SessionManagementFilter@93d722c, org.springframework.security.web.access.ExceptionTranslationFilter@5af389e9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@54e269ec]
+2022-08-25 01:23:36,213 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-25 01:23:36,242 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-25 01:23:36,284 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-25 01:23:36,311 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 13.432 seconds (JVM running for 14.462)
+2022-08-25 01:24:26,308 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-25 01:24:26,314 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-25 01:24:26,325 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-25 01:24:31,060 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-25 01:24:31,072 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 12496 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-25 01:24:31,073 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-25 01:24:31,164 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-25 01:24:31,164 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-25 01:24:32,869 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-25 01:24:33,088 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 209 ms. Found 16 JPA repository interfaces.
+2022-08-25 01:24:34,595 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-25 01:24:34,619 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-25 01:24:34,620 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-25 01:24:34,621 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-25 01:24:34,890 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-25 01:24:34,892 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3725 ms
+2022-08-25 01:24:35,404 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-25 01:24:35,479 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-25 01:24:35,806 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-25 01:24:36,067 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-25 01:24:36,240 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-25 01:24:36,264 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-25 01:24:38,268 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-25 01:24:38,280 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-25 01:24:40,613 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-25 01:24:42,372 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2f4659a8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4fbeb1e0, org.springframework.security.web.context.SecurityContextPersistenceFilter@44dc9c90, org.springframework.security.web.header.HeaderWriterFilter@201aa0fe, org.springframework.web.filter.CorsFilter@1e8187e, org.springframework.security.web.authentication.logout.LogoutFilter@275250f5, com.codeblue.montreISTA.security.AuthTokenFilter@4d1e4999, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@53a0d1a1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@30873738, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@e1be543, org.springframework.security.web.session.SessionManagementFilter@621a9b4, org.springframework.security.web.access.ExceptionTranslationFilter@37cacbaf, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4143afe2]
+2022-08-25 01:24:43,092 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-25 01:24:43,120 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-25 01:24:43,172 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-25 01:24:43,192 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 12.961 seconds (JVM running for 14.066)
+2022-08-25 01:26:30,439 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-25 01:26:30,439 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-25 01:26:30,441 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 2 ms
+2022-08-25 01:26:30,869 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] ==================== Logger Start Get All Transactions     ====================
+2022-08-25 01:26:30,870 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] -------------------------
+2022-08-25 01:26:30,871 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Transactions ID  : 1
+2022-08-25 01:26:30,872 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Store Name       : Berlian Arloji
+2022-08-25 01:26:30,873 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Product Name     : PETITE PRESSED ASHFIELD
+2022-08-25 01:26:30,873 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Product Price    : 1891000
+2022-08-25 01:26:30,874 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Photo url        : https://www.quotemaster.org/images/fa/faafd5631151dcdec1d045b2659a5369.png
+2022-08-25 01:26:30,874 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Buyer ID         : 3
+2022-08-25 01:26:30,875 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Seller ID        : 7
+2022-08-25 01:26:30,875 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Quantity         : 2
+2022-08-25 01:26:30,877 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Total Price      : 3802000
+2022-08-25 01:26:30,877 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] -------------------------
+2022-08-25 01:26:30,878 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Transactions ID  : 2
+2022-08-25 01:26:30,878 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Store Name       : -Toko Jam Master Star
+2022-08-25 01:26:30,878 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Product Name     : ICONIC LINK
+2022-08-25 01:26:30,878 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Product Price    : 3420000
+2022-08-25 01:26:30,878 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Photo url        : https://introcs.cs.princeton.edu/java/11cheatsheet/images/hello.png
+2022-08-25 01:26:30,879 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Buyer ID         : 16
+2022-08-25 01:26:30,879 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Seller ID        : 1
+2022-08-25 01:26:30,880 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Quantity         : 1
+2022-08-25 01:26:30,880 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Total Price      : 3440000
+2022-08-25 01:26:30,880 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] -------------------------
+2022-08-25 01:26:30,880 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Transactions ID  : 3
+2022-08-25 01:26:30,880 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Store Name       : Ratih Arloji
+2022-08-25 01:26:30,880 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Product Name     : PETITE MELROSE
+2022-08-25 01:26:30,881 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Product Price    : 2817000
+2022-08-25 01:26:30,881 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Photo url        : https://i.pinimg.com/originals/6e/03/21/6e0321597039afa3bc11d02d52fdfa6e.jpg
+2022-08-25 01:26:30,881 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Buyer ID         : 16
+2022-08-25 01:26:30,881 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Seller ID        : 3
+2022-08-25 01:26:30,882 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Quantity         : 1
+2022-08-25 01:26:30,882 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Total Price      : 2837000
+2022-08-25 01:26:30,882 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] -------------------------
+2022-08-25 01:26:30,883 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Transactions ID  : 4
+2022-08-25 01:26:30,883 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Store Name       : Berlian Arloji
+2022-08-25 01:26:30,884 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Product Name     : PETITE PRESSED ASHFIELD
+2022-08-25 01:26:30,884 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Product Price    : 1891000
+2022-08-25 01:26:30,885 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Photo url        : https://www.quotemaster.org/images/fa/faafd5631151dcdec1d045b2659a5369.png
+2022-08-25 01:26:30,885 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Buyer ID         : 3
+2022-08-25 01:26:30,885 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Seller ID        : 7
+2022-08-25 01:26:30,885 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Quantity         : 2
+2022-08-25 01:26:30,886 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Total Price      : 3802000
+2022-08-25 01:26:30,886 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] ==================== Logger End Get AlL Transactions   ====================
+2022-08-25 01:26:30,886 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1]  
+2022-08-25 01:26:46,099 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-3] ====================Logger Start Get Transaction Detail====================
+2022-08-25 01:26:46,100 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-3] [com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@3d02297e, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@210e21f0, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@6e57b0e9, com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@9147a6b]
+2022-08-25 01:26:46,101 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-3] ====================Logger End Get Transaction Detail====================
+2022-08-25 01:27:18,491 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] ====================Logger Start Get By ID====================
+2022-08-25 01:27:18,492 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@4d5be2a1
+2022-08-25 01:27:18,493 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] ====================Logger End Get By ID====================
+2022-08-25 01:27:22,968 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] ====================Logger Start Get By ID====================
+2022-08-25 01:27:22,969 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@6d2cc078
+2022-08-25 01:27:22,969 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] ====================Logger End Get By ID====================
+2022-08-25 01:27:26,185 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] ====================Logger Start Get By ID====================
+2022-08-25 01:27:26,186 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@12973ae8
+2022-08-25 01:27:26,187 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] ====================Logger End Get By ID====================
+2022-08-25 01:27:29,265 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-10] ====================Logger Start Get By ID====================
+2022-08-25 01:27:29,266 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-10] com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@5e52929d
+2022-08-25 01:27:29,267 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-10] ====================Logger End Get By ID====================
+2022-08-25 01:27:34,268 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] ====================Logger Start Get History Transactions ====================
+2022-08-25 01:27:34,269 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] com.codeblue.montreISTA.DTO.TransactionResponseDTO@34d011e5
+2022-08-25 01:27:34,270 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] ====================Logger End Get History Transactions ====================
+2022-08-25 01:27:36,159 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-2] ====================Logger Start Get History Transactions ====================
+2022-08-25 01:27:36,161 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-2] com.codeblue.montreISTA.DTO.TransactionResponseDTO@450dfb06
+2022-08-25 01:27:36,161 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-2] ====================Logger End Get History Transactions ====================
+2022-08-25 01:27:37,668 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-3] ====================Logger Start Get History Transactions ====================
+2022-08-25 01:27:37,669 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-3] com.codeblue.montreISTA.DTO.TransactionResponseDTO@3dda2507
+2022-08-25 01:27:37,670 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-3] ====================Logger End Get History Transactions ====================
+2022-08-25 01:27:39,354 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] ====================Logger Start Get History Transactions ====================
+2022-08-25 01:27:39,355 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] com.codeblue.montreISTA.DTO.TransactionResponseDTO@28482a05
+2022-08-25 01:27:39,355 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] ====================Logger End Get History Transactions ====================
+2022-08-25 01:27:42,565 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] ==================== Logger Start Get All Transactions     ====================
+2022-08-25 01:27:42,566 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] -------------------------
+2022-08-25 01:27:42,567 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Transactions ID  : 1
+2022-08-25 01:27:42,567 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Store Name       : Berlian Arloji
+2022-08-25 01:27:42,567 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Product Name     : PETITE PRESSED ASHFIELD
+2022-08-25 01:27:42,568 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Product Price    : 1891000
+2022-08-25 01:27:42,568 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Photo url        : https://www.quotemaster.org/images/fa/faafd5631151dcdec1d045b2659a5369.png
+2022-08-25 01:27:42,568 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Buyer ID         : 3
+2022-08-25 01:27:42,569 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Seller ID        : 7
+2022-08-25 01:27:42,569 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Quantity         : 2
+2022-08-25 01:27:42,569 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Total Price      : 3802000
+2022-08-25 01:27:42,569 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] -------------------------
+2022-08-25 01:27:42,570 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Transactions ID  : 2
+2022-08-25 01:27:42,571 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Store Name       : -Toko Jam Master Star
+2022-08-25 01:27:42,571 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Product Name     : ICONIC LINK
+2022-08-25 01:27:42,571 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Product Price    : 3420000
+2022-08-25 01:27:42,572 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Photo url        : https://introcs.cs.princeton.edu/java/11cheatsheet/images/hello.png
+2022-08-25 01:27:42,572 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Buyer ID         : 16
+2022-08-25 01:27:42,572 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Seller ID        : 1
+2022-08-25 01:27:42,572 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Quantity         : 1
+2022-08-25 01:27:42,573 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Total Price      : 3440000
+2022-08-25 01:27:42,573 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] -------------------------
+2022-08-25 01:27:42,573 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Transactions ID  : 3
+2022-08-25 01:27:42,573 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Store Name       : Ratih Arloji
+2022-08-25 01:27:42,574 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Product Name     : PETITE MELROSE
+2022-08-25 01:27:42,574 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Product Price    : 2817000
+2022-08-25 01:27:42,574 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Photo url        : https://i.pinimg.com/originals/6e/03/21/6e0321597039afa3bc11d02d52fdfa6e.jpg
+2022-08-25 01:27:42,575 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Buyer ID         : 16
+2022-08-25 01:27:42,575 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Seller ID        : 3
+2022-08-25 01:27:42,576 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Quantity         : 1
+2022-08-25 01:27:42,576 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Total Price      : 2837000
+2022-08-25 01:27:42,577 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] -------------------------
+2022-08-25 01:27:42,577 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Transactions ID  : 4
+2022-08-25 01:27:42,577 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Store Name       : Berlian Arloji
+2022-08-25 01:27:42,578 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Product Name     : PETITE PRESSED ASHFIELD
+2022-08-25 01:27:42,578 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Product Price    : 1891000
+2022-08-25 01:27:42,578 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Photo url        : https://www.quotemaster.org/images/fa/faafd5631151dcdec1d045b2659a5369.png
+2022-08-25 01:27:42,578 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Buyer ID         : 3
+2022-08-25 01:27:42,578 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Seller ID        : 7
+2022-08-25 01:27:42,578 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Quantity         : 2
+2022-08-25 01:27:42,579 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] Total Price      : 3802000
+2022-08-25 01:27:42,579 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] ==================== Logger End Get AlL Transactions   ====================
+2022-08-25 01:27:42,579 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6]  
+2022-08-25 01:27:44,374 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] ==================== Logger Start Get All Transactions     ====================
+2022-08-25 01:27:44,376 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:27:44,376 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Transactions ID  : 1
+2022-08-25 01:27:44,376 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Store Name       : Berlian Arloji
+2022-08-25 01:27:44,376 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Product Name     : PETITE PRESSED ASHFIELD
+2022-08-25 01:27:44,377 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Product Price    : 1891000
+2022-08-25 01:27:44,377 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Photo url        : https://www.quotemaster.org/images/fa/faafd5631151dcdec1d045b2659a5369.png
+2022-08-25 01:27:44,377 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Buyer ID         : 3
+2022-08-25 01:27:44,377 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Seller ID        : 7
+2022-08-25 01:27:44,378 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Quantity         : 2
+2022-08-25 01:27:44,379 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Total Price      : 3802000
+2022-08-25 01:27:44,379 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:27:44,379 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Transactions ID  : 2
+2022-08-25 01:27:44,379 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Store Name       : -Toko Jam Master Star
+2022-08-25 01:27:44,379 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Product Name     : ICONIC LINK
+2022-08-25 01:27:44,380 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Product Price    : 3420000
+2022-08-25 01:27:44,380 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Photo url        : https://introcs.cs.princeton.edu/java/11cheatsheet/images/hello.png
+2022-08-25 01:27:44,381 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Buyer ID         : 16
+2022-08-25 01:27:44,382 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Seller ID        : 1
+2022-08-25 01:27:44,382 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Quantity         : 1
+2022-08-25 01:27:44,382 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Total Price      : 3440000
+2022-08-25 01:27:44,383 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:27:44,383 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Transactions ID  : 3
+2022-08-25 01:27:44,384 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Store Name       : Ratih Arloji
+2022-08-25 01:27:44,384 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Product Name     : PETITE MELROSE
+2022-08-25 01:27:44,384 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Product Price    : 2817000
+2022-08-25 01:27:44,385 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Photo url        : https://i.pinimg.com/originals/6e/03/21/6e0321597039afa3bc11d02d52fdfa6e.jpg
+2022-08-25 01:27:44,385 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Buyer ID         : 16
+2022-08-25 01:27:44,385 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Seller ID        : 3
+2022-08-25 01:27:44,385 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Quantity         : 1
+2022-08-25 01:27:44,386 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Total Price      : 2837000
+2022-08-25 01:27:44,386 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-25 01:27:44,386 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Transactions ID  : 4
+2022-08-25 01:27:44,387 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Store Name       : Berlian Arloji
+2022-08-25 01:27:44,387 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Product Name     : PETITE PRESSED ASHFIELD
+2022-08-25 01:27:44,388 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Product Price    : 1891000
+2022-08-25 01:27:44,389 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Photo url        : https://www.quotemaster.org/images/fa/faafd5631151dcdec1d045b2659a5369.png
+2022-08-25 01:27:44,389 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Buyer ID         : 3
+2022-08-25 01:27:44,390 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Seller ID        : 7
+2022-08-25 01:27:44,390 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Quantity         : 2
+2022-08-25 01:27:44,390 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] Total Price      : 3802000
+2022-08-25 01:27:44,390 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] ==================== Logger End Get AlL Transactions   ====================
+2022-08-25 01:27:44,391 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7]  
+2022-08-25 01:27:54,429 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-25 01:27:54,433 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-25 01:27:54,437 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-25 01:28:08,732 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-25 01:28:08,735 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 15908 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-25 01:28:08,736 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-25 01:28:08,804 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-25 01:28:08,804 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-25 01:28:10,519 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-25 01:28:10,764 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 229 ms. Found 16 JPA repository interfaces.
+2022-08-25 01:28:12,152 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-25 01:28:12,169 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-25 01:28:12,170 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-25 01:28:12,170 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-25 01:28:12,363 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-25 01:28:12,365 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3560 ms
+2022-08-25 01:28:12,754 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-25 01:28:12,833 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-25 01:28:13,180 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-25 01:28:13,386 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-25 01:28:13,571 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-25 01:28:13,600 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-25 01:28:15,551 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-25 01:28:15,560 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-25 01:28:18,194 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-25 01:28:19,762 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4fbeb1e0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1e8187e, org.springframework.security.web.context.SecurityContextPersistenceFilter@7fdc8672, org.springframework.security.web.header.HeaderWriterFilter@60fa266f, org.springframework.web.filter.CorsFilter@e1be543, org.springframework.security.web.authentication.logout.LogoutFilter@24e25c99, com.codeblue.montreISTA.security.AuthTokenFilter@abf863, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@48c7da59, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1e67d665, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@130d6631, org.springframework.security.web.session.SessionManagementFilter@30873738, org.springframework.security.web.access.ExceptionTranslationFilter@30f73e62, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6e6d437c]
+2022-08-25 01:28:20,624 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-25 01:28:20,687 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-25 01:28:20,713 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 12.716 seconds (JVM running for 13.826)
+2022-08-25 01:28:20,763 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-25 01:28:20,767 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-25 01:28:20,774 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-25 01:28:26,111 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-25 01:28:26,134 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 13596 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-25 01:28:26,138 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-25 01:28:26,224 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-25 01:28:26,225 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-25 01:28:28,201 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-25 01:28:28,413 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 202 ms. Found 16 JPA repository interfaces.
+2022-08-25 01:28:29,813 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-25 01:28:29,834 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-25 01:28:29,835 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-25 01:28:29,835 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-25 01:28:30,085 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-25 01:28:30,086 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3859 ms
+2022-08-25 01:28:30,470 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-25 01:28:30,623 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-25 01:28:31,023 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-25 01:28:31,323 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-25 01:28:31,663 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-25 01:28:31,734 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-25 01:28:34,113 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-25 01:28:34,135 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-25 01:28:37,121 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-25 01:28:39,831 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@38240470, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6db016ac, org.springframework.security.web.context.SecurityContextPersistenceFilter@1d865821, org.springframework.security.web.header.HeaderWriterFilter@c42631e, org.springframework.web.filter.CorsFilter@60fa0c97, org.springframework.security.web.authentication.logout.LogoutFilter@594591ec, com.codeblue.montreISTA.security.AuthTokenFilter@78ff5316, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@b81542c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6af77140, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6e6d437c, org.springframework.security.web.session.SessionManagementFilter@1a34e2a5, org.springframework.security.web.access.ExceptionTranslationFilter@14e6effd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6ee0a8c3]
+2022-08-25 01:28:41,804 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-25 01:28:41,851 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-25 01:28:41,890 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-25 01:28:41,911 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 16.535 seconds (JVM running for 17.518)
+2022-08-25 01:28:45,776 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-25 01:28:45,777 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-25 01:28:45,779 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 2 ms
+2022-08-25 01:28:46,180 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] ==================== Logger Start Error ====================
+2022-08-25 01:28:46,181 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] Transactions Not Found
+2022-08-25 01:28:46,182 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-1] ==================== Logger End Error ====================
+2022-08-25 01:28:53,874 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-3] ==================== Logger Start Error ====================
+2022-08-25 01:28:53,876 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-3] Transactions Details Not Found
+2022-08-25 01:28:53,876 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-3] ==================== Logger End Error ====================
+2022-08-25 01:29:34,001 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-25 01:29:34,005 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-25 01:29:34,012 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
