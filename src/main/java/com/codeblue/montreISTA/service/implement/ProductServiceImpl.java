@@ -17,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,9 +31,13 @@ public class ProductServiceImpl implements ProductService {
     private final CategoryRepository categoryRepository;
     private final ProductCategoryRepository productCategoryRepository;
     private final RoleRepository roleRepository;
+    private final PhotoRepository photoRepository;
     private final DTOConverter dtoConverter;
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
     private static final String Line = "====================";
+    private static final String productPhotoDefault = "https://cdn5.vectorstock.com/i/1000x1000/38/19/product-promotion-black-icon-concept-vector-29963819.jpg";
+
+
 
     public ResponseEntity<Object> findAllProduct(Integer page, String sort, boolean descending) {
         try {
@@ -233,7 +239,10 @@ public class ProductServiceImpl implements ProductService {
             Product saveProduct = productRepository.save(newProduct);
 
             this.addCategory(categories, saveProduct);
-
+            List<Photo> photos = new ArrayList<>();
+            Photo photo = this.addPhoto(saveProduct);
+            photos.add(photo);
+            saveProduct.setPhotos(photos);
             ProductResponseDTO result = dtoConverter.convertOneProducts(saveProduct);
 
             logger.info(Line + "Logger Start Create " + Line);
@@ -342,6 +351,12 @@ public class ProductServiceImpl implements ProductService {
                 throw new RuntimeException(e);
             }
         });
+    }
+    public Photo addPhoto(Product newProduct){
+        Photo photo = new Photo();
+        photo.setPhotoURL(productPhotoDefault);
+        photo.setProduct(newProduct);
+        return photoRepository.save(photo);
     }
 
     public void checkCategories(List<String> categories) {
