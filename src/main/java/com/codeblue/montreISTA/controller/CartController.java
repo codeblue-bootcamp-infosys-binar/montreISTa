@@ -35,7 +35,7 @@ public class CartController {
 
     @PostMapping("/user/add-to-cart")
     public ResponseEntity<Object> postCart(@RequestBody CartRequestDTO cart, Authentication authentication) throws Exception {
-            return cartService.createCart(cart, authentication);
+            return cartService.createCartResponse(cart, authentication);
     }
 
     @PostMapping("/user/wishlist-to-cart")

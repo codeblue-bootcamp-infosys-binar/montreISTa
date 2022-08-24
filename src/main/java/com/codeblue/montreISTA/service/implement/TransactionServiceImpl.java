@@ -30,7 +30,7 @@ public class TransactionServiceImpl implements TransactionService {
     private final TransactionRepository transactionRepository;
     private final TransactionDetailsRepository transactionDetailsRepository;
     private final OrderRepository orderRepository;
-    private final CategoryService categoryService;
+    private final CategoryRepository categoryRepository;
     private final BuyerRepository buyerRepository;
     private final SellerRepository sellerRepository;
     private static final Logger logger = LoggerFactory.getLogger(TransactionController.class);
@@ -245,7 +245,7 @@ public class TransactionServiceImpl implements TransactionService {
                     photoURL = photo.get(0).getPhotoURL();
                 }
 
-                List<Category> categories = categoryService.findByProductId(cart.getProduct().getId());
+                List<Category> categories = categoryRepository.findByProductsProductId(cart.getProduct().getId());
                 String category = categories.stream()
                         .map(Category::getName)
                         .collect(Collectors.joining(","));
