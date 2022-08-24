@@ -69,7 +69,7 @@ public class PhotoServiceImp implements PhotoService {
     @Override
     public ResponseEntity<Object> findBySellerName(Authentication authentication) {
         try {
-            List<Photo> photos = photoRepository.findByProductSellerUserNameIgnoreCaseContainingOrderByPhotoIdAsc(authentication.getName());
+            List<Photo> photos = photoRepository.findByProductSellerUserUsernameIgnoreCaseContainingOrderByPhotoIdAsc(authentication.getName());
             if (photos.isEmpty()) {
                 throw new Exception("Photo not found");
             }
@@ -148,7 +148,7 @@ public class PhotoServiceImp implements PhotoService {
     public ResponseEntity<Object> createPhoto(Long productId, List<MultipartFile> files, Authentication authentication) {
         try {
             Product product = productRepository.findById(productId).orElseThrow(() -> new Exception("Product not found"));
-            if (!product.getSeller().getUser().getName().equals(authentication.getName())) {
+            if (!product.getSeller().getUser().getUsername().equals(authentication.getName())) {
                 throw new Exception("You only can add photo for your product");
             }
             List<Photo> photos = photoRepository.findByProductIdOrderByPhotoIdAsc(productId);
