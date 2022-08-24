@@ -44,13 +44,7 @@ public class CartServiceImpl implements CartService {
             }
             List<CartResponseDTO> results = this.convertListDTO(Carts);
             logger.info("==================== Logger Start Get All Cart     ====================");
-            for (Cart cartData : Carts) {
-                logger.info("-------------------------");
-                logger.info("Cart ID       : " + cartData.getCartId());
-                logger.info("Quantity      : " + cartData.getQuantity());
-                logger.info("Buyer ID      : " + cartData.getBuyer());
-                logger.info("Product ID    : " + cartData.getProduct());
-            }
+            logger.info(String.valueOf(results));
             logger.info("==================== Logger End Get All Cart    ====================");
             logger.info(" ");
             return ResponseHandler.generateResponse("successfully retrieved cart", HttpStatus.OK, results);
@@ -114,7 +108,7 @@ public class CartServiceImpl implements CartService {
             logger.info(Line + "Logger Start Get Seller " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Seller " + Line);
-            return ResponseHandler.generateResponse("successfully find cart", HttpStatus.NOT_FOUND, "Failed find cart! ");
+            return ResponseHandler.generateResponse("successfully find cart", HttpStatus.NOT_FOUND, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -135,7 +129,7 @@ public class CartServiceImpl implements CartService {
             logger.info(Line + "Logger Start Get Seller " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Seller " + Line);
-            return ResponseHandler.generateResponse("successfully find cart", HttpStatus.NOT_FOUND, "Failed find cart! ");
+            return ResponseHandler.generateResponse("successfully find cart", HttpStatus.NOT_FOUND, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
