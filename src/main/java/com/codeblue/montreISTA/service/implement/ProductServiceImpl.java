@@ -29,6 +29,7 @@ public class ProductServiceImpl implements ProductService {
     private final CategoryRepository categoryRepository;
     private final ProductCategoryRepository productCategoryRepository;
     private final RoleRepository roleRepository;
+    private final DTOConverter dtoConverter;
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
     private static final String Line = "====================";
 
@@ -51,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
             logger.info("==================== Logger End Get All Products    ====================");
             logger.info(" ");
 
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
             return ResponseHandler.generateResponse("successfully get all products", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.info("==================== Logger Start Get All Products     ====================");
@@ -71,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
     public ResponseEntity<Object> findProductById(Long id) {
         try {
             Product product = productRepository.findById(id).orElseThrow(() -> new Exception("Product not found"));
-            ProductResponseDTO result = DTOConverter.convertOneProducts(product);
+            ProductResponseDTO result = dtoConverter.convertOneProducts(product);
             logger.info(Line + "Logger Start Get product id " + Line);
             logger.info(String.valueOf(result));
             logger.info(Line + "Logger End Get product id " + Line);
@@ -89,7 +90,7 @@ public class ProductServiceImpl implements ProductService {
         try {
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<Product> products = productRepository.findByProductNameIgnoreCaseContaining(name, pageable);
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
             logger.info(Line + "Logger Start Get product name " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get product name " + Line);
@@ -107,7 +108,7 @@ public class ProductServiceImpl implements ProductService {
         try {
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<Product> products = productRepository.findBySellerUserNameIgnoreCaseContaining(name, pageable);
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
             logger.info(Line + "Logger Start Get seller name " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get seller name " + Line);
@@ -126,7 +127,7 @@ public class ProductServiceImpl implements ProductService {
             Pageable pageable = Pagination.paginate(page, sort, descending);
 
             List<Product> products = productRepository.findBySellerStoreNameIgnoreCaseContaining(name, pageable);
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
 
             logger.info(Line + "Logger Start Get store name " + Line);
             logger.info(String.valueOf(results));
@@ -146,7 +147,7 @@ public class ProductServiceImpl implements ProductService {
             Pageable pageable = Pagination.paginate(page, sort, descending);
 
             List<Product> products = productRepository.findByCategoriesCategoryCategoriesId(id, pageable);
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
 
             logger.info(Line + "Logger Start Get By Category Id " + Line);
             logger.info(String.valueOf(results));
@@ -167,7 +168,7 @@ public class ProductServiceImpl implements ProductService {
             Pageable pageable = Pagination.paginate(page, sort, descending);
 
             List<Product> products = productRepository.findByCategoriesCategoryNameIgnoreCaseContaining(name, pageable);
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
 
             logger.info(Line + "Logger Start Get category name " + Line);
             logger.info(String.valueOf(results));
@@ -191,7 +192,7 @@ public class ProductServiceImpl implements ProductService {
                 throw new Exception("You don't have a product");
             }
 
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(product);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(product);
 
             logger.info(Line + "Logger Start Get seller id " + Line);
             logger.info(String.valueOf(results));
@@ -233,7 +234,7 @@ public class ProductServiceImpl implements ProductService {
 
             this.addCategory(categories, saveProduct);
 
-            ProductResponseDTO result = DTOConverter.convertOneProducts(saveProduct);
+            ProductResponseDTO result = dtoConverter.convertOneProducts(saveProduct);
 
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(result));
@@ -282,7 +283,7 @@ public class ProductServiceImpl implements ProductService {
                 Product saveProduct = productRepository.save(product);
                 this.addCategory(categories, saveProduct);
 
-                ProductResponseDTO results = DTOConverter.convertOneProducts(saveProduct);
+                ProductResponseDTO results = dtoConverter.convertOneProducts(saveProduct);
                 logger.info(Line + "Logger Start Update By Id " + Line);
                 logger.info(String.valueOf(results));
                 logger.info(Line + "Logger End Update By Id " + Line);

@@ -3,7 +3,6 @@ package com.codeblue.montreISTA.entity;
 
 import com.codeblue.montreISTA.DTO.CategoryResponseDTO;
 import lombok.*;
-import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import java.util.List;
 
