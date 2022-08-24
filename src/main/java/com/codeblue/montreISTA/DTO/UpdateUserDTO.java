@@ -3,7 +3,6 @@ package com.codeblue.montreISTA.DTO;
 import com.codeblue.montreISTA.entity.User;
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -12,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RegistrationDTO {
+public class UpdateUserDTO {
     @Size(min = 3, max = 40)
     private String name;
     @Size(max = 50)
@@ -25,6 +24,8 @@ public class RegistrationDTO {
     private String phone;
     @Size(min=5)
     private String address;
+
+    private List<String> roles;
 
     public User convertToEntity(){
         return User.builder()
