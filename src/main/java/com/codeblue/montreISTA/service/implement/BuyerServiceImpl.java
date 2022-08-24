@@ -3,6 +3,8 @@ package com.codeblue.montreISTA.service.implement;
 import com.codeblue.montreISTA.DTO.BuyerResponseDTO;
 import com.codeblue.montreISTA.controller.BuyerController;
 import com.codeblue.montreISTA.entity.*;
+import com.codeblue.montreISTA.helper.DTOConverter;
+import com.codeblue.montreISTA.helper.Pagination;
 import com.codeblue.montreISTA.repository.BuyerRepository;
 import com.codeblue.montreISTA.repository.ProductRepository;
 import com.codeblue.montreISTA.repository.RoleRepository;
@@ -14,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -76,7 +79,7 @@ public class BuyerServiceImpl implements BuyerService {
     }
 
     @Override
-    public ResponseEntity<Object> createBuyer(Authentication authentication) throws Exception {
+    public ResponseEntity<Object> createBuyer(Authentication authentication,Integer page, String sort, boolean descending) throws Exception {
         try {
             User user = userRepository.findByUsername(authentication.getName()).orElseThrow(() -> new Exception("User not found"));
             Optional<Buyer> buyerUser = buyerRepository.findByUserUsername(authentication.getName());
@@ -85,11 +88,13 @@ public class BuyerServiceImpl implements BuyerService {
                 buyer.setUser(user);
                 buyerRepository.save(buyer);
             }
-            List<Product> products = productRepository.findAllByOrderByCreatedAtAsc();
+            Pageable pageable = Pagination.paginate(page, sort, descending);
+            List<Product> products = productRepository.findAll(pageable).getContent();
+            ProductResponseDTO results = DTOConverter.convertProducts(products);
             logger.info(Line + "Logger Start Create " + Line);
-            logger.info(String.valueOf(user));
+            logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Create " + Line);
-            return ResponseHandler.generateResponse("successfully login as buyer", HttpStatus.CREATED, user);
+            return ResponseHandler.generateResponse("successfully login as buyer", HttpStatus.CREATED, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
