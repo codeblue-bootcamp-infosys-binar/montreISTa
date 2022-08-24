@@ -35,6 +35,9 @@ public class OrderServiceImpl implements OrderService {
         try {
             List<Order> orders = orderRepository.findAllByOrderByOrderIdAsc();
             List<OrderResponseDTO> results = this.convertListDTO(orders);
+            if(results.isEmpty()){
+                throw new Exception("Order Not Found");
+            }
             logger.info("==================== Logger Start Get All Order    ====================");
             for (OrderResponseDTO orderData : results) {
                 logger.info("-------------------------");
