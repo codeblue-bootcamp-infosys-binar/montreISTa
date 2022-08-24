@@ -1,22 +1,16 @@
 package com.codeblue.montreISTA.controller;
 
 
-import com.codeblue.montreISTA.DTO.BuyerResponseDTO;
-import com.codeblue.montreISTA.DTO.ProductResponseDTO;
-import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.BuyerService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+
 
 @AllArgsConstructor
 @RestController
