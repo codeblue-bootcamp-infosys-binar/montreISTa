@@ -158,21 +158,21 @@ public class OrderController {
      * @param
      * @return
      */
-//    @GetMapping("/dashboard/order/buyer/{id}")
-//    public ResponseEntity<Object> findByBuyerUserName(@PathVariable("id") Long id){
-//        try{
-//            List<OrderResponseDTO> results = orderService.findByBuyerId(id);
-//            logger.info(Line + "Logger Start Get Order By Username  " + Line);
-//            logger.info(String.valueOf(results));
-//            logger.info(Line + "Logger End Get Order By Username " + Line);
-//            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
-//        } catch (Exception e){
-//            logger.error(Line + " Logger Start Error " + Line);
-//            logger.error(e.getMessage());
-//            logger.error(Line + " Logger End Error " + Line);
-//            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed found order");
-//        }
-//    }
+    @GetMapping("/dashboard/order/buyer/{id}")
+    public ResponseEntity<Object> findByBuyerUserName(@PathVariable("id") Long id){
+        try{
+            List<OrderResponseDTO> results = orderService.findByBuyerId(id);
+            logger.info(Line + "Logger Start Get Order By Username  " + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Get Order By Username " + Line);
+            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
+        } catch (Exception e){
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed found order");
+        }
+    }
 
     /**
      * find By Product.ProductName
