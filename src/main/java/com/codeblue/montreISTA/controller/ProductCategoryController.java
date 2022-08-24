@@ -17,18 +17,12 @@ import org.springframework.web.bind.annotation.*;
 @SecurityRequirement(name = "bearer-key")
 public class ProductCategoryController {
 
-
-
-
     private ProductCategoryService productCategoryService;
 
-    /**
-     * findAll
-     * @return
-     */
     @GetMapping("/product-categories")
-    public ResponseEntity<Object> findAllProductCategory(){
-          return productCategoryService.findAll();
+    public ResponseEntity<Object> findAllProductCategory() throws Exception {
+
+        return productCategoryService.findAll();
     }
 
     @GetMapping("/product-category/product-name")

@@ -21,7 +21,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@Tag(name="08. Order")
+@Tag(name = "08. Order")
 @SecurityRequirement(name = "bearer-key")
 public class OrderController {
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
@@ -30,169 +30,51 @@ public class OrderController {
 
     private OrderService orderService;
 
-    /**
-     * Update Order
-     * @return
-     */
     @PutMapping("/user/order-now")
-    public ResponseEntity<Object> updateOrder(@RequestBody OrderRequestDTO orderRequestDTO, Authentication authentication){
-        try {
-            OrderResponseDTO results = orderService.updateOrder(orderRequestDTO,authentication.getName());
-            logger.info(Line + "Logger Start Update By Id " + Line);
-            logger.info(String.valueOf(results));
-            logger.info(Line + "Logger End Update By Id " + Line);
-            return ResponseHandler.generateResponse("successfully make order", HttpStatus.CREATED, results);
-        } catch (Exception e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,"Failed Order");
-        }
+    public ResponseEntity<Object> updateOrder(@RequestBody OrderRequestDTO orderRequestDTO, Authentication authentication) throws Exception {
+        return orderService.updateOrder(orderRequestDTO, authentication.getName());
     }
-    
+
     @GetMapping("/user/my-order")
-    public ResponseEntity<Object> getOrderByBuyer(Authentication authentication){
-        try{
-            OrderResponseCartDTO results = orderService.findByBuyer(authentication.getName());
-            logger.info(Line + "Logger Start Get By Buyer " + Line);
-            logger.info(String.valueOf(results));
-            logger.info(Line + "Logger End Get By Buyer " + Line);
-            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
-        } catch (Exception e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Order had no value!");
-        }
+    public ResponseEntity<Object> getOrderByBuyer(Authentication authentication) throws Exception {
+        return orderService.findByBuyer(authentication.getName());
     }
-    /**
-     * Delete Order
-     * @return
-     */
+
     @DeleteMapping("/user/order/delete")
-    public ResponseEntity<Object> deleteOrder(Authentication authentication){
-        try{
-            orderService.deleteOrder(authentication);
-            logger.info(Line + "Logger Start Delete By Id " + Line);
-            logger.info("Delete Success");
-            logger.info(Line + "Logger End Delete By Id " + Line);
-            return ResponseHandler.generateResponse("successfully deleted Order", HttpStatus.OK, "Success delete");
-        } catch (Exception e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Failed delete order!");
-        }
-
+    public ResponseEntity<Object> deleteOrder(Authentication authentication) throws Exception {
+            return orderService.deleteOrder(authentication);
     }
 
-    /**
-     * find By StoreName
-     * @param
-     * @return
-     */
     @GetMapping("/dashboard/order/store-name")
-    public ResponseEntity<Object> findBySellerStoreName(@Param("keyword") String keyword){
-        try{
-            List<OrderResponseDTO> results = orderService.findByStoreName(keyword);
-            logger.info(Line + "Logger Start Get Order By Storename  " + Line);
-            logger.info(String.valueOf(results));
-            logger.info(Line + "Logger End Get Order By Storename " + Line);
-            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
-        } catch (Exception e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Order no value!");
-        }
+    public ResponseEntity<Object> findBySellerStoreName(@Param("keyword") String keyword) throws Exception {
+            return orderService.findByStoreName(keyword);
     }
 
     @GetMapping("/user/pay-my-order")
-    public ResponseEntity<Object> payOrder(Authentication authentication){
-        try{
-            OrderResponseCartDTO results = orderService.payOrder(authentication.getName());
-            logger.info(Line + "Logger Start Get By Buyer " + Line);
-            logger.info(String.valueOf(results));
-            logger.info(Line + "Logger End Get By Buyer " + Line);
-            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
-        } catch (Exception e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Order had no value!");
-        }
+    public ResponseEntity<Object> payOrder(Authentication authentication) throws Exception {
+            return orderService.payOrder(authentication.getName());
     }
+
     /**
      * FindAll
+     *
      * @return
      */
     @GetMapping("/dashboard/orders")
-    public ResponseEntity<Object> getAllOrder(){
-        try{
-            List<OrderResponseDTO> orders = orderService.findAllOrder();
-            logger.info("==================== Logger Start Get All Order    ====================");
-            for(OrderResponseDTO orderData : orders){
-                logger.info("-------------------------");
-                logger.info("Order ID                : " + orderData.getOrderId());
-                logger.info("Payment ID              : " + orderData.getPayment_id());
-                logger.info("Destionation Name       : " + orderData.getDestination_name());
-                logger.info("Destionation Address    : " + orderData.getDestination_address());
-                logger.info("Destionation Phone      : " + orderData.getDestination_phone());
-                logger.info("Shipping ID             : " + orderData.getShipping_id());
-                logger.info("Zip Code                : " + orderData.getZip_code());
-                logger.info("Total Price             : " + orderData.getTotal_price());
-            }
-            logger.info("==================== Logger End Get AlL Order   ====================");
-            logger.info(" ");
-            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, orders);
-        } catch (Exception e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Order had no value!");
-        }
+    public ResponseEntity<Object> getAllOrder() {
+            return orderService.findAllOrder();
     }
 
     /**
-     * Find By Id
-     * @param
-     * @return
-     */
-//    @GetMapping("/dashboard/order/buyer/{id}")
-//    public ResponseEntity<Object> findByBuyerUserName(@PathVariable("id") Long id){
-//        try{
-//            List<OrderResponseDTO> results = orderService.findByBuyerId(id);
-//            logger.info(Line + "Logger Start Get Order By Username  " + Line);
-//            logger.info(String.valueOf(results));
-//            logger.info(Line + "Logger End Get Order By Username " + Line);
-//            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
-//        } catch (Exception e){
-//            logger.error(Line + " Logger Start Error " + Line);
-//            logger.error(e.getMessage());
-//            logger.error(Line + " Logger End Error " + Line);
-//            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed found order");
-//        }
-//    }
-
-    /**
      * find By Product.ProductName
+     *
      * @param
      * @return
      */
     @GetMapping("/dashboard/order/product-name")
-    public ResponseEntity<Object> findByProductName(@Param("keyword") String keyword){
-        try{
-            List<OrderResponseDTO> results = orderService.findByProductName(keyword);
-            logger.info(Line + "Logger Start Get Order By Productname  " + Line);
-            logger.info(String.valueOf(results));
-            logger.info(Line + "Logger End Get Order By Productname " + Line);
-            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
-        } catch (Exception e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Found Order!");
-        }
+    public ResponseEntity<Object> findByProductName(@Param("keyword") String keyword) throws Exception {
+            return orderService.findByProductName(keyword);
+
     }
 
     /**
@@ -200,19 +82,8 @@ public class OrderController {
      * @return
      */
     @GetMapping("/dashboard/order/{id}")
-    public ResponseEntity<Object> getOrderById(@PathVariable("id") Long id){
-        try{
-            OrderResponseDTO results = orderService.findOrderById(id);
-            logger.info(Line + "Logger Start Get By Id " + Line);
-            logger.info(String.valueOf(results));
-            logger.info(Line + "Logger End Get By Id " + Line);
-            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
-        } catch (Exception e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Order had no value!");
-        }
+    public ResponseEntity<Object> getOrderById(@PathVariable("id") Long id) throws Exception {
+            return orderService.findOrderById(id);
     }
 
 }

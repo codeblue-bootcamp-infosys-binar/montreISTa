@@ -401,3 +401,1066 @@ Caused by: org.springframework.data.mapping.PropertyReferenceException: No prope
 2022-08-24 10:04:03,086 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-08-24 10:04:03,091 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2022-08-24 10:04:03,096 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 10:06:27,292 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 10:06:27,298 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 1696 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 10:06:27,299 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 10:06:27,370 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 10:06:27,371 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 10:06:28,653 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 10:06:28,826 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 165 ms. Found 16 JPA repository interfaces.
+2022-08-24 10:06:29,859 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 10:06:29,874 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 10:06:29,875 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 10:06:29,876 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 10:06:30,045 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 10:06:30,046 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 2674 ms
+2022-08-24 10:06:30,276 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 10:06:30,348 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 10:06:30,587 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 10:06:30,715 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 10:06:30,863 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 10:06:30,884 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 10:06:32,242 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 10:06:32,251 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 10:06:33,913 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 10:06:34,940 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@41aa0bfe, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5c549527, org.springframework.security.web.context.SecurityContextPersistenceFilter@4c9051a8, org.springframework.security.web.header.HeaderWriterFilter@2f237a57, org.springframework.web.filter.CorsFilter@265f5e9a, org.springframework.security.web.authentication.logout.LogoutFilter@5090c4c9, com.codeblue.montreISTA.security.AuthTokenFilter@1a665df3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3ee05c79, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5eb7e6d7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2ab8d7ff, org.springframework.security.web.session.SessionManagementFilter@75f05e56, org.springframework.security.web.access.ExceptionTranslationFilter@20de77b1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5c017e57]
+2022-08-24 10:06:35,487 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 10:06:35,510 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 10:06:35,539 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 10:06:35,555 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 8.785 seconds (JVM running for 9.492)
+2022-08-24 10:06:47,557 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 10:06:47,561 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 10:06:47,565 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 10:08:50,794 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 10:08:50,803 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 20320 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 10:08:50,804 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 10:08:50,906 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 10:08:50,907 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 10:08:52,709 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 10:08:52,940 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 216 ms. Found 16 JPA repository interfaces.
+2022-08-24 10:08:54,806 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 10:08:54,840 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 10:08:54,843 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 10:08:54,845 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 10:08:55,131 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 10:08:55,132 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 4223 ms
+2022-08-24 10:08:55,448 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 10:08:55,618 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 10:08:55,991 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 10:08:56,235 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 10:08:56,485 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 10:08:56,522 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 10:08:59,040 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 10:08:59,058 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 10:09:01,364 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 10:09:02,889 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@41aa0bfe, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5c549527, org.springframework.security.web.context.SecurityContextPersistenceFilter@10e4f1b8, org.springframework.security.web.header.HeaderWriterFilter@d2da070, org.springframework.web.filter.CorsFilter@265f5e9a, org.springframework.security.web.authentication.logout.LogoutFilter@1d865821, com.codeblue.montreISTA.security.AuthTokenFilter@75b8ef32, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3a8c91a9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b6c5971, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2ab8d7ff, org.springframework.security.web.session.SessionManagementFilter@3b65a482, org.springframework.security.web.access.ExceptionTranslationFilter@60e00117, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5c017e57]
+2022-08-24 10:09:04,679 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 10:09:04,722 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 10:09:04,802 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 10:09:04,847 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 14.776 seconds (JVM running for 15.748)
+2022-08-24 10:09:46,957 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 10:09:46,958 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 10:09:46,963 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 5 ms
+2022-08-24 10:09:49,536 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-6] Init duration for springdoc-openapi is: 1802 ms
+2022-08-24 10:10:01,437 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-7] ====================Logger Start Login ====================
+2022-08-24 10:10:01,438 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-7] com.codeblue.montreISTA.DTO.JwtResponse@25bdfb51
+2022-08-24 10:10:01,438 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-7] ====================Logger End Login ====================
+2022-08-24 10:10:18,043 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-10] ====================Logger Start Get seller id ====================
+2022-08-24 10:10:18,058 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-10] Seller{sellerId=1, user=com.codeblue.montreISTA.entity.User@2e4dd832, storeName='-Toko Jam Master Star', storePhoto='-https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html', storeAddress='Jl. Raya Pekayon No.66B'}
+2022-08-24 10:10:18,059 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-10] ====================Logger End Get seller id ====================
+2022-08-24 10:40:25,905 ERROR com.codeblue.montreISTA.security.JwtUtils [http-nio-8090-exec-10] JWT token is expired: JWT expired at 2022-08-22T18:18:32Z. Current time: 2022-08-24T03:40:25Z, a difference of 120113902 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-08-24 10:53:40,422 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 10:53:40,473 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 10:53:40,489 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 10:57:17,250 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 10:57:17,273 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 23252 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 10:57:17,276 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 10:57:17,406 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 10:57:17,406 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 10:57:19,394 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 10:57:19,831 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 419 ms. Found 16 JPA repository interfaces.
+2022-08-24 10:57:21,835 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 10:57:21,855 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 10:57:21,856 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 10:57:21,856 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 10:57:22,040 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 10:57:22,041 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 4633 ms
+2022-08-24 10:57:22,567 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 10:57:22,775 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 10:57:23,174 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 10:57:23,421 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 10:57:23,623 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 10:57:23,672 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 10:57:26,495 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 10:57:26,512 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 10:57:29,177 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 10:57:31,027 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7aa4d8d3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@d94530a, org.springframework.security.web.context.SecurityContextPersistenceFilter@37cacbaf, org.springframework.security.web.header.HeaderWriterFilter@6e94eb7f, org.springframework.web.filter.CorsFilter@5a172169, org.springframework.security.web.authentication.logout.LogoutFilter@79b1a441, com.codeblue.montreISTA.security.AuthTokenFilter@6d4b159, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@201aa0fe, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@b81542c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1dfd9ece, org.springframework.security.web.session.SessionManagementFilter@787a4394, org.springframework.security.web.access.ExceptionTranslationFilter@521c9896, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@399cc95e]
+2022-08-24 10:57:31,743 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 10:57:31,771 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 10:57:31,817 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 10:57:31,845 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 15.92 seconds (JVM running for 17.102)
+2022-08-24 10:57:36,256 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 10:57:36,258 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 10:57:36,264 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 4 ms
+2022-08-24 10:57:37,289 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-1] ====================Logger Start Registration ====================
+2022-08-24 10:57:37,342 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-1] UserResponseDTO{user_id=16, username='Nadine_1st', email_id='nadine@ist.id', address='Jalan Soekarno Hatta Nomor 19, RT/RW 07/01. kel. cibrebes, kec. citayam, depok', name='Nadine', photo='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', phone='081340044004', roles=[ROLE_USER]}
+2022-08-24 10:57:37,343 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-1] ====================Logger End Registration ====================
+2022-08-24 10:58:14,405 ERROR com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-3] ==================== Logger Start Error ====================
+2022-08-24 10:58:14,409 ERROR com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-3] Username is already in use
+2022-08-24 10:58:14,410 ERROR com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-3] ==================== Logger End Error ====================
+2022-08-24 10:58:58,695 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 10:58:58,699 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 10:58:58,704 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 10:59:03,617 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 10:59:03,639 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 23520 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 10:59:03,642 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 10:59:03,777 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 10:59:03,778 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 10:59:05,632 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 10:59:05,940 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 292 ms. Found 16 JPA repository interfaces.
+2022-08-24 10:59:08,084 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 10:59:08,132 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 10:59:08,134 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 10:59:08,135 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 10:59:08,574 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 10:59:08,575 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 4795 ms
+2022-08-24 10:59:09,034 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 10:59:09,267 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 10:59:09,791 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 10:59:10,055 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 10:59:10,237 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 10:59:10,276 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 10:59:12,335 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 10:59:12,346 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 10:59:15,041 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 10:59:16,747 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@46f0e699, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1a5bae53, org.springframework.security.web.context.SecurityContextPersistenceFilter@41870229, org.springframework.security.web.header.HeaderWriterFilter@5329e921, org.springframework.web.filter.CorsFilter@45a75e7, org.springframework.security.web.authentication.logout.LogoutFilter@6228d063, com.codeblue.montreISTA.security.AuthTokenFilter@1d8d808b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3b202d5c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@39d25638, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2afeac7b, org.springframework.security.web.session.SessionManagementFilter@58c43e81, org.springframework.security.web.access.ExceptionTranslationFilter@26d54dd1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3b33044c]
+2022-08-24 10:59:17,459 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 10:59:17,486 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 10:59:17,523 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 10:59:17,549 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 14.761 seconds (JVM running for 15.99)
+2022-08-24 10:59:21,912 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 10:59:21,914 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-2] Initializing Servlet 'dispatcherServlet'
+2022-08-24 10:59:21,917 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-2] Completed initialization in 2 ms
+2022-08-24 10:59:22,837 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-2] ====================Logger Start Registration ====================
+2022-08-24 10:59:22,886 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-2] UserResponseDTO{user_id=16, username='Nadine_1st', email_id='nadine@ist.id', address='Jalan Soekarno Hatta Nomor 19, RT/RW 07/01. kel. cibrebes, kec. citayam, depok', name='Nadine', photo='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', phone='081340044004', roles=[ROLE_USER]}
+2022-08-24 10:59:22,891 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-2] ====================Logger End Registration ====================
+2022-08-24 11:00:18,154 ERROR com.codeblue.montreISTA.security.JwtUtils [http-nio-8090-exec-3] JWT token is expired: JWT expired at 2022-08-22T18:18:32Z. Current time: 2022-08-24T04:00:18Z, a difference of 121306152 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-08-24 11:00:27,671 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-4] ====================Logger Start Login ====================
+2022-08-24 11:00:27,672 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-4] com.codeblue.montreISTA.DTO.JwtResponse@2ca17cec
+2022-08-24 11:00:27,673 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-4] ====================Logger End Login ====================
+2022-08-24 11:00:47,364 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-5] ====================Logger Start Create ====================
+2022-08-24 11:00:47,365 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-5] com.codeblue.montreISTA.DTO.ProductResponseDTO@7e751d04
+2022-08-24 11:00:47,365 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-5] ====================Logger End Create ====================
+2022-08-24 11:01:20,379 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-6] ====================Logger Start Get seller id ====================
+2022-08-24 11:01:20,380 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-6] [com.codeblue.montreISTA.DTO.ProductResponseDTO@27b7aece, com.codeblue.montreISTA.DTO.ProductResponseDTO@59fb0b65, com.codeblue.montreISTA.DTO.ProductResponseDTO@73ecde66, com.codeblue.montreISTA.DTO.ProductResponseDTO@67db3940]
+2022-08-24 11:01:20,381 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-6] ====================Logger End Get seller id ====================
+2022-08-24 11:06:31,997 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 11:06:32,003 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 11:06:32,009 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 11:09:57,287 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 11:09:57,295 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 12032 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 11:09:57,296 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 11:09:57,382 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 11:09:57,383 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 11:09:58,892 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 11:09:59,126 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 223 ms. Found 16 JPA repository interfaces.
+2022-08-24 11:10:00,397 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 11:10:00,413 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 11:10:00,414 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 11:10:00,414 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 11:10:00,571 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 11:10:00,572 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3188 ms
+2022-08-24 11:10:00,896 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 11:10:00,973 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 11:10:01,230 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 11:10:01,415 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 11:10:01,584 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 11:10:01,607 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 11:10:03,439 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 11:10:03,453 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 11:10:05,650 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 11:10:06,838 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@38b246d6, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1cc5a8c3, org.springframework.security.web.context.SecurityContextPersistenceFilter@c42631e, org.springframework.security.web.header.HeaderWriterFilter@49be608b, org.springframework.web.filter.CorsFilter@399cc95e, org.springframework.security.web.authentication.logout.LogoutFilter@4fbbf1b6, com.codeblue.montreISTA.security.AuthTokenFilter@471b29b3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@19961b97, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5090c4c9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1077d3f0, org.springframework.security.web.session.SessionManagementFilter@521c9896, org.springframework.security.web.access.ExceptionTranslationFilter@69f0f596, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3d763159]
+2022-08-24 11:10:07,438 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 11:10:07,460 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 11:10:07,496 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 11:10:07,519 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 11.003 seconds (JVM running for 11.951)
+2022-08-24 11:10:40,323 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 11:10:40,324 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 11:10:40,327 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 3 ms
+2022-08-24 11:10:40,496 ERROR com.codeblue.montreISTA.security.JwtUtils [http-nio-8090-exec-1] JWT token is expired: JWT expired at 2022-08-24T04:10:01Z. Current time: 2022-08-24T04:10:40Z, a difference of 39493 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-08-24 11:10:40,960 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-1] ====================Logger Start Login ====================
+2022-08-24 11:10:40,961 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-1] com.codeblue.montreISTA.DTO.JwtResponse@5da1abb7
+2022-08-24 11:10:40,961 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-1] ====================Logger End Login ====================
+2022-08-24 11:10:59,736 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-3] ====================Logger Start Get seller id ====================
+2022-08-24 11:10:59,736 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-3] com.codeblue.montreISTA.DTO.SellerResponseDTO@7e7092ff
+2022-08-24 11:10:59,737 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-3] ====================Logger End Get seller id ====================
+2022-08-24 11:11:20,315 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] ==================== Logger Start Get All Sellers     ====================
+2022-08-24 11:11:20,315 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,317 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 1
+2022-08-24 11:11:20,318 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Jl. Raya Pekayon No.66B
+2022-08-24 11:11:20,318 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : -Toko Jam Master Star
+2022-08-24 11:11:20,318 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : -https://tangselmedia.com/6-daftar-toko-jam-terbaik-di-tangerang-selatan.html
+2022-08-24 11:11:20,318 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,319 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 2
+2022-08-24 11:11:20,319 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Komplek PU Sapta Taruna 3
+2022-08-24 11:11:20,319 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Toko Jam Ahdmad Naufal
+2022-08-24 11:11:20,319 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://tangselmedia.com/wp-content/uploads/2020/01/6-Daftar-Toko-Jam-Terbaik-di-Tangerang-Selatan-aslie.png
+2022-08-24 11:11:20,320 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,320 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 3
+2022-08-24 11:11:20,321 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Jl. Dasa Darma Blok II 
+2022-08-24 11:11:20,321 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Ratih Arloji
+2022-08-24 11:11:20,321 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://cdn-image.hipwee.com/wp-content/uploads/2018/11/hipwee-wa2-750x500.jpg
+2022-08-24 11:11:20,321 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,321 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 4
+2022-08-24 11:11:20,322 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Pasar Baru Jati Asih Blok A1
+2022-08-24 11:11:20,322 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Toko Arloji Asia Permai
+2022-08-24 11:11:20,322 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://www.intime.co.id/wp-content/uploads/toko-jam-tangan-mewah.jpg
+2022-08-24 11:11:20,322 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,322 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 5
+2022-08-24 11:11:20,322 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Mega Bekasi Hypermall UG
+2022-08-24 11:11:20,323 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Matchwatch Mega Bekasi Hypermall
+2022-08-24 11:11:20,323 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://blog.jamtangan.com/wp-content/uploads/2018/12/A7S0008.jpg
+2022-08-24 11:11:20,323 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,324 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 6
+2022-08-24 11:11:20,325 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Jl. Raya Dukuh Zamrud Selatan 3
+2022-08-24 11:11:20,325 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Toko Gaya Trendy
+2022-08-24 11:11:20,325 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://www.solomediabisnis.com/wp-content/uploads/2021/01/3-2.jpeg
+2022-08-24 11:11:20,326 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,326 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 7
+2022-08-24 11:11:20,326 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Mal Metropolitan, lantai dasar
+2022-08-24 11:11:20,326 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Berlian Arloji
+2022-08-24 11:11:20,326 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://hinyong.com/wp-content/uploads/2019/05/siapkan-perlengkapan-dan-barang-dagangan-usaha-toko-jam.jpg
+2022-08-24 11:11:20,326 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,327 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 8
+2022-08-24 11:11:20,327 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Jl. Ir. Hj Juanda. Ps. Baru Bekasi
+2022-08-24 11:11:20,327 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Terus Jaya
+2022-08-24 11:11:20,327 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://alamatbagus.com/wp-content/uploads/2022/03/toko-jam-tangan-surabaya-cahaya-arloji.jpg
+2022-08-24 11:11:20,327 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,327 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 9
+2022-08-24 11:11:20,328 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Jl. Ir. H. Juanda No.51
+2022-08-24 11:11:20,328 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Toko Jam Rizky Jaya
+2022-08-24 11:11:20,328 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://images.homify.com/c_fill,f_auto,q_0,w_740/v1516689893/p/photo/image/2402137/IMG_20171126_083613_858.jpg
+2022-08-24 11:11:20,328 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,328 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 10
+2022-08-24 11:11:20,328 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Jl. Raya Jati Makmur No.11
+2022-08-24 11:11:20,329 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Prima Arloji
+2022-08-24 11:11:20,329 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://westime.com/wp-content/uploads/2020/08/Westime-Miami-Watch-Store-Interior-view.jpg
+2022-08-24 11:11:20,329 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,329 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 11
+2022-08-24 11:11:20,329 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Jl. Ir. H. Juanda
+2022-08-24 11:11:20,330 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Toko Arloji Mitra Jaya
+2022-08-24 11:11:20,330 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://feldmarwatch.com/wp-content/themes/NewFeldmarWatch/images/watch-store-2x.jpg
+2022-08-24 11:11:20,330 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,331 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 12
+2022-08-24 11:11:20,332 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Bekasi Junction, Jl. Ir. H. Juanda
+2022-08-24 11:11:20,333 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Intan Jaya
+2022-08-24 11:11:20,333 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://www.seikowatches.com/id-id/-/media/Images/GlobalEn/Seiko/Home/stores/store_image.jpg?mh=1125&mw=2000&hash=A7633EB5B0D8E9A913765A1F1ED7566C
+2022-08-24 11:11:20,333 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,334 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 13
+2022-08-24 11:11:20,334 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Mega Bekasi Hypermall, Jl. A.Yani
+2022-08-24 11:11:20,334 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Citra Arloji
+2022-08-24 11:11:20,334 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://zworks.net/files/2021/08/Watch-Store-Interior-Design-3d-model-1.jpg
+2022-08-24 11:11:20,334 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,334 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 14
+2022-08-24 11:11:20,335 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Jl. Letnan Arsyad Raya No.5
+2022-08-24 11:11:20,335 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Sunaku Watch
+2022-08-24 11:11:20,335 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://rimage.gnst.jp/livejapan.com/public/img/spot/lj/00/06/lj0006967/lj0006967_5eaa9c9ad823d_main.jpg?20210621040011&q=80
+2022-08-24 11:11:20,335 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 11:11:20,335 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Seller ID       : 15
+2022-08-24 11:11:20,336 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Address   : Mall Metropolitan Lt.1 106, JL. KH. Noerali
+2022-08-24 11:11:20,336 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Name      : Cahaya Arloji
+2022-08-24 11:11:20,336 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] Store Photo     : https://static.gltjp.com/glt/prd/data/article/12000/11917/20180920_234806_f6dc5b9d_w1920.jpg
+2022-08-24 11:11:20,337 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7] ==================== Logger End Get All Sellers    ====================
+2022-08-24 11:11:20,337 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-7]  
+2022-08-24 11:11:33,859 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-9] SQL Error: 0, SQLState: 23503
+2022-08-24 11:11:33,861 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-9] ERROR: update or delete on table "products" violates foreign key constraint "fk6p7qhvy1bfkri13u29x6pu8au" on table "wishlist"
+  Detail: Key (id)=(1) is still referenced from table "wishlist".
+2022-08-24 11:11:33,864 INFO org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl [http-nio-8090-exec-9] HHH000010: On release of batch it still contained JDBC statements
+2022-08-24 11:11:33,872 ERROR com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-9] ==================== Logger Start Error ====================
+2022-08-24 11:11:33,873 ERROR com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-9] could not execute statement; SQL [n/a]; constraint [fk6p7qhvy1bfkri13u29x6pu8au]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+2022-08-24 11:11:33,874 ERROR com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-9] ==================== Logger End Error ====================
+2022-08-24 11:11:37,733 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-10] ====================Logger Start Get seller id ====================
+2022-08-24 11:11:37,734 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-10] com.codeblue.montreISTA.DTO.SellerResponseDTO@21d5fa54
+2022-08-24 11:11:37,734 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-10] ====================Logger End Get seller id ====================
+2022-08-24 11:11:39,635 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-1] ====================Logger Start Get seller id ====================
+2022-08-24 11:11:39,636 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-1] com.codeblue.montreISTA.DTO.SellerResponseDTO@20f7e6af
+2022-08-24 11:11:39,638 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-1] ====================Logger End Get seller id ====================
+2022-08-24 11:11:45,104 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-2] SQL Error: 0, SQLState: 23503
+2022-08-24 11:11:45,105 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-2] ERROR: update or delete on table "products" violates foreign key constraint "fk6p7qhvy1bfkri13u29x6pu8au" on table "wishlist"
+  Detail: Key (id)=(1) is still referenced from table "wishlist".
+2022-08-24 11:11:45,106 INFO org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl [http-nio-8090-exec-2] HHH000010: On release of batch it still contained JDBC statements
+2022-08-24 11:11:45,107 ERROR com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-2] ==================== Logger Start Error ====================
+2022-08-24 11:11:45,107 ERROR com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-2] could not execute statement; SQL [n/a]; constraint [fk6p7qhvy1bfkri13u29x6pu8au]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+2022-08-24 11:11:45,108 ERROR com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-2] ==================== Logger End Error ====================
+2022-08-24 11:12:35,143 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-3] ====================Logger Start Get store id ====================
+2022-08-24 11:12:35,144 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-3] com.codeblue.montreISTA.DTO.SellerResponseDTO@86d230e
+2022-08-24 11:12:35,145 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-3] ====================Logger End Get store id ====================
+2022-08-24 11:13:42,466 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 11:13:42,476 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 11:13:42,484 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 11:14:08,594 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 11:14:08,608 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 17840 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 11:14:08,610 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 11:14:08,705 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 11:14:08,706 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 11:14:10,792 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 11:14:11,060 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 254 ms. Found 16 JPA repository interfaces.
+2022-08-24 11:14:12,598 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 11:14:12,617 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 11:14:12,618 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 11:14:12,619 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 11:14:12,814 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 11:14:12,815 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 4107 ms
+2022-08-24 11:14:13,188 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 11:14:13,277 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 11:14:13,630 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 11:14:13,809 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 11:14:14,019 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 11:14:14,051 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 11:14:16,004 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 11:14:16,017 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 11:14:18,594 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 11:14:19,904 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@38277dac, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@de1a2bb, org.springframework.security.web.context.SecurityContextPersistenceFilter@39538e0a, org.springframework.security.web.header.HeaderWriterFilter@71e7e034, org.springframework.web.filter.CorsFilter@46965f29, org.springframework.security.web.authentication.logout.LogoutFilter@70ebeb9f, com.codeblue.montreISTA.security.AuthTokenFilter@5c092899, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3c994699, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3d0e46d1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@63f49a33, org.springframework.security.web.session.SessionManagementFilter@773c4dc0, org.springframework.security.web.access.ExceptionTranslationFilter@1df4e265, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6b7e1962]
+2022-08-24 11:14:20,722 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 11:14:20,755 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 11:14:20,797 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 11:14:20,828 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 13.077 seconds (JVM running for 14.845)
+2022-08-24 11:14:25,327 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 11:14:25,329 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 11:14:25,334 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 5 ms
+2022-08-24 11:14:26,172 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-1] SQL Error: 0, SQLState: 23503
+2022-08-24 11:14:26,173 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-1] ERROR: update or delete on table "products" violates foreign key constraint "fk6p7qhvy1bfkri13u29x6pu8au" on table "wishlist"
+  Detail: Key (id)=(1) is still referenced from table "wishlist".
+2022-08-24 11:14:26,176 INFO org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl [http-nio-8090-exec-1] HHH000010: On release of batch it still contained JDBC statements
+2022-08-24 11:14:26,186 ERROR com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-1] ==================== Logger Start Error ====================
+2022-08-24 11:14:26,187 ERROR com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-1] could not execute statement; SQL [n/a]; constraint [fk6p7qhvy1bfkri13u29x6pu8au]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+2022-08-24 11:14:26,188 ERROR com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-1] ==================== Logger End Error ====================
+2022-08-24 11:15:55,953 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 11:15:55,960 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 11:15:55,967 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 11:16:01,464 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 11:16:01,477 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 860 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 11:16:01,479 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 11:16:01,586 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 11:16:01,587 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 11:16:03,677 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 11:16:03,918 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 229 ms. Found 16 JPA repository interfaces.
+2022-08-24 11:16:05,369 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 11:16:05,389 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 11:16:05,390 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 11:16:05,391 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 11:16:05,562 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 11:16:05,563 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3973 ms
+2022-08-24 11:16:05,937 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 11:16:06,080 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 11:16:06,434 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 11:16:06,619 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 11:16:06,835 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 11:16:06,867 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 11:16:08,808 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 11:16:08,837 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 11:16:11,624 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 11:16:13,261 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1f2974cd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5100fe2c, org.springframework.security.web.context.SecurityContextPersistenceFilter@2ab8997d, org.springframework.security.web.header.HeaderWriterFilter@188dccf1, org.springframework.web.filter.CorsFilter@538b8cb0, org.springframework.security.web.authentication.logout.LogoutFilter@6891c1b0, com.codeblue.montreISTA.security.AuthTokenFilter@42372dc6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@178d42c8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4327953f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2d53ca8a, org.springframework.security.web.session.SessionManagementFilter@3d428e8c, org.springframework.security.web.access.ExceptionTranslationFilter@41199eb0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@70f16f43]
+2022-08-24 11:16:14,041 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 11:16:14,073 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 11:16:14,115 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 11:16:14,143 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 13.781 seconds (JVM running for 15.478)
+2022-08-24 11:16:22,554 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 11:16:22,555 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 11:16:22,557 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 2 ms
+2022-08-24 11:16:44,208 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-1] SQL Error: 0, SQLState: 23503
+2022-08-24 11:16:44,212 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-1] ERROR: update or delete on table "products" violates foreign key constraint "fk6p7qhvy1bfkri13u29x6pu8au" on table "wishlist"
+  Detail: Key (id)=(1) is still referenced from table "wishlist".
+2022-08-24 11:16:44,229 INFO org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl [http-nio-8090-exec-1] HHH000010: On release of batch it still contained JDBC statements
+2022-08-24 11:17:34,004 WARN com.zaxxer.hikari.pool.HikariPool$HouseKeeper [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=50s157ms439µs600ns).
+2022-08-24 11:17:34,008 ERROR com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-1] ==================== Logger Start Error ====================
+2022-08-24 11:17:34,011 ERROR com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-1] could not execute statement; SQL [n/a]; constraint [fk6p7qhvy1bfkri13u29x6pu8au]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+2022-08-24 11:17:34,013 ERROR com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-1] ==================== Logger End Error ====================
+2022-08-24 11:17:34,159 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-2] SQL Error: 0, SQLState: 23503
+2022-08-24 11:17:34,160 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-2] ERROR: update or delete on table "products" violates foreign key constraint "fk6p7qhvy1bfkri13u29x6pu8au" on table "wishlist"
+  Detail: Key (id)=(1) is still referenced from table "wishlist".
+2022-08-24 11:17:34,161 INFO org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl [http-nio-8090-exec-2] HHH000010: On release of batch it still contained JDBC statements
+2022-08-24 11:17:51,398 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-3] SQL Error: 0, SQLState: 23503
+2022-08-24 11:17:51,399 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-3] ERROR: update or delete on table "products" violates foreign key constraint "fk6p7qhvy1bfkri13u29x6pu8au" on table "wishlist"
+  Detail: Key (id)=(1) is still referenced from table "wishlist".
+2022-08-24 11:17:51,400 INFO org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl [http-nio-8090-exec-3] HHH000010: On release of batch it still contained JDBC statements
+2022-08-24 11:19:37,119 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 11:19:37,132 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 11:19:37,146 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 11:19:41,249 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 11:19:41,270 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 20704 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 11:19:41,273 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 11:19:41,380 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 11:19:41,381 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 11:19:43,265 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 11:19:43,590 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 309 ms. Found 16 JPA repository interfaces.
+2022-08-24 11:19:44,975 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 11:19:44,992 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 11:19:44,993 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 11:19:44,994 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 11:19:45,166 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 11:19:45,167 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3785 ms
+2022-08-24 11:19:45,537 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 11:19:45,641 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 11:19:45,970 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 11:19:46,143 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 11:19:46,354 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 11:19:46,377 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 11:19:47,869 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 11:19:47,880 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 11:19:49,930 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 11:19:51,545 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6348d68b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6fb8cf42, org.springframework.security.web.context.SecurityContextPersistenceFilter@19961b97, org.springframework.security.web.header.HeaderWriterFilter@63bac001, org.springframework.web.filter.CorsFilter@38b246d6, org.springframework.security.web.authentication.logout.LogoutFilter@30873738, com.codeblue.montreISTA.security.AuthTokenFilter@50c4bfa, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4f551756, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1136e156, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1cc5a8c3, org.springframework.security.web.session.SessionManagementFilter@6e94eb7f, org.springframework.security.web.access.ExceptionTranslationFilter@3a8c91a9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@322e4706]
+2022-08-24 11:19:52,199 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 11:19:52,230 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 11:19:52,265 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 11:19:52,288 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 11.787 seconds (JVM running for 12.76)
+2022-08-24 11:19:59,757 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 11:19:59,758 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 11:19:59,761 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 3 ms
+2022-08-24 11:20:00,346 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-1] SQL Error: 0, SQLState: 23503
+2022-08-24 11:20:00,348 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-1] ERROR: update or delete on table "products" violates foreign key constraint "fk6p7qhvy1bfkri13u29x6pu8au" on table "wishlist"
+  Detail: Key (id)=(1) is still referenced from table "wishlist".
+2022-08-24 11:20:00,351 INFO org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl [http-nio-8090-exec-1] HHH000010: On release of batch it still contained JDBC statements
+2022-08-24 11:22:12,645 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 11:22:12,649 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 11:22:12,659 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 11:22:32,459 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 11:22:32,467 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 17668 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 11:22:32,469 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 11:22:32,541 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 11:22:32,542 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 11:22:34,013 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 11:22:34,236 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 210 ms. Found 16 JPA repository interfaces.
+2022-08-24 11:22:35,489 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 11:22:35,506 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 11:22:35,507 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 11:22:35,508 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 11:22:35,698 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 11:22:35,699 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3156 ms
+2022-08-24 11:22:35,996 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 11:22:36,080 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 11:22:36,344 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 11:22:36,503 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 11:22:36,677 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 11:22:36,702 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 11:22:38,345 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 11:22:38,359 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 11:22:40,632 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 11:22:41,809 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@beb97f6, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@54e269ec, org.springframework.security.web.context.SecurityContextPersistenceFilter@73ca102, org.springframework.security.web.header.HeaderWriterFilter@2c744032, org.springframework.web.filter.CorsFilter@7aa4d8d3, org.springframework.security.web.authentication.logout.LogoutFilter@621a9b4, com.codeblue.montreISTA.security.AuthTokenFilter@3841dd1a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@14e6effd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6e94eb7f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@d94530a, org.springframework.security.web.session.SessionManagementFilter@70d4b43f, org.springframework.security.web.access.ExceptionTranslationFilter@6cb21a95, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@38b246d6]
+2022-08-24 11:22:42,497 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 11:22:42,523 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 11:22:42,558 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 11:22:42,579 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 10.782 seconds (JVM running for 11.686)
+2022-08-24 11:22:46,287 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 11:22:46,287 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 11:22:46,290 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 1 ms
+2022-08-24 11:22:47,980 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-10] Init duration for springdoc-openapi is: 1122 ms
+2022-08-24 11:23:02,243 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-6] ====================Logger Start Login ====================
+2022-08-24 11:23:02,244 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-6] com.codeblue.montreISTA.DTO.JwtResponse@43ce67da
+2022-08-24 11:23:02,245 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-6] ====================Logger End Login ====================
+2022-08-24 11:23:14,760 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-7] SQL Error: 0, SQLState: 23503
+2022-08-24 11:23:14,761 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8090-exec-7] ERROR: update or delete on table "products" violates foreign key constraint "fk6p7qhvy1bfkri13u29x6pu8au" on table "wishlist"
+  Detail: Key (id)=(1) is still referenced from table "wishlist".
+2022-08-24 11:23:14,764 INFO org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl [http-nio-8090-exec-7] HHH000010: On release of batch it still contained JDBC statements
+2022-08-24 11:24:46,039 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 11:24:46,049 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 11:24:46,055 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 11:24:52,690 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 11:24:52,704 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 20696 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 11:24:52,706 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 11:24:52,782 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 11:24:52,782 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 11:24:54,292 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 11:24:54,520 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 215 ms. Found 16 JPA repository interfaces.
+2022-08-24 11:24:55,826 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 11:24:55,844 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 11:24:55,845 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 11:24:55,846 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 11:24:56,000 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 11:24:56,001 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3217 ms
+2022-08-24 11:24:56,307 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 11:24:56,373 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 11:24:56,650 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 11:24:56,832 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 11:24:57,040 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 11:24:57,076 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 11:24:58,851 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 11:24:58,869 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 11:25:00,886 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 11:25:01,986 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@75b3676a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@322e4706, org.springframework.security.web.context.SecurityContextPersistenceFilter@c42631e, org.springframework.security.web.header.HeaderWriterFilter@49be608b, org.springframework.web.filter.CorsFilter@263ad882, org.springframework.security.web.authentication.logout.LogoutFilter@4fbbf1b6, com.codeblue.montreISTA.security.AuthTokenFilter@47bb645f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@19961b97, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5090c4c9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3d763159, org.springframework.security.web.session.SessionManagementFilter@521c9896, org.springframework.security.web.access.ExceptionTranslationFilter@69f0f596, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7c96326d]
+2022-08-24 11:25:02,607 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 11:25:02,631 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 11:25:02,663 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 11:25:02,689 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 10.773 seconds (JVM running for 11.682)
+2022-08-24 11:25:04,885 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 11:25:04,886 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 11:25:04,888 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 2 ms
+2022-08-24 11:27:14,121 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 11:27:14,128 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 11:27:14,144 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 12:12:15,600 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 12:12:15,608 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 15588 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 12:12:15,608 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 12:12:15,682 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 12:12:15,682 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 12:12:17,212 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 12:12:17,402 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 173 ms. Found 16 JPA repository interfaces.
+2022-08-24 12:12:18,831 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 12:12:18,862 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 12:12:18,862 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 12:12:18,862 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 12:12:18,972 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 12:12:18,972 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3289 ms
+2022-08-24 12:12:19,249 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 12:12:19,339 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 12:12:19,622 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 12:12:19,747 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 12:12:19,903 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 12:12:19,934 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 12:12:21,377 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 12:12:21,385 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 12:12:23,381 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 12:12:24,727 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4e153d02, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7a11a33, org.springframework.security.web.context.SecurityContextPersistenceFilter@7cd12677, org.springframework.security.web.header.HeaderWriterFilter@50b19cec, org.springframework.web.filter.CorsFilter@5d9300ad, org.springframework.security.web.authentication.logout.LogoutFilter@5183e25c, com.codeblue.montreISTA.security.AuthTokenFilter@1eac605c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1c223de8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@749807c5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2246cdab, org.springframework.security.web.session.SessionManagementFilter@36a64640, org.springframework.security.web.access.ExceptionTranslationFilter@77ffe1c0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2c15a403]
+2022-08-24 12:12:25,499 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 12:12:25,530 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 12:12:25,578 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 12:12:25,606 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 10.604 seconds (JVM running for 11.514)
+2022-08-24 12:13:32,090 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 12:13:32,091 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 12:13:32,093 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 2 ms
+2022-08-24 12:13:32,302 ERROR com.codeblue.montreISTA.security.AuthTokenFilter [http-nio-8090-exec-1] Cannot set user authentication: {}
+org.springframework.security.core.userdetails.UsernameNotFoundException: Not Found Ade
+	at com.codeblue.montreISTA.security.MyUserDetailsService.lambda$loadUserByUsername$0(MyUserDetailsService.java:27)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.codeblue.montreISTA.security.MyUserDetailsService.loadUserByUsername(MyUserDetailsService.java:27)
+	at com.codeblue.montreISTA.security.MyUserDetailsService$$FastClassBySpringCGLIB$$97789c76.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at com.codeblue.montreISTA.security.MyUserDetailsService$$EnhancerBySpringCGLIB$$b44c9336.loadUserByUsername(<generated>)
+	at com.codeblue.montreISTA.security.AuthTokenFilter.doFilterInternal(AuthTokenFilter.java:39)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-08-24 12:13:32,685 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-1] ====================Logger Start Login ====================
+2022-08-24 12:13:32,685 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-1] com.codeblue.montreISTA.DTO.JwtResponse@71e62416
+2022-08-24 12:13:32,686 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-1] ====================Logger End Login ====================
+2022-08-24 12:13:55,176 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-2] ====================Logger Start Create ====================
+2022-08-24 12:13:55,177 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-2] [com.codeblue.montreISTA.DTO.ProductResponseDTO@4caf1ce, com.codeblue.montreISTA.DTO.ProductResponseDTO@72fec18f, com.codeblue.montreISTA.DTO.ProductResponseDTO@1596bf77, com.codeblue.montreISTA.DTO.ProductResponseDTO@54e9a9be, com.codeblue.montreISTA.DTO.ProductResponseDTO@7fe766c, com.codeblue.montreISTA.DTO.ProductResponseDTO@3882da5, com.codeblue.montreISTA.DTO.ProductResponseDTO@234547a4, com.codeblue.montreISTA.DTO.ProductResponseDTO@3a78ae2b, com.codeblue.montreISTA.DTO.ProductResponseDTO@4e41f21e, com.codeblue.montreISTA.DTO.ProductResponseDTO@ce61b76]
+2022-08-24 12:13:55,177 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-2] ====================Logger End Create ====================
+2022-08-24 12:14:04,100 INFO com.codeblue.montreISTA.service.implement.WishlistServiceImpl [http-nio-8090-exec-5] ====================Logger Start Get Buyer By Username ====================
+2022-08-24 12:14:04,131 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8090-exec-5] Resolved [org.springframework.web.util.NestedServletException: Handler dispatch failed; nested exception is java.lang.StackOverflowError]
+2022-08-24 12:15:44,733 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 12:15:44,733 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 12:15:44,733 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 12:46:29,351 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 12:46:29,367 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 10988 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 12:46:29,367 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 12:46:29,467 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 12:46:29,467 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 12:46:30,650 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 12:46:30,791 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 142 ms. Found 16 JPA repository interfaces.
+2022-08-24 12:46:31,840 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 12:46:31,856 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 12:46:31,856 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 12:46:31,856 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 12:46:31,965 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 12:46:31,965 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 2498 ms
+2022-08-24 12:46:32,184 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 12:46:32,246 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 12:46:32,482 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 12:46:32,592 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 12:46:32,732 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 12:46:32,748 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 12:46:34,002 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 12:46:34,002 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 12:46:35,588 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 12:46:36,330 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@54e269ec, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7aa4d8d3, org.springframework.security.web.context.SecurityContextPersistenceFilter@3f711b06, org.springframework.security.web.header.HeaderWriterFilter@1a34e2a5, org.springframework.web.filter.CorsFilter@d94530a, org.springframework.security.web.authentication.logout.LogoutFilter@2137ea70, com.codeblue.montreISTA.security.AuthTokenFilter@3416f423, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@16f15ece, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@73c200c5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5a172169, org.springframework.security.web.session.SessionManagementFilter@578ddc80, org.springframework.security.web.access.ExceptionTranslationFilter@3f30a696, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1cc5a8c3]
+2022-08-24 12:46:36,879 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 12:46:36,910 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 12:46:36,942 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 12:46:36,957 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 8.108 seconds (JVM running for 8.682)
+2022-08-24 12:46:47,451 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 12:46:47,452 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-2] Initializing Servlet 'dispatcherServlet'
+2022-08-24 12:46:47,453 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-2] Completed initialization in 1 ms
+2022-08-24 12:46:48,796 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-8] Init duration for springdoc-openapi is: 940 ms
+2022-08-24 12:46:58,248 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-9] ====================Logger Start Login ====================
+2022-08-24 12:46:58,249 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-9] com.codeblue.montreISTA.DTO.JwtResponse@6b79dbcd
+2022-08-24 12:46:58,250 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-9] ====================Logger End Login ====================
+2022-08-24 12:47:12,791 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-10] ====================Logger Start Get seller id ====================
+2022-08-24 12:47:12,792 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-10] com.codeblue.montreISTA.DTO.SellerResponseDTO@3b7c2014
+2022-08-24 12:47:12,793 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-10] ====================Logger End Get seller id ====================
+2022-08-24 12:47:29,274 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-3] ====================Logger Start Create ====================
+2022-08-24 12:47:29,275 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-3] [com.codeblue.montreISTA.DTO.ProductResponseDTO@1b18eecb, com.codeblue.montreISTA.DTO.ProductResponseDTO@94e6da2, com.codeblue.montreISTA.DTO.ProductResponseDTO@47c3b4bc, com.codeblue.montreISTA.DTO.ProductResponseDTO@544fb983, com.codeblue.montreISTA.DTO.ProductResponseDTO@87d6b77, com.codeblue.montreISTA.DTO.ProductResponseDTO@722434a7, com.codeblue.montreISTA.DTO.ProductResponseDTO@2898080b, com.codeblue.montreISTA.DTO.ProductResponseDTO@1323f3a, com.codeblue.montreISTA.DTO.ProductResponseDTO@62f7dab8, com.codeblue.montreISTA.DTO.ProductResponseDTO@31255b4d]
+2022-08-24 12:47:29,275 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-3] ====================Logger End Create ====================
+2022-08-24 12:47:33,724 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-1] ====================Logger Start Create ====================
+2022-08-24 12:47:33,726 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-1] []
+2022-08-24 12:47:33,726 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-1] ====================Logger End Create ====================
+2022-08-24 12:47:37,370 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-4] ====================Logger Start Create ====================
+2022-08-24 12:47:37,371 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-4] []
+2022-08-24 12:47:37,371 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-4] ====================Logger End Create ====================
+2022-08-24 12:47:40,645 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-5] ====================Logger Start Create ====================
+2022-08-24 12:47:40,645 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-5] [com.codeblue.montreISTA.DTO.ProductResponseDTO@2a8f873e, com.codeblue.montreISTA.DTO.ProductResponseDTO@6ffd2ce3]
+2022-08-24 12:47:40,646 INFO com.codeblue.montreISTA.service.implement.BuyerServiceImpl [http-nio-8090-exec-5] ====================Logger End Create ====================
+2022-08-24 12:47:47,581 INFO com.codeblue.montreISTA.service.implement.WishlistServiceImpl [http-nio-8090-exec-6] ====================Logger Start Get Buyer By Username ====================
+2022-08-24 12:47:47,592 INFO com.codeblue.montreISTA.service.implement.WishlistServiceImpl [http-nio-8090-exec-6] [WishlistResponseDTO{wishlist_id=7, buyer_id=5, product_id=com.codeblue.montreISTA.DTO.ProductResponseDTO@6e0447a0, quantity=3, created_at=2022-08-24T11:19:54.244998+07:00[Asia/Bangkok], modified_at=2022-08-24T11:19:54.244998+07:00[Asia/Bangkok]}, WishlistResponseDTO{wishlist_id=10, buyer_id=5, product_id=com.codeblue.montreISTA.DTO.ProductResponseDTO@2d68c8aa, quantity=2, created_at=2022-08-24T11:19:54.244998+07:00[Asia/Bangkok], modified_at=2022-08-24T11:19:54.244998+07:00[Asia/Bangkok]}]
+2022-08-24 12:47:47,593 INFO com.codeblue.montreISTA.service.implement.WishlistServiceImpl [http-nio-8090-exec-6] ====================Logger End Get Buyer By Username ====================
+2022-08-24 12:48:12,140 ERROR com.codeblue.montreISTA.service.implement.CartServiceImpl [http-nio-8090-exec-2] ==================== Logger Start Error ====================
+2022-08-24 12:48:12,140 ERROR com.codeblue.montreISTA.service.implement.CartServiceImpl [http-nio-8090-exec-2] Carts not found
+2022-08-24 12:48:12,140 ERROR com.codeblue.montreISTA.service.implement.CartServiceImpl [http-nio-8090-exec-2] ==================== Logger End Error ====================
+2022-08-24 12:48:19,291 ERROR com.codeblue.montreISTA.service.implement.CartServiceImpl [http-nio-8090-exec-3] ==================== Logger Start Error ====================
+2022-08-24 12:48:19,292 ERROR com.codeblue.montreISTA.service.implement.CartServiceImpl [http-nio-8090-exec-3] Product not Found
+2022-08-24 12:48:19,293 ERROR com.codeblue.montreISTA.service.implement.CartServiceImpl [http-nio-8090-exec-3] ==================== Logger End Error ====================
+2022-08-24 12:48:31,139 INFO com.codeblue.montreISTA.service.implement.CartServiceImpl [http-nio-8090-exec-1] ====================Logger Start Create ====================
+2022-08-24 12:48:31,139 INFO com.codeblue.montreISTA.service.implement.CartServiceImpl [http-nio-8090-exec-1] com.codeblue.montreISTA.DTO.CartResponseDTO@27e5d303
+2022-08-24 12:48:31,139 INFO com.codeblue.montreISTA.service.implement.CartServiceImpl [http-nio-8090-exec-1] ====================Logger End Create ====================
+2022-08-24 12:48:35,559 INFO com.codeblue.montreISTA.service.implement.CartServiceImpl [http-nio-8090-exec-4] ====================Logger Start Get By Id ====================
+2022-08-24 12:48:35,560 INFO com.codeblue.montreISTA.service.implement.CartServiceImpl [http-nio-8090-exec-4] [com.codeblue.montreISTA.DTO.CartResponseDTO@72d0f7c6]
+2022-08-24 12:48:35,560 INFO com.codeblue.montreISTA.service.implement.CartServiceImpl [http-nio-8090-exec-4] ====================Logger End Get By Id ====================
+2022-08-24 12:48:43,119 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-5] ====================Logger Start Get By Buyer ====================
+2022-08-24 12:48:43,123 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-5] OrderResponseCartDTO{orderId=1, total_price=2732000, cart=[com.codeblue.montreISTA.DTO.OrderCartDTO@770134ac], is_payment=Unpaid}
+2022-08-24 12:48:43,123 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-5] ====================Logger End Get By Buyer ====================
+2022-08-24 12:48:59,803 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-6] ====================Logger Start Update====================
+2022-08-24 12:48:59,819 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-6] OrderResponseDTO{orderId=1, listCart=[com.codeblue.montreISTA.DTO.CartResponseDTO@308af94d], payment_id=5, payment_name='OVO', shipping_id=1, shipping_name='JNE', total_price=2732000, destination_name='bayu aji infosys', destination_address='Jalan pegangsaan 23, RT/RW 01/03, kel.cawang, kec. kramatjati, jakarta timur', destination_phone='080799900', zip_code='23092', createdAt=2022-08-24T12:48:31.102792+07:00[Asia/Bangkok], modifiedAt=2022-08-24T12:48:59.786957700+07:00[Asia/Bangkok]}
+2022-08-24 12:48:59,819 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-6] ====================Logger End Update====================
+2022-08-24 12:49:08,619 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-7] ====================Logger Start Get By Buyer ====================
+2022-08-24 12:49:08,620 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-7] OrderResponseCartDTO{orderId=1, total_price=2732000, cart=[com.codeblue.montreISTA.DTO.OrderCartDTO@1cb888b], is_payment=Unpaid}
+2022-08-24 12:49:08,620 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-7] ====================Logger End Get By Buyer ====================
+2022-08-24 12:49:15,963 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-10] ==================== Logger Start Error ====================
+2022-08-24 12:49:15,963 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-10] Please pay first !
+2022-08-24 12:49:15,964 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-10] ==================== Logger End Error ====================
+2022-08-24 12:49:23,401 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-8] ==================== Logger Start Get All Product Category     ====================
+2022-08-24 12:49:23,402 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:49:23,403 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-8] Product Category ID     : 2
+2022-08-24 12:49:23,403 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-8] Category ID             : com.codeblue.montreISTA.entity.Category@63627d69
+2022-08-24 12:49:23,420 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8090-exec-8] Resolved [org.springframework.web.util.NestedServletException: Handler dispatch failed; nested exception is java.lang.StackOverflowError]
+2022-08-24 12:49:28,967 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 12:49:28,983 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 12:49:28,983 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 12:49:31,933 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 12:49:31,933 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 16400 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 12:49:31,933 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 12:49:31,994 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 12:49:31,994 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 12:49:33,651 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 12:49:33,823 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 151 ms. Found 16 JPA repository interfaces.
+2022-08-24 12:49:34,882 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 12:49:34,897 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 12:49:34,897 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 12:49:34,897 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 12:49:35,022 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 12:49:35,022 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3028 ms
+2022-08-24 12:49:35,242 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 12:49:35,305 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 12:49:35,477 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 12:49:35,618 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 12:49:35,743 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 12:49:35,774 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 12:49:37,142 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 12:49:37,158 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 12:49:39,043 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 12:49:39,915 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@64f3e563, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6c36dca1, org.springframework.security.web.context.SecurityContextPersistenceFilter@6e35271b, org.springframework.security.web.header.HeaderWriterFilter@11d50518, org.springframework.web.filter.CorsFilter@5209841, org.springframework.security.web.authentication.logout.LogoutFilter@34ac5b47, com.codeblue.montreISTA.security.AuthTokenFilter@379b000d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2fa71e0c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3f30a696, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@78351fc8, org.springframework.security.web.session.SessionManagementFilter@4f551756, org.springframework.security.web.access.ExceptionTranslationFilter@7bfa3ee2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5c1644e7]
+2022-08-24 12:49:40,527 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 12:49:40,558 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 12:49:40,589 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 12:49:40,605 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 9.225 seconds (JVM running for 9.88)
+2022-08-24 12:49:48,976 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 12:49:48,977 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-2] Initializing Servlet 'dispatcherServlet'
+2022-08-24 12:49:48,978 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-2] Completed initialization in 1 ms
+2022-08-24 12:49:50,202 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-9] Init duration for springdoc-openapi is: 887 ms
+2022-08-24 12:49:57,793 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-10] ==================== Logger Start Get All Product Category     ====================
+2022-08-24 12:49:57,795 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-10] -------------------------
+2022-08-24 12:49:57,796 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-10] Product Category ID     : 2
+2022-08-24 12:49:57,796 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-10] Category ID             : com.codeblue.montreISTA.entity.Category@2b0d5284
+2022-08-24 12:49:57,827 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8090-exec-10] Resolved [org.springframework.web.util.NestedServletException: Handler dispatch failed; nested exception is java.lang.StackOverflowError]
+2022-08-24 12:51:24,587 ERROR com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-1] ==================== Logger Start Error ====================
+2022-08-24 12:51:24,587 ERROR com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-1] Product Category not found
+2022-08-24 12:51:24,587 ERROR com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-1] ==================== Logger End Error ====================
+2022-08-24 12:51:45,392 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-6] ====================Logger Start Get product id ====================
+2022-08-24 12:51:45,393 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-6] [com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@1098540d, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@746288b8, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@3fc120fc]
+2022-08-24 12:51:45,394 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-6] ====================Logger End Get product id ====================
+2022-08-24 12:51:54,888 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] ==================== Logger Start Get All Shipping    ====================
+2022-08-24 12:51:54,889 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,889 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 1
+2022-08-24 12:51:54,889 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : JNE
+2022-08-24 12:51:54,890 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 20000
+2022-08-24 12:51:54,890 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,891 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 2
+2022-08-24 12:51:54,891 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : sicepat
+2022-08-24 12:51:54,891 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 40000
+2022-08-24 12:51:54,891 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,891 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 3
+2022-08-24 12:51:54,892 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : tiki
+2022-08-24 12:51:54,892 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 50000
+2022-08-24 12:51:54,892 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,892 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 4
+2022-08-24 12:51:54,893 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : posindonesia
+2022-08-24 12:51:54,893 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 30000
+2022-08-24 12:51:54,893 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,893 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 5
+2022-08-24 12:51:54,893 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : indahcargo
+2022-08-24 12:51:54,893 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 10000
+2022-08-24 12:51:54,893 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,894 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 6
+2022-08-24 12:51:54,894 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : dakota
+2022-08-24 12:51:54,895 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 25000
+2022-08-24 12:51:54,895 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,895 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 7
+2022-08-24 12:51:54,895 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : anteraja
+2022-08-24 12:51:54,896 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 40000
+2022-08-24 12:51:54,896 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,896 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 8
+2022-08-24 12:51:54,897 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : shopeeExpress
+2022-08-24 12:51:54,897 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 50000
+2022-08-24 12:51:54,897 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,897 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 9
+2022-08-24 12:51:54,897 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : lionparcel
+2022-08-24 12:51:54,897 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 20000
+2022-08-24 12:51:54,897 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,897 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 10
+2022-08-24 12:51:54,897 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : tokopediaexpress
+2022-08-24 12:51:54,898 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 10000
+2022-08-24 12:51:54,898 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,898 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 11
+2022-08-24 12:51:54,898 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : JNT
+2022-08-24 12:51:54,898 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 40000
+2022-08-24 12:51:54,898 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,899 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 12
+2022-08-24 12:51:54,899 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : Aliexpreess
+2022-08-24 12:51:54,899 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 50000
+2022-08-24 12:51:54,899 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,899 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 13
+2022-08-24 12:51:54,899 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : gosend
+2022-08-24 12:51:54,899 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 20000
+2022-08-24 12:51:54,899 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,900 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 14
+2022-08-24 12:51:54,900 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : alibaba
+2022-08-24 12:51:54,900 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 20000
+2022-08-24 12:51:54,900 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] -------------------------
+2022-08-24 12:51:54,900 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Shipping ID  : 15
+2022-08-24 12:51:54,900 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Name         : ubersend
+2022-08-24 12:51:54,901 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] Price        : 60000
+2022-08-24 12:51:54,901 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8] ==================== Logger End Get All Shipping    ====================
+2022-08-24 12:51:54,901 INFO com.codeblue.montreISTA.service.implement.ShippingServiceImpl [http-nio-8090-exec-8]  
+2022-08-24 12:52:00,774 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] ==================== Logger Start Get All Payments     ====================
+2022-08-24 12:52:00,775 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,775 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 1
+2022-08-24 12:52:00,775 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : BNI
+2022-08-24 12:52:00,775 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 2abc567h
+2022-08-24 12:52:00,775 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,775 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 2
+2022-08-24 12:52:00,776 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : BCA
+2022-08-24 12:52:00,776 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 2ab51001
+2022-08-24 12:52:00,777 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,777 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 3
+2022-08-24 12:52:00,777 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : BRI
+2022-08-24 12:52:00,777 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 2abh5h70
+2022-08-24 12:52:00,777 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,777 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 4
+2022-08-24 12:52:00,777 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : GoPay
+2022-08-24 12:52:00,777 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 2aps55yy
+2022-08-24 12:52:00,778 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,778 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 5
+2022-08-24 12:52:00,778 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : OVO
+2022-08-24 12:52:00,778 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 2gg5657
+2022-08-24 12:52:00,778 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,778 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 6
+2022-08-24 12:52:00,779 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : GooglePay
+2022-08-24 12:52:00,779 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 67ii567
+2022-08-24 12:52:00,779 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,779 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 7
+2022-08-24 12:52:00,779 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : Mandi
+2022-08-24 12:52:00,779 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 2abu6900
+2022-08-24 12:52:00,779 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,779 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 8
+2022-08-24 12:52:00,779 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : ShopeePay
+2022-08-24 12:52:00,779 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 9ugh909
+2022-08-24 12:52:00,779 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,779 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 9
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : Permata
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 42aopo008
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 10
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : CIMB
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 3yu7708
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 11
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : BSI
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 2ogr882
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 12
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : BTN
+2022-08-24 12:52:00,780 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 67y7uh56
+2022-08-24 12:52:00,781 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,781 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 13
+2022-08-24 12:52:00,781 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : CITIBANK
+2022-08-24 12:52:00,781 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 5fh2abc8
+2022-08-24 12:52:00,781 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,781 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 14
+2022-08-24 12:52:00,781 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : BANK ANZ
+2022-08-24 12:52:00,781 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 7vuu99g
+2022-08-24 12:52:00,781 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] -------------------------
+2022-08-24 12:52:00,782 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment ID    : 15
+2022-08-24 12:52:00,782 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Name          : BANK YOGYA
+2022-08-24 12:52:00,782 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] Payment Code  : 27axgyg
+2022-08-24 12:52:00,782 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7] ==================== Logger End Get All Payments     ====================
+2022-08-24 12:52:00,782 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-7]  
+2022-08-24 12:52:04,530 INFO com.codeblue.montreISTA.service.implement.CategoryServiceImpl [http-nio-8090-exec-9] ==================== Logger Start Get All ====================
+2022-08-24 12:52:04,535 INFO com.codeblue.montreISTA.service.implement.CategoryServiceImpl [http-nio-8090-exec-9] CategoryId : 1 Name : WATCHES
+2022-08-24 12:52:04,536 INFO com.codeblue.montreISTA.service.implement.CategoryServiceImpl [http-nio-8090-exec-9] CategoryId : 2 Name : WOMEN WATCHES
+2022-08-24 12:52:04,536 INFO com.codeblue.montreISTA.service.implement.CategoryServiceImpl [http-nio-8090-exec-9] CategoryId : 3 Name : MEN WATCHES
+2022-08-24 12:52:04,536 INFO com.codeblue.montreISTA.service.implement.CategoryServiceImpl [http-nio-8090-exec-9] CategoryId : 4 Name : STRAPS
+2022-08-24 12:52:04,536 INFO com.codeblue.montreISTA.service.implement.CategoryServiceImpl [http-nio-8090-exec-9] CategoryId : 5 Name : JEWELRY
+2022-08-24 12:52:04,536 INFO com.codeblue.montreISTA.service.implement.CategoryServiceImpl [http-nio-8090-exec-9] ==================== Logger End Get All ====================
+2022-08-24 12:52:12,645 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 12:52:12,645 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 12:52:12,645 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 12:53:36,820 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 12:53:36,834 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 13708 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 12:53:36,834 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 12:53:36,890 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 12:53:36,890 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 12:53:38,182 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 12:53:38,370 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 173 ms. Found 16 JPA repository interfaces.
+2022-08-24 12:53:40,056 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 12:53:40,072 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 12:53:40,072 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 12:53:40,088 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 12:53:40,252 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 12:53:40,253 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3363 ms
+2022-08-24 12:53:40,535 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 12:53:40,629 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 12:53:40,930 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 12:53:41,076 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 12:53:41,360 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 12:53:41,386 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 12:53:42,816 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 12:53:42,832 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 12:53:44,892 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 12:53:45,853 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1688abf4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@62c73a58, org.springframework.security.web.context.SecurityContextPersistenceFilter@69575f45, org.springframework.security.web.header.HeaderWriterFilter@6be29e03, org.springframework.web.filter.CorsFilter@357ea0e8, org.springframework.security.web.authentication.logout.LogoutFilter@544cee4, com.codeblue.montreISTA.security.AuthTokenFilter@75eeddb1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7d802fc0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@d09d40b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d61b8e0, org.springframework.security.web.session.SessionManagementFilter@2084388a, org.springframework.security.web.access.ExceptionTranslationFilter@59bde01b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@76aff281]
+2022-08-24 12:53:46,461 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 12:53:46,477 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 12:53:46,524 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 12:53:46,539 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 10.241 seconds (JVM running for 11.03)
+2022-08-24 12:53:53,757 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 12:53:53,758 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-2] Initializing Servlet 'dispatcherServlet'
+2022-08-24 12:53:53,759 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-2] Completed initialization in 1 ms
+2022-08-24 12:54:10,656 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-1] ====================Logger Start Login ====================
+2022-08-24 12:54:10,657 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-1] com.codeblue.montreISTA.DTO.JwtResponse@4c4b12f1
+2022-08-24 12:54:10,658 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-1] ====================Logger End Login ====================
+2022-08-24 12:54:26,864 INFO com.codeblue.montreISTA.service.implement.WishlistServiceImpl [http-nio-8090-exec-4] ====================Logger Start Get Buyer By Username ====================
+2022-08-24 12:54:26,871 INFO com.codeblue.montreISTA.service.implement.WishlistServiceImpl [http-nio-8090-exec-4] [WishlistResponseDTO{wishlist_id=7, buyer_id=5, product_id=com.codeblue.montreISTA.DTO.ProductResponseDTO@1517e389, quantity=3, created_at=2022-08-24T11:19:54.244998+07:00[Asia/Bangkok], modified_at=2022-08-24T11:19:54.244998+07:00[Asia/Bangkok]}, WishlistResponseDTO{wishlist_id=10, buyer_id=5, product_id=com.codeblue.montreISTA.DTO.ProductResponseDTO@46676b32, quantity=2, created_at=2022-08-24T11:19:54.244998+07:00[Asia/Bangkok], modified_at=2022-08-24T11:19:54.244998+07:00[Asia/Bangkok]}]
+2022-08-24 12:54:26,872 INFO com.codeblue.montreISTA.service.implement.WishlistServiceImpl [http-nio-8090-exec-4] ====================Logger End Get Buyer By Username ====================
+2022-08-24 12:57:50,169 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-3] ==================== Logger Start Get All Product Category     ====================
+2022-08-24 12:57:50,169 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-3] -------------------------
+2022-08-24 12:57:50,169 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-3] Product Category ID     : 2
+2022-08-24 12:57:50,169 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-3] Category ID             : com.codeblue.montreISTA.entity.Category@368a722b
+2022-08-24 12:57:54,791 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 12:57:54,791 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 12:57:54,824 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 13:00:44,569 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 13:00:44,569 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 15940 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 13:00:44,569 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 13:00:44,622 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 13:00:44,622 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 13:00:45,931 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 13:00:46,118 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 180 ms. Found 16 JPA repository interfaces.
+2022-08-24 13:00:47,169 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 13:00:47,200 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 13:00:47,200 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 13:00:47,200 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 13:00:47,340 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 13:00:47,340 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 2718 ms
+2022-08-24 13:00:47,606 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 13:00:47,684 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 13:00:47,889 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 13:00:48,030 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 13:00:48,186 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 13:00:48,202 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 13:00:49,648 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 13:00:49,648 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 13:00:51,574 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 13:00:52,432 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2b349911, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2f4659a8, org.springframework.security.web.context.SecurityContextPersistenceFilter@60fa266f, org.springframework.security.web.header.HeaderWriterFilter@6e35271b, org.springframework.web.filter.CorsFilter@4fbeb1e0, org.springframework.security.web.authentication.logout.LogoutFilter@37730390, com.codeblue.montreISTA.security.AuthTokenFilter@10686f82, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@578ddc80, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@57b8ff09, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1e8187e, org.springframework.security.web.session.SessionManagementFilter@451f7b6f, org.springframework.security.web.access.ExceptionTranslationFilter@1136e156, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6db016ac]
+2022-08-24 13:00:52,936 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 13:00:52,952 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 13:00:52,983 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 13:00:52,999 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 8.953 seconds (JVM running for 9.633)
+2022-08-24 13:01:58,853 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 13:01:58,854 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 13:01:58,855 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 1 ms
+2022-08-24 13:01:59,157 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-1] ==================== Logger Start Get All Product Category     ====================
+2022-08-24 13:01:59,158 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-1] -------------------------
+2022-08-24 13:01:59,159 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-1] Product Category ID     : 2
+2022-08-24 13:01:59,160 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-1] Category ID             : com.codeblue.montreISTA.entity.Category@5b719a9c
+2022-08-24 13:01:59,248 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8090-exec-1] Resolved [org.springframework.web.util.NestedServletException: Handler dispatch failed; nested exception is java.lang.StackOverflowError]
+2022-08-24 13:02:10,697 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-5] ====================Logger Start Get productname ====================
+2022-08-24 13:02:10,697 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-5] [com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@7a0adb44, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@495c291c, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@194bb3c6, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@1ebcf8cf, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@3240d0a7, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@1afc0b3a, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@5e6d4e20, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@27eeafa2, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@131f8610, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@69c0fa92, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@5d68a5c4, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@fa99274, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@6069aa97, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@e13d862, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@16cd1ae1]
+2022-08-24 13:02:10,697 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-5] ====================Logger End Get productname ====================
+2022-08-24 13:02:19,644 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-3] ====================Logger Start Get By Id ====================
+2022-08-24 13:02:19,646 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-3] [com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@4b4143bd, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@510781df, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@716a7028, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@1f1a42ee, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@5e07a61b, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@3363cd7d]
+2022-08-24 13:02:19,646 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-3] ====================Logger End Get By Id ====================
+2022-08-24 13:02:28,705 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-2] ====================Logger Start Get categoryname ====================
+2022-08-24 13:02:28,706 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-2] [com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@695257ba, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@22021fd4, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@7e600b70, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@42b3f48a, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@39a794e1, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@b69c0be, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@75ac6128, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@2866dcb3, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@2de355c2, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@684a0cf0, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@7ef995f0]
+2022-08-24 13:02:28,707 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-2] ====================Logger End Get categoryname ====================
+2022-08-24 13:05:12,349 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 13:05:12,349 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 13:05:12,365 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 13:05:19,040 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 13:05:19,040 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 6552 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 13:05:19,040 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 13:05:19,097 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 13:05:19,097 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 13:05:20,191 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 13:05:20,347 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 148 ms. Found 16 JPA repository interfaces.
+2022-08-24 13:05:21,269 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 13:05:21,285 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 13:05:21,285 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 13:05:21,285 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 13:05:21,441 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 13:05:21,441 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 2344 ms
+2022-08-24 13:05:21,676 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 13:05:21,723 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 13:05:21,926 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 13:05:22,035 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 13:05:22,176 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 13:05:22,191 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 13:05:23,510 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 13:05:23,526 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 13:05:25,189 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 13:05:25,982 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3d763159, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@539099aa, org.springframework.security.web.context.SecurityContextPersistenceFilter@38d50a44, org.springframework.security.web.header.HeaderWriterFilter@4e755354, org.springframework.web.filter.CorsFilter@1346e2a9, org.springframework.security.web.authentication.logout.LogoutFilter@5c764748, com.codeblue.montreISTA.security.AuthTokenFilter@3416f423, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@93d722c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2fa71e0c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6348d68b, org.springframework.security.web.session.SessionManagementFilter@5090c4c9, org.springframework.security.web.access.ExceptionTranslationFilter@30fa234e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@66ce49c8]
+2022-08-24 13:05:26,453 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 13:05:26,484 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 13:05:26,500 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 13:05:26,515 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 8.086 seconds (JVM running for 8.886)
+2022-08-24 13:05:31,582 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 13:05:31,582 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 13:05:31,584 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 2 ms
+2022-08-24 13:05:31,932 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-1] ==================== Logger Start Get All Product Category     ====================
+2022-08-24 13:05:31,933 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-1] [com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@11cf1ca1, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@1b8f5c43, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@4bffa949, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@6503ac0f, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@cc08e1a, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@6dcca685, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@5b4fff94, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@23d44326, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@2b6cb918, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@239cda7e, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@70b22c6, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@6c78c72, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@48ad41cb, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@da72d8a, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@536423ea, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@697a81e8, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@4bfb3615, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@7f04899d]
+2022-08-24 13:05:31,934 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-1] ==================== Logger End Get All Product Category   ====================
+2022-08-24 13:05:31,934 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-1]  
+2022-08-24 13:05:57,149 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 13:05:57,149 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 13:05:57,149 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 13:06:14,577 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 13:06:14,577 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3 on LAPTOP-40MBARLA with PID 22552 (C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa\target\classes started by ASUS in C:\Users\ASUS\Documents\BootcampJava\FinalProject\monstreISTa)
+2022-08-24 13:06:14,577 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 13:06:14,652 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 13:06:14,652 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 13:06:15,795 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 13:06:15,969 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 169 ms. Found 16 JPA repository interfaces.
+2022-08-24 13:06:16,895 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 13:06:16,921 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 13:06:16,922 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 13:06:16,922 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 13:06:17,047 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 13:06:17,048 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 2396 ms
+2022-08-24 13:06:17,282 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 13:06:17,351 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 13:06:17,586 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 13:06:17,704 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 13:06:17,851 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 13:06:17,867 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 13:06:19,216 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 13:06:19,221 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 13:06:20,971 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 13:06:21,911 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3d763159, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@539099aa, org.springframework.security.web.context.SecurityContextPersistenceFilter@5af389e9, org.springframework.security.web.header.HeaderWriterFilter@6cb21a95, org.springframework.web.filter.CorsFilter@1346e2a9, org.springframework.security.web.authentication.logout.LogoutFilter@664062cf, com.codeblue.montreISTA.security.AuthTokenFilter@43e24eb9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@73ca102, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@521c9896, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6348d68b, org.springframework.security.web.session.SessionManagementFilter@4e755354, org.springframework.security.web.access.ExceptionTranslationFilter@3a8c91a9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@66ce49c8]
+2022-08-24 13:06:22,500 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 13:06:22,524 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 13:06:22,560 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 13:06:22,575 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 8.707 seconds (JVM running for 9.5)
+2022-08-24 13:06:32,247 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 13:06:32,248 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-3] Initializing Servlet 'dispatcherServlet'
+2022-08-24 13:06:32,249 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-3] Completed initialization in 1 ms
+2022-08-24 13:06:32,579 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-3] ====================Logger Start Get By Buyer ====================
+2022-08-24 13:06:32,585 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-3] OrderResponseCartDTO{orderId=1, total_price=2732000, cart=[com.codeblue.montreISTA.DTO.OrderCartDTO@13ad8fb2], is_payment=Unpaid}
+2022-08-24 13:06:32,586 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-3] ====================Logger End Get By Buyer ====================
+2022-08-24 13:06:37,524 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-2] ====================Logger Start Update====================
+2022-08-24 13:06:37,538 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-2] OrderResponseDTO{orderId=1, listCart=[com.codeblue.montreISTA.DTO.CartResponseDTO@4eacb257], payment_id=5, payment_name='OVO', shipping_id=1, shipping_name='JNE', total_price=2732000, destination_name='bayu aji infosys', destination_address='Jalan pegangsaan 23, RT/RW 01/03, kel.cawang, kec. kramatjati, jakarta timur', destination_phone='080799900', zip_code='23092', createdAt=2022-08-24T12:48:31.102792+07:00[Asia/Bangkok], modifiedAt=2022-08-24T12:48:59.786958+07:00[Asia/Bangkok]}
+2022-08-24 13:06:37,539 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-2] ====================Logger End Update====================
+2022-08-24 13:06:41,975 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-1] ====================Logger Start Get By Buyer ====================
+2022-08-24 13:06:41,975 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-1] OrderResponseCartDTO{orderId=1, total_price=2732000, cart=[com.codeblue.montreISTA.DTO.OrderCartDTO@29263d6a], is_payment=Unpaid}
+2022-08-24 13:06:41,976 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-1] ====================Logger End Get By Buyer ====================
+2022-08-24 13:06:45,867 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-4] ====================Logger Start Get By Buyer ====================
+2022-08-24 13:06:45,868 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-4] OrderResponseCartDTO{orderId=1, total_price=2732000, cart=[com.codeblue.montreISTA.DTO.OrderCartDTO@5b3c58aa], is_payment=Paid}
+2022-08-24 13:06:45,868 INFO com.codeblue.montreISTA.service.implement.OrderServiceImpl [http-nio-8090-exec-4] ====================Logger End Get By Buyer ====================
+2022-08-24 13:06:55,286 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] ====================Logger Start Get Checkout Order====================
+2022-08-24 13:06:55,286 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] [com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@6b87abce]
+2022-08-24 13:06:55,286 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-5] ====================Logger End Get Checkout Order ====================
+2022-08-24 13:07:02,010 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] ==================== Logger Start Error ====================
+2022-08-24 13:07:02,011 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] You don't have product
+2022-08-24 13:07:02,012 ERROR com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-6] ==================== Logger End Error ====================
+2022-08-24 13:07:06,968 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] ====================Logger Start Get Transactions Detail Buyer====================
+2022-08-24 13:07:06,969 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] [com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO@73ea1737]
+2022-08-24 13:07:06,969 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-7] ====================Logger End Get Transactions Detail Buyer====================
+2022-08-24 13:07:11,645 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] ====================Logger Start Get Transactions Buyer====================
+2022-08-24 13:07:11,646 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] [com.codeblue.montreISTA.DTO.TransactionResponseDTO@772e078]
+2022-08-24 13:07:11,646 INFO com.codeblue.montreISTA.service.implement.TransactionServiceImpl [http-nio-8090-exec-8] ====================Logger End Get Transactions Buyer====================
+2022-08-24 13:07:21,330 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-9] ====================Logger Start Get product id ====================
+2022-08-24 13:07:21,331 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-9] [com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@282932dc, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@31fd0955, com.codeblue.montreISTA.DTO.ProductCategoryResponseDTO@41c344d6]
+2022-08-24 13:07:21,333 INFO com.codeblue.montreISTA.service.implement.ProductCategoryServiceImp [http-nio-8090-exec-9] ====================Logger End Get product id ====================
+2022-08-24 13:07:29,240 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-10] ====================Logger Start Get By Id ====================
+2022-08-24 13:07:29,243 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-10] PaymentResponseDTO{Payment_id=2, Name='BCA', Payment_Code=2ab51001}
+2022-08-24 13:07:29,244 INFO com.codeblue.montreISTA.service.implement.PaymentServiceImpl [http-nio-8090-exec-10] ====================Logger End Get By Id ====================
+2022-08-24 13:07:39,941 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 13:07:39,941 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-08-24 13:07:39,941 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
