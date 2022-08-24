@@ -27,6 +27,7 @@ public class AuthenticationController {
     public ResponseEntity<Object> authenticateUser(@Valid @RequestBody LoginUserRequest userRequest) throws Exception {
             return userService.authenticationUser(userRequest);
     }
+
     @PostMapping("/sign-up")
     public ResponseEntity<Object> createUser(@RequestBody RegistrationDTO registrationRequest) throws Exception {
            return userService.registrationUser(registrationRequest);
