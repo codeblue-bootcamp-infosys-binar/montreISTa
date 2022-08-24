@@ -42,6 +42,9 @@ public class TransactionServiceImpl implements TransactionService {
             List<TransactionResponseDTO> transactions = transactionRepository.findAll(pageable).stream()
                     .map(HistoryTransaction::convertToResponse)
                     .collect(Collectors.toList());
+            if(transactions.isEmpty()){
+                throw new Exception("Transactions Not Found");
+            }
             logger.info("==================== Logger Start Get All Transactions     ====================");
             for (TransactionResponseDTO transactionData : transactions) {
                 logger.info("-------------------------");
@@ -73,6 +76,9 @@ public class TransactionServiceImpl implements TransactionService {
             List<TransactionDetailResponseDTO> results = transactionDetailsRepository.findAll(pageable).stream()
                     .map(HistoryTransactionDetail::convertToResponse)
                     .collect(Collectors.toList());
+            if(results.isEmpty()){
+                throw new Exception("Transactions Details Not Found");
+            }
             logger.info(Line + "Logger Start Get Transaction Detail" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transaction Detail" + Line);
