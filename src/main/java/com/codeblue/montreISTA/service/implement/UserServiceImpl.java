@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     PasswordEncoder encoder;
+    
     @Autowired
     JwtUtils jwtUtils;
 
@@ -53,17 +54,8 @@ public class UserServiceImpl implements UserService {
     private static final String Line = "====================";
 
     @Override
-    public ResponseEntity<Object> authenticationUser(LoginUserRequest userRequest)throws Exception{
-
+    public ResponseEntity<Object> authenticationUser(LoginUserRequest userRequest) throws Exception {
         try {
-
-            Optional<User> username= userRepository.findByUsername(userRequest.getUsername());
-            Optional<User> password= userRepository.findByUsername(userRequest.getPassword());
-
-            if(username.isEmpty() || password.isEmpty()){
-                throw new Exception("Username or Password is incorrect");
-            }
-
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -88,7 +80,7 @@ public class UserServiceImpl implements UserService {
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
 
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Login!");
+            return ResponseHandler.generateResponse("Username or Password is incorrect", HttpStatus.BAD_REQUEST, "Failed Login!");
         }
     }
 
@@ -96,18 +88,14 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<Object> findAllUser() {
 
         try {
-
             List<User> users = userRepository.findAllByOrderByUserIdAsc();
             List<UserResponseDTO> usersDTO = new ArrayList<>();
-
             logger.info("==================== Logger Start Get All Users     ====================");
-
             for (User user : users) {
                 List<Role> roles = roleRepository.findByUsersUserUserId(user.getUserId());
                 List<String> role = roles.stream().map(Role::getRoleName).collect(Collectors.toList());
                 UserResponseDTO userDTO = user.convertToResponse(role);
                 usersDTO.add(userDTO);
-
                 logger.info("-------------------------");
                 logger.info("User ID    : " + user.getUserId());
                 logger.info("Username   : " + user.getUsername());
@@ -118,14 +106,10 @@ public class UserServiceImpl implements UserService {
                 logger.info("Photo      : " + user.getPhoto());
                 logger.info("Role       : " + role);
             }
-
             logger.info("==================== Logger End Get All Users    ====================");
             logger.info(" ");
-
             return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, usersDTO);
-
         } catch (Exception e) {
-
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
@@ -186,7 +170,6 @@ public class UserServiceImpl implements UserService {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed find My Profile");
         }
     }
-
 
 
     @Override
@@ -276,11 +259,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+
     public ResponseEntity<Object> uploadPhotoProfile(Authentication authentication, MultipartFile file)  {
 
         try{
 
             User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Please sign up"));
+            
             String url = cloudinaryService.uploadFile(file);
             user.setPhoto(url);
             User userSave = userRepository.save(user);
@@ -308,6 +293,7 @@ public class UserServiceImpl implements UserService {
 
         try{
             User user = userRepository.findById(id).orElseThrow(()->new Exception("User not found"));
+            
             List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
 
             boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
@@ -327,7 +313,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public void checkRole(List<String> requestRole){
-
         requestRole.forEach(role-> {
             try {
                 roleRepository.findByRoleNameIgnoreCase(role).orElseThrow(() -> new Exception("Role not found"));
@@ -338,15 +323,13 @@ public class UserServiceImpl implements UserService {
     }
 
     public UserResponseDTO convertResponse(User userSave){
-
         List<Role> rolesUser = roleRepository.findByUsersUserUserId(userSave.getUserId());
         List<String> roleDTO = rolesUser.stream().map(Role::getRoleName).collect(Collectors.toList());
-
         return userSave.convertToResponse(roleDTO);
     }
 
     public void newRole(User user) throws Exception {
-
+    
         Role roleGet = roleRepository.findByRoleNameIgnoreCase("ROLE_USER").orElseThrow(()->new Exception("Role not found"));
         UserRole addRole = new UserRole();
 
@@ -357,7 +340,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public void addRole(List<String> requestRole, User user) throws Exception {
-
         if(requestRole.isEmpty()) {
 
             Role roleUser = roleRepository.findByRoleNameIgnoreCase("ROLE_USER").orElseThrow(()->new Exception("Role not found"));
