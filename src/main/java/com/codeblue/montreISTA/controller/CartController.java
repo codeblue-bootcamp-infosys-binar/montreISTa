@@ -18,9 +18,6 @@ public class CartController {
 
     private final CartService cartService;
 
-
-
-
     @GetMapping("/user/my-cart/buyer")
     public ResponseEntity<Object> findByBuyer(Authentication authentication) throws Exception {
             return cartService.findByBuyer(authentication.getName());
@@ -35,7 +32,7 @@ public class CartController {
 
     @PostMapping("/user/add-to-cart")
     public ResponseEntity<Object> postCart(@RequestBody CartRequestDTO cart, Authentication authentication) throws Exception {
-            return cartService.createCart(cart, authentication);
+            return cartService.createCartResponse(cart, authentication);
     }
 
     @PostMapping("/user/wishlist-to-cart")

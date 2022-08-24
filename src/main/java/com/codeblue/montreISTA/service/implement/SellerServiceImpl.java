@@ -1,5 +1,6 @@
 package com.codeblue.montreISTA.service.implement;
 
+import com.codeblue.montreISTA.DTO.LoginSellerResponseDTO;
 import com.codeblue.montreISTA.DTO.SellerRequestDTO;
 import com.codeblue.montreISTA.DTO.SellerResponseDTO;
 import com.codeblue.montreISTA.controller.SellerController;
@@ -7,6 +8,7 @@ import com.codeblue.montreISTA.entity.Product;
 import com.codeblue.montreISTA.entity.Role;
 import com.codeblue.montreISTA.entity.Seller;
 import com.codeblue.montreISTA.entity.User;
+import com.codeblue.montreISTA.helper.DTOConverter;
 import com.codeblue.montreISTA.helper.Pagination;
 import com.codeblue.montreISTA.repository.ProductRepository;
 import com.codeblue.montreISTA.repository.RoleRepository;
@@ -42,7 +44,7 @@ public class SellerServiceImpl implements SellerService {
     private final ProductRepository productRepository;
     private final CloudinaryService cloudinaryService;
     private final RoleRepository roleRepository;
-
+    private final DTOConverter dtoConverter;
     @Override
     public ResponseEntity<Object> findAllSeller() {
         try {
@@ -101,10 +103,11 @@ public class SellerServiceImpl implements SellerService {
             Seller seller = sellerRequestDTO.convertToEntity(user);
             seller.setStorePhoto("https://www.shutterstock.com/image-vector/shop-icon-store-230619400");
             Seller sellerDTO = sellerRepository.save(seller);
+            SellerResponseDTO result = sellerDTO.convertToResponse();
             logger.info(Line + "Logger Start Create " + Line);
-            logger.info(String.valueOf(sellerDTO));
+            logger.info(String.valueOf(result));
             logger.info(Line + "Logger End Create " + Line);
-            return ResponseHandler.generateResponse("successfully login as seller", HttpStatus.OK, sellerDTO);
+            return ResponseHandler.generateResponse("successfully login as seller", HttpStatus.OK, result);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -119,10 +122,11 @@ public class SellerServiceImpl implements SellerService {
             Seller sellerUpdate = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please login as seller before update seller info"));
             sellerUpdate.setStoreAddress(seller.getStoreAddress());
             sellerUpdate.setStoreName(seller.getStoreName());
+            SellerResponseDTO result = sellerRepository.save(sellerUpdate).convertToResponse();
             logger.info(Line + "Logger Start Update By Id " + Line);
-            logger.info(String.valueOf(sellerUpdate));
+            logger.info(String.valueOf(result));
             logger.info(Line + "Logger End Update By Id " + Line);
-            return ResponseHandler.generateResponse("successfully updated Seller", HttpStatus.OK, sellerUpdate);
+            return ResponseHandler.generateResponse("successfully updated Seller", HttpStatus.OK, result);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -138,10 +142,11 @@ public class SellerServiceImpl implements SellerService {
             String url = cloudinaryService.uploadFile(file);
             seller.setStorePhoto(url);
             Seller sellerSave = sellerRepository.save(seller);
+            SellerResponseDTO result = sellerSave.convertToResponse();
             logger.info(Line + "Logger Start Update Photo " + Line);
-            logger.info(String.valueOf(sellerSave));
+            logger.info(String.valueOf(result));
             logger.info(Line + "Logger End Update Photo " + Line);
-            return ResponseHandler.generateResponse("Success upload photo profile", HttpStatus.OK, sellerSave);
+            return ResponseHandler.generateResponse("Success upload photo profile", HttpStatus.OK, result);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -156,7 +161,8 @@ public class SellerServiceImpl implements SellerService {
             Pageable pageable = Pagination.paginate(page, sort, descending);
             Seller seller = sellerRepository.findByUserUsername(keyword).orElseThrow(() -> new Exception("Create your shop first"));
             List<Product> products = productRepository.findBySellerUserNameIgnoreCaseContaining(keyword, pageable);
-            return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, seller);
+            LoginSellerResponseDTO result = dtoConverter.convertLoginSeller(seller,products);
+            return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, result);
         } catch (Exception e) {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Seller not Found");
         }
@@ -191,10 +197,11 @@ public class SellerServiceImpl implements SellerService {
     public ResponseEntity<Object> findByUsername(String keyword) throws Exception {
         try {
             Seller seller = sellerRepository.findByUserUsername(keyword).orElseThrow(() -> new Exception("Create your shop first"));
+            SellerResponseDTO result = seller.convertToResponse();
             logger.info(Line + "Logger Start Get seller id " + Line);
-            logger.info(String.valueOf(seller));
+            logger.info(String.valueOf(result));
             logger.info(Line + "Logger End Get seller id " + Line);
-            return ResponseHandler.generateResponse("success get seller username", HttpStatus.OK, seller);
+            return ResponseHandler.generateResponse("success get seller username", HttpStatus.OK, result);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());

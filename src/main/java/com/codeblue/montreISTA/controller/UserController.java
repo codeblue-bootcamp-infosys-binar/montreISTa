@@ -1,6 +1,6 @@
 package com.codeblue.montreISTA.controller;
 
-import com.codeblue.montreISTA.DTO.RegistrationDTO;
+import com.codeblue.montreISTA.DTO.UpdateUserDTO;
 import com.codeblue.montreISTA.service.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,7 +25,7 @@ public class UserController {
 
     //UPDATE
     @PutMapping("/user/edit-profile")
-    public ResponseEntity<Object> updateUser(@RequestBody RegistrationDTO user,Authentication authentication) throws Exception {
+    public ResponseEntity<Object> updateUser(@RequestBody UpdateUserDTO user, Authentication authentication) throws Exception {
           return userService.updateUser(user,authentication);
     }
 

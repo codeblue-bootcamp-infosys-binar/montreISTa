@@ -1,30 +1,27 @@
 package com.codeblue.montreISTA.service;
 
-import com.codeblue.montreISTA.DTO.TransactionDetailResponseDTO;
-import com.codeblue.montreISTA.DTO.TransactionResponseDTO;
-import com.codeblue.montreISTA.entity.HistoryTransactionDetail;
-import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-
-import java.util.List;
 
 public interface TransactionService {
 
-    List<TransactionResponseDTO> findAllTransaction(Integer page, String sort, boolean descending);
+    ResponseEntity<Object> findAllTransaction(Integer page, String sort, boolean descending);
 
-    List<TransactionDetailResponseDTO> findAllTransactionDetail(Integer page, String sort, boolean descending);
+    ResponseEntity<Object> findAllTransactionDetail(Integer page, String sort, boolean descending);
 
-    List<TransactionResponseDTO> findByTransactionBuyerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
+    ResponseEntity<Object> findByTransactionBuyerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
 
-    List<TransactionResponseDTO> findByTransactionSellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
+    ResponseEntity<Object> findByTransactionSellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
 
-    List<TransactionDetailResponseDTO> findByTransactionDetailBuyerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
-    List<TransactionDetailResponseDTO> findByTransactionDetailSellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
+    ResponseEntity<Object> findByTransactionDetailBuyerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
 
-    TransactionResponseDTO findByTransactionId(Long id) throws Exception;
-    TransactionDetailResponseDTO findByTransactionDetailId(Long id) throws Exception;
+    ResponseEntity<Object> findByTransactionDetailSellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
 
-    List<TransactionDetailResponseDTO> createTransaction(Authentication authentication) throws Exception;
+    ResponseEntity<Object> findByTransactionId(Long id) throws Exception;
+
+    ResponseEntity<Object> findByTransactionDetailId(Long id) throws Exception;
+
+    ResponseEntity<Object> createTransaction(Authentication authentication) throws Exception;
 
 
 }

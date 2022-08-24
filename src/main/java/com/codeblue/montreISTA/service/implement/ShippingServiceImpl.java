@@ -26,7 +26,6 @@ public class ShippingServiceImpl implements ShippingService {
 
     private final ShippingRepository shippingRepository;
     private static final Logger logger = LoggerFactory.getLogger(ShippingController.class);
-
     private static final String Line = "====================";
 
     @Override
@@ -45,7 +44,9 @@ public class ShippingServiceImpl implements ShippingService {
             }
             logger.info("==================== Logger End Get All Shipping    ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse("successfully retrieved shippings", HttpStatus.OK, shippings);
+            List<ShippingResponseDTO> results = shippings.stream()
+                    .map(Shipping::convertToResponse).toList();
+            return ResponseHandler.generateResponse("successfully retrieved shippings", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.info("==================== Logger Start Get All Shippings    ====================");
             logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Table has no value")));
@@ -62,7 +63,7 @@ public class ShippingServiceImpl implements ShippingService {
                     .orElseThrow(() -> new Exception("Shipping not found"))
                     .convertToResponse();
             logger.info(Line + " Logger Start Get By id Shipping " + Line);
-            logger.info("Update Shipping : " + shipping);
+            logger.info(String.valueOf(shipping));
             logger.info(Line + " Logger End Get By id Shipping " + Line);
             return ResponseHandler.generateResponse("success get by id", HttpStatus.OK, shipping);
         } catch (Exception e) {
@@ -82,10 +83,11 @@ public class ShippingServiceImpl implements ShippingService {
             if (check.isPresent()) {
                 throw new Exception("this name not unique");
             }
+            ShippingResponseDTO result = shippingRepository.save(shipping).convertToResponse();
             logger.info(Line + " Logger Start Create Shipping " + Line);
-            logger.info("Create Shipping : " + shipping);
+            logger.info("Create Shipping : " + result);
             logger.info(Line + " Logger End Create Shipping " + Line);
-            return ResponseHandler.generateResponse("successfully create shipping", HttpStatus.CREATED, shipping);
+            return ResponseHandler.generateResponse("successfully create shipping", HttpStatus.CREATED, result);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -105,10 +107,11 @@ public class ShippingServiceImpl implements ShippingService {
             shipping.setShippingId(id);
             shipping.setName(shippingRequestDTO.getName());
             shipping.setPrice(shippingRequestDTO.getPrice());
+            ShippingResponseDTO result = shippingRepository.save(shipping).convertToResponse();
             logger.info(Line + " Logger Start Update Shipping " + Line);
-            logger.info("Update Shipping : " + shipping);
+            logger.info("Update Shipping : " + result);
             logger.info(Line + " Logger End Update Shipping " + Line);
-            return ResponseHandler.generateResponse("successfully updated Shipping", HttpStatus.CREATED, shipping);
+            return ResponseHandler.generateResponse("successfully updated Shipping", HttpStatus.CREATED, result);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
@@ -121,7 +124,7 @@ public class ShippingServiceImpl implements ShippingService {
     @Override
     public ResponseEntity<Object> deleteShipping(Long id) throws Exception {
         try {
-            Shipping shipping = shippingRepository.findById(id).orElseThrow(() -> new Exception("Shipping not found"));
+            shippingRepository.findById(id).orElseThrow(() -> new Exception("Shipping not found"));
             shippingRepository.deleteById(id);
             logger.info(Line + " Logger Start Delete Shipping " + Line);
             logger.info("Success Delete Shipping by ID");
@@ -142,10 +145,12 @@ public class ShippingServiceImpl implements ShippingService {
             if (shippings.isEmpty()) {
                 throw new Exception("Shipping not found");
             }
+            List<ShippingResponseDTO> results = shippings.stream()
+                    .map(Shipping::convertToResponse).toList();
             logger.info(Line + " Logger Start Get by Shipping Name " + Line);
-            logger.info("Update Shipping : " + shippings);
+            logger.info(String.valueOf(results));
             logger.info(Line + " Logger End Get  by Shipping Name " + Line);
-            return ResponseHandler.generateResponse("successfully get name", HttpStatus.OK, shippings);
+            return ResponseHandler.generateResponse("successfully get name", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());

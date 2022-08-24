@@ -22,8 +22,11 @@ public class BuyerController {
 
     //CREATE
     @GetMapping("/user/buyers/login-as-buyer")
-    public ResponseEntity<Object> createBuyer(Authentication authentication) throws Exception {
-        return buyerService.createBuyer(authentication);
+    public ResponseEntity<Object> createBuyer(Authentication authentication,
+                                              @RequestParam(required = false) String sort,
+                                              @RequestParam(required = false) Integer page,
+                                              @RequestParam(required = false) boolean descending) throws Exception {
+        return buyerService.createBuyer(authentication,page,sort,descending);
     }
 
     //GET ALL

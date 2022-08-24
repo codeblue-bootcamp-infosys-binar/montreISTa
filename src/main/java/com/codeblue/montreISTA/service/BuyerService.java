@@ -12,7 +12,7 @@ public interface BuyerService {
 
     ResponseEntity<Object> findBuyerById(Long id) throws Exception;
 
-    ResponseEntity<Object> createBuyer(Authentication authentication)throws Exception ;
+    ResponseEntity<Object> createBuyer(Authentication authentication,Integer page, String sort, boolean descending)throws Exception ;
 
     ResponseEntity<Object> deleteBuyer(Long id, Authentication authentication)throws Exception;
 
