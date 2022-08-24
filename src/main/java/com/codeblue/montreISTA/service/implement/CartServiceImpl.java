@@ -1,20 +1,29 @@
 package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.*;
+import com.codeblue.montreISTA.controller.CartController;
 import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.repository.*;
+import com.codeblue.montreISTA.response.ResponseHandler;
 import com.codeblue.montreISTA.service.CartService;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class CartServiceImpl implements CartService {
+
+    private static final Logger logger = LoggerFactory.getLogger(CartController.class);
+
+    private static final String Line = "====================";
 
     private final CartRepository cartRepository;
     private final CategoryRepository categoryRepository;
@@ -27,179 +36,284 @@ public class CartServiceImpl implements CartService {
     private final RoleRepository roleRepository;
 
     @Override
-    public List<CartResponseDTO> findAll() throws Exception {
-        List<Cart> results= this.cartRepository.findAllByOrderByCartIdAsc();
-        if(results.isEmpty()){
-            throw new Exception("Carts not found");
+    public ResponseEntity<Object> findAll() throws Exception {
+        try {
+            List<Cart> results = this.cartRepository.findAllByOrderByCartIdAsc();
+            if (results.isEmpty()) {
+                throw new Exception("Carts not found");
+            }
+            List<Map<String, Object>> maps = new ArrayList<>();
+            logger.info("==================== Logger Start Get All Cart     ====================");
+            for (Cart cartData : results) {
+                Map<String, Object> cart = new HashMap<>();
+                logger.info("-------------------------");
+                logger.info("Cart ID       : " + cartData.getCartId());
+                logger.info("Quantity      : " + cartData.getQuantity());
+                logger.info("Buyer ID      : " + cartData.getBuyer());
+                logger.info("Product ID    : " + cartData.getProduct());
+                cart.put("Cart ID          ", cartData.getCartId());
+                cart.put("Quantity         ", cartData.getQuantity());
+                cart.put("Buyer ID         ", cartData.getBuyer());
+                cart.put("Product ID       ", cartData.getProduct());
+                maps.add(cart);
+            }
+            logger.info("==================== Logger End Get All Cart    ====================");
+            logger.info(" ");
+            return ResponseHandler.generateResponse("successfully retrieved cart", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.info("==================== Logger Start Get All Cart     ====================");
+            logger.error(String.valueOf(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Cart had no value!")));
+            logger.info("==================== Logger End Get All Cart     ====================");
+            logger.info(" ");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Failed retrieved cart!");
         }
-    return this.convertListDTO(results);
     }
 
     @Override
-    public List<CartResponseDTO> findByBuyer(String keyword) throws Exception {
-        List<Cart> results = this.cartRepository.findByBuyerUserUsernameIgnoreCaseContainingOrderByCartIdAsc(keyword);
-        if(results.isEmpty()){
-            throw new Exception("Carts not found");
+    public ResponseEntity<Object> findByBuyer(String keyword) throws Exception {
+        try {
+            List<Cart> results = this.cartRepository.findByBuyerUserUsernameIgnoreCaseContainingOrderByCartIdAsc(keyword);
+            if (results.isEmpty()) {
+                throw new Exception("Carts not found");
+            }
+            logger.info(Line + "Logger Start Get By Id " + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Get By Id " + Line);
+            return ResponseHandler.generateResponse("successfully find cart", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Failed find cart! ");
         }
-        return this.convertListDTO(results);
     }
 
     @Override
-    public List<CartResponseDTO> findBySeller(String keyword) throws Exception {
-        List<Cart> results = this.cartRepository.findByProductSellerUserUsernameIgnoreCaseContainingOrderByCartIdAsc(keyword);
-        if(results.isEmpty()){
-            throw new Exception("Carts not found");
+    public ResponseEntity<Object> findBySeller(String keyword) throws Exception {
+        try {
+            List<Cart> results = this.cartRepository.findByProductSellerUserUsernameIgnoreCaseContainingOrderByCartIdAsc(keyword);
+            if (results.isEmpty()) {
+                throw new Exception("Carts not found");
+            }
+            logger.info(Line + "Logger Start Get Seller " + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Get Seller " + Line);
+            return ResponseHandler.generateResponse("successfully find cart", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Failed find cart! ");
         }
-        return this.convertListDTO(results);
     }
 
     @Override
-    public List<CartResponseDTO> findByProductName(String keyword) throws Exception {
+    public ResponseEntity<Object> findByProductName(String keyword) throws Exception {
         List<Cart> results = this.cartRepository.findByProductProductNameIgnoreCaseContainingOrderByCartIdAsc(keyword);
-        if(results.isEmpty()){
+        if (results.isEmpty()) {
             throw new Exception("Carts not found");
         }
         return this.convertListDTO(results);
     }
 
     @Override
-    public List<CartResponseDTO> findByCategory(String keyword) throws Exception {
+    public ResponseEntity<Object> findByCategory(String keyword) throws Exception {
         List<Cart> results = this.cartRepository.findByProductCategoriesCategoryNameIgnoreCaseContainingOrderByCartIdAsc(keyword);
-        if(results.isEmpty()){
+        if (results.isEmpty()) {
             throw new Exception("Cart not found");
         }
         return this.convertListDTO(results);
     }
 
     @Override
-    public CartResponseDTO createCart(CartRequestDTO cartRequestDTO, Authentication authentication) throws Exception {
-        Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName());
-        Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(()->new Exception("Product not Found"));
-        Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Buyer not Found"));
-        if(buyer.getUser().equals(productId.getSeller().getUser())){
-            throw new Exception("You can't order your own product");
-        }
-        Long orderId;
-        if(orderBuyerId.isPresent()){
-            orderId = orderBuyerId.get().getOrderId();
-        }else {
-            Order newOrder = new Order();
-            Long id = 1L;
-            Payment payment = this.paymentRepository.findById(id).orElseThrow(Exception::new);
-            Shipping shipping = this.shippingRepository.findById(id).orElseThrow(Exception::new);
-            newOrder.setShipping(shipping);
-            Integer subtotal = (cartRequestDTO.getQuantity()*productId.getPrice());
-            newOrder.setTotalprice(subtotal+shipping.getPrice());
-            newOrder.setPayment(payment);
-            boolean check = false;
-            newOrder.setIsPay(check);
-            Order saveOrder = orderRepository.save(newOrder);
-            orderId = saveOrder.getOrderId();
-        }
-        Cart saveCart = this.requestToEntity(cartRequestDTO, orderId, buyer);
+    public ResponseEntity<Object> createCart(CartRequestDTO cartRequestDTO, Authentication authentication) throws Exception {
+        try {
+            Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName());
+            Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
+            Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));
+            if (buyer.getUser().equals(productId.getSeller().getUser())) {
+                throw new Exception("You can't order your own product");
+            }
+            Long orderId;
+            if (orderBuyerId.isPresent()) {
+                orderId = orderBuyerId.get().getOrderId();
+            } else {
+                Order newOrder = new Order();
+                Long id = 1L;
+                Payment payment = this.paymentRepository.findById(id).orElseThrow(Exception::new);
+                Shipping shipping = this.shippingRepository.findById(id).orElseThrow(Exception::new);
+                newOrder.setShipping(shipping);
+                Integer subtotal = (cartRequestDTO.getQuantity() * productId.getPrice());
+                newOrder.setTotalprice(subtotal + shipping.getPrice());
+                newOrder.setPayment(payment);
+                boolean check = false;
+                newOrder.setIsPay(check);
+                Order saveOrder = orderRepository.save(newOrder);
+                orderId = saveOrder.getOrderId();
+            }
+            Cart saveCart = this.requestToEntity(cartRequestDTO, orderId, buyer);
 
-        //update Price
-        this.updatePrice(orderId);
-        Cart cartResponse = this.cartRepository.save(saveCart);
-
-        //show Cart
-        return convertDTO(cartResponse);
-    }
-
-    @Override
-    public List<CartResponseDTO> wishlistToCart(Authentication authentication) throws Exception {
-        List<Wishlist> wishlists = wishlistRepository.findByBuyerUserUsername(authentication.getName());
-        if(wishlists.isEmpty()){
-            throw new Exception("Your wishlist is empty");
-        }
-        List<CartResponseDTO> carts = new ArrayList<>();
-        for(Wishlist wishlist:wishlists){
-           CartRequestDTO cartRequestDTO = new CartRequestDTO();
-           cartRequestDTO.setProduct_id(wishlist.getProduct().getId());
-           cartRequestDTO.setQuantity(wishlist.getQuantity());
-           CartResponseDTO cartResponseDTO = this.createCart(cartRequestDTO,authentication);
-           carts.add(cartResponseDTO);
-        }
-        wishlistRepository.deleteAll(wishlists);
-        return carts;
-    }
-
-    @Override
-    public CartResponseDTO updateCart(CartRequestDTO cartRequestDTO, Long id,Authentication authentication) throws Exception {
-        Cart cart = cartRepository.findById(id).orElseThrow(()->new Exception("Cart not found"));
-        Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(()->new Exception("Buyer not Found"));
-        Product product = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(()->new Exception("Product not Found"));
-        List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
-        boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
-        boolean checkProduct = !product.getSeller().getUser().getUsername().equals(authentication.getName());
-        boolean checkCart = cart.getBuyer().getUser().getUsername().equals(authentication.getName());
-        boolean checkUser = checkProduct && checkCart;
-
-        Long orderId = cart.getOrder().getOrderId();
-        if (checkRoles || checkUser) {
-            Cart saveCart = this.requestToEntity(cartRequestDTO,orderId,buyer);
-            saveCart.setCartId(id);
-            saveCart.setQuantity(cartRequestDTO.getQuantity());
             //update Price
             this.updatePrice(orderId);
-            Cart cartResponse = cartRepository.save(saveCart);
-            return convertDTO(cartResponse);
-        }else{
-            throw new Exception("You can't edit other cart or order your own product");
+            Cart cartResponse = this.cartRepository.save(saveCart);
+
+            //show Cart
+            logger.info(Line + "Logger Start Create " + Line);
+            logger.info(String.valueOf(saveCart));
+            logger.info(Line + "Logger End Create " + Line);
+            return ResponseHandler.generateResponse("successfully create cart", HttpStatus.OK, saveCart);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed create cart!");
         }
     }
 
     @Override
-    public void deleteById(Long id,Authentication authentication) throws Exception {
-        Cart cart = cartRepository.findById(id).orElseThrow(()->new Exception("Cart not found"));
-        List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
-        boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
-        boolean checkCart = cart.getBuyer().getUser().getUsername().equals(authentication.getName());
-        long orderId = cart.getOrder().getOrderId();
-        if (checkRoles || checkCart) {
-            cartRepository.deleteById(id);
-            List<Cart> checkOrder = cartRepository.findByOrderOrderId(orderId);
-            if(checkOrder.isEmpty()){
-                orderRepository.deleteById(cart.getOrder().getOrderId());
+    public ResponseEntity<Object> wishlistToCart(Authentication authentication) throws Exception {
+        try {
+            List<Wishlist> wishlists = wishlistRepository.findByBuyerUserUsername(authentication.getName());
+            if (wishlists.isEmpty()) {
+                throw new Exception("Your wishlist is empty");
             }
-        }else {
-            throw new Exception("You can't delete other cart");
+            List<ResponseEntity<Object>> carts = new ArrayList<>();
+            for (Wishlist wishlist : wishlists) {
+                CartRequestDTO cartRequestDTO = new CartRequestDTO();
+                cartRequestDTO.setProduct_id(wishlist.getProduct().getId());
+                cartRequestDTO.setQuantity(wishlist.getQuantity());
+                ResponseEntity<Object> cartResponseDTO = this.createCart(cartRequestDTO, authentication);
+                carts.add(cartResponseDTO);
+            }
+            wishlistRepository.deleteAll(wishlists);
+            logger.info(Line + "Logger Start Get By Id " + Line);
+            logger.info(String.valueOf(wishlists));
+            logger.info(Line + "Logger End Get By Id " + Line);
+            return ResponseHandler.generateResponse("successfully create cart", HttpStatus.OK, wishlists);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed create cart from wishlist! ");
         }
     }
 
-    public List<CartResponseDTO> convertListDTO(List<Cart> carts) {
-        return carts.stream()
+    @Override
+    public ResponseEntity<Object> updateCart(CartRequestDTO cartRequestDTO, Long id, Authentication authentication) throws Exception {
+        try {
+            Cart cart = cartRepository.findById(id).orElseThrow(() -> new Exception("Cart not found"));
+            Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));
+            Product product = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
+            List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
+            boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
+            boolean checkProduct = !product.getSeller().getUser().getUsername().equals(authentication.getName());
+            boolean checkCart = cart.getBuyer().getUser().getUsername().equals(authentication.getName());
+            boolean checkUser = checkProduct && checkCart;
+
+            Long orderId = cart.getOrder().getOrderId();
+            if (checkRoles || checkUser) {
+                Cart saveCart = this.requestToEntity(cartRequestDTO, orderId, buyer);
+                saveCart.setCartId(id);
+                saveCart.setQuantity(cartRequestDTO.getQuantity());
+                //update Price
+                this.updatePrice(orderId);
+                Cart cartResponse = cartRepository.save(saveCart);
+                return convertDTO(cartResponse);
+            } else {
+                throw new Exception("You can't edit other cart or order your own product");
+            }
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed update cart!");
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> deleteById(Long id, Authentication authentication) throws Exception {
+        try {
+            Cart cart = cartRepository.findById(id).orElseThrow(() -> new Exception("Cart not found"));
+            List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
+            boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
+            boolean checkCart = cart.getBuyer().getUser().getUsername().equals(authentication.getName());
+            long orderId = cart.getOrder().getOrderId();
+            if (checkRoles || checkCart) {
+                cartRepository.deleteById(id);
+                List<Cart> checkOrder = cartRepository.findByOrderOrderId(orderId);
+                if (checkOrder.isEmpty()) {
+                    orderRepository.deleteById(cart.getOrder().getOrderId());
+                }
+            } else {
+                throw new Exception("You can't delete other cart");
+            }
+            logger.info(Line + "Logger Start Delete By Id " + Line);
+            logger.info("Delete Success");
+            logger.info(Line + "Logger End Delete By Id " + Line);
+            return ResponseHandler.generateResponse("successfully delete cart", HttpStatus.OK, "deleted");
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed delete cart!");
+        }
+    }
+
+    public ResponseEntity<Object> convertListDTO(List<Cart> carts) {
+        return (ResponseEntity<Object>) carts.stream()
                 .map(this::convertDTO)
                 .collect(Collectors.toList());
+
     }
 
-    public CartResponseDTO convertDTO (Cart cart){
-        List<PhotoProductDTO> photosDTO = cart.getProduct().getPhotos().stream()
-                .map(Photo::convertToProduct)
-                .collect(Collectors.toList());
-        List<Category> categories = this.categoryRepository.findByProductsProductId(cart.getProduct().getId());
-        List<String> categoriesDTO = categories.stream()
-                .map(Category::getName)
-                .collect(Collectors.toList());
-        return cart.convertToResponse(photosDTO, categoriesDTO);
+    public ResponseEntity<Object> convertDTO(Cart cart) {
+        try {
+            List<PhotoProductDTO> photosDTO = cart.getProduct().getPhotos().stream()
+                    .map(Photo::convertToProduct)
+                    .collect(Collectors.toList());
+            List<Category> categories = this.categoryRepository.findByProductsProductId(cart.getProduct().getId());
+            List<String> categoriesDTO = categories.stream()
+                    .map(Category::getName)
+                    .collect(Collectors.toList());
+            logger.info(Line + "Logger Start get Category " + Line);
+            logger.info(String.valueOf(categories));
+            logger.info(Line + "Logger End get Category " + Line);
+            return ResponseHandler.generateResponse("successfully find cart", HttpStatus.OK, categories);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Failed find cart!");
+        }
     }
 
-    public Cart requestToEntity (CartRequestDTO cartRequestDTO, Long orderId, Buyer buyer)throws Exception{
-        Product product = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(()->new Exception("Product not found"));
-        Order order = orderRepository.findById(orderId).orElseThrow(()->new Exception("Order not found"));
-        return cartRequestDTO.convertToEntity(buyer,product,order);
+    public Cart requestToEntity(CartRequestDTO cartRequestDTO, Long orderId, Buyer buyer) throws Exception {
+        Product product = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not found"));
+        Order order = orderRepository.findById(orderId).orElseThrow(() -> new Exception("Order not found"));
+        return cartRequestDTO.convertToEntity(buyer, product, order);
     }
 
-    public void updatePrice(Long orderId) throws Exception{
-        Order updatePrice = orderRepository.findById(orderId).orElseThrow(()->new Exception("Cart not found"));
-        if(updatePrice.getListCart()!=null){
-            int tempPrice = 0;
-            for(Cart cartLoop : updatePrice.getListCart()){
-                int subtotal = cartLoop.getQuantity() * cartLoop.getProduct().getPrice();
-                tempPrice += subtotal+updatePrice.getShipping().getPrice();
+    public ResponseEntity<Object> updatePrice(Long orderId) throws Exception {
+        try {
+            Order updatePrice = orderRepository.findById(orderId).orElseThrow(() -> new Exception("Cart not found"));
+            if (updatePrice.getListCart() != null) {
+                int tempPrice = 0;
+                for (Cart cartLoop : updatePrice.getListCart()) {
+                    int subtotal = cartLoop.getQuantity() * cartLoop.getProduct().getPrice();
+                    tempPrice += subtotal + updatePrice.getShipping().getPrice();
+                }
+                updatePrice.setTotalprice(tempPrice);
+                orderRepository.save(updatePrice);
             }
-            updatePrice.setTotalprice(tempPrice);
-            orderRepository.save(updatePrice);
+            logger.info(Line + "Logger Start get product name " + Line);
+            logger.info(String.valueOf(updatePrice));
+            logger.info(Line + "Logger End Get product name " + Line);
+            return ResponseHandler.generateResponse("successfully find cart", HttpStatus.OK, updatePrice);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Failed find cart! ");
         }
     }
 }
