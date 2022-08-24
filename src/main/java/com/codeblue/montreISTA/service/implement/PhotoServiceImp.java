@@ -31,6 +31,8 @@ public class PhotoServiceImp implements PhotoService {
     private final RoleRepository roleRepository;
     private static final Logger logger = LoggerFactory.getLogger(PhotoController.class);
     private static final String Line = "====================";
+    private static final String productPhotoDefault = "https://cdn5.vectorstock.com/i/1000x1000/38/19/product-promotion-black-icon-concept-vector-29963819.jpg";
+
 
     @Override
     public ResponseEntity<Object> findAll() throws Exception {
@@ -151,7 +153,13 @@ public class PhotoServiceImp implements PhotoService {
             }
             List<Photo> photos = photoRepository.findByProductIdOrderByPhotoIdAsc(productId);
             int count = photos.size() + files.size();
-            if (count > 4) {
+            if(count <= 4){
+                photos.forEach(photo->{
+                    if(photo.getPhotoURL().equals(productPhotoDefault)){
+                        photoRepository.delete(photo);
+                    }
+                });
+            }else {
                 throw new Exception("Product can only have 4 photos");
             }
             List<PhotoResponseDTO> photoDTO = new ArrayList<>();
@@ -210,17 +218,26 @@ public class PhotoServiceImp implements PhotoService {
     public ResponseEntity<Object> deleteById(Long id, Authentication authentication) throws Exception {
         try {
             Photo photo = photoRepository.findById(id).orElseThrow(() -> new Exception("Photo not found"));
+            long productId = photo.getProduct().getId();
             List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
             boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
             boolean checkPhoto = photo.getProduct().getSeller().getUser().getUsername().equals(authentication.getName());
             if (checkRoles || checkPhoto) {
                 photoRepository.deleteById(id);
+                List<Photo> check = photoRepository.findByProductIdOrderByPhotoIdAsc(productId);
+                if(check.isEmpty()){
+                    Photo newPhoto = new Photo();
+                    Product product = productRepository.findById(productId).orElseThrow(()->new Exception("Product Not Found"));
+                    newPhoto.setPhotoURL(productPhotoDefault);
+                    newPhoto.setProduct(product);
+                    this.photoRepository.save(newPhoto);
+                }
+                logger.info(Line + "Logger Start Delete By Id " + Line);
+                logger.info("Delete Success");
+                logger.info(Line + "Logger End Delete By Id " + Line);
             } else {
                 throw new Exception("You only can delete photo for your product");
             }
-            logger.info(Line + "Logger Start Delete By Id " + Line);
-            logger.info("Delete Success");
-            logger.info(Line + "Logger End Delete By Id " + Line);
             return ResponseHandler.generateResponse("successfully delete product", HttpStatus.OK, "deleted");
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
