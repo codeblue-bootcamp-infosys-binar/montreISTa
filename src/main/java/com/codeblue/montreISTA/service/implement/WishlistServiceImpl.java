@@ -47,17 +47,11 @@ public class WishlistServiceImpl implements WishlistService {
             if (wishlists.isEmpty()) {
                 throw new Exception("wishlist not found");
             }
+            List<WishlistResponseDTO> results = wishlists.stream().map(dtoConverter::convertWishlist).toList();
             logger.info("==================== Logger Start Get All Transactions     ====================");
-            for (Wishlist wishlistData : wishlists) {
-                logger.info("-------------------------");
-                logger.info("Wishlist ID    : " + wishlistData.getWishlistId());
-                logger.info("Buyer ID       : " + wishlistData.getBuyer());
-                logger.info("Quantity       : " + wishlistData.getQuantity());
-                logger.info("Product ID     : " + wishlistData.getProduct());
-            }
+            logger.info(String.valueOf(results));
             logger.info("==================== Logger End Get AlL Transactions   ====================");
             logger.info(" ");
-            List<WishlistResponseDTO> results = wishlists.stream().map(dtoConverter::convertWishlist).toList();
             return ResponseHandler.generateResponse("successfully retrieved wishlist", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
