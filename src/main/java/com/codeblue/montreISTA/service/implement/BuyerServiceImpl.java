@@ -1,6 +1,7 @@
 package com.codeblue.montreISTA.service.implement;
 
 import com.codeblue.montreISTA.DTO.BuyerResponseDTO;
+import com.codeblue.montreISTA.DTO.ProductResponseDTO;
 import com.codeblue.montreISTA.controller.BuyerController;
 import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.helper.DTOConverter;
@@ -37,6 +38,7 @@ public class BuyerServiceImpl implements BuyerService {
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
     private final RoleRepository roleRepository;
+    private final DTOConverter dtoConverter;
 
     @Override
     public ResponseEntity<Object> findAllBuyer() {
@@ -90,7 +92,7 @@ public class BuyerServiceImpl implements BuyerService {
             }
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<Product> products = productRepository.findAll(pageable).getContent();
-            ProductResponseDTO results = DTOConverter.convertProducts(products);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Create " + Line);

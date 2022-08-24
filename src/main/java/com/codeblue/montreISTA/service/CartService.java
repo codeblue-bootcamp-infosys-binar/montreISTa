@@ -16,10 +16,10 @@ public interface CartService {
     ResponseEntity<Object> findByProductName(String keyword) throws Exception;
     ResponseEntity<Object> findByCategory(String keyword)throws Exception;
 
-    ResponseEntity<Object> createCart(CartRequestDTO cartRequestDTO, Authentication authentication) throws Exception;
+    ResponseEntity<Object> createCartResponse(CartRequestDTO cartRequestDTO, Authentication authentication) throws Exception;
     ResponseEntity<Object> wishlistToCart(Authentication authentication) throws Exception;
     ResponseEntity<Object> updateCart(CartRequestDTO cartRequestDTO,Long id,Authentication authentication)throws Exception;
-    ResponseEntity<Object> convertListDTO(List<Cart> carts);
-    ResponseEntity<Object> convertDTO (Cart cart);
+    List<CartResponseDTO> convertListDTO(List<Cart> carts);
+    CartResponseDTO convertDTO (Cart cart);
     ResponseEntity<Object> deleteById(Long id, Authentication authentication)throws Exception;
 }
