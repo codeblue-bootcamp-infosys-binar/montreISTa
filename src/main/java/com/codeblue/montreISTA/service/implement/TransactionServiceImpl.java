@@ -25,10 +25,11 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class TransactionServiceImpl implements TransactionService {
 
+    public static Integer currentPage;
     private final TransactionRepository transactionRepository;
     private final TransactionDetailsRepository transactionDetailsRepository;
     private final OrderRepository orderRepository;
-    private final CategoryService categoryService;
+    private final CategoryRepository categoryRepository;
     private final BuyerRepository buyerRepository;
     private final SellerRepository sellerRepository;
     private static final Logger logger = LoggerFactory.getLogger(TransactionController.class);
@@ -41,6 +42,9 @@ public class TransactionServiceImpl implements TransactionService {
             List<TransactionResponseDTO> transactions = transactionRepository.findAll(pageable).stream()
                     .map(HistoryTransaction::convertToResponse)
                     .collect(Collectors.toList());
+            if(transactions.isEmpty()){
+                throw new Exception("Transactions Not Found");
+            }
             logger.info("==================== Logger Start Get All Transactions     ====================");
             for (TransactionResponseDTO transactionData : transactions) {
                 logger.info("-------------------------");
@@ -72,6 +76,9 @@ public class TransactionServiceImpl implements TransactionService {
             List<TransactionDetailResponseDTO> results = transactionDetailsRepository.findAll(pageable).stream()
                     .map(HistoryTransactionDetail::convertToResponse)
                     .collect(Collectors.toList());
+            if(results.isEmpty()){
+                throw new Exception("Transactions Details Not Found");
+            }
             logger.info(Line + "Logger Start Get Transaction Detail" + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get Transaction Detail" + Line);
@@ -225,10 +232,15 @@ public class TransactionServiceImpl implements TransactionService {
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please order first"));
             Order order = orderRepository.findFirstByListCartBuyerBuyerIdOrderByOrderIdDesc(buyer.getBuyerId()).orElseThrow(() -> new Exception("Please order first"));
 
+            if(order.getPayment()==null|| order.getShipping()==null
+                    ||order.getDestinationName()==null
+                    ||order.getDestinationAddress()==null
+                    ||order.getDestinationPhone()==null){
+                throw new Exception("Please order now first and input necessary info !");
+            }
             if (!order.getIsPay()) {
                 throw new Exception("Please pay first !");
             }
-
             List<TransactionDetailResponseDTO> results = new ArrayList<>();
             for (Cart cart : order.getListCart()) {
                 HistoryTransaction transaction = new HistoryTransaction();
@@ -243,7 +255,7 @@ public class TransactionServiceImpl implements TransactionService {
                     photoURL = photo.get(0).getPhotoURL();
                 }
 
-                List<Category> categories = categoryService.findByProductId(cart.getProduct().getId());
+                List<Category> categories = categoryRepository.findByProductsProductId(cart.getProduct().getId());
                 String category = categories.stream()
                         .map(Category::getName)
                         .collect(Collectors.joining(","));
@@ -285,5 +297,6 @@ public class TransactionServiceImpl implements TransactionService {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Doing Transactions");
         }
     }
+
 
 }

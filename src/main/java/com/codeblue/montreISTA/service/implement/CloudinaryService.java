@@ -23,11 +23,11 @@ public class CloudinaryService {
             Map uploadResult = cloudinaryConfig.uploader().upload(uploadedFile, ObjectUtils.emptyMap());
             boolean isDeleted = uploadedFile.delete();
 
-            if (isDeleted){
+            if (isDeleted) {
                 System.out.println("File successfully deleted");
-            }else
+            } else
                 System.out.println("File doesn't exist");
-            return  uploadResult.get("url").toString();
+            return uploadResult.get("url").toString();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

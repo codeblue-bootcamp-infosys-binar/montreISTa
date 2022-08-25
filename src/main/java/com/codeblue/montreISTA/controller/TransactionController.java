@@ -25,7 +25,6 @@ public class TransactionController {
 
     @GetMapping("/dashboard/transactions/{id}")
     public ResponseEntity<Object> findByHistoryTransactionId(@PathVariable Long id) throws Exception {
-
         return transactionService.findByTransactionId(id);
     }
 

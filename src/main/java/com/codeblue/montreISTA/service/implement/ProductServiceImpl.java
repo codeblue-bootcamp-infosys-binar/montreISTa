@@ -17,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,8 +31,13 @@ public class ProductServiceImpl implements ProductService {
     private final CategoryRepository categoryRepository;
     private final ProductCategoryRepository productCategoryRepository;
     private final RoleRepository roleRepository;
+    private final PhotoRepository photoRepository;
+    private final DTOConverter dtoConverter;
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
     private static final String Line = "====================";
+    private static final String productPhotoDefault = "https://cdn5.vectorstock.com/i/1000x1000/38/19/product-promotion-black-icon-concept-vector-29963819.jpg";
+
+
 
     public ResponseEntity<Object> findAllProduct(Integer page, String sort, boolean descending) {
         try {
@@ -51,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
             logger.info("==================== Logger End Get All Products    ====================");
             logger.info(" ");
 
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
             return ResponseHandler.generateResponse("successfully get all products", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.info("==================== Logger Start Get All Products     ====================");
@@ -71,7 +78,7 @@ public class ProductServiceImpl implements ProductService {
     public ResponseEntity<Object> findProductById(Long id) {
         try {
             Product product = productRepository.findById(id).orElseThrow(() -> new Exception("Product not found"));
-            ProductResponseDTO result = DTOConverter.convertOneProducts(product);
+            ProductResponseDTO result = dtoConverter.convertOneProducts(product);
             logger.info(Line + "Logger Start Get product id " + Line);
             logger.info(String.valueOf(result));
             logger.info(Line + "Logger End Get product id " + Line);
@@ -89,7 +96,7 @@ public class ProductServiceImpl implements ProductService {
         try {
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<Product> products = productRepository.findByProductNameIgnoreCaseContaining(name, pageable);
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
             logger.info(Line + "Logger Start Get product name " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get product name " + Line);
@@ -106,8 +113,8 @@ public class ProductServiceImpl implements ProductService {
     public ResponseEntity<Object> findBySellerName(String name, Integer page, String sort, boolean descending) {
         try {
             Pageable pageable = Pagination.paginate(page, sort, descending);
-            List<Product> products = productRepository.findBySellerUserNameIgnoreCaseContaining(name, pageable);
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            List<Product> products = productRepository.findBySellerUserUsernameIgnoreCaseContaining(name, pageable);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
             logger.info(Line + "Logger Start Get seller name " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get seller name " + Line);
@@ -126,7 +133,7 @@ public class ProductServiceImpl implements ProductService {
             Pageable pageable = Pagination.paginate(page, sort, descending);
 
             List<Product> products = productRepository.findBySellerStoreNameIgnoreCaseContaining(name, pageable);
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
 
             logger.info(Line + "Logger Start Get store name " + Line);
             logger.info(String.valueOf(results));
@@ -146,7 +153,7 @@ public class ProductServiceImpl implements ProductService {
             Pageable pageable = Pagination.paginate(page, sort, descending);
 
             List<Product> products = productRepository.findByCategoriesCategoryCategoriesId(id, pageable);
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
 
             logger.info(Line + "Logger Start Get By Category Id " + Line);
             logger.info(String.valueOf(results));
@@ -167,7 +174,7 @@ public class ProductServiceImpl implements ProductService {
             Pageable pageable = Pagination.paginate(page, sort, descending);
 
             List<Product> products = productRepository.findByCategoriesCategoryNameIgnoreCaseContaining(name, pageable);
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(products);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
 
             logger.info(Line + "Logger Start Get category name " + Line);
             logger.info(String.valueOf(results));
@@ -191,7 +198,7 @@ public class ProductServiceImpl implements ProductService {
                 throw new Exception("You don't have a product");
             }
 
-            List<ProductResponseDTO> results = DTOConverter.convertProducts(product);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(product);
 
             logger.info(Line + "Logger Start Get seller id " + Line);
             logger.info(String.valueOf(results));
@@ -232,8 +239,11 @@ public class ProductServiceImpl implements ProductService {
             Product saveProduct = productRepository.save(newProduct);
 
             this.addCategory(categories, saveProduct);
-
-            ProductResponseDTO result = DTOConverter.convertOneProducts(saveProduct);
+            List<Photo> photos = new ArrayList<>();
+            Photo photo = this.addPhoto(saveProduct);
+            photos.add(photo);
+            saveProduct.setPhotos(photos);
+            ProductResponseDTO result = dtoConverter.convertOneProducts(saveProduct);
 
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(result));
@@ -282,7 +292,7 @@ public class ProductServiceImpl implements ProductService {
                 Product saveProduct = productRepository.save(product);
                 this.addCategory(categories, saveProduct);
 
-                ProductResponseDTO results = DTOConverter.convertOneProducts(saveProduct);
+                ProductResponseDTO results = dtoConverter.convertOneProducts(saveProduct);
                 logger.info(Line + "Logger Start Update By Id " + Line);
                 logger.info(String.valueOf(results));
                 logger.info(Line + "Logger End Update By Id " + Line);
@@ -341,6 +351,12 @@ public class ProductServiceImpl implements ProductService {
                 throw new RuntimeException(e);
             }
         });
+    }
+    public Photo addPhoto(Product newProduct){
+        Photo photo = new Photo();
+        photo.setPhotoURL(productPhotoDefault);
+        photo.setProduct(newProduct);
+        return photoRepository.save(photo);
     }
 
     public void checkCategories(List<String> categories) {
