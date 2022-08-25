@@ -23,6 +23,7 @@ public class OrderResponseDTO{
     private String destination_address;
     private String destination_phone;
     private String zip_code;
+    private String is_payment;
     private ZonedDateTime createdAt;
     private ZonedDateTime modifiedAt;
 

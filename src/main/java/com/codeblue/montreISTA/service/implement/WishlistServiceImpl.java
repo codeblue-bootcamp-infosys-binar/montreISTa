@@ -86,6 +86,9 @@ public class WishlistServiceImpl implements WishlistService {
             if (buyer.getUser().getUserId().equals(product.getSeller().getUser().getUserId())) {
                 throw new Exception("You can't order your own product");
             }
+            if(wishlist.getQuantity()<=0){
+                throw new Exception("Quantity can't be 0 or negatif");
+            }
             Wishlist wishlistSave = wishlist.convertToEntity(buyer, product);
             Wishlist wishlistDTO = wishlistRepository.save(wishlistSave);
             WishlistResponseDTO result = dtoConverter.convertWishlist(wishlistDTO);
@@ -112,6 +115,9 @@ public class WishlistServiceImpl implements WishlistService {
             boolean checkProduct = !product.getSeller().getUser().getUsername().equals(authentication.getName());
             boolean checkWishlist = wishlist.getBuyer().getUser().getUsername().equals(authentication.getName());
             boolean checkUser = checkProduct && checkWishlist;
+            if(wishlist.getQuantity()<=0){
+                throw new Exception("Quantity can't be 0 or negatif");
+            }
             if (checkRoles || checkUser) {
                 wishlist.setWishlistId(id);
                 wishlist.setBuyer(buyer);
