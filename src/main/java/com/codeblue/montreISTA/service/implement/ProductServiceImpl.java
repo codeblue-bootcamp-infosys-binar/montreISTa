@@ -113,7 +113,7 @@ public class ProductServiceImpl implements ProductService {
     public ResponseEntity<Object> findBySellerName(String name, Integer page, String sort, boolean descending) {
         try {
             Pageable pageable = Pagination.paginate(page, sort, descending);
-            List<Product> products = productRepository.findBySellerUserNameIgnoreCaseContaining(name, pageable);
+            List<Product> products = productRepository.findBySellerUserUsernameIgnoreCaseContaining(name, pageable);
             List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
             logger.info(Line + "Logger Start Get seller name " + Line);
             logger.info(String.valueOf(results));

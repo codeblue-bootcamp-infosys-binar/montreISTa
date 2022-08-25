@@ -160,7 +160,7 @@ public class SellerServiceImpl implements SellerService {
         try {
             Pageable pageable = Pagination.paginate(page, sort, descending);
             Seller seller = sellerRepository.findByUserUsername(keyword).orElseThrow(() -> new Exception("Create your shop first"));
-            List<Product> products = productRepository.findBySellerUserNameIgnoreCaseContaining(keyword, pageable);
+            List<Product> products = productRepository.findBySellerUserUsernameIgnoreCaseContaining(keyword, pageable);
             LoginSellerResponseDTO result = dtoConverter.convertLoginSeller(seller,products);
             return ResponseHandler.generateResponse("successfully retrieved users", HttpStatus.OK, result);
         } catch (Exception e) {
