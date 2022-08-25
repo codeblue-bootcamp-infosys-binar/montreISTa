@@ -226,20 +226,7 @@ public class OrderServiceImpl implements OrderService {
             boolean checkPay = true;
             orderGet.setIsPay(checkPay);
             Order order = orderRepository.save(orderGet);
-            List<OrderCartDTO> carts = new ArrayList<>();
-            for (Cart cart : order.getListCart()) {
-                List<Photo> photos = cart.getProduct().getPhotos();
-                String photoURL;
-                boolean check = photos.stream().map(Photo::getPhotoURL).findAny().isEmpty();
-                if (check) {
-                    photoURL = "-";
-                } else {
-                    photoURL = photos.get(0).getPhotoURL();
-                }
-                OrderCartDTO cartDTO = cart.convertToOrder(photoURL);
-                carts.add(cartDTO);
-            }
-            OrderResponseCartDTO results = order.convertCart(carts);
+            OrderResponseDTO results = this.convertDTO(order);
             logger.info(Line + "Logger Start Get By Buyer " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get By Buyer " + Line);
