@@ -147,6 +147,9 @@ public class CartServiceImpl implements CartService {
             if (buyer.getUser().equals(productId.getSeller().getUser())) {
                 throw new Exception("You can't order your own product");
             }
+            if(cartRequestDTO.getQuantity()<=0){
+                throw new Exception("Quantity can't be 0 or negatif");
+            }
             Long orderId;
             if (orderBuyerId.isPresent()) {
                 orderId = orderBuyerId.get().getOrderId();
@@ -222,7 +225,9 @@ public class CartServiceImpl implements CartService {
             boolean checkProduct = !product.getSeller().getUser().getUsername().equals(authentication.getName());
             boolean checkCart = cart.getBuyer().getUser().getUsername().equals(authentication.getName());
             boolean checkUser = checkProduct && checkCart;
-
+            if(cartRequestDTO.getQuantity()<=0){
+                throw new Exception("Quantity can't be 0 or negatif");
+            }
             Long orderId = cart.getOrder().getOrderId();
             if (checkRoles || checkUser) {
                 Cart saveCart = this.requestToEntity(cartRequestDTO, orderId, buyer);
