@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -48,12 +47,7 @@ public class Order extends AuditEntity{
     private List<Cart> listCart;
 
     public OrderResponseCartDTO convertCart(List<OrderCartDTO> carts){
-        String print = null;
-        if(this.getIsPay()){
-            print = "Paid";
-        }else {
-            print="Unpaid";
-        }
+       String print = this.checkIsPay(this.getIsPay());
         return OrderResponseCartDTO.builder()
                 .orderId(this.getOrderId())
                 .total_price(this.getTotalprice())
@@ -63,6 +57,7 @@ public class Order extends AuditEntity{
     }
 
     public OrderResponseDTO convertToResponse(List<CartResponseDTO> cartDTO){
+        String print = this.checkIsPay(this.getIsPay());
         return OrderResponseDTO.builder()
                 .orderId(this.getOrderId())
                 .listCart(cartDTO)
@@ -77,9 +72,18 @@ public class Order extends AuditEntity{
                 .zip_code(this.getZipCode())
                 .createdAt(this.getCreatedAt())
                 .modifiedAt(this.getModifiedAt())
+                .is_payment(print)
                 .build();
         }
-
+    public String checkIsPay(Boolean isPay) {
+        String print = null;
+        if (this.getIsPay()) {
+            print = "Paid";
+        } else {
+            print = "Unpaid";
+        }
+        return print;
+    }
 
     @Override
     public String toString() {
