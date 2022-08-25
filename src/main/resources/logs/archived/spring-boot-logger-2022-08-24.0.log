@@ -146,3 +146,58 @@
 2022-08-24 22:50:00,813 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-08-24 22:50:00,818 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2022-08-24 22:50:00,824 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-08-24 23:49:14,703 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-08-24 23:49:14,723 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.2 on LAPTOP-PPQBC3CS with PID 37716 (C:\Bootcamp\Final Project\monstreISTa\target\classes started by lenovo in C:\Bootcamp\Final Project\monstreISTa)
+2022-08-24 23:49:14,734 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 23:49:15,049 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 23:49:15,052 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 23:49:19,389 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-24 23:49:20,080 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 557 ms. Found 16 JPA repository interfaces.
+2022-08-24 23:49:23,754 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-08-24 23:49:23,823 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-08-24 23:49:23,824 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-08-24 23:49:23,830 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-08-24 23:49:24,382 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-08-24 23:49:24,383 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 9311 ms
+2022-08-24 23:49:27,262 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-24 23:49:28,312 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-08-24 23:49:29,811 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-24 23:49:30,377 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-08-24 23:49:32,786 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-08-24 23:49:32,838 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-08-24 23:49:39,112 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-24 23:49:39,141 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-24 23:49:47,982 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-24 23:49:58,129 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@51bcbda, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f8f508a, org.springframework.security.web.context.SecurityContextPersistenceFilter@26671433, org.springframework.security.web.header.HeaderWriterFilter@1fddb4ba, org.springframework.web.filter.CorsFilter@497d1831, org.springframework.security.web.authentication.logout.LogoutFilter@170c9e6b, com.codeblue.montreISTA.security.AuthTokenFilter@55eeb736, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6801bec2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@67bfed11, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@53e81cfb, org.springframework.security.web.session.SessionManagementFilter@603eba6a, org.springframework.security.web.access.ExceptionTranslationFilter@40114c53, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3f7594b5]
+2022-08-24 23:50:02,995 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-08-24 23:50:03,099 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-08-24 23:50:03,229 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-08-24 23:50:03,480 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 50.41 seconds (JVM running for 53.017)
+2022-08-24 23:50:27,924 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 23:50:27,944 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-3] Initializing Servlet 'dispatcherServlet'
+2022-08-24 23:50:28,044 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-3] Completed initialization in 95 ms
+2022-08-24 23:50:38,511 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-4] Init duration for springdoc-openapi is: 6030 ms
+2022-08-24 23:51:06,200 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-6] ====================Logger Start Registration ====================
+2022-08-24 23:51:06,633 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-6] UserResponseDTO{user_id=16, username='Nadine_1st', email_id='nadine@ist.id', address='Jalan Soekarno Hatta Nomor 19, RT/RW 07/01. kel. cibrebes, kec. citayam, depok', name='Nadine', photo='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', phone='081340044004', roles=[ROLE_USER]}
+2022-08-24 23:51:06,637 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-6] ====================Logger End Registration ====================
+2022-08-24 23:51:54,525 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-10] ====================Logger Start Login ====================
+2022-08-24 23:51:54,546 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-10] com.codeblue.montreISTA.DTO.JwtResponse@ca60fdd
+2022-08-24 23:51:54,553 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-10] ====================Logger End Login ====================
+2022-08-24 23:52:24,262 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-8] ====================Logger Start findMyProfile ====================
+2022-08-24 23:52:24,312 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-8] UserResponseDTO{user_id=16, username='Nadine_1st', email_id='nadine@ist.id', address='Jalan Soekarno Hatta Nomor 19, RT/RW 07/01. kel. cibrebes, kec. citayam, depok', name='Nadine', photo='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', phone='081340044004', roles=[ROLE_USER]}
+2022-08-24 23:52:24,315 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-8] ====================Logger End findMyProfile ====================
+2022-08-24 23:56:47,896 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-5] ====================Logger Start Login ====================
+2022-08-24 23:56:47,941 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-5] com.codeblue.montreISTA.DTO.JwtResponse@25f80060
+2022-08-24 23:56:47,942 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-5] ====================Logger End Login ====================
+2022-08-24 23:57:05,445 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-7] ====================Logger Start findMyProfile ====================
+2022-08-24 23:57:05,452 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-7] UserResponseDTO{user_id=16, username='Nadine_1st', email_id='nadine@ist.id', address='Jalan Soekarno Hatta Nomor 19, RT/RW 07/01. kel. cibrebes, kec. citayam, depok', name='Nadine', photo='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', phone='081340044004', roles=[ROLE_USER]}
+2022-08-24 23:57:05,453 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-7] ====================Logger End findMyProfile ====================
+2022-08-24 23:57:06,277 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-8] ====================Logger Start findMyProfile ====================
+2022-08-24 23:57:06,278 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-8] UserResponseDTO{user_id=16, username='Nadine_1st', email_id='nadine@ist.id', address='Jalan Soekarno Hatta Nomor 19, RT/RW 07/01. kel. cibrebes, kec. citayam, depok', name='Nadine', photo='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', phone='081340044004', roles=[ROLE_USER]}
+2022-08-24 23:57:06,286 INFO com.codeblue.montreISTA.service.implement.UserServiceImpl [http-nio-8090-exec-8] ====================Logger End findMyProfile ====================
+2022-08-24 23:58:03,055 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-10] ====================Logger Start Create ====================
+2022-08-24 23:58:03,092 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-10] com.codeblue.montreISTA.DTO.SellerResponseDTO@2858a711
+2022-08-24 23:58:03,095 INFO com.codeblue.montreISTA.service.implement.SellerServiceImpl [http-nio-8090-exec-10] ====================Logger End Create ====================
+2022-08-24 23:59:30,417 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-5] ====================Logger Start Create ====================
+2022-08-24 23:59:30,452 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-5] com.codeblue.montreISTA.DTO.ProductResponseDTO@754a9d78
+2022-08-24 23:59:30,454 INFO com.codeblue.montreISTA.service.implement.ProductServiceImpl [http-nio-8090-exec-5] ====================Logger End Create ====================
