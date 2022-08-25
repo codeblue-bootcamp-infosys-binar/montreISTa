@@ -232,10 +232,15 @@ public class TransactionServiceImpl implements TransactionService {
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please order first"));
             Order order = orderRepository.findFirstByListCartBuyerBuyerIdOrderByOrderIdDesc(buyer.getBuyerId()).orElseThrow(() -> new Exception("Please order first"));
 
+            if(order.getPayment()==null|| order.getShipping()==null
+                    ||order.getDestinationName()==null
+                    ||order.getDestinationAddress()==null
+                    ||order.getDestinationPhone()==null){
+                throw new Exception("Please order now first and input necessary info !");
+            }
             if (!order.getIsPay()) {
                 throw new Exception("Please pay first !");
             }
-
             List<TransactionDetailResponseDTO> results = new ArrayList<>();
             for (Cart cart : order.getListCart()) {
                 HistoryTransaction transaction = new HistoryTransaction();
