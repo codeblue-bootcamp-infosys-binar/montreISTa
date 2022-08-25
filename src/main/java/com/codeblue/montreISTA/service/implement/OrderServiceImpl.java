@@ -217,6 +217,12 @@ public class OrderServiceImpl implements OrderService {
     public ResponseEntity<Object> payOrder(String keyword) {
         try {
             Order orderGet = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(keyword).orElseThrow(() -> new Exception("Order not found"));
+            if(orderGet.getPayment()==null|| orderGet.getShipping()==null
+                    ||orderGet.getDestinationName()==null
+                    ||orderGet.getDestinationAddress()==null
+                    ||orderGet.getDestinationPhone()==null){
+                throw new Exception("Please order now first and input necessary info !");
+            }
             boolean checkPay = true;
             orderGet.setIsPay(checkPay);
             Order order = orderRepository.save(orderGet);

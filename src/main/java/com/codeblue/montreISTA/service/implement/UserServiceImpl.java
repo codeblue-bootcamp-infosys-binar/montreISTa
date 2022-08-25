@@ -185,6 +185,10 @@ public class UserServiceImpl implements UserService {
                 throw new Exception("Email is already in use");
             }
 
+            if (userRepository.existsByPhone(registrationDTO.getPhone())) {
+                throw new Exception("Phone is already in use");
+            }
+
             String phone = registrationDTO.getPhone();
             String phonePattern = "^(?:\\+62|\\(0\\d{2,3}\\)|0)\\s?(?:361|8[17]\\s?\\d?)?(?:[ -]?\\d{3,4}){2,3}$";
             if (!phone.matches(phonePattern)){
@@ -195,6 +199,13 @@ public class UserServiceImpl implements UserService {
             String passPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,20}$";
             if (!password.matches(passPattern)){
                 throw new Exception("please enter the right password format");
+            }
+
+            String email = registrationDTO.getEmail();
+            String emailPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                    + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+            if (!email.matches(emailPattern)){
+                throw new Exception("please enter the right email format");
             }
 
             User user = registrationDTO.convertToEntity();
