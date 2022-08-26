@@ -95,6 +95,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseEntity<Object> createCategory(CategoryRequestDTO categoryRequestDTO) throws Exception {
         try {
+            if(categoryRequestDTO.getName()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
             Category category = categoryRequestDTO.convertToEntity();
             Optional<Category> categoryCheck = categoryRepository.findByNameIgnoreCase(category.getName());
             if (categoryCheck.isPresent()) {
@@ -115,6 +118,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseEntity<Object> updateCategory(CategoryRequestDTO categoryRequestDTO, Long id) throws Exception {
         try {
+            if(categoryRequestDTO.getName()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
             Category category = categoryRequestDTO.convertToEntity();
             categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Category does not exist"));
             Optional<Category> categoryCheck = categoryRepository.findByNameIgnoreCase(category.getName());

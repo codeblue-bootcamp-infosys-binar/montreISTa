@@ -81,14 +81,18 @@ public class WishlistServiceImpl implements WishlistService {
     @Override
     public ResponseEntity<Object> createWishlist(WishlistRequestDTO wishlist, Authentication authentication) throws Exception {
         try {
+            if(wishlist.getProductId()==null||wishlist.getQuantity()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
+            if(wishlist.getQuantity()<=0){
+                throw new Exception("Quantity can't be 0 or negatif");
+            }
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please login as buyer"));
             Product product = productRepository.findById(wishlist.getProductId()).orElseThrow(() -> new Exception("Product not found"));
             if (buyer.getUser().getUserId().equals(product.getSeller().getUser().getUserId())) {
                 throw new Exception("You can't order your own product");
             }
-            if(wishlist.getQuantity()<=0){
-                throw new Exception("Quantity can't be 0 or negatif");
-            }
+
             Wishlist wishlistSave = wishlist.convertToEntity(buyer, product);
             Wishlist wishlistDTO = wishlistRepository.save(wishlistSave);
             WishlistResponseDTO result = dtoConverter.convertWishlist(wishlistDTO);
@@ -107,6 +111,12 @@ public class WishlistServiceImpl implements WishlistService {
     @Override
     public ResponseEntity<Object> updateWishlist(WishlistRequestDTO wishlistRequestDTO, Long id, Authentication authentication) throws Exception {
         try {
+            if(wishlistRequestDTO.getProductId()==null||wishlistRequestDTO.getQuantity()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
+            if(wishlistRequestDTO.getQuantity()<=0){
+                throw new Exception("Quantity can't be 0 or negatif");
+            }
             Wishlist wishlist = wishlistRepository.findById(id).orElseThrow(() -> new Exception("Wishlist not found"));
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please login as buyer"));
             Product product = productRepository.findById(wishlistRequestDTO.getProductId()).orElseThrow(() -> new Exception("Product not found"));
@@ -115,9 +125,7 @@ public class WishlistServiceImpl implements WishlistService {
             boolean checkProduct = !product.getSeller().getUser().getUsername().equals(authentication.getName());
             boolean checkWishlist = wishlist.getBuyer().getUser().getUsername().equals(authentication.getName());
             boolean checkUser = checkProduct && checkWishlist;
-            if(wishlist.getQuantity()<=0){
-                throw new Exception("Quantity can't be 0 or negatif");
-            }
+
             if (checkRoles || checkUser) {
                 wishlist.setWishlistId(id);
                 wishlist.setBuyer(buyer);
