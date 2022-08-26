@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -141,38 +142,39 @@ public class CartServiceImpl implements CartService {
     @Override
     public ResponseEntity<Object> createCartResponse(CartRequestDTO cartRequestDTO, Authentication authentication) throws Exception {
         try {
-            Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName());
-            Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
-            Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));
-            if (buyer.getUser().equals(productId.getSeller().getUser())) {
-                throw new Exception("You can't order your own product");
-            }
-            if(cartRequestDTO.getQuantity()<=0){
-                throw new Exception("Quantity can't be 0 or negatif");
-            }
-            Long orderId;
-            if (orderBuyerId.isPresent()) {
-                orderId = orderBuyerId.get().getOrderId();
-            } else {
-                Order newOrder = new Order();
-                Long id = 1L;
-                Payment payment = this.paymentRepository.findById(id).orElseThrow(Exception::new);
-                Shipping shipping = this.shippingRepository.findById(id).orElseThrow(Exception::new);
-                newOrder.setShipping(shipping);
-                Integer subtotal = (cartRequestDTO.getQuantity() * productId.getPrice());
-                newOrder.setTotalprice(subtotal + shipping.getPrice());
-                newOrder.setPayment(payment);
-                boolean check = false;
-                newOrder.setIsPay(check);
-                Order saveOrder = orderRepository.save(newOrder);
-                orderId = saveOrder.getOrderId();
-            }
-            Cart saveCart = this.requestToEntity(cartRequestDTO, orderId, buyer);
-
-            //update Price
-            this.updatePrice(orderId);
-            Cart cartResponse = this.cartRepository.save(saveCart);
-            CartResponseDTO result = this.convertDTO(cartResponse);
+            CartResponseDTO result = this.createCart(cartRequestDTO,authentication);
+//            Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName());
+//            Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
+//            Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));
+//            if (buyer.getUser().equals(productId.getSeller().getUser())) {
+//                throw new Exception("You can't order your own product");
+//            }
+//            if(cartRequestDTO.getQuantity()<=0){
+//                throw new Exception("Quantity can't be 0 or negatif");
+//            }
+//            Long orderId;
+//            if (orderBuyerId.isPresent()) {
+//                orderId = orderBuyerId.get().getOrderId();
+//            } else {
+//                Order newOrder = new Order();
+//                Long id = 1L;
+//                Payment payment = this.paymentRepository.findById(id).orElseThrow(Exception::new);
+//                Shipping shipping = this.shippingRepository.findById(id).orElseThrow(Exception::new);
+//                newOrder.setShipping(shipping);
+//                Integer subtotal = (cartRequestDTO.getQuantity() * productId.getPrice());
+//                newOrder.setTotalprice(subtotal + shipping.getPrice());
+//                newOrder.setPayment(payment);
+//                boolean check = false;
+//                newOrder.setIsPay(check);
+//                Order saveOrder = orderRepository.save(newOrder);
+//                orderId = saveOrder.getOrderId();
+//            }
+//            Cart saveCart = this.requestToEntity(cartRequestDTO, orderId, buyer);
+//
+//            //update Price
+//            this.updatePrice(orderId);
+//            Cart cartResponse = this.cartRepository.save(saveCart);
+//            CartResponseDTO result = this.convertDTO(cartResponse);
             //show Cart
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(result));
@@ -217,6 +219,12 @@ public class CartServiceImpl implements CartService {
     @Override
     public ResponseEntity<Object> updateCart(CartRequestDTO cartRequestDTO, Long id, Authentication authentication) throws Exception {
         try {
+            if(cartRequestDTO.getProduct_id()==null||cartRequestDTO.getQuantity()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
+            if(cartRequestDTO.getQuantity()<=0){
+                throw new Exception("Quantity can't be 0 or negatif");
+            }
             Cart cart = cartRepository.findById(id).orElseThrow(() -> new Exception("Cart not found"));
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));
             Product product = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
@@ -225,9 +233,7 @@ public class CartServiceImpl implements CartService {
             boolean checkProduct = !product.getSeller().getUser().getUsername().equals(authentication.getName());
             boolean checkCart = cart.getBuyer().getUser().getUsername().equals(authentication.getName());
             boolean checkUser = checkProduct && checkCart;
-            if(cartRequestDTO.getQuantity()<=0){
-                throw new Exception("Quantity can't be 0 or negatif");
-            }
+
             Long orderId = cart.getOrder().getOrderId();
             if (checkRoles || checkUser) {
                 Cart saveCart = this.requestToEntity(cartRequestDTO, orderId, buyer);
@@ -315,6 +321,12 @@ public class CartServiceImpl implements CartService {
     }
 
     public CartResponseDTO createCart(CartRequestDTO cartRequestDTO, Authentication authentication) throws Exception {
+        if(cartRequestDTO.getProduct_id()==null||cartRequestDTO.getQuantity()==null){
+            throw new Exception("Please check again your input, it can't empty");
+        }
+        if(cartRequestDTO.getQuantity()<=0){
+            throw new Exception("Quantity can't be 0 or negatif");
+        }
         Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName());
         Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
         Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));

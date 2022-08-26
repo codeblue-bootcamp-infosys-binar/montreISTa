@@ -42,7 +42,7 @@ public class TransactionServiceImpl implements TransactionService {
             List<TransactionResponseDTO> transactions = transactionRepository.findAll(pageable).stream()
                     .map(HistoryTransaction::convertToResponse)
                     .collect(Collectors.toList());
-            if(transactions.isEmpty()){
+            if (transactions.isEmpty()) {
                 throw new Exception("Transactions Not Found");
             }
             logger.info("==================== Logger Start Get All Transactions     ====================");
@@ -76,7 +76,7 @@ public class TransactionServiceImpl implements TransactionService {
             List<TransactionDetailResponseDTO> results = transactionDetailsRepository.findAll(pageable).stream()
                     .map(HistoryTransactionDetail::convertToResponse)
                     .collect(Collectors.toList());
-            if(results.isEmpty()){
+            if (results.isEmpty()) {
                 throw new Exception("Transactions Details Not Found");
             }
             logger.info(Line + "Logger Start Get Transaction Detail" + Line);
@@ -232,10 +232,10 @@ public class TransactionServiceImpl implements TransactionService {
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please order first"));
             Order order = orderRepository.findFirstByListCartBuyerBuyerIdOrderByOrderIdDesc(buyer.getBuyerId()).orElseThrow(() -> new Exception("Please order first"));
 
-            if(order.getPayment()==null|| order.getShipping()==null
-                    ||order.getDestinationName()==null
-                    ||order.getDestinationAddress()==null
-                    ||order.getDestinationPhone()==null){
+            if (order.getPayment() == null || order.getShipping() == null
+                    || order.getDestinationName() == null
+                    || order.getDestinationAddress() == null
+                    || order.getDestinationPhone() == null) {
                 throw new Exception("Please order now first and input necessary info !");
             }
             if (!order.getIsPay()) {

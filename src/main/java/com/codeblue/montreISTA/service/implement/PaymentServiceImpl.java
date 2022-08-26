@@ -99,6 +99,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public ResponseEntity<Object> addPayment(PaymentRequestDTO paymentRequestDTO) throws Exception {
         try {
+            if(paymentRequestDTO.getName()==null||paymentRequestDTO.getPayment_code()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
             Payment payment = paymentRequestDTO.convertToEntity();
             Optional<Payment> check = paymentRepository.findByNameIgnoreCase(paymentRequestDTO.getName());
             if (check.isPresent()) {
@@ -120,6 +123,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public ResponseEntity<Object> updatePayment(PaymentRequestDTO paymentRequestDTO, Long id) throws Exception {
         try {
+            if(paymentRequestDTO.getName()==null||paymentRequestDTO.getPayment_code()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
             Payment payment = paymentRepository.findById(id).orElseThrow(() -> new Exception("Payment not found"));
             List<Payment> payments = paymentRepository.findByNameIgnoreCaseContaining(paymentRequestDTO.getName());
             if (!payments.isEmpty()) {

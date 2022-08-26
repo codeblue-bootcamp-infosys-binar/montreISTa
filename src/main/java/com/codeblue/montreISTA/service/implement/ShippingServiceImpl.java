@@ -78,6 +78,9 @@ public class ShippingServiceImpl implements ShippingService {
     @Override
     public ResponseEntity<Object> createShipping(ShippingRequestDTO shippingRequestDTO) throws Exception {
         try {
+            if(shippingRequestDTO.getName()==null||shippingRequestDTO.getPrice()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
             Shipping shipping = shippingRequestDTO.convertToEntity();
             Optional<Shipping> check = shippingRepository.findByNameIgnoreCase(shippingRequestDTO.getName());
             if (check.isPresent()) {
@@ -99,6 +102,9 @@ public class ShippingServiceImpl implements ShippingService {
     @Override
     public ResponseEntity<Object> updateShipping(ShippingRequestDTO shippingRequestDTO, Long id) throws Exception {
         try {
+            if(shippingRequestDTO.getName()==null||shippingRequestDTO.getPrice()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
             Shipping shipping = shippingRepository.findById(id).orElseThrow(() -> new Exception("Shipping not found"));
             Optional<Shipping> check = shippingRepository.findByNameIgnoreCase(shippingRequestDTO.getName());
             if (check.isPresent()) {
