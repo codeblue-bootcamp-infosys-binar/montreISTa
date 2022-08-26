@@ -75,7 +75,7 @@ public class TransactionController {
                                                                 @RequestParam(required = false) Integer page,
                                                                 @RequestParam(required = false) boolean descending) throws Exception {
 
-        return transactionService.findByTransactionDetailSellerId(authentication, page, sort, descending);
+        return transactionService.findByTransactionDetailSellerId(authentication,page, sort, descending);
     }
 
     @GetMapping("/user/checkout-order")

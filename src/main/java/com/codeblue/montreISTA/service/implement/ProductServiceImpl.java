@@ -40,6 +40,7 @@ public class ProductServiceImpl implements ProductService {
 
     public ResponseEntity<Object> findAllProduct(Integer page, String sort, boolean descending) {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<Product> products = productRepository.findAll(pageable).getContent();
             if (products.isEmpty()) {
@@ -93,6 +94,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> findByProductName(String name, Integer page, String sort, boolean descending) throws Exception {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<Product> products = productRepository.findByProductNameIgnoreCaseContaining(name, pageable);
             List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
@@ -111,6 +113,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> findBySellerName(String name, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<Product> products = productRepository.findBySellerUserUsernameIgnoreCaseContaining(name, pageable);
             List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
@@ -129,6 +132,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> findByStoreName(String name, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
 
             List<Product> products = productRepository.findBySellerStoreNameIgnoreCaseContaining(name, pageable);
@@ -149,6 +153,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> findByCategoryId(Long id, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
 
             List<Product> products = productRepository.findByCategoriesCategoryCategoriesId(id, pageable);
@@ -170,6 +175,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> findByCategoryName(String name, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
 
             List<Product> products = productRepository.findByCategoriesCategoryNameIgnoreCaseContaining(name, pageable);
@@ -190,6 +196,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> findProductBySellerId(Authentication authentication, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
             Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please login as seller"));
             List<Product> product = productRepository.findBySellerSellerId(seller.getSellerId(), pageable);
@@ -202,6 +209,43 @@ public class ProductServiceImpl implements ProductService {
             logger.info(Line + "Logger Start Get seller id " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get seller id " + Line);
+            return ResponseHandler.generateResponse("successfully get products", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!");
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> search(String keyword, Integer page, String sort, boolean descending) throws Exception {
+        try{
+            if (sort!=null){
+                switch (sort) {
+                    case "id" -> sort = "product.id";
+                    case "price" -> sort = "product.price";
+                    case "productName" -> sort = "product.productName";
+                    case "description" -> sort = "product.description";
+                    case "sellerId" -> sort = "product.seller.sellerId";
+                    case "storeName" -> sort = "product.seller.storeName";
+                    case "categories" -> sort = "category.name";
+                    default -> sort = "id";
+                }
+            }
+            Pageable pageable = Pagination.paginate(page, sort, descending);
+            List<ProductCategory> productCategories = productCategoryRepository.search(keyword.toUpperCase(),pageable).getContent();
+            if(productCategories.isEmpty()){
+                throw new Exception("Product Not found");
+            }
+            List<ProductResponseDTO> results = productCategories.stream()
+                    .map(ProductCategory::getProduct)
+                    .distinct()
+                    .map(dtoConverter::convertOneProducts)
+                    .toList();
+            logger.info(Line + "Logger Start Search" + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Get Search" + Line);
             return ResponseHandler.generateResponse("successfully get products", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.error(Line + " Logger Start Error " + Line);
@@ -378,6 +422,17 @@ public class ProductServiceImpl implements ProductService {
                 throw new RuntimeException(e);
             }
         });
+    }
+    public String sort(String sort){
+        if (sort!=null){
+            switch (sort) {
+                case "id" -> sort = "productId";
+                case "sellerId" -> sort = "seller.sellerId";
+                case "storeName" -> sort = "seller.storeName";
+
+            }
+        }
+        return sort;
     }
 
 

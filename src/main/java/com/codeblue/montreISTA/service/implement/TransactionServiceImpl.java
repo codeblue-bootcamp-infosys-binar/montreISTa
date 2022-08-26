@@ -7,7 +7,6 @@ import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.helper.Pagination;
 import com.codeblue.montreISTA.repository.*;
 import com.codeblue.montreISTA.response.ResponseHandler;
-import com.codeblue.montreISTA.service.CategoryService;
 import com.codeblue.montreISTA.service.TransactionService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -25,7 +24,6 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class TransactionServiceImpl implements TransactionService {
 
-    public static Integer currentPage;
     private final TransactionRepository transactionRepository;
     private final TransactionDetailsRepository transactionDetailsRepository;
     private final OrderRepository orderRepository;
@@ -38,6 +36,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public ResponseEntity<Object> findAllTransaction(Integer page, String sort, boolean descending) {
         try {
+            sort = this.sortTransaction(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<TransactionResponseDTO> transactions = transactionRepository.findAll(pageable).stream()
                     .map(HistoryTransaction::convertToResponse)
@@ -72,6 +71,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public ResponseEntity<Object> findAllTransactionDetail(Integer page, String sort, boolean descending) {
         try {
+            sort = this.sortTransactionDetails(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<TransactionDetailResponseDTO> results = transactionDetailsRepository.findAll(pageable).stream()
                     .map(HistoryTransactionDetail::convertToResponse)
@@ -94,6 +94,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public ResponseEntity<Object> findByTransactionBuyerId(Authentication authentication, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sortTransaction(sort);
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please order first"));
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<HistoryTransaction> transaction = transactionRepository.findByBuyerBuyerId(buyer.getBuyerId(), pageable);
@@ -118,6 +119,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public ResponseEntity<Object> findByTransactionSellerId(Authentication authentication, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sortTransaction(sort);
             Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("You don't have store"));
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<HistoryTransaction> transaction = transactionRepository.findBySellerSellerId(seller.getSellerId(), pageable);
@@ -142,6 +144,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public ResponseEntity<Object> findByTransactionDetailBuyerId(Authentication authentication, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sortTransactionDetails(sort);
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please order first"));
             Pageable pageable = Pagination.paginate(page, sort, descending);
 
@@ -169,6 +172,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public ResponseEntity<Object> findByTransactionDetailSellerId(Authentication authentication, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sortTransactionDetails(sort);
             Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("You don't have store"));
             Pageable pageable = Pagination.paginate(page, sort, descending);
 
@@ -263,9 +267,9 @@ public class TransactionServiceImpl implements TransactionService {
                 transaction.setBuyer(cart.getBuyer());
                 transaction.setSeller(cart.getProduct().getSeller());
                 transaction.setPhotoUrl(photoURL);
-                transaction.setProduct_id(cart.getProduct().getId());
-                transaction.setProduct_name(cart.getProduct().getProductName());
-                transaction.setProduct_price(cart.getProduct().getPrice());
+                transaction.setProductId(cart.getProduct().getId());
+                transaction.setProductName(cart.getProduct().getProductName());
+                transaction.setProductPrice(cart.getProduct().getPrice());
                 transaction.setQuantity(cart.getQuantity());
                 transaction.setTotalPrice(cart.getQuantity() * cart.getProduct().getPrice() + order.getShipping().getPrice());
                 HistoryTransaction transactionSave = transactionRepository.save(transaction);
@@ -298,5 +302,44 @@ public class TransactionServiceImpl implements TransactionService {
         }
     }
 
+    public String sortTransaction(String sort) {
+        switch (sort) {
+            case "buyer_id" -> sort = "buyer.buyerId";
+            case "seller_id" -> sort = "seller.sellerId";
+            case "store_name" -> sort = "seller.storeName";
+            case "product_name" -> sort = "productName";
+            case "product_price" -> sort = "productPrice";
+            case "quantity" -> sort = "quantity";
+            case "total_price" -> sort = "totalPrice";
+            default -> sort = "id";
+        }
+        return sort;
+    }
+
+    public String sortTransactionDetails(String sort) {
+        switch (sort) {
+            case "seller_id" -> sort = "historyTransaction.seller.sellerId";
+            case "seller_name" -> sort = "historyTransaction.seller.user.name";
+            case "store_name" -> sort = "historyTransaction.seller.storeName";
+            case "store_address" -> sort = "historyTransaction.seller.storeAddress";
+            case "buyer_id" -> sort = "historyTransaction.buyer.buyerId";
+            case "buyer" -> sort = "historyTransaction.buyer.user.name";
+            case "total_price" -> sort = "historyTransaction.totalPrice";
+            case "destination_name" -> sort = "destinationName";
+            case "destination_address" -> sort = "destinationAddress";
+            case "destination_phone" -> sort = "destinationPhone";
+            case "zip_code" -> sort = "zipCode";
+            case "payment_name" -> sort = "paymentName";
+            case "payment_code" -> sort = "paymentCode";
+            case "shipping_name" -> sort = "shippingName";
+            case "shipping_price" -> sort = "shippingPrice";
+            case "categories" -> sort = "categories";
+            case "product_name" -> sort = "historyTransaction.productName";
+            case "product_price" -> sort = "historyTransaction.productPrice";
+            case "quantity" -> sort = "historyTransaction.quantity";
+            default -> sort = "id";
+        }
+        return sort;
+    }
 
 }
