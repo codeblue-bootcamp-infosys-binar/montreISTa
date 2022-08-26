@@ -38,7 +38,6 @@ public class ProductServiceImpl implements ProductService {
     private static final String productPhotoDefault = "https://cdn5.vectorstock.com/i/1000x1000/38/19/product-promotion-black-icon-concept-vector-29963819.jpg";
 
 
-
     public ResponseEntity<Object> findAllProduct(Integer page, String sort, boolean descending) {
         try {
             Pageable pageable = Pagination.paginate(page, sort, descending);
@@ -218,7 +217,13 @@ public class ProductServiceImpl implements ProductService {
             Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("You don't have store"));
             Pageable pageable = Pagination.paginate(0, "price", false);
             List<Product> products = productRepository.findBySellerSellerId(seller.getSellerId(), pageable);
-
+            if (productRequestDTO.getProductName() == null || productRequestDTO.getDescription() == null
+                    || productRequestDTO.getCategory() == null || productRequestDTO.getPrice() == null) {
+                throw new Exception("Please check again your input, it can't empty");
+            }
+            if (productRequestDTO.getPrice() <= 0) {
+                throw new Exception("Price can't be 0 or negatif");
+            }
             if (productRequestDTO.getCategory().size() > 4) {
                 throw new Exception("Product can only have 4 category");
             }
@@ -261,14 +266,21 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> updateProduct(ProductRequestDTO productRequestDTO, Long id, Authentication authentication) {
         try {
-
+            if (productRequestDTO.getProductName() == null
+                    || productRequestDTO.getDescription() == null
+                    || productRequestDTO.getPrice() == null) {
+                throw new Exception("Please check again your input, it can't empty");
+            }
+            if (productRequestDTO.getPrice() <= 0) {
+                throw new Exception("Price can't be 0 or negatif");
+            }
             Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("You don't have store"));
             Product product = productRepository.findById(id).orElseThrow(() -> new Exception("Product Not Found"));
             List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
             boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
             boolean checkUser = product.getSeller().getUser().getUsername().equals(authentication.getName());
-
             Product productRequest = productRequestDTO.convertToEntity(seller);
+            Product saveProduct;
             if (checkRoles || checkUser) {
 
                 //UPDATING PRODUCT DATA
@@ -277,21 +289,19 @@ public class ProductServiceImpl implements ProductService {
                 product.setDescription(productRequest.getDescription());
                 product.setPrice(productRequest.getPrice());
 
-                List<String> categories = productRequestDTO.getCategory();
-                if (categories.isEmpty()) {
-                    throw new Exception("Product must have 1 category");
-                }
-                List<Category> categoryProduct = categoryRepository.findByProductsProductId(id);
-                if (categories.size() + categoryProduct.size() >= 4) {
-                    throw new Exception("Product can only have 4 category");
-                }
                 //check categories
-                this.checkCategories(categories);
-
-                //SAVING THE UPDATES TO DATABASE
-                Product saveProduct = productRepository.save(product);
-                this.addCategory(categories, saveProduct);
-
+                if (productRequestDTO.getCategory()!=null) {
+                    List<String> categories = productRequestDTO.getCategory();
+                    List<Category> categoryProduct = categoryRepository.findByProductsProductId(id);
+                    if (categories.size() + categoryProduct.size() >= 4) {
+                        throw new Exception("Product can only have 4 category");
+                    }
+                    this.checkCategories(categories);
+                    saveProduct = productRepository.save(product);
+                    this.addCategory(categories, saveProduct);
+                }else {
+                    saveProduct = productRepository.save(product);
+                }
                 ProductResponseDTO results = dtoConverter.convertOneProducts(saveProduct);
                 logger.info(Line + "Logger Start Update By Id " + Line);
                 logger.info(String.valueOf(results));
@@ -352,7 +362,8 @@ public class ProductServiceImpl implements ProductService {
             }
         });
     }
-    public Photo addPhoto(Product newProduct){
+
+    public Photo addPhoto(Product newProduct) {
         Photo photo = new Photo();
         photo.setPhotoURL(productPhotoDefault);
         photo.setProduct(newProduct);

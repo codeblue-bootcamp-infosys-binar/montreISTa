@@ -58,7 +58,6 @@ public class UserServiceImpl implements UserService {
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.getUsername(), userRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
-
             String jwt = jwtUtils.generateJwtToken(authentication);
             MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
 
@@ -80,7 +79,7 @@ public class UserServiceImpl implements UserService {
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
 
-            return ResponseHandler.generateResponse("Username or Password is incorrect", HttpStatus.BAD_REQUEST, "Failed Login!");
+            return ResponseHandler.generateResponse("Please check again your username and password input", HttpStatus.BAD_REQUEST, "Failed Login!");
         }
     }
 
@@ -176,7 +175,11 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<Object> registrationUser(RegistrationDTO registrationDTO)  {
 
         try {
-
+            if(registrationDTO.getUsername()==null||registrationDTO.getPassword()==null
+                    ||registrationDTO.getName()==null||registrationDTO.getEmail()==null
+                    ||registrationDTO.getPhone()==null||registrationDTO.getAddress()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
             if (userRepository.existsByUsername(registrationDTO.getUsername())) {
                 throw new Exception("Username is already in use");
             }
@@ -189,24 +192,12 @@ public class UserServiceImpl implements UserService {
                 throw new Exception("Phone is already in use");
             }
 
-            String phone = registrationDTO.getPhone();
-            String phonePattern = "^(?:\\+62|\\(0\\d{2,3}\\)|0)\\s?(?:361|8[17]\\s?\\d?)?(?:[ -]?\\d{3,4}){2,3}$";
-            if (!phone.matches(phonePattern)){
-                throw new Exception("please use the correct phone number format");
-            }
-
-            String password = registrationDTO.getPassword();
-            String passPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,20}$";
-            if (!password.matches(passPattern)){
-                throw new Exception("please enter the right password format");
-            }
-
-            String email = registrationDTO.getEmail();
-            String emailPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
-                    + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-            if (!email.matches(emailPattern)){
-                throw new Exception("please enter the right email format");
-            }
+            this.checkInput(registrationDTO.getName(),
+                    registrationDTO.getUsername(),
+                    registrationDTO.getPassword(),
+                    registrationDTO.getPhone(),
+                    registrationDTO.getEmail(),
+                    registrationDTO.getAddress());
 
             User user = registrationDTO.convertToEntity();
             user.setPhoto("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
@@ -237,7 +228,18 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<Object> updateUser(UpdateUserDTO updateUserDTO, Authentication authentication)  {
 
         try {
-
+            if(updateUserDTO.getUsername()==null||updateUserDTO.getPassword()==null
+                    ||updateUserDTO.getName()==null||updateUserDTO.getEmail()==null
+                    ||updateUserDTO.getPhone()==null||updateUserDTO.getAddress()==null
+                    ||updateUserDTO.getRoles()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
+            this.checkInput(updateUserDTO.getName(),
+                    updateUserDTO.getUsername(),
+                    updateUserDTO.getPassword(),
+                    updateUserDTO.getPhone(),
+                    updateUserDTO.getEmail(),
+                    updateUserDTO.getAddress());
             User userByUsername = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("User not found"));
             User user = updateUserDTO.convertToEntity();
 
@@ -274,7 +276,9 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<Object> uploadPhotoProfile(Authentication authentication, MultipartFile file)  {
 
         try{
-
+            if(file==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
             User user = userRepository.findByUsername(authentication.getName()).orElseThrow(()->new Exception("Please sign up"));
             
             String url = cloudinaryService.uploadFile(file);
@@ -383,6 +387,42 @@ public class UserServiceImpl implements UserService {
                     throw new RuntimeException(e);
                 }
             });
+        }
+    }
+
+    public void checkInput(String name,
+                           String username,
+                           String password,
+                           String phone,
+                           String email,
+                           String address) throws Exception {
+
+        if (!name.matches("[a-zA-Z\\s]{3,40}")) {
+            throw new Exception("please use the correct name format");
+        }
+
+        if (!username.matches("[\\V\\S]{6,20}")){
+            throw new Exception("please use the correct username format");
+        }
+
+        String phonePattern = "^(?:\\+62|\\(0\\d{2,3}\\)|0)\\s?(?:361|8[17]\\s?\\d?)?(?:[ -]?\\d{3,4}){2,3}$";
+        if (!phone.matches(phonePattern)){
+            throw new Exception("please use the correct phone number format");
+        }
+
+        String passPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,20}$";
+        if (!password.matches(passPattern)){
+            throw new Exception("please enter the right password format");
+        }
+
+        if ((address.length() <5)){
+            throw new Exception("please use the correct address format");
+        }
+
+        String emailPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        if (!email.matches(emailPattern)){
+            throw new Exception("please enter the right email format");
         }
     }
 }
