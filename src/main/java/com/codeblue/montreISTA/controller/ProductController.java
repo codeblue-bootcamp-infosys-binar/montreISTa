@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
 @AllArgsConstructor
 @RestController
 @Tag(name = "03. Product")
@@ -113,6 +114,16 @@ public class ProductController {
     public ResponseEntity<Object> deleteProduct(@PathVariable("id") Long id, Authentication authentication) throws Exception {
 
         return productService.deleteProduct(id, authentication);
+
+    }
+
+    @GetMapping("/products/search")
+    public ResponseEntity<Object> search(@RequestParam String keyword,
+                                         @RequestParam(required = false) String sort,
+                                         @RequestParam(required = false) Integer page,
+                                         @RequestParam(required = false) boolean descending) throws Exception {
+
+        return productService.search(keyword, page, sort, descending);
 
     }
 }
