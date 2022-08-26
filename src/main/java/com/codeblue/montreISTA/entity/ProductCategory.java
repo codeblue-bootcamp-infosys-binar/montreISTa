@@ -17,12 +17,12 @@ import javax.persistence.*;
 @Builder
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "productCategoryId")
+        property = "id")
 public class ProductCategory extends AuditEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productCategoryId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -35,7 +35,7 @@ public class ProductCategory extends AuditEntity {
     public ProductCategoryResponseDTO convertToResponse(ProductToProductCategoryDTO product, CategoryResponseDTO category){
 
         return ProductCategoryResponseDTO.builder()
-                .product_category_id(this.getProductCategoryId())
+                .product_category_id(this.getId())
                 .product(product)
                 .category(category)
                 .build();
@@ -44,7 +44,7 @@ public class ProductCategory extends AuditEntity {
     @Override
     public String toString() {
         return "ProductCategory{" +
-                "productCategoryId=" + productCategoryId +
+                "id=" + id +
                 ", product=" + product +
                 ", category=" + category +
                 '}';
