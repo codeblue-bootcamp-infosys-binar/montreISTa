@@ -35,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
         try {
             List<Order> orders = orderRepository.findAllByOrderByOrderIdAsc();
             List<OrderResponseDTO> results = this.convertListDTO(orders);
-            if(results.isEmpty()){
+            if (results.isEmpty()) {
                 throw new Exception("Order Not Found");
             }
             logger.info("==================== Logger Start Get All Order    ====================");
@@ -160,6 +160,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public ResponseEntity<Object> updateOrder(OrderRequestDTO orderRequestDTO, String keyword) {
         try {
+            if (orderRequestDTO.getPayment() == null || orderRequestDTO.getShipping() == null
+                    || orderRequestDTO.getDestination_name() == null
+                    || orderRequestDTO.getDestination_address() == null
+                    || orderRequestDTO.getDestination_phone() == null
+                    || orderRequestDTO.getZip_code() == null) {
+                throw new Exception("Please check again your input, it can't empty");
+            }
+            this.checkInput(orderRequestDTO.getDestination_name(), orderRequestDTO.getDestination_phone(), orderRequestDTO.getDestination_address(), orderRequestDTO.getZip_code());
 
             Order order = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(keyword).orElseThrow(() -> new Exception("Please add product to cart before order"));
             Payment payment = paymentRepository.findByNameIgnoreCase(orderRequestDTO.getPayment()).orElseThrow(() -> new Exception("Payment Not found"));
@@ -217,10 +225,10 @@ public class OrderServiceImpl implements OrderService {
     public ResponseEntity<Object> payOrder(String keyword) {
         try {
             Order orderGet = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(keyword).orElseThrow(() -> new Exception("Order not found"));
-            if(orderGet.getPayment()==null|| orderGet.getShipping()==null
-                    ||orderGet.getDestinationName()==null
-                    ||orderGet.getDestinationAddress()==null
-                    ||orderGet.getDestinationPhone()==null){
+            if (orderGet.getPayment() == null || orderGet.getShipping() == null
+                    || orderGet.getDestinationName() == null
+                    || orderGet.getDestinationAddress() == null
+                    || orderGet.getDestinationPhone() == null) {
                 throw new Exception("Please order now first and input necessary info !");
             }
             boolean checkPay = true;
@@ -253,4 +261,23 @@ public class OrderServiceImpl implements OrderService {
         return order.convertToResponse(cartDTO);
     }
 
+    public void checkInput(String name, String phone, String address, String zip_code) throws Exception {
+
+        String phonePattern = "^(?:\\+62|\\(0\\d{2,3}\\)|0)\\s?(?:361|8[17]\\s?\\d?)?(?:[ -]?\\d{3,4}){2,3}$";
+        if (!phone.matches(phonePattern)) {
+            throw new Exception("please use the correct phone number format");
+        }
+
+        if (!zip_code.matches("[0-9]{5}")) {
+            throw new Exception("please use the correct zip code format");
+        }
+
+        if (!name.matches("[a-zA-Z\\s]{3,40}")) {
+            throw new Exception("please use the correct name format");
+        }
+
+        if ((address.length() <5)){
+            throw new Exception("please use the correct address format");
+        }
+    }
 }
