@@ -218,7 +218,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
         //save to entity
         ProductCategory saveProductCategory = productCategory.convertToEntity(product, category);
         if (id != null) {
-            saveProductCategory.setProductCategoryId(id);
+            saveProductCategory.setId(id);
         }
         productCategoryRepository.save(saveProductCategory);
         ProductToProductCategoryDTO productDTO = product.convertToProductCategory();

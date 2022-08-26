@@ -25,6 +25,8 @@ public interface ProductService {
 
     ResponseEntity<Object> findProductBySellerId(Authentication authentication, Integer page, String sort, boolean descending) throws Exception;
 
+    ResponseEntity<Object> search(String keyword,Integer page, String sort, boolean descending) throws Exception;
+
     ResponseEntity<Object> createProduct(ProductRequestDTO productRequestDTO, Authentication authentication) throws Exception;
 
     ResponseEntity<Object> updateProduct(ProductRequestDTO productRequestDTO, Long id, Authentication authentication)throws Exception;
