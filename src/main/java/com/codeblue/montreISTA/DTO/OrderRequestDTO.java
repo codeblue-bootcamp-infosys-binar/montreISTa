@@ -3,6 +3,8 @@ package com.codeblue.montreISTA.DTO;
 import com.codeblue.montreISTA.entity.*;
 import lombok.*;
 
+import javax.validation.constraints.Size;
+
 @Getter
 @Setter
 @AllArgsConstructor
