@@ -203,11 +203,11 @@ public class OrderServiceImpl implements OrderService {
                             try {
                                 Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
                                 if (product.getStock() - cart.getQuantity() < 0) {
-                                    throw new Exception("Please Update your cart with cart id : "+cart.getCartId()+
-                                            " because product name : "+product.getProductName()+
-                                            " with product id : "+product.getId()+
-                                            " have stock : "+product.getStock()+
-                                            " less than your quantity : "+cart.getQuantity()+" in your cart");
+                                    throw new Exception("Please Update your cart with cart id : " + cart.getCartId() +
+                                            " because product name : " + product.getProductName() +
+                                            " with product id : " + product.getId() +
+                                            " have stock : " + product.getStock() +
+                                            " less than your quantity : " + cart.getQuantity() + " in your cart");
                                 } else {
                                     product.setStock(product.getStock() - cart.getQuantity());
                                     productRepository.save(product);
@@ -254,17 +254,23 @@ public class OrderServiceImpl implements OrderService {
                 throw new Exception("Orders not found");
             }
             for (Order order : orders) {
-                order.getListCart().forEach(
-                        cart -> {
-                            try {
-                                Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
-                                product.setStock(product.getStock() + cart.getQuantity());
-                                productRepository.save(product);
-                            } catch (Exception e) {
-                                throw new RuntimeException(e);
+                if (order.getPayment() != null || order.getShipping() != null
+                        || order.getDestinationName() != null
+                        || order.getDestinationAddress() != null
+                        || order.getDestinationPhone() != null
+                        || order.getZipCode() != null) {
+                    order.getListCart().forEach(
+                            cart -> {
+                                try {
+                                    Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
+                                    product.setStock(product.getStock() + cart.getQuantity());
+                                    productRepository.save(product);
+                                } catch (Exception e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
-                        }
-                );
+                    );
+                }
             }
 
             orderRepository.deleteAll(orders);
