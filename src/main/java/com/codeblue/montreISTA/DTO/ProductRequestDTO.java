@@ -16,6 +16,7 @@ public class ProductRequestDTO {
     private String ProductName;
     private String description;
     private Integer price;
+    private Integer stock;
 
     private List<String> category;
 
@@ -25,6 +26,7 @@ public class ProductRequestDTO {
                 .productName(this.ProductName)
                 .description(this.description)
                 .price(this.price)
+                .stock(this.stock)
                 .build();
     }
 }

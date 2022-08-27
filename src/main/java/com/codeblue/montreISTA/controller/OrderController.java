@@ -40,6 +40,11 @@ public class OrderController {
         return orderService.findByBuyer(authentication.getName());
     }
 
+    @GetMapping("/user/my-product-order")
+    public ResponseEntity<Object> getOrderMyProduct(Authentication authentication) throws Exception {
+        return orderService.findBySeller(authentication.getName());
+    }
+
     @DeleteMapping("/user/order/delete")
     public ResponseEntity<Object> deleteOrder(Authentication authentication) throws Exception {
             return orderService.deleteOrder(authentication);
