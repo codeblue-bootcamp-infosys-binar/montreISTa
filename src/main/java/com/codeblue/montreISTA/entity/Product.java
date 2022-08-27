@@ -49,6 +49,8 @@ public class Product extends AuditEntity {
     @Column(name = "price")
     @NotNull
     private Integer price;
+    @NotNull
+    private Integer stock;
 
     //list of photos
     @OneToMany(cascade = CascadeType.ALL,
@@ -81,6 +83,7 @@ public class Product extends AuditEntity {
                 .productName(this.productName)
                 .description(this.description)
                 .price(this.price)
+                .stock(this.stock)
                 .photos(photoDTO)
                 .categories(categories)
                 .createdAt(this.getCreatedAt())

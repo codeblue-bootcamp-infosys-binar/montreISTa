@@ -26,6 +26,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final PaymentRepository paymentRepository;
     private final ShippingRepository shippingRepository;
+    private final ProductRepository productRepository;
     private final CartService cartService;
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
@@ -158,6 +159,26 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public ResponseEntity<Object> findBySeller(String keyword) throws Exception {
+        try {
+            List<Order> orders = orderRepository.findByListCartProductSellerUserUsernameOrderByOrderIdDesc(keyword);
+            if (orders.isEmpty()) {
+                throw new Exception("Orders not found");
+            }
+            List<OrderResponseDTO> results = this.convertListDTO(orders);
+            logger.info(Line + "Logger Start Get Order By Seller Login  " + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Get Order By By Seller Login  " + Line);
+            return ResponseHandler.generateResponse("successfully retrieved orders", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed Found Order!");
+        }
+    }
+
+    @Override
     public ResponseEntity<Object> updateOrder(OrderRequestDTO orderRequestDTO, String keyword) {
         try {
             if (orderRequestDTO.getPayment() == null || orderRequestDTO.getShipping() == null
@@ -172,7 +193,27 @@ public class OrderServiceImpl implements OrderService {
             Order order = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(keyword).orElseThrow(() -> new Exception("Please add product to cart before order"));
             Payment payment = paymentRepository.findByNameIgnoreCase(orderRequestDTO.getPayment()).orElseThrow(() -> new Exception("Payment Not found"));
             Shipping shipping = shippingRepository.findByNameIgnoreCase(orderRequestDTO.getShipping()).orElseThrow(() -> new Exception("Shipping Not found"));
-            orderRequestDTO.convertToEntity(payment, shipping);
+            if (order.getPayment() == null || order.getShipping() == null
+                    || order.getDestinationName() == null
+                    || order.getDestinationAddress() == null
+                    || order.getDestinationPhone() == null
+                    || order.getZipCode() == null) {
+                order.getListCart().forEach(
+                        cart -> {
+                            try {
+                                Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
+                                if (product.getStock() - cart.getQuantity() < 0) {
+                                    throw new Exception("Product do not have enough stock to cart");
+                                } else {
+                                    product.setStock(product.getStock() - cart.getQuantity());
+                                    productRepository.save(product);
+                                }
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                );
+            }
             int tempPrice = 0;
             for (Cart cart : order.getListCart()) {
                 int total = cart.getQuantity() * cart.getProduct().getPrice() + shipping.getPrice();
@@ -208,6 +249,20 @@ public class OrderServiceImpl implements OrderService {
             if (orders.isEmpty()) {
                 throw new Exception("Orders not found");
             }
+            for (Order order : orders) {
+                order.getListCart().forEach(
+                        cart -> {
+                            try {
+                                Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
+                                product.setStock(product.getStock() + cart.getQuantity());
+                                productRepository.save(product);
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                );
+            }
+
             orderRepository.deleteAll(orders);
             logger.info(Line + "Logger Start Delete By Id " + Line);
             logger.info("Delete Success");
@@ -247,12 +302,14 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
+    @Override
     public List<OrderResponseDTO> convertListDTO(List<Order> orders) {
         return orders.stream()
                 .map(this::convertDTO)
                 .collect(Collectors.toList());
     }
 
+    @Override
     public OrderResponseDTO convertDTO(Order order) {
         List<CartResponseDTO> cartDTO = order.getListCart()
                 .stream()
@@ -261,6 +318,7 @@ public class OrderServiceImpl implements OrderService {
         return order.convertToResponse(cartDTO);
     }
 
+    @Override
     public void checkInput(String name, String phone, String address, String zip_code) throws Exception {
 
         String phonePattern = "^(?:\\+62|\\(0\\d{2,3}\\)|0)\\s?(?:361|8[17]\\s?\\d?)?(?:[ -]?\\d{3,4}){2,3}$";
@@ -276,7 +334,7 @@ public class OrderServiceImpl implements OrderService {
             throw new Exception("please use the correct name format");
         }
 
-        if ((address.length() <5)){
+        if ((address.length() < 5)) {
             throw new Exception("please use the correct address format");
         }
     }

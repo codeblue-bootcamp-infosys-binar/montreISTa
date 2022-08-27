@@ -143,39 +143,6 @@ public class CartServiceImpl implements CartService {
     public ResponseEntity<Object> createCartResponse(CartRequestDTO cartRequestDTO, Authentication authentication) throws Exception {
         try {
             CartResponseDTO result = this.createCart(cartRequestDTO,authentication);
-//            Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName());
-//            Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
-//            Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));
-//            if (buyer.getUser().equals(productId.getSeller().getUser())) {
-//                throw new Exception("You can't order your own product");
-//            }
-//            if(cartRequestDTO.getQuantity()<=0){
-//                throw new Exception("Quantity can't be 0 or negatif");
-//            }
-//            Long orderId;
-//            if (orderBuyerId.isPresent()) {
-//                orderId = orderBuyerId.get().getOrderId();
-//            } else {
-//                Order newOrder = new Order();
-//                Long id = 1L;
-//                Payment payment = this.paymentRepository.findById(id).orElseThrow(Exception::new);
-//                Shipping shipping = this.shippingRepository.findById(id).orElseThrow(Exception::new);
-//                newOrder.setShipping(shipping);
-//                Integer subtotal = (cartRequestDTO.getQuantity() * productId.getPrice());
-//                newOrder.setTotalprice(subtotal + shipping.getPrice());
-//                newOrder.setPayment(payment);
-//                boolean check = false;
-//                newOrder.setIsPay(check);
-//                Order saveOrder = orderRepository.save(newOrder);
-//                orderId = saveOrder.getOrderId();
-//            }
-//            Cart saveCart = this.requestToEntity(cartRequestDTO, orderId, buyer);
-//
-//            //update Price
-//            this.updatePrice(orderId);
-//            Cart cartResponse = this.cartRepository.save(saveCart);
-//            CartResponseDTO result = this.convertDTO(cartResponse);
-            //show Cart
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(result));
             logger.info(Line + "Logger End Create " + Line);
@@ -228,6 +195,9 @@ public class CartServiceImpl implements CartService {
             Cart cart = cartRepository.findById(id).orElseThrow(() -> new Exception("Cart not found"));
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));
             Product product = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
+            if(product.getStock()-cartRequestDTO.getQuantity()<0){
+                throw new Exception("Product do not have enough stock to cart");
+            }
             List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
             boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
             boolean checkProduct = !product.getSeller().getUser().getUsername().equals(authentication.getName());
@@ -329,6 +299,9 @@ public class CartServiceImpl implements CartService {
         }
         Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName());
         Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
+        if(productId.getStock()-cartRequestDTO.getQuantity()<0){
+            throw new Exception("Product do not have enough stock to cart");
+        }
         Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));
         if (buyer.getUser().equals(productId.getSeller().getUser())) {
             throw new Exception("You can't order your own product");

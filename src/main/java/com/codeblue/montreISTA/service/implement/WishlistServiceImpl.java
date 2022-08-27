@@ -89,6 +89,9 @@ public class WishlistServiceImpl implements WishlistService {
             }
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please login as buyer"));
             Product product = productRepository.findById(wishlist.getProductId()).orElseThrow(() -> new Exception("Product not found"));
+            if(product.getStock()-wishlist.getQuantity()<0){
+                throw new Exception("Product do not have enough stock to wishlist");
+            }
             if (buyer.getUser().getUserId().equals(product.getSeller().getUser().getUserId())) {
                 throw new Exception("You can't order your own product");
             }
@@ -120,6 +123,9 @@ public class WishlistServiceImpl implements WishlistService {
             Wishlist wishlist = wishlistRepository.findById(id).orElseThrow(() -> new Exception("Wishlist not found"));
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please login as buyer"));
             Product product = productRepository.findById(wishlistRequestDTO.getProductId()).orElseThrow(() -> new Exception("Product not found"));
+            if(product.getStock()-wishlistRequestDTO.getQuantity()<0){
+                throw new Exception("Product do not have enough stock to wishlist");
+            }
             List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
             boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
             boolean checkProduct = !product.getSeller().getUser().getUsername().equals(authentication.getName());
