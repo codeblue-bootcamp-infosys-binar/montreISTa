@@ -28,7 +28,8 @@ public class Scheduler {
     private final OrderService orderService;
     private final ProductRepository productRepository;
 
-    @Scheduled(cron = "59 */3 * * * ?") //setiap jam pada menit 26:59 - 30:59
+    @Scheduled(cron = "59 */3 * * * ?") // staging , setiap 3 menit pada menit detik 59
+//    @Scheduled(cron = "59 55-59 * * * ?") // production , setiap jam pada menit 55:59 - 59:59
     public void cronSchedule() {
         ZonedDateTime zoneNow = ZonedDateTime.now(TimeZone.getTimeZone("GMT/Zulu").toZoneId());
 //        ZonedDateTime zoneNow = ZonedDateTime.now(TimeZone.getTimeZone("Asia/Bangkok").toZoneId());
@@ -40,7 +41,8 @@ public class Scheduler {
                     && order.getDestinationPhone() != null
                     && order.getZipCode() != null;
             if (check) {
-                if (zoneNow.getHour() == order.getModifiedAt().getHour() && zoneNow.minusMinutes(2).getMinute() >= order.getModifiedAt().getMinute()) {
+                if (zoneNow.getHour() == order.getModifiedAt().getHour() && zoneNow.minusMinutes(2).getMinute() >= order.getModifiedAt().getMinute()) { //staging, lakukan task jika data > 2 menit
+//                    if (zoneNow.getHour() == order.getModifiedAt().getHour() && zoneNow.minusDays(1).getDayOfMonth() >= order.getModifiedAt().getDayOfMonth()) { //production, lakukan task jika data > 1 hari
                     order.getListCart().forEach(
                             cart -> {
                                 try {
