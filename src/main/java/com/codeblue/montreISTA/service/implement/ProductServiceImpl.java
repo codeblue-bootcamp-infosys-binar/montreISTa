@@ -82,6 +82,9 @@ public class ProductServiceImpl implements ProductService {
     public ResponseEntity<Object> findProductById(Long id) {
         try {
             Product product = productRepository.findById(id).orElseThrow(() -> new Exception("Product not found"));
+            if(product.getStock()<=0){
+                throw new Exception("This product have no stock");
+            }
             ProductResponseDTO result = dtoConverter.convertOneProducts(product);
             logger.info(Line + "Logger Start Get product id " + Line);
             logger.info(String.valueOf(result));
