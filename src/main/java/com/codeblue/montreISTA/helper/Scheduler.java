@@ -1,6 +1,5 @@
 package com.codeblue.montreISTA.helper;
 
-import com.codeblue.montreISTA.DTO.OrderResponseDTO;
 import com.codeblue.montreISTA.controller.CartController;
 import com.codeblue.montreISTA.entity.Order;
 import com.codeblue.montreISTA.entity.Product;
@@ -17,6 +16,7 @@ import javax.transaction.Transactional;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Component
 @AllArgsConstructor
@@ -30,8 +30,9 @@ public class Scheduler {
 
     @Scheduled(cron = "59 */3 * * * ?") //setiap jam pada menit 26:59 - 30:59
     public void cronSchedule() {
-        ZonedDateTime zoneNow = ZonedDateTime.now(TimeZone.getTimeZone("Asia/Bangkok").toZoneId());
+        ZonedDateTime zoneNow = ZonedDateTime.now(TimeZone.getTimeZone("GMT/Zulu").toZoneId());
         List<Order> orders = orderRepository.findByIsPay(false);
+        AtomicReference<String> message = new AtomicReference<>("Schedule work, but nothing to delete");
         orders.forEach(order -> {
             if (order.getPayment() != null || order.getShipping() != null
                     || order.getDestinationName() != null
@@ -45,21 +46,22 @@ public class Scheduler {
                                     Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
                                     product.setStock(product.getStock() + cart.getQuantity());
                                     productRepository.save(product);
+
                                 } catch (Exception e) {
                                     throw new RuntimeException(e);
                                 }
                             }
                     );
+                    message.set("success delete order id : "+order.getOrderId());
                     orderRepository.delete(order);
                 }
             }
         });
 
-        List<OrderResponseDTO> results = orderService.convertListDTO(orders);
         String line = "====================";
         logger.info(line);
-        logger.info("The time is now {}", zoneNow);
-        logger.info(String.valueOf(results));
+        logger.info("The time is now {} ", zoneNow);
+        logger.info(String.valueOf(message));
         logger.info(line);
     }
 }
