@@ -191,6 +191,9 @@ public class OrderServiceImpl implements OrderService {
             this.checkInput(orderRequestDTO.getDestination_name(), orderRequestDTO.getDestination_phone(), orderRequestDTO.getDestination_address(), orderRequestDTO.getZip_code());
 
             Order order = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(keyword).orElseThrow(() -> new Exception("Please add product to cart before order"));
+
+            this.checkQuantity(order.getListCart());
+
             Payment payment = paymentRepository.findByNameIgnoreCase(orderRequestDTO.getPayment()).orElseThrow(() -> new Exception("Payment Not found"));
             Shipping shipping = shippingRepository.findByNameIgnoreCase(orderRequestDTO.getShipping()).orElseThrow(() -> new Exception("Shipping Not found"));
             if (order.getPayment() == null || order.getShipping() == null
@@ -347,5 +350,23 @@ public class OrderServiceImpl implements OrderService {
         if ((address.length() < 5)) {
             throw new Exception("please use the correct address format");
         }
+    }
+    public void checkQuantity(List<Cart> carts){
+        carts.forEach(
+                cart -> {
+                    try {
+                        Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
+                        if (product.getStock() - cart.getQuantity() < 0) {
+                            throw new Exception("Please Update your cart with cart id : " + cart.getCartId() +
+                                    " because product name : " + product.getProductName() +
+                                    " with product id : " + product.getId() +
+                                    " have stock : " + product.getStock() +
+                                    " less than your quantity : " + cart.getQuantity() + " in your cart");
+                        }
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
     }
 }

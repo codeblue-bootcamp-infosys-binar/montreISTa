@@ -267,6 +267,9 @@ public class ProductServiceImpl implements ProductService {
                     default -> sort = "id";
                 }
             }
+            if(keyword.toUpperCase().equals("HAPPINESS")){
+                throw new Exception("maaf anda kurang beruntung");
+            }
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<ProductCategory> productCategories = productCategoryRepository.search(keyword.toUpperCase(), pageable).getContent();
             if (productCategories.isEmpty()) {
