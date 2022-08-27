@@ -82,6 +82,9 @@ public class ProductServiceImpl implements ProductService {
     public ResponseEntity<Object> findProductById(Long id) {
         try {
             Product product = productRepository.findById(id).orElseThrow(() -> new Exception("Product not found"));
+            if(product.getStock()<=0){
+                throw new Exception("This product have no stock");
+            }
             ProductResponseDTO result = dtoConverter.convertOneProducts(product);
             logger.info(Line + "Logger Start Get product id " + Line);
             logger.info(String.valueOf(result));
@@ -101,6 +104,9 @@ public class ProductServiceImpl implements ProductService {
             sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<Product> products = productRepository.findByProductNameIgnoreCaseContaining(name, pageable);
+            if (products.isEmpty()) {
+                throw new Exception("Product not found");
+            }
             List<ProductResponseDTO> results = dtoConverter.convertProducts(products)
                     .stream()
                     .filter(product->product.getStock()>0)
@@ -123,6 +129,9 @@ public class ProductServiceImpl implements ProductService {
             sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<Product> products = productRepository.findBySellerUserUsernameIgnoreCaseContaining(name, pageable);
+            if (products.isEmpty()) {
+                throw new Exception("Product not found");
+            }
             List<ProductResponseDTO> results = dtoConverter.convertProducts(products)
                     .stream()
                     .filter(product->product.getStock()>0)
@@ -144,8 +153,10 @@ public class ProductServiceImpl implements ProductService {
         try {
             sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
-
             List<Product> products = productRepository.findBySellerStoreNameIgnoreCaseContaining(name, pageable);
+            if (products.isEmpty()) {
+                throw new Exception("Product not found");
+            }
             List<ProductResponseDTO> results = dtoConverter.convertProducts(products)
                     .stream()
                     .filter(product->product.getStock()>0)
@@ -168,8 +179,10 @@ public class ProductServiceImpl implements ProductService {
         try {
             sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
-
             List<Product> products = productRepository.findByCategoriesCategoryCategoriesId(id, pageable);
+            if (products.isEmpty()) {
+                throw new Exception("Product not found");
+            }
             List<ProductResponseDTO> results = dtoConverter.convertProducts(products)
                     .stream()
                     .filter(product->product.getStock()>0)
@@ -193,8 +206,10 @@ public class ProductServiceImpl implements ProductService {
         try {
             sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
-
             List<Product> products = productRepository.findByCategoriesCategoryNameIgnoreCaseContaining(name, pageable);
+            if (products.isEmpty()) {
+                throw new Exception("Product not found");
+            }
             List<ProductResponseDTO> results = dtoConverter.convertProducts(products)
                     .stream()
                     .filter(product->product.getStock()>0)

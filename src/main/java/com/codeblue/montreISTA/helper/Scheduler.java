@@ -27,34 +27,39 @@ public class Scheduler {
     private final OrderRepository orderRepository;
     private final OrderService orderService;
     private final ProductRepository productRepository;
-    private final String Line = "====================";
 
-    @Scheduled(cron = "59 */2 * * * ?") //setiap jam pada menit 26:59 - 30:59
+    @Scheduled(cron = "59 */3 * * * ?") //setiap jam pada menit 26:59 - 30:59
     public void cronSchedule() {
         ZonedDateTime zoneNow = ZonedDateTime.now(TimeZone.getTimeZone("Asia/Bangkok").toZoneId());
         List<Order> orders = orderRepository.findByIsPay(false);
-
         orders.forEach(order -> {
-            if (zoneNow.getHour() == order.getModifiedAt().getHour() && zoneNow.minusMinutes(2).getMinute() >= order.getModifiedAt().getMinute()) {
-                order.getListCart().forEach(
-                        cart -> {
-                            try {
-                                Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
-                                product.setStock(product.getStock() + cart.getQuantity());
-                                productRepository.save(product);
-                            } catch (Exception e) {
-                                throw new RuntimeException(e);
+            if (order.getPayment() != null || order.getShipping() != null
+                    || order.getDestinationName() != null
+                    || order.getDestinationAddress() != null
+                    || order.getDestinationPhone() != null
+                    || order.getZipCode() != null) {
+                if (zoneNow.getHour() == order.getModifiedAt().getHour() && zoneNow.minusMinutes(2).getMinute() >= order.getModifiedAt().getMinute()) {
+                    order.getListCart().forEach(
+                            cart -> {
+                                try {
+                                    Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
+                                    product.setStock(product.getStock() + cart.getQuantity());
+                                    productRepository.save(product);
+                                } catch (Exception e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
-                        }
-                );
-                orderRepository.delete(order);
+                    );
+                    orderRepository.delete(order);
+                }
             }
         });
 
         List<OrderResponseDTO> results = orderService.convertListDTO(orders);
-        logger.info(Line);
+        String line = "====================";
+        logger.info(line);
         logger.info("The time is now {}", zoneNow);
         logger.info(String.valueOf(results));
-        logger.info(Line);
+        logger.info(line);
     }
 }

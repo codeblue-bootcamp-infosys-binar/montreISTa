@@ -203,7 +203,11 @@ public class OrderServiceImpl implements OrderService {
                             try {
                                 Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
                                 if (product.getStock() - cart.getQuantity() < 0) {
-                                    throw new Exception("Product do not have enough stock to cart");
+                                    throw new Exception("Please Update your cart with cart id : "+cart.getCartId()+
+                                            " because product name : "+product.getProductName()+
+                                            " with product id : "+product.getId()+
+                                            " have stock : "+product.getStock()+
+                                            " less than your quantity : "+cart.getQuantity()+" in your cart");
                                 } else {
                                     product.setStock(product.getStock() - cart.getQuantity());
                                     productRepository.save(product);
