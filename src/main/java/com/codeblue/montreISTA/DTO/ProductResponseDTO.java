@@ -23,6 +23,7 @@ public class ProductResponseDTO {
     private String description;
 
     private Integer price;
+    private Integer stock;
 
     private List<PhotoProductDTO> photos;
 
