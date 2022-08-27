@@ -31,6 +31,7 @@ public class Scheduler {
     @Scheduled(cron = "59 */3 * * * ?") //setiap jam pada menit 26:59 - 30:59
     public void cronSchedule() {
         ZonedDateTime zoneNow = ZonedDateTime.now(TimeZone.getTimeZone("GMT/Zulu").toZoneId());
+//        ZonedDateTime zoneNow = ZonedDateTime.now(TimeZone.getTimeZone("Asia/Bangkok").toZoneId());
         List<Order> orders = orderRepository.findByIsPay(false);
         AtomicReference<String> message = new AtomicReference<>("Schedule work, but nothing to delete");
         orders.forEach(order -> {
