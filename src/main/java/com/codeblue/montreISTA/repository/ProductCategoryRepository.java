@@ -20,7 +20,7 @@ public interface ProductCategoryRepository extends JpaRepository<ProductCategory
     List<ProductCategory> findByProductId(Long id);
     @Query("SELECT p FROM ProductCategory p WHERE UPPER(CONCAT(p.product.productName, ' ', " +
             "p.product.description, ' ', " +
-            "p.product.price, ' '," +
+            "p.product.price, ' ',p.product.stock, ' '," +
             "p.category.name, ' ',p.product.seller.storeName, ' ')) LIKE %:name%")
     Page<ProductCategory> search(@Param("name")String name, Pageable pageable);
 }

@@ -118,12 +118,12 @@ public class ProductController {
     }
 
     @GetMapping("/products/search")
-    public ResponseEntity<Object> search(@RequestParam String keyword,
+    public ResponseEntity<Object> search(@RequestParam String Search_Anything_Except_Your_Happiness,
                                          @RequestParam(required = false) String sort,
                                          @RequestParam(required = false) Integer page,
                                          @RequestParam(required = false) boolean descending) throws Exception {
 
-        return productService.search(keyword, page, sort, descending);
+        return productService.search(Search_Anything_Except_Your_Happiness, page, sort, descending);
 
     }
 }
