@@ -297,6 +297,11 @@ public class CartServiceImpl implements CartService {
         if(cartRequestDTO.getQuantity()<=0){
             throw new Exception("Quantity can't be 0 or negatif");
         }
+        List<Cart> carts = cartRepository.findByBuyerUserUsernameIgnoreCaseContainingOrderByCartIdAsc(authentication.getName());
+        boolean checkCarts = carts.stream().anyMatch(cart -> cart.getProduct().getId().equals(cartRequestDTO.getProduct_id()));
+        if(checkCarts){
+            throw new Exception("Please update your cart for same product");
+        }
         Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName());
         Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
         if(productId.getStock()-cartRequestDTO.getQuantity()<0){

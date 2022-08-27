@@ -3,10 +3,7 @@ package com.codeblue.montreISTA.service.implement;
 import com.codeblue.montreISTA.DTO.WishlistRequestDTO;
 import com.codeblue.montreISTA.DTO.WishlistResponseDTO;
 import com.codeblue.montreISTA.controller.WishlistController;
-import com.codeblue.montreISTA.entity.Buyer;
-import com.codeblue.montreISTA.entity.Product;
-import com.codeblue.montreISTA.entity.Role;
-import com.codeblue.montreISTA.entity.Wishlist;
+import com.codeblue.montreISTA.entity.*;
 import com.codeblue.montreISTA.helper.DTOConverter;
 import com.codeblue.montreISTA.repository.BuyerRepository;
 import com.codeblue.montreISTA.repository.ProductRepository;
@@ -79,24 +76,29 @@ public class WishlistServiceImpl implements WishlistService {
     }
 
     @Override
-    public ResponseEntity<Object> createWishlist(WishlistRequestDTO wishlist, Authentication authentication) throws Exception {
+    public ResponseEntity<Object> createWishlist(WishlistRequestDTO wishlistRequestDTO, Authentication authentication) throws Exception {
         try {
-            if(wishlist.getProductId()==null||wishlist.getQuantity()==null){
+            if(wishlistRequestDTO.getProductId()==null||wishlistRequestDTO.getQuantity()==null){
                 throw new Exception("Please check again your input, it can't empty");
             }
-            if(wishlist.getQuantity()<=0){
+            if(wishlistRequestDTO.getQuantity()<=0){
                 throw new Exception("Quantity can't be 0 or negatif");
             }
+            List<Wishlist> wishlists = wishlistRepository.findByBuyerUserUsername(authentication.getName());
+            boolean checkWishlist = wishlists.stream().anyMatch(wishlist -> wishlist.getProduct().getId().equals(wishlistRequestDTO.getProductId()));
+            if(checkWishlist){
+                throw new Exception("Please update your wishlist for same product");
+            }
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please login as buyer"));
-            Product product = productRepository.findById(wishlist.getProductId()).orElseThrow(() -> new Exception("Product not found"));
-            if(product.getStock()-wishlist.getQuantity()<0){
+            Product product = productRepository.findById(wishlistRequestDTO.getProductId()).orElseThrow(() -> new Exception("Product not found"));
+            if(product.getStock()-wishlistRequestDTO.getQuantity()<0){
                 throw new Exception("Product do not have enough stock to wishlist");
             }
             if (buyer.getUser().getUserId().equals(product.getSeller().getUser().getUserId())) {
                 throw new Exception("You can't order your own product");
             }
 
-            Wishlist wishlistSave = wishlist.convertToEntity(buyer, product);
+            Wishlist wishlistSave = wishlistRequestDTO.convertToEntity(buyer, product);
             Wishlist wishlistDTO = wishlistRepository.save(wishlistSave);
             WishlistResponseDTO result = dtoConverter.convertWishlist(wishlistDTO);
             logger.info(Line + "Logger Start Create " + Line);
