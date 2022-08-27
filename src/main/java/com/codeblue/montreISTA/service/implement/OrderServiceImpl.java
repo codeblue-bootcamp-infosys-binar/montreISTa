@@ -192,29 +192,22 @@ public class OrderServiceImpl implements OrderService {
 
             Order order = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(keyword).orElseThrow(() -> new Exception("Please add product to cart before order"));
 
-            this.checkQuantity(order.getListCart());
+
 
             Payment payment = paymentRepository.findByNameIgnoreCase(orderRequestDTO.getPayment()).orElseThrow(() -> new Exception("Payment Not found"));
             Shipping shipping = shippingRepository.findByNameIgnoreCase(orderRequestDTO.getShipping()).orElseThrow(() -> new Exception("Shipping Not found"));
-            if (order.getPayment() == null || order.getShipping() == null
-                    || order.getDestinationName() == null
-                    || order.getDestinationAddress() == null
-                    || order.getDestinationPhone() == null
-                    || order.getZipCode() == null) {
+            boolean check = order.getDestinationName() == null
+                    && order.getDestinationAddress() == null
+                    && order.getDestinationPhone() == null
+                    && order.getZipCode() == null;
+            if (check) {
+                this.checkQuantity(order.getListCart());
                 order.getListCart().forEach(
                         cart -> {
                             try {
                                 Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
-                                if (product.getStock() - cart.getQuantity() < 0) {
-                                    throw new Exception("Please Update your cart with cart id : " + cart.getCartId() +
-                                            " because product name : " + product.getProductName() +
-                                            " with product id : " + product.getId() +
-                                            " have stock : " + product.getStock() +
-                                            " less than your quantity : " + cart.getQuantity() + " in your cart");
-                                } else {
-                                    product.setStock(product.getStock() - cart.getQuantity());
-                                    productRepository.save(product);
-                                }
+                                product.setStock(product.getStock() - cart.getQuantity());
+                                productRepository.save(product);
                             } catch (Exception e) {
                                 throw new RuntimeException(e);
                             }
@@ -252,31 +245,25 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public ResponseEntity<Object> deleteOrder(Authentication authentication) {
         try {
-            List<Order> orders = orderRepository.findByListCartBuyerUserUsernameContaining(authentication.getName());
-            if (orders.isEmpty()) {
-                throw new Exception("Orders not found");
-            }
-            for (Order order : orders) {
-                if (order.getPayment() != null || order.getShipping() != null
-                        || order.getDestinationName() != null
-                        || order.getDestinationAddress() != null
-                        || order.getDestinationPhone() != null
-                        || order.getZipCode() != null) {
-                    order.getListCart().forEach(
-                            cart -> {
-                                try {
-                                    Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
-                                    product.setStock(product.getStock() + cart.getQuantity());
-                                    productRepository.save(product);
-                                } catch (Exception e) {
-                                    throw new RuntimeException(e);
-                                }
+            Order order = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName()).orElseThrow(() -> new Exception("Order not found"));
+            boolean check = order.getDestinationName() != null
+                    && order.getDestinationAddress() != null
+                    && order.getDestinationPhone() != null
+                    && order.getZipCode() != null;
+            if (check) {
+                order.getListCart().forEach(
+                        cart -> {
+                            try {
+                                Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
+                                product.setStock(product.getStock() + cart.getQuantity());
+                                productRepository.save(product);
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
                             }
-                    );
-                }
+                        }
+                );
             }
-
-            orderRepository.deleteAll(orders);
+            orderRepository.deleteById(order.getOrderId());
             logger.info(Line + "Logger Start Delete By Id " + Line);
             logger.info("Delete Success");
             logger.info(Line + "Logger End Delete By Id " + Line);
@@ -351,12 +338,18 @@ public class OrderServiceImpl implements OrderService {
             throw new Exception("please use the correct address format");
         }
     }
-    public void checkQuantity(List<Cart> carts){
+
+    public void checkQuantity(List<Cart> carts) {
         carts.forEach(
                 cart -> {
                     try {
                         Product product = productRepository.findById(cart.getProduct().getId()).orElseThrow(() -> new Exception("Product not found"));
-                        if (product.getStock() - cart.getQuantity() < 0) {
+                        if (product.getStock() == 0) {
+                            throw new Exception("Please Update your cart with cart id : " + cart.getCartId() +
+                                    " because product name : " + product.getProductName() +
+                                    " with product id : " + product.getId() +
+                                    " have stock : " + product.getStock());
+                        } else if (product.getStock() - cart.getQuantity() < 0) {
                             throw new Exception("Please Update your cart with cart id : " + cart.getCartId() +
                                     " because product name : " + product.getProductName() +
                                     " with product id : " + product.getId() +

@@ -14,5 +14,6 @@ public interface CartRepository extends JpaRepository<Cart,Long> {
     List<Cart> findByBuyerBuyerIdOrderByCartIdDesc(long id);
     List<Cart> findByProductSellerUserUsernameIgnoreCaseContainingOrderByCartIdAsc(String keyword);
     List<Cart> findByProductProductNameIgnoreCaseContainingOrderByCartIdAsc(String keyword);
+    List<Cart> findByProductId(long id);
     List<Cart> findByProductCategoriesCategoryNameIgnoreCaseContainingOrderByCartIdAsc(String keyword);
 }

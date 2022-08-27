@@ -31,14 +31,15 @@ public class Scheduler {
     @Scheduled(cron = "59 */3 * * * ?") //setiap jam pada menit 26:59 - 30:59
     public void cronSchedule() {
         ZonedDateTime zoneNow = ZonedDateTime.now(TimeZone.getTimeZone("GMT/Zulu").toZoneId());
+//        ZonedDateTime zoneNow = ZonedDateTime.now(TimeZone.getTimeZone("Asia/Bangkok").toZoneId());
         List<Order> orders = orderRepository.findByIsPay(false);
         AtomicReference<String> message = new AtomicReference<>("Schedule work, but nothing to delete");
         orders.forEach(order -> {
-            if (order.getPayment() != null || order.getShipping() != null
-                    || order.getDestinationName() != null
-                    || order.getDestinationAddress() != null
-                    || order.getDestinationPhone() != null
-                    || order.getZipCode() != null) {
+            boolean check = order.getDestinationName() != null
+                    && order.getDestinationAddress() != null
+                    && order.getDestinationPhone() != null
+                    && order.getZipCode() != null;
+            if (check) {
                 if (zoneNow.getHour() == order.getModifiedAt().getHour() && zoneNow.minusMinutes(2).getMinute() >= order.getModifiedAt().getMinute()) {
                     order.getListCart().forEach(
                             cart -> {
@@ -52,7 +53,7 @@ public class Scheduler {
                                 }
                             }
                     );
-                    message.set("success delete order id : "+order.getOrderId());
+                    message.set("success delete order id : " + order.getOrderId());
                     orderRepository.delete(order);
                 }
             }
