@@ -142,7 +142,11 @@ public class CartServiceImpl implements CartService {
     @Override
     public ResponseEntity<Object> createCartResponse(CartRequestDTO cartRequestDTO, Authentication authentication) throws Exception {
         try {
-            CartResponseDTO result = this.createCart(cartRequestDTO,authentication);
+            CartResponseDTO result = this.createCart(cartRequestDTO, authentication);
+            Wishlist wishlist = wishlistRepository.findByProductIdAndBuyerUserUsername(cartRequestDTO.getProduct_id(), authentication.getName());
+            if (wishlist != null) {
+                wishlistRepository.delete(wishlist);
+            }
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(result));
             logger.info(Line + "Logger End Create " + Line);
@@ -171,7 +175,7 @@ public class CartServiceImpl implements CartService {
                 CartResponseDTO cartResponseDTO = this.createCart(cartRequestDTO, authentication);
                 carts.add(cartResponseDTO);
             }
-//            wishlistRepository.deleteAll(wishlists);
+            wishlistRepository.deleteAll(wishlists);
             logger.info(Line + "Logger Start Get By Id " + Line);
             logger.info(String.valueOf(carts));
             logger.info(Line + "Logger End Get By Id " + Line);
@@ -187,10 +191,10 @@ public class CartServiceImpl implements CartService {
     @Override
     public ResponseEntity<Object> updateCart(CartRequestDTO cartRequestDTO, Long id, Authentication authentication) throws Exception {
         try {
-            if(cartRequestDTO.getProduct_id()==null||cartRequestDTO.getQuantity()==null){
+            if (cartRequestDTO.getProduct_id() == null || cartRequestDTO.getQuantity() == null) {
                 throw new Exception("Please check again your input, it can't empty");
             }
-            if(cartRequestDTO.getQuantity()<=0){
+            if (cartRequestDTO.getQuantity() <= 0) {
                 throw new Exception("Quantity can't be 0 or negatif");
             }
             Cart cart = cartRepository.findById(id).orElseThrow(() -> new Exception("Cart not found"));
@@ -198,12 +202,12 @@ public class CartServiceImpl implements CartService {
             boolean checkCarts = carts.stream().anyMatch(cartGet -> cartGet.getProduct().getId().equals(cartRequestDTO.getProduct_id()));
             boolean checkProductId = !cart.getProduct().getId().equals(cartRequestDTO.getProduct_id());
             boolean check = checkCarts && checkProductId;
-            if(check){
+            if (check) {
                 throw new Exception("You can't have same product in cart");
             }
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));
             Product product = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
-            if(product.getStock()-cartRequestDTO.getQuantity()<0){
+            if (product.getStock() - cartRequestDTO.getQuantity() < 0) {
                 throw new Exception("Product do not have enough stock to cart");
             }
             List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
@@ -220,8 +224,10 @@ public class CartServiceImpl implements CartService {
                 //update Price
                 this.updatePrice(orderId);
                 Cart cartResponse = cartRepository.save(saveCart);
-                Wishlist wishlist = wishlistRepository.findByProductId(cartRequestDTO.getProduct_id());
-                wishlistRepository.delete(wishlist);
+                Wishlist wishlist = wishlistRepository.findByProductIdAndBuyerUserUsername(cartRequestDTO.getProduct_id(), authentication.getName());
+                if (wishlist != null) {
+                    wishlistRepository.delete(wishlist);
+                }
                 CartResponseDTO results = convertDTO(cartResponse);
                 return ResponseHandler.generateResponse("successfully update cart", HttpStatus.OK, results);
             } else {
@@ -301,20 +307,22 @@ public class CartServiceImpl implements CartService {
     }
 
     public CartResponseDTO createCart(CartRequestDTO cartRequestDTO, Authentication authentication) throws Exception {
-        if(cartRequestDTO.getProduct_id()==null||cartRequestDTO.getQuantity()==null){
+        if (cartRequestDTO.getProduct_id() == null || cartRequestDTO.getQuantity() == null) {
             throw new Exception("Please check again your input, it can't empty");
         }
-        if(cartRequestDTO.getQuantity()<=0){
+        if (cartRequestDTO.getQuantity() <= 0) {
             throw new Exception("Quantity can't be 0 or negatif");
         }
         List<Cart> carts = cartRepository.findByBuyerUserUsernameIgnoreCaseContainingOrderByCartIdAsc(authentication.getName());
-        boolean checkCarts = carts.stream().anyMatch(cart -> cart.getProduct().getId().equals(cartRequestDTO.getProduct_id()));
-        if(checkCarts){
-            throw new Exception("Please update your cart for same product");
+        if (!carts.isEmpty()) {
+            boolean checkCarts = carts.stream().anyMatch(cart -> cart.getProduct().getId().equals(cartRequestDTO.getProduct_id()));
+            if (checkCarts) {
+                throw new Exception("Please update your cart for same product");
+            }
         }
         Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName());
         Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
-        if(productId.getStock()-cartRequestDTO.getQuantity()<0){
+        if (productId.getStock() - cartRequestDTO.getQuantity() < 0) {
             throw new Exception("Product do not have enough stock to cart");
         }
         Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));
@@ -343,8 +351,6 @@ public class CartServiceImpl implements CartService {
         //update Price
         this.updatePrice(orderId);
         Cart cartResponse = this.cartRepository.save(saveCart);
-        Wishlist wishlist = wishlistRepository.findByProductId(cartRequestDTO.getProduct_id());
-        wishlistRepository.delete(wishlist);
         return convertDTO(cartResponse);
     }
 }
