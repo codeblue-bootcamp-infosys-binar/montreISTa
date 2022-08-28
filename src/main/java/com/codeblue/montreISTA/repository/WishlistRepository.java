@@ -13,13 +13,9 @@ public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
     @Query(value = "SELECT * FROM wishlist w WHERE wishlist_id=?1", nativeQuery = true)
     List<Wishlist> findByWishlistId(Long id);
 
-    List<Wishlist> findByBuyerUserName(String keyword);
-
     List<Wishlist> findByBuyerUserUsername(String keyword);
 
-    List<Wishlist> findByBuyerBuyerIdOrderByModifiedAtDesc(Long id);
-    List<Wishlist> findAllByOrderByWishlistIdAsc();
-    Wishlist findByProductId(long id);
-
+     List<Wishlist> findAllByOrderByWishlistIdAsc();
+    Wishlist findByProductIdAndBuyerUserUsername(long id,String keyword);
     Optional<Wishlist> findFirstByBuyerBuyerIdOrderByCreatedAtDesc(Long id);
 }
