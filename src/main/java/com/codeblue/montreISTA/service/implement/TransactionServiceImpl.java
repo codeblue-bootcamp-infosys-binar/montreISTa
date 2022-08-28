@@ -36,7 +36,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public ResponseEntity<Object> findAllTransaction(Integer page, String sort, boolean descending) {
         try {
-            sort = this.sortTransaction(sort);
+            if (sort != null) {
+                sort = this.sortTransaction(sort);
+            }
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<TransactionResponseDTO> transactions = transactionRepository.findAll(pageable).stream()
                     .map(HistoryTransaction::convertToResponse)
@@ -71,7 +73,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public ResponseEntity<Object> findAllTransactionDetail(Integer page, String sort, boolean descending) {
         try {
-            sort = this.sortTransactionDetails(sort);
+            if (sort != null) {
+                sort = this.sortTransaction(sort);
+            }
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<TransactionDetailResponseDTO> results = transactionDetailsRepository.findAll(pageable).stream()
                     .map(HistoryTransactionDetail::convertToResponse)
@@ -94,7 +98,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public ResponseEntity<Object> findByTransactionBuyerId(Authentication authentication, Integer page, String sort, boolean descending) {
         try {
-            sort = this.sortTransaction(sort);
+            if (sort != null) {
+                sort = this.sortTransaction(sort);
+            }
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please order first"));
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<HistoryTransaction> transaction = transactionRepository.findByBuyerBuyerId(buyer.getBuyerId(), pageable);
@@ -119,7 +125,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public ResponseEntity<Object> findByTransactionSellerId(Authentication authentication, Integer page, String sort, boolean descending) {
         try {
-            sort = this.sortTransaction(sort);
+            if (sort != null) {
+                sort = this.sortTransaction(sort);
+            }
             Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("You don't have store"));
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<HistoryTransaction> transaction = transactionRepository.findBySellerSellerId(seller.getSellerId(), pageable);
@@ -144,7 +152,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public ResponseEntity<Object> findByTransactionDetailBuyerId(Authentication authentication, Integer page, String sort, boolean descending) {
         try {
-            sort = this.sortTransactionDetails(sort);
+            if (sort != null) {
+                sort = this.sortTransaction(sort);
+            }
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please order first"));
             Pageable pageable = Pagination.paginate(page, sort, descending);
 
@@ -172,7 +182,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public ResponseEntity<Object> findByTransactionDetailSellerId(Authentication authentication, Integer page, String sort, boolean descending) {
         try {
-            sort = this.sortTransactionDetails(sort);
+            if (sort != null) {
+                sort = this.sortTransaction(sort);
+            }
             Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("You don't have store"));
             Pageable pageable = Pagination.paginate(page, sort, descending);
 
