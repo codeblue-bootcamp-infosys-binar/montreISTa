@@ -13,9 +13,7 @@ import java.util.List;
 public class ProductResponseDTO {
 
     private Long productId;
-
     private Long sellerId;
-
     private String storeName;
 
     private String storePhoto;
@@ -25,6 +23,7 @@ public class ProductResponseDTO {
     private String description;
 
     private Integer price;
+    private Integer stock;
 
     private List<PhotoProductDTO> photos;
 

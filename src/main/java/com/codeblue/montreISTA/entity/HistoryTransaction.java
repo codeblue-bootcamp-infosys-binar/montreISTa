@@ -28,14 +28,10 @@ public class HistoryTransaction{
 
     @NotNull
     private String photoUrl;
-
-    private Long product_id;
-    private String product_name;
-
-    private Integer product_price;
-
+    private Long productId;
+    private String productName;
+    private Integer productPrice;
     private Integer quantity;
-
     @NotNull
     private Integer totalPrice;
 
@@ -51,8 +47,8 @@ public class HistoryTransaction{
                 .store_name(this.getSeller().getStoreName())
                 .seller_id(this.getSeller().getSellerId())
                 .photo_url(this.getPhotoUrl())
-                .product_name(this.getProduct_name())
-                .product_price(this.getProduct_price())
+                .product_name(this.getProductName())
+                .product_price(this.getProductPrice())
                 .quantity(this.getQuantity())
                 .total_price(this.getTotalPrice())
                 .build();
@@ -65,9 +61,9 @@ public class HistoryTransaction{
                 ", buyer=" + buyer +
                 ", seller=" + seller +
                 ", photoUrl='" + photoUrl + '\'' +
-                ", product_id=" + product_id +
-                ", product_name='" + product_name + '\'' +
-                ", product_price=" + product_price +
+                ", productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productPrice=" + productPrice +
                 ", quantity=" + quantity +
                 ", totalPrice=" + totalPrice +
                 ", transactionDetails=" + transactionDetails +

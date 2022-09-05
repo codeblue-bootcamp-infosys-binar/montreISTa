@@ -136,6 +136,9 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
     @Override
     public ResponseEntity<Object> createProductCategory(ProductCategoryRequestDTO productCategory) throws Exception {
         try {
+            if(productCategory.getCategory_id()==null||productCategory.getProduct_id()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
             List<ProductCategory> productCategories = productCategoryRepository.findByProductId(productCategory.getProduct_id());
             int count = productCategories.size();
             if (count >= 4) {
@@ -157,6 +160,9 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
     @Override
     public ResponseEntity<Object> updateProductCategory(ProductCategoryRequestDTO productCategory, Long id) throws Exception {
         try {
+            if(productCategory.getCategory_id()==null||productCategory.getProduct_id()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
             Optional<ProductCategory> productCategoryId = productCategoryRepository.findById(id);
             if (productCategoryId.isEmpty()) {
                 throw new Exception("Product Category not found");
@@ -212,7 +218,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
         //save to entity
         ProductCategory saveProductCategory = productCategory.convertToEntity(product, category);
         if (id != null) {
-            saveProductCategory.setProductCategoryId(id);
+            saveProductCategory.setId(id);
         }
         productCategoryRepository.save(saveProductCategory);
         ProductToProductCategoryDTO productDTO = product.convertToProductCategory();

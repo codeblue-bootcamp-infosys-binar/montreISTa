@@ -147,6 +147,9 @@ public class PhotoServiceImp implements PhotoService {
     @Override
     public ResponseEntity<Object> createPhoto(Long productId, List<MultipartFile> files, Authentication authentication) {
         try {
+            if(productId==null||files==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
             Product product = productRepository.findById(productId).orElseThrow(() -> new Exception("Product not found"));
             if (!product.getSeller().getUser().getUsername().equals(authentication.getName())) {
                 throw new Exception("You only can add photo for your product");
@@ -186,6 +189,9 @@ public class PhotoServiceImp implements PhotoService {
     @Override
     public ResponseEntity<Object> updatePhoto(MultipartFile file, Long productId, Long photoId, Authentication authentication) {
         try {
+            if(productId==null||file==null||photoId==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
             Product product = productRepository.findById(productId).orElseThrow(() -> new Exception("Product not found"));
             Photo photo = photoRepository.findById(photoId).orElseThrow(() -> new Exception("Photo not found"));
             List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());

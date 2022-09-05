@@ -92,6 +92,9 @@ public class SellerServiceImpl implements SellerService {
     public ResponseEntity<Object> createSeller(SellerRequestDTO sellerRequestDTO, Authentication authentication) throws Exception {
         try {
             User user = userRepository.findByUsername(authentication.getName()).orElseThrow(() -> new Exception("Please sign up"));
+            if(sellerRequestDTO.getStoreName()==null||sellerRequestDTO.getStoreAddress()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
             Optional<Seller> sellerOptional = sellerRepository.findByUserUserId(user.getUserId());
             Optional<Seller> sellerValidation = sellerRepository.findByStoreName(sellerRequestDTO.getStoreName());
             if (sellerOptional.isPresent()) {
@@ -120,6 +123,13 @@ public class SellerServiceImpl implements SellerService {
     public ResponseEntity<Object> updateSeller(SellerRequestDTO seller, Authentication authentication) throws Exception {
         try {
             Seller sellerUpdate = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please login as seller before update seller info"));
+            if(seller.getStoreName()==null||seller.getStoreAddress()==null){
+                throw new Exception("Please check again your input, it can't empty");
+            }
+            Optional<Seller> sellerValidation = sellerRepository.findByStoreName(seller.getStoreName());
+            if (sellerValidation.isPresent()) {
+                throw new Exception("Your Store Name has been used");
+            }
             sellerUpdate.setStoreAddress(seller.getStoreAddress());
             sellerUpdate.setStoreName(seller.getStoreName());
             SellerResponseDTO result = sellerRepository.save(sellerUpdate).convertToResponse();

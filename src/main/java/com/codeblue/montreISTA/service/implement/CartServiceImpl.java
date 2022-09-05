@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -141,36 +142,11 @@ public class CartServiceImpl implements CartService {
     @Override
     public ResponseEntity<Object> createCartResponse(CartRequestDTO cartRequestDTO, Authentication authentication) throws Exception {
         try {
-            Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName());
-            Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
-            Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));
-            if (buyer.getUser().equals(productId.getSeller().getUser())) {
-                throw new Exception("You can't order your own product");
+            CartResponseDTO result = this.createCart(cartRequestDTO, authentication);
+            Wishlist wishlist = wishlistRepository.findByProductIdAndBuyerUserUsername(cartRequestDTO.getProduct_id(), authentication.getName());
+            if (wishlist != null) {
+                wishlistRepository.delete(wishlist);
             }
-            Long orderId;
-            if (orderBuyerId.isPresent()) {
-                orderId = orderBuyerId.get().getOrderId();
-            } else {
-                Order newOrder = new Order();
-                Long id = 1L;
-                Payment payment = this.paymentRepository.findById(id).orElseThrow(Exception::new);
-                Shipping shipping = this.shippingRepository.findById(id).orElseThrow(Exception::new);
-                newOrder.setShipping(shipping);
-                Integer subtotal = (cartRequestDTO.getQuantity() * productId.getPrice());
-                newOrder.setTotalprice(subtotal + shipping.getPrice());
-                newOrder.setPayment(payment);
-                boolean check = false;
-                newOrder.setIsPay(check);
-                Order saveOrder = orderRepository.save(newOrder);
-                orderId = saveOrder.getOrderId();
-            }
-            Cart saveCart = this.requestToEntity(cartRequestDTO, orderId, buyer);
-
-            //update Price
-            this.updatePrice(orderId);
-            Cart cartResponse = this.cartRepository.save(saveCart);
-            CartResponseDTO result = this.convertDTO(cartResponse);
-            //show Cart
             logger.info(Line + "Logger Start Create " + Line);
             logger.info(String.valueOf(result));
             logger.info(Line + "Logger End Create " + Line);
@@ -190,6 +166,7 @@ public class CartServiceImpl implements CartService {
             if (wishlists.isEmpty()) {
                 throw new Exception("Your wishlist is empty");
             }
+
             List<CartResponseDTO> carts = new ArrayList<>();
             for (Wishlist wishlist : wishlists) {
                 CartRequestDTO cartRequestDTO = new CartRequestDTO();
@@ -214,9 +191,25 @@ public class CartServiceImpl implements CartService {
     @Override
     public ResponseEntity<Object> updateCart(CartRequestDTO cartRequestDTO, Long id, Authentication authentication) throws Exception {
         try {
+            if (cartRequestDTO.getProduct_id() == null || cartRequestDTO.getQuantity() == null) {
+                throw new Exception("Please check again your input, it can't empty");
+            }
+            if (cartRequestDTO.getQuantity() <= 0) {
+                throw new Exception("Quantity can't be 0 or negatif");
+            }
             Cart cart = cartRepository.findById(id).orElseThrow(() -> new Exception("Cart not found"));
+            List<Cart> carts = cartRepository.findByBuyerUserUsernameIgnoreCaseContainingOrderByCartIdAsc(authentication.getName());
+            boolean checkCarts = carts.stream().anyMatch(cartGet -> cartGet.getProduct().getId().equals(cartRequestDTO.getProduct_id()));
+            boolean checkProductId = !cart.getProduct().getId().equals(cartRequestDTO.getProduct_id());
+            boolean check = checkCarts && checkProductId;
+            if (check) {
+                throw new Exception("You can't have same product in cart");
+            }
             Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));
             Product product = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
+            if (product.getStock() - cartRequestDTO.getQuantity() < 0) {
+                throw new Exception("Product do not have enough stock to cart");
+            }
             List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
             boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
             boolean checkProduct = !product.getSeller().getUser().getUsername().equals(authentication.getName());
@@ -231,6 +224,10 @@ public class CartServiceImpl implements CartService {
                 //update Price
                 this.updatePrice(orderId);
                 Cart cartResponse = cartRepository.save(saveCart);
+                Wishlist wishlist = wishlistRepository.findByProductIdAndBuyerUserUsername(cartRequestDTO.getProduct_id(), authentication.getName());
+                if (wishlist != null) {
+                    wishlistRepository.delete(wishlist);
+                }
                 CartResponseDTO results = convertDTO(cartResponse);
                 return ResponseHandler.generateResponse("successfully update cart", HttpStatus.OK, results);
             } else {
@@ -310,8 +307,24 @@ public class CartServiceImpl implements CartService {
     }
 
     public CartResponseDTO createCart(CartRequestDTO cartRequestDTO, Authentication authentication) throws Exception {
+        if (cartRequestDTO.getProduct_id() == null || cartRequestDTO.getQuantity() == null) {
+            throw new Exception("Please check again your input, it can't empty");
+        }
+        if (cartRequestDTO.getQuantity() <= 0) {
+            throw new Exception("Quantity can't be 0 or negatif");
+        }
+        List<Cart> carts = cartRepository.findByBuyerUserUsernameIgnoreCaseContainingOrderByCartIdAsc(authentication.getName());
+        if (!carts.isEmpty()) {
+            boolean checkCarts = carts.stream().anyMatch(cart -> cart.getProduct().getId().equals(cartRequestDTO.getProduct_id()));
+            if (checkCarts) {
+                throw new Exception("Please update your cart for same product");
+            }
+        }
         Optional<Order> orderBuyerId = orderRepository.findFirstByListCartBuyerUserUsernameOrderByOrderIdDesc(authentication.getName());
         Product productId = productRepository.findById(cartRequestDTO.getProduct_id()).orElseThrow(() -> new Exception("Product not Found"));
+        if (productId.getStock() - cartRequestDTO.getQuantity() < 0) {
+            throw new Exception("Product do not have enough stock to cart");
+        }
         Buyer buyer = buyerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Buyer not Found"));
         if (buyer.getUser().equals(productId.getSeller().getUser())) {
             throw new Exception("You can't order your own product");
@@ -338,7 +351,6 @@ public class CartServiceImpl implements CartService {
         //update Price
         this.updatePrice(orderId);
         Cart cartResponse = this.cartRepository.save(saveCart);
-
         return convertDTO(cartResponse);
     }
 }

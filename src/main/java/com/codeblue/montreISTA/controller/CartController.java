@@ -18,13 +18,13 @@ public class CartController {
 
     private final CartService cartService;
 
-    @GetMapping("/user/my-cart/buyer")
+    @GetMapping("/user/my-cart")
     public ResponseEntity<Object> findByBuyer(Authentication authentication) throws Exception {
             return cartService.findByBuyer(authentication.getName());
     }
 
 
-    @GetMapping("/user/my-cart/seller")
+    @GetMapping("/user/my-product-cart")
     public ResponseEntity<Object> findBySeller(Authentication authentication) throws Exception {
            return cartService.findBySeller(authentication.getName());
     }

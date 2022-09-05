@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -38,9 +39,9 @@ public class ProductServiceImpl implements ProductService {
     private static final String productPhotoDefault = "https://cdn5.vectorstock.com/i/1000x1000/38/19/product-promotion-black-icon-concept-vector-29963819.jpg";
 
 
-
     public ResponseEntity<Object> findAllProduct(Integer page, String sort, boolean descending) {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<Product> products = productRepository.findAll(pageable).getContent();
             if (products.isEmpty()) {
@@ -58,7 +59,10 @@ public class ProductServiceImpl implements ProductService {
             logger.info("==================== Logger End Get All Products    ====================");
             logger.info(" ");
 
-            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products)
+                    .stream()
+                    .filter(product->product.getStock()>0)
+                    .collect(Collectors.toList());
             return ResponseHandler.generateResponse("successfully get all products", HttpStatus.OK, results);
         } catch (Exception e) {
             logger.info("==================== Logger Start Get All Products     ====================");
@@ -78,6 +82,9 @@ public class ProductServiceImpl implements ProductService {
     public ResponseEntity<Object> findProductById(Long id) {
         try {
             Product product = productRepository.findById(id).orElseThrow(() -> new Exception("Product not found"));
+            if(product.getStock()<=0){
+                throw new Exception("This product have no stock");
+            }
             ProductResponseDTO result = dtoConverter.convertOneProducts(product);
             logger.info(Line + "Logger Start Get product id " + Line);
             logger.info(String.valueOf(result));
@@ -94,9 +101,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> findByProductName(String name, Integer page, String sort, boolean descending) throws Exception {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<Product> products = productRepository.findByProductNameIgnoreCaseContaining(name, pageable);
-            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
+            if (products.isEmpty()) {
+                throw new Exception("Product not found");
+            }
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products)
+                    .stream()
+                    .filter(product->product.getStock()>0)
+                    .collect(Collectors.toList());
             logger.info(Line + "Logger Start Get product name " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get product name " + Line);
@@ -112,9 +126,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> findBySellerName(String name, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
             List<Product> products = productRepository.findBySellerUserUsernameIgnoreCaseContaining(name, pageable);
-            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
+            if (products.isEmpty()) {
+                throw new Exception("Product not found");
+            }
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products)
+                    .stream()
+                    .filter(product->product.getStock()>0)
+                    .collect(Collectors.toList());
             logger.info(Line + "Logger Start Get seller name " + Line);
             logger.info(String.valueOf(results));
             logger.info(Line + "Logger End Get seller name " + Line);
@@ -130,10 +151,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> findByStoreName(String name, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
-
             List<Product> products = productRepository.findBySellerStoreNameIgnoreCaseContaining(name, pageable);
-            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
+            if (products.isEmpty()) {
+                throw new Exception("Product not found");
+            }
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products)
+                    .stream()
+                    .filter(product->product.getStock()>0)
+                    .collect(Collectors.toList());
 
             logger.info(Line + "Logger Start Get store name " + Line);
             logger.info(String.valueOf(results));
@@ -150,10 +177,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> findByCategoryId(Long id, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
-
             List<Product> products = productRepository.findByCategoriesCategoryCategoriesId(id, pageable);
-            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
+            if (products.isEmpty()) {
+                throw new Exception("Product not found");
+            }
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products)
+                    .stream()
+                    .filter(product->product.getStock()>0)
+                    .collect(Collectors.toList());
 
             logger.info(Line + "Logger Start Get By Category Id " + Line);
             logger.info(String.valueOf(results));
@@ -171,10 +204,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> findByCategoryName(String name, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
-
             List<Product> products = productRepository.findByCategoriesCategoryNameIgnoreCaseContaining(name, pageable);
-            List<ProductResponseDTO> results = dtoConverter.convertProducts(products);
+            if (products.isEmpty()) {
+                throw new Exception("Product not found");
+            }
+            List<ProductResponseDTO> results = dtoConverter.convertProducts(products)
+                    .stream()
+                    .filter(product->product.getStock()>0)
+                    .collect(Collectors.toList());
 
             logger.info(Line + "Logger Start Get category name " + Line);
             logger.info(String.valueOf(results));
@@ -191,6 +230,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> findProductBySellerId(Authentication authentication, Integer page, String sort, boolean descending) {
         try {
+            sort = this.sort(sort);
             Pageable pageable = Pagination.paginate(page, sort, descending);
             Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("Please login as seller"));
             List<Product> product = productRepository.findBySellerSellerId(seller.getSellerId(), pageable);
@@ -213,12 +253,62 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public ResponseEntity<Object> search(String keyword, Integer page, String sort, boolean descending) throws Exception {
+        try {
+            if (sort != null) {
+                switch (sort) {
+                    case "id" -> sort = "product.id";
+                    case "price" -> sort = "product.price";
+                    case "productName" -> sort = "product.productName";
+                    case "description" -> sort = "product.description";
+                    case "sellerId" -> sort = "product.seller.sellerId";
+                    case "storeName" -> sort = "product.seller.storeName";
+                    case "categories" -> sort = "category.name";
+                    default -> sort = "id";
+                }
+            }
+            if(keyword.toUpperCase().equals("HAPPINESS")){
+                throw new Exception("maaf anda kurang beruntung");
+            }
+            Pageable pageable = Pagination.paginate(page, sort, descending);
+            List<ProductCategory> productCategories = productCategoryRepository.search(keyword.toUpperCase(), pageable).getContent();
+            if (productCategories.isEmpty()) {
+                throw new Exception("Product Not found");
+            }
+            List<ProductResponseDTO> results = productCategories.stream()
+                    .map(ProductCategory::getProduct)
+                    .distinct()
+                    .map(dtoConverter::convertOneProducts)
+                    .filter(product->product.getStock()>0)
+                    .collect(Collectors.toList());
+            logger.info(Line + "Logger Start Search" + Line);
+            logger.info(String.valueOf(results));
+            logger.info(Line + "Logger End Get Search" + Line);
+            return ResponseHandler.generateResponse("successfully get products", HttpStatus.OK, results);
+        } catch (Exception e) {
+            logger.error(Line + " Logger Start Error " + Line);
+            logger.error(e.getMessage());
+            logger.error(Line + " Logger End Error " + Line);
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Product had no value!");
+        }
+    }
+
+    @Override
     public ResponseEntity<Object> createProduct(ProductRequestDTO productRequestDTO, Authentication authentication) {
         try {
             Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("You don't have store"));
             Pageable pageable = Pagination.paginate(0, "price", false);
             List<Product> products = productRepository.findBySellerSellerId(seller.getSellerId(), pageable);
-
+            if (productRequestDTO.getProductName() == null
+                    || productRequestDTO.getDescription() == null
+                    || productRequestDTO.getCategory() == null
+                    || productRequestDTO.getPrice() == null
+                    || productRequestDTO.getStock() == null) {
+                throw new Exception("Please check again your input, it can't empty");
+            }
+            if (productRequestDTO.getPrice() <= 0||productRequestDTO.getStock() <= 0) {
+                throw new Exception("Price or stock can't be 0 or negatif");
+            }
             if (productRequestDTO.getCategory().size() > 4) {
                 throw new Exception("Product can only have 4 category");
             }
@@ -261,14 +351,22 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<Object> updateProduct(ProductRequestDTO productRequestDTO, Long id, Authentication authentication) {
         try {
-
+            if (productRequestDTO.getProductName() == null
+                    || productRequestDTO.getDescription() == null
+                    || productRequestDTO.getPrice() == null
+                    || productRequestDTO.getStock() == null) {
+                throw new Exception("Please check again your input, it can't empty");
+            }
+            if (productRequestDTO.getPrice() <= 0||productRequestDTO.getStock() <= 0) {
+                throw new Exception("Price or stock can't be 0 or negatif");
+            }
             Seller seller = sellerRepository.findByUserUsername(authentication.getName()).orElseThrow(() -> new Exception("You don't have store"));
             Product product = productRepository.findById(id).orElseThrow(() -> new Exception("Product Not Found"));
             List<Role> roles = roleRepository.findByUsersUserUsername(authentication.getName());
             boolean checkRoles = roles.stream().anyMatch(role -> role.getRoleName().equals("ROLE_ADMIN"));
             boolean checkUser = product.getSeller().getUser().getUsername().equals(authentication.getName());
-
             Product productRequest = productRequestDTO.convertToEntity(seller);
+            Product saveProduct;
             if (checkRoles || checkUser) {
 
                 //UPDATING PRODUCT DATA
@@ -277,21 +375,19 @@ public class ProductServiceImpl implements ProductService {
                 product.setDescription(productRequest.getDescription());
                 product.setPrice(productRequest.getPrice());
 
-                List<String> categories = productRequestDTO.getCategory();
-                if (categories.isEmpty()) {
-                    throw new Exception("Product must have 1 category");
-                }
-                List<Category> categoryProduct = categoryRepository.findByProductsProductId(id);
-                if (categories.size() + categoryProduct.size() >= 4) {
-                    throw new Exception("Product can only have 4 category");
-                }
                 //check categories
-                this.checkCategories(categories);
-
-                //SAVING THE UPDATES TO DATABASE
-                Product saveProduct = productRepository.save(product);
-                this.addCategory(categories, saveProduct);
-
+                if (productRequestDTO.getCategory() != null) {
+                    List<String> categories = productRequestDTO.getCategory();
+                    List<Category> categoryProduct = categoryRepository.findByProductsProductId(id);
+                    if (categories.size() + categoryProduct.size() >= 4) {
+                        throw new Exception("Product can only have 4 category");
+                    }
+                    this.checkCategories(categories);
+                    saveProduct = productRepository.save(product);
+                    this.addCategory(categories, saveProduct);
+                } else {
+                    saveProduct = productRepository.save(product);
+                }
                 ProductResponseDTO results = dtoConverter.convertOneProducts(saveProduct);
                 logger.info(Line + "Logger Start Update By Id " + Line);
                 logger.info(String.valueOf(results));
@@ -352,7 +448,8 @@ public class ProductServiceImpl implements ProductService {
             }
         });
     }
-    public Photo addPhoto(Product newProduct){
+
+    public Photo addPhoto(Product newProduct) {
         Photo photo = new Photo();
         photo.setPhotoURL(productPhotoDefault);
         photo.setProduct(newProduct);
@@ -367,6 +464,17 @@ public class ProductServiceImpl implements ProductService {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    public String sort(String sort) {
+        if (sort != null) {
+            switch (sort) {
+                case "id" -> sort = "productId";
+                case "sellerId" -> sort = "seller.sellerId";
+                case "storeName" -> sort = "seller.storeName";
+            }
+        }
+        return sort;
     }
 
 
