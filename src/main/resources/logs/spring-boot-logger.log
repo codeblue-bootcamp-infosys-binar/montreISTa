@@ -1542,3 +1542,721 @@ org.springframework.security.core.userdetails.UsernameNotFoundException: Not Fou
 2022-08-28 22:09:38,025 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-08-28 22:09:38,032 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2022-08-28 22:09:38,043 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-09-05 10:24:42,511 INFO org.springframework.boot.StartupInfoLogger [main] Starting MontreIstaApplicationTests using Java 17.0.3.1 on RIFKYPC with PID 6064 (started by Rifky in C:\Users\Rifky\IdeaProjects\finalprojectfix\wallet-api\montreISTa)
+2022-09-05 10:24:42,514 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-09-05 10:24:42,537 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-09-05 10:24:44,156 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-05 10:24:44,354 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 182 ms. Found 16 JPA repository interfaces.
+2022-09-05 10:24:46,593 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-05 10:24:46,741 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-05 10:24:47,116 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-05 10:24:47,388 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-09-05 10:24:47,626 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-09-05 10:24:47,658 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-09-05 10:24:49,398 WARN org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl [main] GenerationTarget encountered exception accepting command : Error executing DDL "alter table product_category add column id int8 not null" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table product_category add column id int8 not null" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:581)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:602)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:314)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:78)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:123)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:196)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:85)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:335)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:132)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$8(ClassBasedTestDescriptor.java:363)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:368)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$9(ClassBasedTestDescriptor.java:363)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:362)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:283)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:282)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:272)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:271)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:102)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:101)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:66)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+Caused by: org.postgresql.util.PSQLException: ERROR: column "id" contains null values
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:329)
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:315)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:291)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:286)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 100 common frames omitted
+2022-09-05 10:24:49,405 WARN org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl [main] GenerationTarget encountered exception accepting command : Error executing DDL "alter table products add column stock int4 not null" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table products add column stock int4 not null" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:581)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:602)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:314)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:78)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:123)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:196)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:85)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:335)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:132)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$8(ClassBasedTestDescriptor.java:363)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:368)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$9(ClassBasedTestDescriptor.java:363)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:362)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:283)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:282)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:272)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:271)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:102)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:101)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:66)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+Caused by: org.postgresql.util.PSQLException: ERROR: column "stock" contains null values
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:329)
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:315)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:291)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:286)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 100 common frames omitted
+2022-09-05 10:24:49,685 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-05 10:24:49,705 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-09-05 10:24:52,709 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-09-05 10:24:55,067 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@335cbcbd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@64c79b69, org.springframework.security.web.context.SecurityContextPersistenceFilter@4f3b11e6, org.springframework.security.web.header.HeaderWriterFilter@43a72f0f, org.springframework.web.filter.CorsFilter@a94c8e3, org.springframework.security.web.authentication.logout.LogoutFilter@4fce655d, com.codeblue.montreISTA.security.AuthTokenFilter@ab3b54, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1bcca516, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@cef23a8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@54ee423f, org.springframework.security.web.session.SessionManagementFilter@308e465b, org.springframework.security.web.access.ExceptionTranslationFilter@5006a697, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1a9e2c3b]
+2022-09-05 10:24:56,290 INFO org.springframework.boot.StartupInfoLogger [main] Started MontreIstaApplicationTests in 14.369 seconds (JVM running for 15.923)
+2022-09-05 10:24:56,694 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-09-05 10:24:56,697 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-09-05 10:24:56,707 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-09-05 10:25:12,552 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on RIFKYPC with PID 12880 (C:\Users\Rifky\IdeaProjects\finalprojectfix\wallet-api\montreISTa\target\classes started by Rifky in C:\Users\Rifky\IdeaProjects\finalprojectfix\wallet-api\montreISTa)
+2022-09-05 10:25:12,554 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-09-05 10:25:12,554 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-09-05 10:25:12,612 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-09-05 10:25:12,612 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-09-05 10:25:13,549 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-05 10:25:13,691 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 134 ms. Found 16 JPA repository interfaces.
+2022-09-05 10:25:14,538 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-09-05 10:25:14,549 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-09-05 10:25:14,549 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-09-05 10:25:14,550 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-05 10:25:14,643 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-09-05 10:25:14,644 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 2031 ms
+2022-09-05 10:25:14,813 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-05 10:25:14,867 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-05 10:25:15,038 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-05 10:25:15,150 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-09-05 10:25:15,268 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-09-05 10:25:15,287 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-09-05 10:25:16,291 WARN org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl [restartedMain] GenerationTarget encountered exception accepting command : Error executing DDL "alter table product_category add column id int8 not null" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table product_category add column id int8 not null" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:581)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:602)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:314)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:78)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:123)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:196)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:85)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:335)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:330)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:113)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:693)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:374)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:134)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1707)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1452)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:410)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:212)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:175)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:170)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:155)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:87)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:262)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:236)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5219)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:265)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:479)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:211)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:184)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:577)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.codeblue.montreISTA.MontreIstaApplication.main(MontreIstaApplication.java:19)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.postgresql.util.PSQLException: ERROR: column "id" contains null values
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:329)
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:315)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:291)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:286)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 129 common frames omitted
+2022-09-05 10:25:16,296 WARN org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl [restartedMain] GenerationTarget encountered exception accepting command : Error executing DDL "alter table products add column stock int4 not null" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table products add column stock int4 not null" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:581)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:602)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:314)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:78)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:220)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:123)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:196)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:85)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:335)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:330)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:113)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:693)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:374)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:134)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1707)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1452)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:410)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:212)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:175)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:170)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:155)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:87)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:262)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:236)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5219)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:265)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:479)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:211)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:184)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:577)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.codeblue.montreISTA.MontreIstaApplication.main(MontreIstaApplication.java:19)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.postgresql.util.PSQLException: ERROR: column "stock" contains null values
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:329)
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:315)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:291)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:286)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 129 common frames omitted
+2022-09-05 10:25:16,490 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-05 10:25:16,500 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-09-05 10:25:18,027 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-09-05 10:25:18,819 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1037f7db, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1e316d2c, org.springframework.security.web.context.SecurityContextPersistenceFilter@868b8e2, org.springframework.security.web.header.HeaderWriterFilter@6b9c82c8, org.springframework.web.filter.CorsFilter@a00a266, org.springframework.security.web.authentication.logout.LogoutFilter@9f7d587, com.codeblue.montreISTA.security.AuthTokenFilter@3728be40, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@8176957, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@32a101bc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@16a47c9e, org.springframework.security.web.session.SessionManagementFilter@4032383a, org.springframework.security.web.access.ExceptionTranslationFilter@4ec10284, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7ee6080f]
+2022-09-05 10:25:19,212 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-09-05 10:25:19,228 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-09-05 10:25:19,279 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-09-05 10:25:19,294 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 7.175 seconds (JVM running for 7.688)
+2022-09-05 10:27:07,178 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-09-05 10:27:07,185 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on RIFKYPC with PID 16748 (C:\Users\Rifky\IdeaProjects\finalprojectfix\wallet-api\montreISTa\target\classes started by Rifky in C:\Users\Rifky\IdeaProjects\finalprojectfix\wallet-api\montreISTa)
+2022-09-05 10:27:07,185 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-09-05 10:27:07,241 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-09-05 10:27:07,241 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-09-05 10:27:08,201 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-05 10:27:08,341 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 132 ms. Found 16 JPA repository interfaces.
+2022-09-05 10:27:09,052 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-09-05 10:27:09,063 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-09-05 10:27:09,063 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-09-05 10:27:09,063 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-05 10:27:09,160 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-09-05 10:27:09,161 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1916 ms
+2022-09-05 10:27:09,323 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-05 10:27:09,373 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-05 10:27:09,527 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-05 10:27:09,632 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-09-05 10:27:09,750 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-09-05 10:27:09,767 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-09-05 10:27:11,087 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-05 10:27:11,096 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-09-05 10:27:12,491 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-09-05 10:27:13,286 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@24e94609, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@135db7e9, org.springframework.security.web.context.SecurityContextPersistenceFilter@4ada1f3c, org.springframework.security.web.header.HeaderWriterFilter@4ab42337, org.springframework.web.filter.CorsFilter@579e34d8, org.springframework.security.web.authentication.logout.LogoutFilter@16134803, com.codeblue.montreISTA.security.AuthTokenFilter@32886b93, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5b9ed902, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@557211b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@255febf0, org.springframework.security.web.session.SessionManagementFilter@c0c5a39, org.springframework.security.web.access.ExceptionTranslationFilter@6bb98aac, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@13074bbc]
+2022-09-05 10:27:13,702 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-09-05 10:27:13,718 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-09-05 10:27:13,739 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-09-05 10:27:13,753 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 7.015 seconds (JVM running for 7.496)
+2022-09-05 10:27:59,050 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:27:59,051 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T03:27:59.020820900Z[GMT] 
+2022-09-05 10:27:59,051 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 10:27:59,051 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:30:59,005 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:30:59,005 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T03:30:59.005680100Z[GMT] 
+2022-09-05 10:30:59,005 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 10:30:59,005 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:33:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:33:59,013 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T03:33:59.009980Z[GMT] 
+2022-09-05 10:33:59,013 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 10:33:59,013 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:36:59,014 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:36:59,014 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T03:36:59.014684200Z[GMT] 
+2022-09-05 10:36:59,014 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 10:36:59,014 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:39:59,008 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:39:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T03:39:59.007615100Z[GMT] 
+2022-09-05 10:39:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 10:39:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:41:28,866 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-09-05 10:41:28,872 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MontreIstaApplication using Java 17.0.3.1 on RIFKYPC with PID 15952 (C:\Users\Rifky\IdeaProjects\finalprojectfix\wallet-api\montreISTa\target\classes started by Rifky in C:\Users\Rifky\IdeaProjects\finalprojectfix\wallet-api\montreISTa)
+2022-09-05 10:41:28,873 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-09-05 10:41:28,928 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-09-05 10:41:28,929 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-09-05 10:41:29,890 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-05 10:41:30,027 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 130 ms. Found 16 JPA repository interfaces.
+2022-09-05 10:41:30,847 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8090 (http)
+2022-09-05 10:41:30,860 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8090"]
+2022-09-05 10:41:30,861 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2022-09-05 10:41:30,861 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-05 10:41:30,969 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2022-09-05 10:41:30,970 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 2040 ms
+2022-09-05 10:41:31,143 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-05 10:41:31,226 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-05 10:41:31,451 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-05 10:41:31,581 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2022-09-05 10:41:31,705 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2022-09-05 10:41:31,735 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgresPlusDialect
+2022-09-05 10:41:33,039 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-05 10:41:33,048 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-09-05 10:41:34,453 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-09-05 10:41:35,247 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4f3166dc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@66c29e2d, org.springframework.security.web.context.SecurityContextPersistenceFilter@1dc3f732, org.springframework.security.web.header.HeaderWriterFilter@47967d7e, org.springframework.web.filter.CorsFilter@24e94609, org.springframework.security.web.authentication.logout.LogoutFilter@324b91ce, com.codeblue.montreISTA.security.AuthTokenFilter@3fe8e4f4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6ac40276, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@e7446a2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@135db7e9, org.springframework.security.web.session.SessionManagementFilter@c5b352c, org.springframework.security.web.access.ExceptionTranslationFilter@12e60dcf, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@eab6953]
+2022-09-05 10:41:35,669 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-09-05 10:41:35,684 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8090"]
+2022-09-05 10:41:35,707 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8090 (http) with context path ''
+2022-09-05 10:41:35,721 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MontreIstaApplication in 7.28 seconds (JVM running for 7.754)
+2022-09-05 10:42:01,311 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-05 10:42:01,312 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-09-05 10:42:01,314 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8090-exec-1] Completed initialization in 2 ms
+2022-09-05 10:42:02,384 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8090-exec-9] Init duration for springdoc-openapi is: 606 ms
+2022-09-05 10:42:59,051 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:42:59,051 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T03:42:59.016409900Z[GMT] 
+2022-09-05 10:42:59,052 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 10:42:59,052 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:45:59,018 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:45:59,019 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T03:45:59.016963200Z[GMT] 
+2022-09-05 10:45:59,019 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 10:45:59,019 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:48:59,008 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:48:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T03:48:59.007554Z[GMT] 
+2022-09-05 10:48:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 10:48:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:51:59,005 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:51:59,005 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T03:51:59.005972800Z[GMT] 
+2022-09-05 10:51:59,005 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 10:51:59,005 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:54:59,005 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:54:59,005 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T03:54:59.003173900Z[GMT] 
+2022-09-05 10:54:59,006 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 10:54:59,006 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:57:59,013 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 10:57:59,013 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T03:57:59.013799300Z[GMT] 
+2022-09-05 10:57:59,013 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 10:57:59,013 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:00:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:00:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T04:00:59.009203700Z[GMT] 
+2022-09-05 11:00:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 11:00:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:03:59,013 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:03:59,017 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T04:03:59.013657500Z[GMT] 
+2022-09-05 11:03:59,017 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 11:03:59,017 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:06:59,007 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:06:59,011 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T04:06:59.007352Z[GMT] 
+2022-09-05 11:06:59,011 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 11:06:59,011 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:09:59,008 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:09:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T04:09:59.007604600Z[GMT] 
+2022-09-05 11:09:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 11:09:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:12:59,022 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:12:59,022 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T04:12:59.014965600Z[GMT] 
+2022-09-05 11:12:59,022 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 11:12:59,022 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:15:59,011 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:15:59,011 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T04:15:59.011491800Z[GMT] 
+2022-09-05 11:15:59,011 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 11:15:59,014 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:18:59,005 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:18:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T04:18:59.005666600Z[GMT] 
+2022-09-05 11:18:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 11:18:59,009 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:21:59,011 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:21:59,011 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T04:21:59.011707200Z[GMT] 
+2022-09-05 11:21:59,011 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 11:21:59,011 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:24:59,019 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:24:59,020 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T04:24:59.018533300Z[GMT] 
+2022-09-05 11:24:59,021 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 11:24:59,021 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:27:59,001 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:27:59,001 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T04:27:59.001974700Z[GMT] 
+2022-09-05 11:27:59,001 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 11:27:59,001 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:30:59,022 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
+2022-09-05 11:30:59,025 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] The time is now 2022-09-05T04:30:59.022264400Z[GMT] 
+2022-09-05 11:30:59,025 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] Schedule work, but nothing to delete
+2022-09-05 11:30:59,025 INFO com.codeblue.montreISTA.helper.Scheduler [scheduling-1] ====================
